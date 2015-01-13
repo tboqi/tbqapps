@@ -1,0 +1,7 @@
+[submodule "php/khn/khn3/khn3blog/system"]
+	path = php/khn/khn3/khn3blog/system
+	url = https://github.com/kohana/core
+	branch = 3.2/master
+[submodule "php/khn/khn3/khn3blog/modules/pagination"]
+	path = php/khn/khn3/khn3blog/modules/pagination
+	url = https://github.com/tboqi/kohana-pagination
