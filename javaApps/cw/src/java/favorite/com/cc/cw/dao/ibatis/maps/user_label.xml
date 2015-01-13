@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="userLabel">
+	<typeAlias alias="UserLabel" type="com.cc.cw.domain.UserLabel" />
+	<typeAlias alias="HashMap" type="java.util.HashMap" />
+
+	<resultMap id="userLabel" class="UserLabel">
+		<result property="label" column="label" />
+		<result property="uuid" column="uuid" />
+		<result property="clicktime" column="clicktime" />
+		<result property="updatetime" column="updatetime" />
+		<result property="weight" column="weight" />
+	</resultMap>
+
+	<!--获得uuid下点击次数最高的3个label-->
+	<select id="getUserLabels" resultMap="userLabel"
+		parameterClass="java.util.HashMap">
+		select label,uuid,updatetime,clicktime, weight from $tableName$
+		where uuid = #uuid# order by weight desc limit $limit$
+	</select>
+
+	<select id="getCount" resultClass="java.lang.Integer">
+		select count(*) as count
+		from article a
+		where a.id in (SELECT ArticleId FROM label l where $or$) and a.MemberId != #memberId#
+	</select>
+</sqlMap>

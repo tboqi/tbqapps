@@ -1,0 +1,7 @@
+
+yum install glib2-devel
+cd /usr/local/src/ && wget http://sourceforge.net/projects/fuse/files/fuse-2.X/2.8.7/fuse-2.8.7.tar.gz && tar -zxvf fuse-2.8.7.tar.gz && cd fuse-2.8.7 && ./configure;make;make install && echo '/usr/local/lib' > /etc/ld.so.conf.d/fuse.conf && ldconfig && cd /usr/local/src/&& wget http://sourceforge.net/projects/fuse/files/sshfs-fuse/2.4/sshfs-fuse-2.4.tar.gz && tar -zxvf sshfs-fuse-2.4.tar.gz && cd sshfs-fuse-2.4 && ./configure;make;make install
+
+加入ssh免登录权限
+
+/usr/local/bin/sshfs root@10.10.252.200:/www/xikang_web/uploadedImages /usr/local/httpd/htdocs/uploadedImages -o allow_other,reconnect,uid=0,gid=0,default_permissions

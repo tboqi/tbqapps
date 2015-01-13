@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>ȷ����</title>
+<style type="text/css">
+<!--
+body,td,th {
+	font-size: 12px;
+}
+-->
+</style></head>
+
+<body><p>�װ���${userName}��</p>
+
+<p>��ã�</p>
+<p>���ô������ڴ�����(<a href="http://www.chuanwen.com.cn">http://www.chuanwen.com.cn/</a>)ע����һ���ʻ�������һ��ȷ���š�
+<p>����ʻ���Ϣ���� ��<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;�û���    ${userName}<br />
+
+<p>����Ҫ�������t�ӽ���ȷ�ϣ�ȷ���Ժ���Ϳ���ʹ�ô�����Ϊ���ṩ�ĵķ���<br/>
+  <!--  ����:<a href="http://www.chuanwen.com.cn/affirm.action?uuid=${uuid}&userName=${encodeName}">http://www.chuanwen.com.cn/affirm.action?uuid=${uuid}&userName=${encodeName}</a></p>-->
+����:<a href="http://localhost:8080/cw/affirm.action?uuid=${uuid}&userName=${encodeName}">http://localhost:8080/cw/affirm.action?uuid=${uuid}&userName=${encodeName}</a></p>
+<p>������email����֧��t�ӵ���뽫����ĵ�ַ��������������(��IE)�ĵ�ַ8���봫����</p>
+
+<p>�����û�������ǵ���վע�ᣬ����Ҫ������EMAIL��������ɵ��鷳�����Ǳ�ʾǸ��!</p>
+</body>
+</html>

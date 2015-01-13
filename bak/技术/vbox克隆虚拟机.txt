@@ -1,0 +1,6 @@
+VBoxManage clonevdi  原.vdi 新.vdi
+
+新建选择已有硬盘即可
+
+但网卡对应的是eth2, 不知道为什么
+

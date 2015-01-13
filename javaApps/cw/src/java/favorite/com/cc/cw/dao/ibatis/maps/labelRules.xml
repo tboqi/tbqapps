@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="labelruless">
+	<typeAlias alias="LabelRules" type="com.cc.cw.domain.LabelRules" />
+	<typeAlias alias="HashMap" type="java.util.HashMap" />
+
+	<resultMap id="labelRules" class="LabelRules">
+		<result property="id" column="ID" />
+		<result property="sourceTags" column="SOURCETAGS" />
+		<result property="targetTags" column="TARGETTAGS" />
+		<result property="type" column="TYPE" />
+		<result property="createTime" column="CREATETIME" />
+		<result property="operatorName" column="OPERATORNAME" />
+		<result property="disuseTime" column="DISUSETIME" />
+	</resultMap>
+
+	<!--获得uuid下点击次数最高的3个label-->
+	<select id="getAll" resultClass="LabelRules">
+		select ID, SOURCETAGS,TARGETTAGS,TYPE,CREATETIME, OPERATORNAME,
+		DISUSETIME from cw_labelrules
+	</select>
+	<select id="isEqual" resultClass="java.lang.Integer">
+		select count(*) from cw_labelrules where SOURCETAGS=#sourceTags# and TARGETTAGS=#targetTags#
+	</select>
+	<insert id="insert" parameterClass="LabelRules">
+		insert into `cw_labelrules` (`SOURCETAGS`, `TARGETTAGS`, `TYPE`,
+		`CREATETIME`, `OPERATORNAME`, `DISUSETIME` ) values
+		(#sourceTags#, #targetTags#, #type#, #createTime#,
+		#operatorName#, #disuseTime# )
+	</insert>
+	<delete id="delete">
+		delete from cw_labelrules where id in ($value$)
+	</delete>
+	<select id="selectRuleByType" resultMap="labelRules">
+		select ID,SOURCETAGS,TARGETTAGS,TYPE,CREATETIME, OPERATORNAME,
+		DISUSETIME from cw_labelrules WHERE TYPE=#type#
+	</select>
+</sqlMap>

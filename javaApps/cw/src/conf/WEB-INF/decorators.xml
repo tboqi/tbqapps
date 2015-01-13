@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<decorators defaultdir="/decorators">
+    <!-- Any urls that are excluded will never be decorated by Sitemesh -->   <!-- Any urls that are excluded will never be decorated by Sitemesh -->
+    <!--<excludes>
+        <pattern>/*.html</pattern>
+        <pattern>/exclude/*</pattern>
+        <pattern>/study/*</pattern>
+    </excludes>-->
+    
+    <decorator name="main" page="main.ftl">
+        <pattern>/home.action</pattern>
+		<pattern>/*.action</pattern>
+    </decorator>
+    
+   <!-- <decorator name="none" page="none.ftl">
+        <pattern>/*.action</pattern>
+        <pattern>/charge/*</pattern>
+        <pattern>/register/*</pattern>
+        <pattern>/message/*</pattern>
+        <pattern>/resource/*</pattern>
+        <pattern>/vote/viewcurrentvote.action</pattern>
+    </decorator>
+	-->
+</decorators>

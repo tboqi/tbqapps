@@ -1,0 +1,22 @@
+' Gambas class file
+
+PUBLIC SUB _new()
+
+END
+
+PUBLIC SUB Form_Open()
+
+END
+
+PUBLIC SUB MainCloseButton_Click()
+
+  FMain.Close
+
+END
+
+PUBLIC SUB ConnectButton_Click()
+
+  DIM hConnection AS 
+  hConnection = NEW conne
+
+END

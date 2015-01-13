@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+"http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="message">
+	<typeAlias alias="Message" type="com.cc.cw.domain.Message" />
+	<resultMap id="message" class="Message">
+		<result property="id" column="Id" />
+		<result property="senderId" column="SenderId" />
+		<result property="receiveId" column="ReceiveId" />
+		<result property="state" column="State" />
+		<result property="msgType" column="MsgType" />
+		<result property="sendTime" column="SendTime" />
+		<result property="title" column="Title" />
+		<result property="content" column="Content" />
+	</resultMap>
+	
+	<!--通过id获得Message对象-->
+	<select id="getMessage" resultClass="Message" remapResults="true">
+		SELECT Id,SenderId,ReceiveId,State,MsgType,SendTime,Title,Content 
+		FROM message 
+		WHERE Id = #id#
+	</select>
+	
+	<!--获得state(状态)对象通过id-->
+	<select id="getState" resultClass="java.lang.Integer" remapResults="true">
+		SELECT State 
+		FROM message 
+		WHERE Id = #id#
+	</select>
+	
+	<insert id="addMessage">
+		INSERT INTO message 
+		( SenderId, ReceiveId, MsgType, State, SendTime, Title, Content ) 
+		VALUES 
+		( #senderId#, #receiveId#,#msgType#,0,NOW(),#title#,#content#)
+		<selectKey keyProperty="id" resultClass="int">
+			SELECT LAST_INSERT_ID() as value
+		</selectKey>
+	</insert>
+	
+	<delete id="deleteMessage" parameterClass="java.lang.Integer">
+		<![CDATA[
+		DELETE from message 
+		WHERE Id = #id#
+	 	]]>
+	</delete>
+
+	<update id="updateState" >
+		<![CDATA[
+	       UPDATE message 
+	       SET State = #state#
+	       WHERE Id = #id#
+	    ]]>
+	</update>
+	
+	<!-- 查询用户所有短消息-->
+	<select id="getAllMessages" resultMap="message" remapResults="true">
+		SELECT 
+		    Id,SenderId,ReceiveId,State,MsgType,SendTime,Title,Content
+		FROM 
+		    message 
+		WHERE 
+			ReceiveId = #id#
+		ORDER BY State , SendTime DESC
+		LIMIT #start#, #count#
+	</select>
+	
+	<!--根据消息状态查询短消息-->
+	<select id="getMessageByState" resultMap="message" remapResults="true">
+		<![CDATA[
+		SELECT 
+		    Id,SenderId,ReceiveId,State,MsgType,SendTime,Title,Content
+		FROM 
+		    message 
+		WHERE 
+			State = #state#
+		AND
+			ReceiveId = #id#
+		AND
+			MsgType <> 2
+		ORDER BY SendTime DESC
+		LIMIT #start#, #count#
+		]]>
+	</select>
+	
+	<select id="getAllMessageCount" resultClass="java.lang.Integer">
+		<![CDATA[
+		SELECT 
+			COUNT(Id)
+		FROM
+			message
+		WHERE
+			ReceiveId = #memberId#
+		AND 
+			MsgType <> 2
+		]]>
+	</select>
+	
+	<select id="getMessageCountByState" resultClass="java.lang.Integer">
+		<![CDATA[
+		SELECT 
+			COUNT(Id)
+		FROM
+			message
+		WHERE
+			State = #state#
+		AND
+			ReceiveId = #memberId#
+		AND
+			MsgType <> 2
+		]]>
+	</select>
+	
+	<!--查询留言-->
+	<select id="getForeinMessages" resultMap="message" remapResults="true">
+		SELECT 
+		    Id,SenderId,ReceiveId,State,MsgType,SendTime,Title,Content
+		FROM 
+		    message 
+		WHERE 
+			MsgType = 2
+		AND
+			ReceiveId = #id#
+		ORDER BY SendTime DESC
+		LIMIT #start#, #count#
+	</select>
+	
+	<select id="getForeinMessageCount" resultClass="java.lang.Integer">
+		SELECT 
+			COUNT(Id)
+		FROM
+			message
+		WHERE
+			MsgType = 2
+		AND
+			ReceiveId = #memberId#
+	</select>
+	<select id="count" resultClass="java.lang.Integer">
+		SELECT 
+			COUNT(Id)
+		FROM
+			message
+		WHERE
+			MsgType = #msgType# and SenderId != -1
+	</select>
+	<select id="countInMemberIds" resultClass="java.lang.Integer">
+		SELECT 
+			COUNT(Id)
+		FROM
+			message
+		WHERE
+			MsgType = #msgType# and SenderId in ($memberIds$) and SenderId != -1
+	</select>
+	<select id="countLikeContent" resultClass="java.lang.Integer">
+		SELECT 
+			COUNT(*)
+		FROM 
+		    message 
+		WHERE 
+			MsgType = #msgType# and (Content like '%$key$%' or Title like '%$key$%') and SenderId != -1
+	</select>
+	<delete id="deleteByIds">
+		delete from message where Id in ($ids$)
+	</delete>
+	<select id="find" resultMap="message" remapResults="true">
+		SELECT 
+		    Id,SenderId,ReceiveId,State,MsgType,SendTime,Title,Content
+		FROM 
+		    message 
+		WHERE 
+			MsgType = #msgType# and SenderId != -1
+		ORDER BY SendTime DESC
+		LIMIT #start#, #count#
+	</select>
+	<select id="findInMemberIds" resultMap="message" remapResults="true">
+		SELECT 
+		    Id,SenderId,ReceiveId,State,MsgType,SendTime,Title,Content
+		FROM 
+		    message 
+		WHERE 
+			MsgType = #msgType# and SenderId in ($memberIds$) and SenderId != -1
+		ORDER BY SendTime DESC
+		LIMIT #start#, #count#
+	</select>
+	<select id="findLikeContent" resultMap="message" remapResults="true">
+		SELECT 
+		    Id,SenderId,ReceiveId,State,MsgType,SendTime,Title,Content
+		FROM 
+		    message 
+		WHERE 
+			MsgType = #msgType# and (Content like '%$key$%' or Title like '%$key$%') and SenderId != -1
+		ORDER BY SendTime DESC
+		LIMIT #start#, #count#
+	</select>
+</sqlMap>

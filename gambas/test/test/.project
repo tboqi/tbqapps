@@ -1,0 +1,7 @@
+# Gambas Project File 2.0
+Title=test
+Startup=FMain
+Library=gb.db
+Library=gb.gui
+Library=gb.form
+Library=gb.db.form

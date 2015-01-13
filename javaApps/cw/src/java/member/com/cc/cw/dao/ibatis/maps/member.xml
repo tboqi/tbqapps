@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="member">
+  <cacheModel id="memberCache" type="LRU">
+    <flushInterval hours="2"/>		
+    <property name="size" value="1000"/>
+  </cacheModel>
+  
+  <typeAlias alias="Member" type="com.cc.cw.domain.Member"/>
+  <typeAlias alias="HashMap" type="java.util.HashMap"/>
+  
+  <resultMap id="member" class="Member">   
+    <result property="id" column="Id"/>
+    <result property="password" column="Password"/>
+    <result property="userName" column="UserName"/>
+	<result property="email" column="Email"/>
+    <result property="privilege" column="Privilege"/>
+	<result property="privilegeDecimalValue" column="PrivilegeDecimalValue"/>
+    <result property="registerTime" column="RegisterTime"/>
+    <result property="lastLoginTime" column="LastLoginTime"/>
+  	<result property="ip" column="Ip"/>
+	<result property="state" column="State"/>
+	<result property="uuid" column="Uuid"/>
+	<result property="coverPath" column="CoverPath"/>
+	<result property="gender" column="gender"/>
+	<result property="descript" column="descript"/>
+	<result property="commend" column="commend"/>
+  </resultMap>
+  
+  <!--获得member对象通过id-->
+  <select id="get" resultMap="member">
+    select * from member where Id = #id#
+  </select>
+	
+	<select id="getByUUID" resultMap="member">
+		select * from member where Uuid = #uuid#
+	</select>
+  
+  <insert id="add">
+  	insert into member (Password,UserName,Email,Privilege,PrivilegeDecimalValue,RegisterTime,LastLoginTime,Ip,Uuid) 
+	  values 
+	                  (#password#,#userName#,#email#,#privilege#,#privilegeDecimalValue#,NOW(),NOW(),#ip#,#uuid#)
+  	<selectKey keyProperty="id" resultClass="int">
+      select LAST_INSERT_ID() as value
+    </selectKey>
+  </insert>
+  
+  <update id="update">
+  	update member
+  	set Password = #password#,
+  		UserName = #userName#,
+  		Privilege = #privilege#,
+		PrivilegeDecimalValue = #privilegeDecimalValue#,
+  		LastLoginTime = #lastLoginTime#,
+  		Ip = #ip#
+  	where Id = #id#
+  </update>
+  
+  <!-- 通过Ip查询结合最后登录时间，查找是否有符合条件的纪录，如果有，说明这个用户在今天登录过，将不再给分-->
+  <select id="queryByIp" parameterClass="HashMap" resultClass="java.lang.Integer">
+  	select count(Id) from member
+  	where Ip = #ip#
+  		and
+  		(select datediff(now(),LastLoginTime)) = 0
+  		or 
+  		Id = #id#
+  		and
+  		(select datediff(now(),LastLoginTime)) = 0
+  </select>
+  
+	<!-- 根据传入的字段名字、email或id、密码，查找用户 -->
+	<select id="loginByKeyword" resultMap="member" remapResults="true">
+		SELECT 
+			Id,Password,UserName,Email,Privilege,PrivilegeDecimalValue,RegisterTime,LastLoginTime,Ip,State,Uuid,CoverPath,gender,descript,commend
+		FROM
+			member
+		WHERE 
+			$column$ = #key# 
+		AND
+			Password = #password#
+	</select>
+	
+	<!-- 判断是否有相同的email -->
+	<select id="exists" resultClass="java.lang.Integer">
+		SELECT
+			COUNT(Id)
+		FROM 
+			member
+		WHERE
+			Email = #key#		
+	</select>
+	
+		<!-- 判断是否有相同的uuid -->
+	<select id="existsUUID" resultClass="java.lang.Integer">
+		SELECT
+			COUNT(Id)
+		FROM 
+			member
+		WHERE
+			Uuid = #key#		
+	</select>
+	
+	<update id="updateFieldValueById">
+		UPDATE member
+		SET $field$ = #value#
+		WHERE Id = #id#
+	</update>
+	
+	<select id="getByEmail" resultMap="member">
+		SELECT
+			Id,Password,UserName,Email,Privilege,PrivilegeDecimalValue,RegisterTime,LastLoginTime,Ip,State,Uuid,CoverPath,gender,descript,commend
+		FROM
+			member
+		WHERE 
+			Email = #email#
+	</select>
+	
+	<select id="getActivityMember" resultClass="java.lang.Integer" >
+		SELECT MemberId from (SELECT count(Id) as c,MemberId  from article 
+		where CreateDate > DATE_SUB(now(), INTERVAL 1 MONTH) 
+		group by MemberId order by c desc limit #start#,#count#) as tb
+	</select>
+	
+	<!-- 查找某用户的随机好友信息 -->
+	<select id="getByFriendId" resultMap="member">
+		SELECT
+			Id,Password,UserName,Email,Privilege,PrivilegeDecimalValue,RegisterTime,LastLoginTime,Ip,State,Uuid,CoverPath,gender,descript,commend
+		FROM
+			member
+		WHERE 
+			Id in (SELECT FriendId from friend where MyId = #myid# and state = 1) and State=0
+		ORDER BY LastLoginTime desc limit #start#,#count#
+	</select>
+	<!-- 查找某用户的最近新增好友信息 -->
+	<select id="getByNewFriendId" resultMap="member">
+		SELECT
+			Id,Password,UserName,Email,Privilege,PrivilegeDecimalValue,RegisterTime,LastLoginTime,Ip,State,Uuid,CoverPath,gender,descript,commend
+		FROM
+			member
+		WHERE State=0 and
+			Id in (SELECT FriendId from friend where MyId = #myid# and state = 1 ORDER BY PassedTime desc) 
+		limit #start#,#count#
+	</select>
+	
+	<select id="getMemberCount" resultClass="java.lang.Integer">
+		SELECT count(*) FROM member
+	</select>
+	<select id="getMember" resultClass="Member">
+		SELECT
+			Id,Password,UserName,Email,Privilege,PrivilegeDecimalValue,RegisterTime,LastLoginTime,Ip,State,Uuid,CoverPath,gender,descript,commend
+		FROM
+			member order by Id desc limit #start#,#num#
+	</select>
+	
+	<!-- 后台管理中按条件查出记录 -->
+	<select id="getMemberSearch" resultMap="member">
+		SELECT
+			Id,Password,UserName,Email,Privilege,PrivilegeDecimalValue,RegisterTime,LastLoginTime,Ip,State,Uuid,CoverPath,gender,descript,commend
+		FROM
+			member
+		WHERE 
+			$property$ like '%$key$%'
+		limit 0, 20
+	</select>
+	<!-- 屏蔽用户 -->
+	<update id="updateState" parameterClass="java.lang.Integer">
+		update member set State=-1 where Id=#mid#
+	</update>
+	<!-- 取消屏蔽用户 -->
+	<update id="unScreen" parameterClass="java.lang.Integer">
+		update member set State=0 where Id=#mid#
+	</update>
+	<!-- 推荐 -->
+	<update id="commend">
+		update member set commend=#commend# where Id=#id#
+	</update>
+	
+	<select id="getMemberLikeKey" resultClass="Member">
+		select Id,Password,UserName,Email,Privilege,PrivilegeDecimalValue,RegisterTime,LastLoginTime,Ip,State,Uuid,CoverPath,gender,descript,commend
+		from member where UserName like '%$key$%' or Email like '%$key$%'
+	</select>
+	<select id="find" resultClass="Member">
+		select Id,Password,UserName,Email,Privilege,PrivilegeDecimalValue,RegisterTime,LastLoginTime,Ip,State,Uuid,CoverPath,gender,descript,commend
+		from member
+	</select>
+	<select id="findCommendMember" resultClass="Member">
+		select Id,Password,UserName,Email,Privilege,PrivilegeDecimalValue,RegisterTime,LastLoginTime,Ip,State,Uuid,CoverPath,gender,descript,commend
+		from member where commend=1 order by id desc limit #count#
+	</select>
+</sqlMap>

@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="remark">
+	<cacheModel id="remarkCache" type="LRU">
+		<flushInterval hours="2" />
+		<property name="size" value="1000" />
+	</cacheModel>
+
+	<typeAlias alias="Remark" type="com.cc.cw.domain.RemarkArticle" />
+	<typeAlias alias="HashMap" type="java.util.HashMap" />
+
+	<resultMap id="remark" class="Remark">
+		<result property="id" column="Id" />
+		<result property="title" column="Title" />
+		<result property="content" column="Content" />
+		<result property="memberId" column="MemberId" />
+		<result property="articleId" column="ArticleId" />
+		<result property="createDate" column="CreateDate" />
+		<result property="level" column="Level" />
+		<result property="type" column="Type" />
+		<result property="status" column="status" />
+	</resultMap>
+
+	<select id="getById" resultMap="remark">
+		select * from remark where Id = #id#
+	</select>
+
+	<insert id="add">
+		insert into remark
+		(Title,Content,MemberId,ArticleId,CreateDate,Level,Type) values
+		(#title# ,
+		#content#,#memberId#,#articleId#,NOW(),#level#,#type#)
+		<selectKey keyProperty="id" resultClass="int">
+			select LAST_INSERT_ID() as value
+		</selectKey>
+	</insert>
+
+	<update id="update">
+		update remark set Title = #title#, Content = #content#, Level =
+		#level# where Id = #id#
+	</update>
+
+	<select id="getByFieldValue" remapResults="true"
+		resultMap="remark">
+		select * from remark where $field$ = #value#;
+	</select>
+
+	<update id="updateFieldValueById">
+		UPDATE remark SET $field$ = #value# WHERE Id = #id#
+	</update>
+
+	<delete id="delete">DELETE FROM remark WHERE Id = #id#</delete>
+
+	<!-- 根据文章Id获得所有回复 -->
+	<select id="queryByType" resultMap="remark">
+		SELECT * FROM remark WHERE ArticleId = #articleId# AND Type =
+		#type# and status=0 ORDER BY Id desc LIMIT #start# , #count#
+	</select>
+
+	<!-- 根据文章Id获得所有回复 -->
+	<select id="getRemarksCountByArticleId"
+		resultClass="java.lang.Integer">
+		SELECT COUNT(Id) FROM remark WHERE ArticleId = #articleId#
+	</select>
+
+	<!-- 所有回复,用于建立索引-->
+	<select id="getAllRemarks" resultMap="remark">
+		<![CDATA[
+		SELECT 
+		    *
+		FROM 
+		    remark
+		]]>
+	</select>
+
+	<!-- 某ID后的新增回复,用于建立增量索引-->
+	<select id="getNewRemarksFromId" resultMap="remark">
+		<![CDATA[
+		SELECT 
+		    *
+		FROM 
+		    remark
+		WHERE
+			Id > #id#
+        LIMIT 10;
+		]]>
+	</select>
+
+	<!-- 某ID后的新增回复总数,用于判断是否建立索引-->
+	<select id="haveNewRemark" resultClass="java.lang.Integer">
+		SELECT COUNT(Id) FROM remark WHERE Id > #id#
+	</select>
+
+	<!-- 某用户的所有回复-->
+	<select id="getRemarksByMemberId" resultMap="remark">
+		<![CDATA[
+		SELECT 
+		    *
+		FROM 
+		    remark
+		WHERE
+			MemberId = #id#
+		]]>
+	</select>
+
+	<!--用户所有回复过的文章id-->
+	<select id="getRemarkIdsByMemberId"
+		resultClass="java.lang.Integer">
+		SELECT distinct(ArticleId) FROM remark WHERE MemberId =
+		#memberId# LIMIT #start# , #count# ORDER BY Id DESC
+	</select>
+
+	<select id="getRemarksCountByMemberId"
+		resultClass="java.lang.Integer">
+		SELECT COUNT(Id) FROM remark WHERE MemberId = #memberId#
+	</select>
+
+	<!--根据用户id获取回复(将过滤掉对同一文章重复的回复)-->
+	<select id="getRemarksByMemberIdEx" resultMap="remark">
+		SELECT
+		Id,Title,Content,MemberId,COUNT(DISTINCT(ArticleId)),ArticleId,CreateDate,Level,Type
+		FROM remark WHERE MemberId = #memberId# GROUP BY ArticleId LIMIT
+		#start# , #count#
+	</select>
+
+	<select id="searchRemark" remapResults="true" resultMap="remark">
+		<![CDATA[
+		SELECT 
+		*
+		FROM
+		remark 
+		WHERE Title like '%$key$%' OR Content like '%$key$%'
+		ORDER BY Id desc
+		LIMIT #start#,#count#
+	    ]]>
+	</select>
+
+	<select id="searchRemarkCount" resultClass="java.lang.Integer">
+		<![CDATA[
+		SELECT
+			COUNT(Id)
+		FROM 
+			remark
+		WHERE
+			Title like '%$key$%' OR Content like '%$key$%'
+	    ]]>
+	</select>
+
+	<select id="count" resultClass="java.lang.Integer">
+		<![CDATA[
+		SELECT
+			COUNT(*)
+		FROM 
+			remark where Type=#type#
+	    ]]>
+	</select>
+
+	<select id="countByClew" resultClass="java.lang.Integer">
+		<![CDATA[
+		SELECT
+			COUNT(*)
+		FROM 
+			remark
+		WHERE
+			Title like '%$key$%' and Type=#type#
+	    ]]>
+	</select>
+	<select id="countInSourceArticleIds"
+		resultClass="java.lang.Integer">
+		<![CDATA[
+		SELECT
+			COUNT(*)
+		FROM 
+			remark
+		WHERE
+			ArticleId in ($ids$) and Type=#type#
+	    ]]>
+	</select>
+
+	<select id="find" remapResults="true" resultMap="remark">
+		<![CDATA[
+		SELECT 
+		*
+		FROM
+		remark where Type=#type#
+		ORDER BY Id desc
+		LIMIT #start#,#count#
+	    ]]>
+	</select>
+
+	<select id="findByClew" remapResults="true" resultMap="remark">
+		<![CDATA[
+		SELECT 
+		*
+		FROM
+		remark 
+		WHERE Title like '%$key$%' and Type=#type#
+		ORDER BY Id desc
+		LIMIT #start#,#count#
+	    ]]>
+	</select>
+
+	<select id="findInSourceArticleIds" remapResults="true"
+		resultMap="remark">
+		<![CDATA[
+		SELECT 
+		*
+		FROM
+		remark 
+		WHERE ArticleId in ($ids$) and Type=#type#
+		ORDER BY Id desc
+		LIMIT #start#,#count#
+	    ]]>
+	</select>
+
+	<update id="deleteUpdate">
+		update remark set status=-1 where Id = #id#
+	</update>
+	<update id="deleteUpdate2">
+		update remark set status=0 where Id = #id#
+	</update>
+	<select id="countInAuthorIds" resultClass="java.lang.Integer">
+		<![CDATA[
+		select count(*) from remark where MemberId in ($authorIds$)
+		and Type=#type#
+		]]>
+	</select>
+	<select id="countLikeContent" resultClass="java.lang.Integer">
+		<![CDATA[
+		select count(*) from remark where Content like '%$key$%' and
+		Type=#type#
+		]]>
+	</select>
+	<select id="findInAuthorIds" resultClass="Remark">
+		<![CDATA[
+		select * from remark where MemberId in ($authorIds$) and
+		Type=#type# ORDER BY Id desc LIMIT #start#,#count#
+		]]>
+	</select>
+	<select id="findLikeContent" resultClass="Remark">
+		<![CDATA[
+		select * from remark where Content like '%$key$%' and Type=#type# ORDER
+		BY Id desc LIMIT #start#,#count#
+		]]>
+	</select>
+</sqlMap>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="atomLabel">
+  <cacheModel id="atomLabelCache" type="LRU">
+    <flushInterval hours="2"/>		
+    <property name="size" value="1000"/>
+  </cacheModel>
+  
+  <typeAlias alias="AtomLabel" type="com.cc.cw.domain.AtomLabel"/>
+  <typeAlias alias="HashMap" type="java.util.HashMap"/>
+  
+  <resultMap id="atomLabel" class="AtomLabel">   
+    <result property="id" column="Id"/>
+    <result property="providerId" column="ProviderId"/>
+    <result property="content" column="Content"/>
+	<result property="count" column="Count"/>
+	<result property="articleId" column="ArticleId"/>
+  </resultMap>
+	
+	<insert id="insert">
+		INSERT INTO atomLabel
+			(ProviderId,Content,Count,ArticleId)
+		VALUES
+			(#providerId#,#content#,#count#,#articleId#)
+		<selectKey keyProperty="id" resultClass="int">
+			select LAST_INSERT_ID() as value </selectKey> 
+	</insert>
+  
+  <select id="getById" resultMap="atomLabel">
+    SELECT *
+	FROM atomLabel 
+	WHERE Id = #id#
+  </select>
+  
+  
+	<update id="update">
+		update atomLabel 
+		set ProviderId = #providerId#, Content = #content#, Count = #count#,ArticleId = #articleId#
+		where Id = #id# 
+	</update>
+  
+
+	<!-- 根据传入的字段名,id,增加给定的value值 -->
+	<update id="increaseCountByContentArticleId">
+		UPDATE atomLabel
+		SET
+		    Count = Count + #count#
+		WHERE
+		    Content = #content# AND ArticleId = #articleId#
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM 
+			atomLabel
+		WHERE
+			Id = #id#
+	</delete>
+	
+	<!-- 判断此标签内容是否存在 -->
+	<select id="exists" resultClass="java.lang.Integer">
+		SELECT Id
+		FROM atomLabel
+		WHERE Content = #content# and ArticleId = #articleId#
+	</select>
+	
+	<!--获得最热门标签-->
+	<select id="getHotAtomLabel" resultMap="atomLabel">
+		SELECT 
+			*,SUM(count) as c 
+		FROM
+			 atomLabel 
+		GROUP BY Content 
+		ORDER BY c DESC 
+		LIMIT #start#,#count#
+		
+	</select>
+	
+	<select id="getHotAtomLabelCount" resultClass="java.lang.Integer">
+		SELECT SUM(count)
+		FROM atomLabel
+	</select>
+	
+	<select id="getDistinctContent" resultClass="java.lang.String">
+		SELECT DISTINCT Content 
+		FROM atomLabel 
+		group by Content 
+		order by sum(Count) 
+		desc limit 0,100
+	</select>
+	
+	<select id="getDistinctContentByLike" resultClass="java.lang.String">
+		SELECT DISTINCT Content 
+		FROM atomLabel WHERE Content LIKE '%$label$%'
+	</select>
+	
+	<select id="getHotAtomLabelNotIn" resultMap="atomLabel">
+		SELECT 
+			*,SUM(count) as c 
+		FROM
+			 atomLabel 
+		WHERE 
+		     Content NOT IN ($notIn$)
+		GROUP BY Content 
+		ORDER BY c DESC 
+		LIMIT #start#,#count#
+		
+	</select>
+	
+</sqlMap>

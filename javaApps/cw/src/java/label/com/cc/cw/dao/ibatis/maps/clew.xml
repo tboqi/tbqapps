@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="clew">
+	<cacheModel id="clewCache" type="LRU">
+		<flushInterval hours="2"/>
+		<property name="size" value="1000"/>
+	</cacheModel>
+	
+	<typeAlias alias="Clew" type="com.cc.cw.domain.Clew"/>
+	<typeAlias alias="HashMap" type="java.util.HashMap"/>
+	
+	<resultMap id="clew" class="Clew">
+		<result property="id" column="Id"/>
+		<result property="creater" column="Creater"/>
+		<result property="title" column="Title"/>
+		<result property="picLink" column="PicLink"/>
+		<result property="discription" column="Discription"/>
+	</resultMap>
+	
+	<select id="get" resultMap="clew"> 
+		select * from clew where Id = #id#
+	</select>
+	
+	<insert id="insert"> insert into clew (Creater,Title,PicLink,Discription) values
+		(#creater#,#title#,#picLink#,#discription#)
+		<selectKey keyProperty="id" resultClass="int">
+			select LAST_INSERT_ID() as value </selectKey> 
+	</insert>
+	
+	
+	<select id="getByTitle" resultMap="clew"> 
+		select * from clew where Title = #title#
+		limit #start# ,#count#
+	</select>
+	
+	<select id="getCountByTitle" resultClass="java.lang.Integer">
+		select count(*) from clew where Title = #title#
+	</select>
+	
+	<select id="getByKey" resultMap="clew"> 
+		select * from clew where Title like #%title%#
+	</select>
+	
+</sqlMap>

@@ -1,0 +1,118 @@
+firefox
+adblock plus，flashgot, add bookmark here 2，forecastbar enhanced， ie tab plus， easy dragandgo
+firebug， httpfox
+设置
+firefox -profilemanager -no-remote
+在Firefox3的快捷方式上点击右键，然后选择属性。在“目标”输入框中.exe"的后面输入一个空格和-p default，然后关闭。这步是告诉快捷方式使用默认配置文件来运行Firefox3。
+在ffdev的快捷方式上单击右键，选择“属性”，在目标输入框的 –no-remote -p ffdev。这步是告诉这个快捷方式使用配置文件Firefox3来运行。
+选项设置：
+标签加入http://chentu.info, 下载设置为总是询问
+http://chentu.info|http://www.google.com.hk/reader/view/#overview-page
+
+daemon tool
+关闭自动启动
+
+zend studio
+zend studio 7.x 注册码(适用于7.0以上所有版本)
+Username: zendstudio.net
+Serial Number: 3727234F6095F72034F6095F
+设置：
+utf8，unix换行，工作目录到php根目录，取消代码验证，使用版本最新的svn连接器
+插件
+easyexplore
+http://d.download.csdn.net/down/223543/neumes
+
+flash cs3
+
+flash player debugger
+http://www.weste.net/2009/9-30/12041770867.html
+
+迅雷下载无广告版
+
+editplus
+取消保存是建立备份文件
+
+thunderbird
+
+SecureCRT v6.5.8.380 汉化版
+
+wamp
+显示中文， urlwrite设置
+
+tortoisesvn
+中文插件，显示中文，撤销缓存
+http://tortoisesvn.tigris.org/
+
+gtalk
+关闭自动启动
+
+office
+
+谷歌浏览器
+http://www.google.com.hk/chrome?hl=zh-CN
+
+java jdk
+http://www.onlinedown.net/soft/61003.htm
+
+360安全卫士
+
+7zip
+
+红蜻蜓抓图软件
+
+鲁大师
+
+怎样在文件夹的右键菜单中添加打开命令行窗口选项
+http://hi.baidu.com/railwaycat/blog/item/196ad81bf398be128718bf29.html
+http://download.microsoft.com/download/whistler/Install/2/WXP/EN-US/CmdHerePowertoySetup.exe
+
+灵格斯
+登录windows不启动
+
+mysql ui tools
+
+mysql-workbench-gpl
+http://www.mysql.com/downloads/mirror.php?id=390532#mirrors
+
+福昕阅读器
+
+.net framework3.5
+
+360杀毒
+
+tm
+自动启动
+
+msn
+取消自动启动
+
+天天个人助理
+
+飞信
+
+sqlyog
+http://code.google.com/p/sqlyog/downloads/list
+
+vmware
+http://www.crsky.com/soft/1863.html
+
+草图大师
+
+vpn123
+http://vpn123.com/download.php
+
+
+powerdesigher
+http://www.nndown.com/soft/98/
+
+eclipse
+为了支持uml2，使用3.4版
+http://www.eclipse.org/modeling/mdt/uml2/docs/articles/Getting_Started_with_UML2/article.html
+
+——————————————————————————————————————————————————————————————————————————————
+环境变量设置
+D:\wamp\bin\php\php5.3.0
+
+
++++++++++++++++++++++++++++++++++++
+取消语言栏显示      系统设置

@@ -1,0 +1,350 @@
+
+解决
+2013/01/25 12:20:32 [error] 19611#0: *8736778 connect() failed (110: Connection timed out) while connecting to upstream, client: 117.136.15.96, server: slim.xikang.com, request: "GET /cookbookapi/fetch_new/0/1358988253 HTTP/1.1", upstream: "fastcgi://127.0.0.1:9000", host: "42.121.120.19"
+
+vim /usr/local/php/etc/php-fpm.conf
+pm.max_children = 5 =》100 使用150时，发现在使用swap，试着调低
+pm.min_spare_servers = 1 -》10 //所需的最小数量的空闲服务器进程
+pm.max_spare_servers = 3 -》30
+pm.start_servers = 2 -》20 //在启动时创建的子进程的数量
+
+
+
+20130125：12：20nginx出现14处错误，24日同时间段是10个错误
+
+[root@xikang19 ~]# grep -c '2013/01/24 18:10' /usr/local/nginx/logs/error.log 
+59
+25日是50个，
+[root@xikang19 ~]# grep -c '25/Jan/2013:18:10' /usr/local/nginx/logs/slim.xikang.com.access.log 
+6486
+[root@xikang19 ~]# grep -c '25/Jan/2013:12:20' /usr/local/nginx/logs/slim.xikang.com.access.log 
+5852
+[root@xikang19 ~]# grep -c '24/Jan/2013:12:20' /usr/local/nginx/logs/2013/Jan/24/12.log 
+5914
+[root@xikang19 ~]# grep -c '24/Jan/2013:18:10' /usr/local/nginx/logs/2013/Jan/24/18.log 
+6715
+
+参数调整没有效果，下周试着调整max_children到150，试着加入一个fpm进程需测试session
+
+___________________
+20130128
+10点多发生错误(104: Connection reset by peer)
+nginx
+
+worker_processes  2;
+worker_rlimit_nofile 65535;
+events {
+    use epoll;
+    worker_connections  65535;
+}
+
+将php-fpm.rlimit_files和nginx的worker_rlimit_nofile、worker_connections设置同样大小。
+fpm
+pm.max_children : 150
+2013/01/28 10:46:46 [notice] 8699#0: signal process started
+2013/01/28 10:46:46 调整结束，到12点还没有错误发生
+
+慢日志
+[28-Jan-2013 11:25:16]  [pool www] pid 8744
+script_filename = /www/slim/index.php
+[0x00007f6b3bbea9a0] mysqli_connect() /www/slim/system/database/drivers/mysqli/mysqli_driver.php:76
+[0x00007f6b3bbea8c8] db_connect() /www/slim/system/database/drivers/mysqli/mysqli_driver.php:91
+[0x00007f6b3bbea3b0] db_pconnect() /www/slim/system/database/DB_driver.php:115
+[0x00007f6b3bbe9298] initialize() /www/slim/system/database/DB.php:148
+[0x00007f6b3bbe8f70] DB() /www/slim/system/core/Loader.php:346
+[0x00007f6b3bbe8468] database() /www/slim/system/core/Loader.php:1171
+[0x00007f6b3bbe8240] _ci_autoloader() /www/slim/system/core/Loader.php:152
+[0x00007f6b3bbe7ee8] initialize() /www/slim/system/core/Controller.php:51
+[0x00007f6b3bbe7c50] __construct() /www/slim/application/controllers/auth.php:12
+[0x00007f6b3bbe79b8] __construct() /www/slim/application/controllers/messageapi.php:15
+[0x00007f6b3bbe5960] __construct() /www/slim/system/core/CodeIgniter.php:308
+[0x00007f6b3bbe5200] +++ dump failed
+
+[28-Jan-2013 11:25:16]  [pool www] pid 8745
+script_filename = /www/slim/index.php
+[0x00007f6b3bbea9a0] mysqli_connect() /www/slim/system/database/drivers/mysqli/mysqli_driver.php:76
+[0x00007f6b3bbea8c8] db_connect() /www/slim/system/database/drivers/mysqli/mysqli_driver.php:91
+[0x00007f6b3bbea3b0] db_pconnect() /www/slim/system/database/DB_driver.php:115
+[0x00007f6b3bbe9298] initialize() /www/slim/system/database/DB.php:148
+[0x00007f6b3bbe8f70] DB() /www/slim/system/core/Loader.php:346
+[0x00007f6b3bbe8468] database() /www/slim/system/core/Loader.php:1171
+[0x00007f6b3bbe8240] _ci_autoloader() /www/slim/system/core/Loader.php:152
+[0x00007f6b3bbe7ee8] initialize() /www/slim/system/core/Controller.php:51
+[0x00007f6b3bbe7c50] __construct() /www/slim/application/controllers/auth.php:12
+[0x00007f6b3bbe79b8] __construct() /www/slim/application/controllers/messageapi.php:15
+[0x00007f6b3bbe5960] __construct() /www/slim/system/core/CodeIgniter.php:308
+[0x00007f6b3bbe5200] +++ dump failed
+
+[28-Jan-2013 11:25:16]  [pool www] pid 8746
+script_filename = /www/slim/index.php
+[0x00007f6b3bbea770] mysqli_connect() /www/slim/system/database/drivers/mysqli/mysqli_driver.php:76
+[0x00007f6b3bbea698] db_connect() /www/slim/system/database/drivers/mysqli/mysqli_driver.php:91
+[0x00007f6b3bbea180] db_pconnect() /www/slim/system/database/DB_driver.php:115
+[0x00007f6b3bbe9068] initialize() /www/slim/system/database/DB.php:148
+[0x00007f6b3bbe8d40] DB() /www/slim/system/core/Loader.php:346
+[0x00007f6b3bbe8238] database() /www/slim/system/core/Loader.php:1171
+[0x00007f6b3bbe8010] _ci_autoloader() /www/slim/system/core/Loader.php:152
+[0x00007f6b3bbe7cb8] initialize() /www/slim/system/core/Controller.php:51
+[0x00007f6b3bbe7a20] __construct() /www/slim/application/controllers/auth.php:12
+[0x00007f6b3bbe7808] __construct() /www/slim/application/controllers/cookbookapi.php:9
+[0x00007f6b3bbe57b0] __construct() /www/slim/system/core/CodeIgniter.php:308
+[0x00007f6b3bbe5050] +++ dump failed
+
+[28-Jan-2013 11:25:16]  [pool www] pid 8748
+script_filename = /www/slim/index.php
+[0x00007f6b3bbea770] mysqli_connect() /www/slim/system/database/drivers/mysqli/mysqli_driver.php:76
+[0x00007f6b3bbea698] db_connect() /www/slim/system/database/drivers/mysqli/mysqli_driver.php:91
+[0x00007f6b3bbea180] db_pconnect() /www/slim/system/database/DB_driver.php:115
+[0x00007f6b3bbe9068] initialize() /www/slim/system/database/DB.php:148
+[0x00007f6b3bbe8d40] DB() /www/slim/system/core/Loader.php:346
+[0x00007f6b3bbe8238] database() /www/slim/system/core/Loader.php:1171
+[0x00007f6b3bbe8010] _ci_autoloader() /www/slim/system/core/Loader.php:152
+[0x00007f6b3bbe7cb8] initialize() /www/slim/system/core/Controller.php:51
+[0x00007f6b3bbe7a20] __construct() /www/slim/application/controllers/auth.php:12
+[0x00007f6b3bbe7808] __construct() /www/slim/application/controllers/cookbookapi.php:9
+[0x00007f6b3bbe57b0] __construct() /www/slim/system/core/CodeIgniter.php:308
+[0x00007f6b3bbe5050] +++ dump failed
+
+[28-Jan-2013 11:25:16]  [pool www] pid 8750
+script_filename = /www/slim/index.php
+[0x00007f6b3bbea900] mysqli_connect() /www/slim/system/database/drivers/mysqli/mysqli_driver.php:76
+[0x00007f6b3bbea828] db_connect() /www/slim/system/database/drivers/mysqli/mysqli_driver.php:91
+[0x00007f6b3bbea310] db_pconnect() /www/slim/system/database/DB_driver.php:115
+[0x00007f6b3bbe91f8] initialize() /www/slim/system/database/DB.php:148
+[0x00007f6b3bbe8ed0] DB() /www/slim/system/core/Loader.php:346
+[0x00007f6b3bbe83c8] database() /www/slim/system/core/Loader.php:1171
+[0x00007f6b3bbe81a0] _ci_autoloader() /www/slim/system/core/Loader.php:152
+[0x00007f6b3bbe7e48] initialize() /www/slim/system/core/Controller.php:51
+[0x00007f6b3bbe7bb0] __construct() /www/slim/application/controllers/auth.php:12
+[0x00007f6b3bbe7998] __construct() /www/slim/application/controllers/userapi.php:14
+[0x00007f6b3bbe5940] __construct() /www/slim/system/core/CodeIgniter.php:308
+[0x00007f6b3bbe51e0] +++ dump failed
+
+[28-Jan-2013 11:25:16]  [pool www] pid 8752
+script_filename = /www/slim/index.php
+[0x00007f6b3bbea770] mysqli_connect() /www/slim/system/database/drivers/mysqli/mysqli_driver.php:76
+[0x00007f6b3bbea698] db_connect() /www/slim/system/database/drivers/mysqli/mysqli_driver.php:91
+[0x00007f6b3bbea180] db_pconnect() /www/slim/system/database/DB_driver.php:115
+[0x00007f6b3bbe9068] initialize() /www/slim/system/database/DB.php:148
+[0x00007f6b3bbe8d40] DB() /www/slim/system/core/Loader.php:346
+[0x00007f6b3bbe8238] database() /www/slim/system/core/Loader.php:1171
+[0x00007f6b3bbe8010] _ci_autoloader() /www/slim/system/core/Loader.php:152
+[0x00007f6b3bbe7cb8] initialize() /www/slim/system/core/Controller.php:51
+[0x00007f6b3bbe7a20] __construct() /www/slim/application/controllers/auth.php:12
+[0x00007f6b3bbe7808] __construct() /www/slim/application/controllers/cookbookapi.php:9
+[0x00007f6b3bbe57b0] __construct() /www/slim/system/core/CodeIgniter.php:308
+[0x00007f6b3bbe5050] +++ dump failed
+
+[28-Jan-2013 11:25:16]  [pool www] pid 8739
+script_filename = /www/slim/index.php
+[0x00007f6b3bbea900] mysqli_connect() /www/slim/system/database/drivers/mysqli/mysqli_driver.php:76
+[0x00007f6b3bbea828] db_connect() /www/slim/system/database/drivers/mysqli/mysqli_driver.php:91
+[0x00007f6b3bbea310] db_pconnect() /www/slim/system/database/DB_driver.php:115
+[0x00007f6b3bbe91f8] initialize() /www/slim/system/database/DB.php:148
+[0x00007f6b3bbe8ed0] DB() /www/slim/system/core/Loader.php:346
+[0x00007f6b3bbe83c8] database() /www/slim/system/core/Loader.php:1171
+[0x00007f6b3bbe81a0] _ci_autoloader() /www/slim/system/core/Loader.php:152
+[0x00007f6b3bbe7e48] initialize() /www/slim/system/core/Controller.php:51
+[0x00007f6b3bbe7bb0] __construct() /www/slim/application/controllers/auth.php:12
+[0x00007f6b3bbe7998] __construct() /www/slim/application/controllers/userapi.php:14
+[0x00007f6b3bbe5940] __construct() /www/slim/system/core/CodeIgniter.php:308
+[0x00007f6b3bbe51e0] +++ dump failed
+
+[28-Jan-2013 11:25:16]  [pool www] pid 8736
+script_filename = /www/slim/index.php
+[0x00007f6b3bbea770] mysqli_connect() /www/slim/system/database/drivers/mysqli/mysqli_driver.php:76
+[0x00007f6b3bbea698] db_connect() /www/slim/system/database/drivers/mysqli/mysqli_driver.php:91
+[0x00007f6b3bbea180] db_pconnect() /www/slim/system/database/DB_driver.php:115
+[0x00007f6b3bbe9068] initialize() /www/slim/system/database/DB.php:148
+[0x00007f6b3bbe8d40] DB() /www/slim/system/core/Loader.php:346
+[0x00007f6b3bbe8238] database() /www/slim/system/core/Loader.php:1171
+[0x00007f6b3bbe8010] _ci_autoloader() /www/slim/system/core/Loader.php:152
+[0x00007f6b3bbe7cb8] initialize() /www/slim/system/core/Controller.php:51
+[0x00007f6b3bbe7a20] __construct() /www/slim/application/controllers/auth.php:12
+[0x00007f6b3bbe7808] __construct() /www/slim/application/controllers/cookbookapi.php:9
+[0x00007f6b3bbe57b0] __construct() /www/slim/system/core/CodeIgniter.php:308
+[0x00007f6b3bbe5050] +++ dump failed
+
+[28-Jan-2013 11:25:16]  [pool www] pid 8742
+script_filename = /www/slim/index.php
+[0x00007f6b3bbead90] mysqli_connect() /www/slim/system/database/drivers/mysqli/mysqli_driver.php:76
+[0x00007f6b3bbeacb8] db_connect() /www/slim/system/database/drivers/mysqli/mysqli_driver.php:91
+[0x00007f6b3bbea7a0] db_pconnect() /www/slim/system/database/DB_driver.php:115
+[0x00007f6b3bbe9688] initialize() /www/slim/system/database/DB.php:148
+[0x00007f6b3bbe9360] DB() /www/slim/system/core/Loader.php:346
+[0x00007f6b3bbe8858] database() /www/slim/system/core/Loader.php:1171
+[0x00007f6b3bbe8630] _ci_autoloader() /www/slim/system/core/Loader.php:152
+[0x00007f6b3bbe82d8] initialize() /www/slim/system/core/Controller.php:51
+[0x00007f6b3bbe8040] __construct() /www/slim/application/controllers/auth.php:12
+[0x00007f6b3bbe7da8] __construct() /www/slim/application/controllers/messageapi.php:15
+[0x00007f6b3bbe5d50] __construct() /www/slim/system/core/CodeIgniter.php:308
+[0x00007f6b3bbe55f0] +++ dump failed
+
+[28-Jan-2013 11:25:16]  [pool www] pid 8747
+script_filename = /www/slim/index.php
+[0x00007f6b3bbea900] mysqli_connect() /www/slim/system/database/drivers/mysqli/mysqli_driver.php:76
+[0x00007f6b3bbea828] db_connect() /www/slim/system/database/drivers/mysqli/mysqli_driver.php:91
+[0x00007f6b3bbea310] db_pconnect() /www/slim/system/database/DB_driver.php:115
+[0x00007f6b3bbe91f8] initialize() /www/slim/system/database/DB.php:148
+[0x00007f6b3bbe8ed0] DB() /www/slim/system/core/Loader.php:346
+[0x00007f6b3bbe83c8] database() /www/slim/system/core/Loader.php:1171
+[0x00007f6b3bbe81a0] _ci_autoloader() /www/slim/system/core/Loader.php:152
+[0x00007f6b3bbe7e48] initialize() /www/slim/system/core/Controller.php:51
+[0x00007f6b3bbe7bb0] __construct() /www/slim/application/controllers/auth.php:12
+[0x00007f6b3bbe7998] __construct() /www/slim/application/controllers/userapi.php:14
+[0x00007f6b3bbe5940] __construct() /www/slim/system/core/CodeIgniter.php:308
+[0x00007f6b3bbe51e0] +++ dump failed
+
+[28-Jan-2013 11:25:16]  [pool www] pid 8749
+script_filename = /www/slim/index.php
+[0x00007f6b3bbea770] mysqli_connect() /www/slim/system/database/drivers/mysqli/mysqli_driver.php:76
+[0x00007f6b3bbea698] db_connect() /www/slim/system/database/drivers/mysqli/mysqli_driver.php:91
+[0x00007f6b3bbea180] db_pconnect() /www/slim/system/database/DB_driver.php:115
+[0x00007f6b3bbe9068] initialize() /www/slim/system/database/DB.php:148
+[0x00007f6b3bbe8d40] DB() /www/slim/system/core/Loader.php:346
+[0x00007f6b3bbe8238] database() /www/slim/system/core/Loader.php:1171
+[0x00007f6b3bbe8010] _ci_autoloader() /www/slim/system/core/Loader.php:152
+[0x00007f6b3bbe7cb8] initialize() /www/slim/system/core/Controller.php:51
+[0x00007f6b3bbe7a20] __construct() /www/slim/application/controllers/auth.php:12
+[0x00007f6b3bbe7808] __construct() /www/slim/application/controllers/cookbookapi.php:9
+[0x00007f6b3bbe57b0] __construct() /www/slim/system/core/CodeIgniter.php:308
+[0x00007f6b3bbe5050] +++ dump failed
+
+[28-Jan-2013 11:25:16]  [pool www] pid 8751
+script_filename = /www/slim/index.php
+[0x00007f6b3bbea7f8] mysqli_connect() /www/slim/system/database/drivers/mysqli/mysqli_driver.php:76
+[0x00007f6b3bbea720] db_connect() /www/slim/system/database/drivers/mysqli/mysqli_driver.php:91
+[0x00007f6b3bbea208] db_pconnect() /www/slim/system/database/DB_driver.php:115
+[0x00007f6b3bbe90f0] initialize() /www/slim/system/database/DB.php:148
+[0x00007f6b3bbe8dc8] DB() /www/slim/system/core/Loader.php:346
+[0x00007f6b3bbe82c0] database() /www/slim/system/core/Loader.php:1171
+[0x00007f6b3bbe8098] _ci_autoloader() /www/slim/system/core/Loader.php:152
+[0x00007f6b3bbe7d40] initialize() /www/slim/system/core/Controller.php:51
+[0x00007f6b3bbe7aa8] __construct() /www/slim/application/controllers/auth.php:12
+[0x00007f6b3bbe7810] __construct() /www/slim/application/controllers/messageapi.php:15
+[0x00007f6b3bbe57b8] __construct() /www/slim/system/core/CodeIgniter.php:308
+[0x00007f6b3bbe5058] +++ dump failed
+
+[28-Jan-2013 11:25:16]  [pool www] pid 8970
+script_filename = /www/slim/index.php
+[0x00007f6b3bbeab08] mysqli_connect() /www/slim/system/database/drivers/mysqli/mysqli_driver.php:76
+[0x00007f6b3bbeaa30] db_connect() /www/slim/system/database/drivers/mysqli/mysqli_driver.php:91
+[0x00007f6b3bbea518] db_pconnect() /www/slim/system/database/DB_driver.php:115
+[0x00007f6b3bbe9400] initialize() /www/slim/system/database/DB.php:148
+[0x00007f6b3bbe90d8] DB() /www/slim/system/core/Loader.php:346
+[0x00007f6b3bbe85d0] database() /www/slim/system/core/Loader.php:1171
+[0x00007f6b3bbe83a8] _ci_autoloader() /www/slim/system/core/Loader.php:152
+[0x00007f6b3bbe8050] initialize() /www/slim/system/core/Controller.php:51
+[0x00007f6b3bbe7db8] __construct() /www/slim/application/controllers/auth.php:12
+[0x00007f6b3bbe7ba0] __construct() /www/slim/application/controllers/cookbookapi.php:9
+[0x00007f6b3bbe5b48] __construct() /www/slim/system/core/CodeIgniter.php:308
+[0x00007f6b3bbe53e8] +++ dump failed
+
+[28-Jan-2013 11:25:17]  [pool www] pid 8972
+script_filename = /www/slim/index.php
+[0x00007f6b3bbeab10] mysqli_connect() /www/slim/system/database/drivers/mysqli/mysqli_driver.php:76
+[0x00007f6b3bbeaa38] db_connect() /www/slim/system/database/drivers/mysqli/mysqli_driver.php:91
+[0x00007f6b3bbea520] db_pconnect() /www/slim/system/database/DB_driver.php:115
+[0x00007f6b3bbe9408] initialize() /www/slim/system/database/DB.php:148
+[0x00007f6b3bbe90e0] DB() /www/slim/system/core/Loader.php:346
+[0x00007f6b3bbe85d8] database() /www/slim/system/core/Loader.php:1171
+[0x00007f6b3bbe83b0] _ci_autoloader() /www/slim/system/core/Loader.php:152
+[0x00007f6b3bbe8058] initialize() /www/slim/system/core/Controller.php:51
+[0x00007f6b3bbe7dc0] __construct() /www/slim/application/controllers/auth.php:12
+[0x00007f6b3bbe7ba8] __construct() /www/slim/application/controllers/userapi.php:14
+[0x00007f6b3bbe5b50] __construct() /www/slim/system/core/CodeIgniter.php:308
+[0x00007f6b3bbe53f0] +++ dump failed
+
+[28-Jan-2013 11:25:17]  [pool www] pid 8971
+script_filename = /www/slim/index.php
+[0x00007f6b3bbeab70] mysqli_connect() /www/slim/system/database/drivers/mysqli/mysqli_driver.php:76
+[0x00007f6b3bbeaa98] db_connect() /www/slim/system/database/drivers/mysqli/mysqli_driver.php:91
+[0x00007f6b3bbea580] db_pconnect() /www/slim/system/database/DB_driver.php:115
+[0x00007f6b3bbe9468] initialize() /www/slim/system/database/DB.php:148
+[0x00007f6b3bbe9140] DB() /www/slim/system/core/Loader.php:346
+[0x00007f6b3bbe8638] database() /www/slim/system/core/Loader.php:1171
+[0x00007f6b3bbe8410] _ci_autoloader() /www/slim/system/core/Loader.php:152
+[0x00007f6b3bbe80b8] initialize() /www/slim/system/core/Controller.php:51
+[0x00007f6b3bbe7e20] __construct() /www/slim/application/controllers/auth.php:12
+[0x00007f6b3bbe7c08] __construct() /www/slim/application/controllers/userapi.php:14
+[0x00007f6b3bbe5bb0] __construct() /www/slim/system/core/CodeIgniter.php:308
+[0x00007f6b3bbe5450] +++ dump failed
+
+[28-Jan-2013 11:25:18]  [pool www] pid 8973
+script_filename = /www/slim/index.php
+[0x00007f6b3bbea9e0] mysqli_connect() /www/slim/system/database/drivers/mysqli/mysqli_driver.php:76
+[0x00007f6b3bbea908] db_connect() /www/slim/system/database/drivers/mysqli/mysqli_driver.php:91
+[0x00007f6b3bbea3f0] db_pconnect() /www/slim/system/database/DB_driver.php:115
+[0x00007f6b3bbe92d8] initialize() /www/slim/system/database/DB.php:148
+[0x00007f6b3bbe8fb0] DB() /www/slim/system/core/Loader.php:346
+[0x00007f6b3bbe84a8] database() /www/slim/system/core/Loader.php:1171
+[0x00007f6b3bbe8280] _ci_autoloader() /www/slim/system/core/Loader.php:152
+[0x00007f6b3bbe7f28] initialize() /www/slim/system/core/Controller.php:51
+[0x00007f6b3bbe7c90] __construct() /www/slim/application/controllers/auth.php:12
+[0x00007f6b3bbe7a78] __construct() /www/slim/application/controllers/cookbookapi.php:9
+[0x00007f6b3bbe5a20] __construct() /www/slim/system/core/CodeIgniter.php:308
+[0x00007f6b3bbe52c0] +++ dump failed
+
+[28-Jan-2013 11:25:18]  [pool www] pid 8974
+script_filename = /www/slim/index.php
+[0x00007f6b3bbeb078] mysqli_connect() /www/slim/system/database/drivers/mysqli/mysqli_driver.php:76
+[0x00007f6b3bbeafa0] db_connect() /www/slim/system/database/drivers/mysqli/mysqli_driver.php:91
+[0x00007f6b3bbeaa88] db_pconnect() /www/slim/system/database/DB_driver.php:115
+[0x00007f6b3bbe9970] initialize() /www/slim/system/database/DB.php:148
+[0x00007f6b3bbe9648] DB() /www/slim/system/core/Loader.php:346
+[0x00007f6b3bbe8b40] database() /www/slim/system/core/Loader.php:1171
+[0x00007f6b3bbe8918] _ci_autoloader() /www/slim/system/core/Loader.php:152
+[0x00007f6b3bbe85c0] initialize() /www/slim/system/core/Controller.php:51
+[0x00007f6b3bbe8328] __construct() /www/slim/application/controllers/auth.php:12
+[0x00007f6b3bbe8090] __construct() /www/slim/application/controllers/messageapi.php:15
+[0x00007f6b3bbe6038] __construct() /www/slim/system/core/CodeIgniter.php:308
+[0x00007f6b3bbe58d8] +++ dump failed
+
+[28-Jan-2013 11:25:18]  [pool www] pid 8975
+script_filename = /www/slim/index.php
+[0x00007f6b3bbea9e0] mysqli_connect() /www/slim/system/database/drivers/mysqli/mysqli_driver.php:76
+[0x00007f6b3bbea908] db_connect() /www/slim/system/database/drivers/mysqli/mysqli_driver.php:91
+[0x00007f6b3bbea3f0] db_pconnect() /www/slim/system/database/DB_driver.php:115
+[0x00007f6b3bbe92d8] initialize() /www/slim/system/database/DB.php:148
+[0x00007f6b3bbe8fb0] DB() /www/slim/system/core/Loader.php:346
+[0x00007f6b3bbe84a8] database() /www/slim/system/core/Loader.php:1171
+[0x00007f6b3bbe8280] _ci_autoloader() /www/slim/system/core/Loader.php:152
+[0x00007f6b3bbe7f28] initialize() /www/slim/system/core/Controller.php:51
+[0x00007f6b3bbe7c90] __construct() /www/slim/application/controllers/auth.php:12
+[0x00007f6b3bbe7a78] __construct() /www/slim/application/controllers/cookbookapi.php:9
+[0x00007f6b3bbe5a20] __construct() /www/slim/system/core/CodeIgniter.php:308
+[0x00007f6b3bbe52c0] +++ dump failed
+
+[28-Jan-2013 11:25:18]  [pool www] pid 8976
+script_filename = /www/slim/index.php
+[0x00007f6b3bbeab70] mysqli_connect() /www/slim/system/database/drivers/mysqli/mysqli_driver.php:76
+[0x00007f6b3bbeaa98] db_connect() /www/slim/system/database/drivers/mysqli/mysqli_driver.php:91
+[0x00007f6b3bbea580] db_pconnect() /www/slim/system/database/DB_driver.php:115
+[0x00007f6b3bbe9468] initialize() /www/slim/system/database/DB.php:148
+[0x00007f6b3bbe9140] DB() /www/slim/system/core/Loader.php:346
+[0x00007f6b3bbe8638] database() /www/slim/system/core/Loader.php:1171
+[0x00007f6b3bbe8410] _ci_autoloader() /www/slim/system/core/Loader.php:152
+[0x00007f6b3bbe80b8] initialize() /www/slim/system/core/Controller.php:51
+[0x00007f6b3bbe7e20] __construct() /www/slim/application/controllers/auth.php:12
+[0x00007f6b3bbe7c08] __construct() /www/slim/application/controllers/userapi.php:14
+[0x00007f6b3bbe5bb0] __construct() /www/slim/system/core/CodeIgniter.php:308
+[0x00007f6b3bbe5450] +++ dump failed
+
+2013/01/28 12:20:35 [error] 8700#0: *16570423 connect() failed (110: Connection timed out) 
+
+[tangboqi@xikang19 ~]$ grep -c '2013/01/28 12:20' /usr/local/nginx/logs/error.log 
+20
+28   2  69   0   0   0|   0   265k|1388M 44.0k 2129M  313M|  83k  194k| 520k  478M|   0  29.6 |28-01 12:19:56
+ 61   6  31   0   1   1|   0  4915B|1391M 44.0k 2129M  310M| 175k  502k| 520k  478M|   0  0.80 |28-01 12:20:01
+ 89   8   1   0   1   1|   0   176k|1427M 44.0k 2129M  274M| 247k  553k| 520k  478M|   0  11.6 |28-01 12:20:06
+ 88  10   0   0   1   1|   0   532k|1603M 44.0k 2122M  105M| 246k  630k| 520k  478M|   0  35.6 |28-01 12:20:11
+ 80  19   0   0   1   1|   0   200k|1715M 44.0k 1974M  141M| 221k  684k| 520k  478M|   0  10.8 |28-01 12:20:16
+ 88  10   0   0   1   1| 362k 8192B|1778M 44.0k 1924M  127M| 201k  726k| 520k  478M|26.0  1.20 |28-01 12:20:21
+ 89  10   0   0   1   1|  45k  712k|1783M 44.0k 1889M  157M| 202k  728k| 520k  478M|5.20  49.2 |28-01 12:20:26
+ 52   5  41   0   0   1| 189k   75k|1755M 44.0k 1887M  188M| 159k  658k| 520k  478M|10.0  11.6 |28-01 12:20:31
+ 32   3  64   0   0   1|   0   296k|1732M 44.0k 1887M  211M| 113k  603k| 520k  478M|   0  24.8 |28-01 12:20:36
+ 35   3  61   0   0   1|  18k  325k|1713M 44.0k 1887M  230M| 107k  577k| 520k  478M|1.20  26.0 |28-01 12:20:41
+ 29   2  68   0   0   0|   0   229k|1688M 44.0k 1887M  255M|  87k  458k| 520k  478M|   0  10.4 |28-01 12:20:46
+
+[root@xikang19 tangboqi]# grep -c '2013/01/28 18' /usr/local/nginx/logs/error.log 
+35

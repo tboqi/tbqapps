@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+
+<beans>
+	
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<!--<value>WEB-INF/mail.properties</value>-->
+				<value>WEB-INF/jdbc.properties</value>
+			</list>
+		</property>
+	</bean>
+	
+	
+	<bean id="baseTransactionProxy" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"
+		abstract="true">
+		<property name="transactionManager" ref="transactionManager"/>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="insert*">PROPAGATION_REQUIRED</prop>
+				<prop key="update*">PROPAGATION_REQUIRED</prop>
+				<prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
+			</props>
+		</property>
+	</bean>
+	
+
+
+	<bean id="memberService" class="com.cc.cw.service.impl.MemberServiceImpl">
+		<property name="dao" ref="memberDAO"></property>
+	</bean> 
+	
+	<bean id="sessionValService" class="com.cc.cw.service.impl.SessionValServiceImpl">
+		<property name="dao" ref="sessionValDAO"></property>
+	</bean> 
+	
+	<bean id="simpleArticleService" class="com.cc.cw.service.impl.SimpleArticleServiceImpl">
+		<property name="dao" ref="simpleArticleDAO"></property>
+		<property name="voteDao" ref="voteDAO"></property>
+	</bean>
+	
+	<bean id="remarkArticleService" class="com.cc.cw.service.impl.RemarkArticleServiceImpl">
+		<property name="dao" ref="remarkDAO"></property>
+		<property name="articleDAO" ref="simpleArticleDAO"></property>
+		<property name="memberDao" ref="memberDAO"></property>
+	</bean> 
+	
+	<bean id="labelService" class="com.cc.cw.service.impl.LabelServiceImpl">
+		<property name="dao" ref="labelDAO"></property>
+	</bean> 
+	
+	<bean id="voteService" class="com.cc.cw.service.impl.VoteServiceImpl">
+		<property name="dao" ref="voteDAO"></property>
+		<property name="articleDAO" ref="simpleArticleDAO"></property>
+		<property name="channelDAO" ref="channelDAO"></property>
+		<property name="memberDAO" ref="memberDAO"></property>
+		<property name="sessionValDAO" ref="sessionValDAO"></property>
+	</bean>
+	
+	<bean id="channelService" class="com.cc.cw.service.impl.ChannelServiceImpl">
+		<property name="dao" ref="channelDAO"></property>
+	</bean>
+	
+	<bean id="clewService" class="com.cc.cw.service.impl.ClewServiceImpl">
+		<property name="dao" ref="clewDAO"></property>
+	</bean>
+	
+	<bean id="atomLabelService" class="com.cc.cw.service.impl.AtomLabelServiceImpl">
+		<property name="dao" ref="atomLabelDAO"></property>
+	</bean>
+	
+	<bean id="channelCategoryService" class="com.cc.cw.service.impl.ChannelCategoryServiceImpl">
+		<property name="dao" ref="channelCategoryDAO"></property>
+	</bean>
+	
+	<bean id="messageService" class="com.cc.cw.service.impl.MessageServiceImpl">
+		<property name="msgdao" ref="messageDAO"></property>
+		<property name="memberService" ref="memberService"></property>
+	</bean>
+	
+	<bean id="userLabelService" class="com.cc.cw.service.impl.UserLabelServiceImpl">
+		<property name="dao" ref="userLabelDAO"></property>
+		<property name="sadao" ref="simpleArticleDAO"></property>
+		<property name="searchService" ref="labelSearchService"></property>
+	</bean>
+	<bean id="userDMLabelService" class="com.cc.cw.service.impl.UserDMLabelServiceImpl">
+		<property name="dao" ref="userDMLabelDAO"></property>
+		<property name="sadao" ref="simpleArticleDAO"></property>
+	</bean>
+	<bean id="userChannelService" class="com.cc.cw.service.impl.UserChannelServiceImpl">
+		<property name="dao" ref="userChannelDAO"></property>
+	</bean>
+	
+	<bean id="labelRulesService" class="com.cc.cw.service.impl.LabelRulesServiceImpl">
+		<property name="dao" ref="labelRulesDAO"></property>
+	</bean>
+
+	<bean id="clickLogService" class="com.cc.cw.service.impl.ClickLogServiceImpl">
+		<property name="clickLogDAO" ref="clickLogDAO"></property>
+	</bean>
+	
+	<bean id="broadcastService" class="com.cc.cw.service.impl.BroadcastServiceImpl">
+		<property name="broadcastdao" ref="broadcastDAO"></property>
+	</bean>
+	<bean id="unionUserService" class="com.cc.cw.service.impl.UnionUserServiceImpl">
+		<property name="uudao" ref="uudao"></property>
+	</bean>
+	<bean id="cuserService" class="com.cc.cw.service.impl.ControlUserServiceImpl">
+		<property name="cuserDAO" ref="cuserDAO"></property>
+	</bean>
+	<bean id="croleService" class="com.cc.cw.service.impl.ControlRoleServiceImpl">
+		<property name="croleDAO" ref="croleDAO"></property>
+	</bean>
+	<bean id="cPicService" class="com.cc.cw.service.impl.ChangePicServiceImpl">
+		<property name="indexPicDAO" ref="indexPicDAO"></property>
+	</bean>
+	<bean id="friendLinkService" class="com.cc.cw.service.impl.FriendLinkServiceImpl">
+		<property name="flDAO" ref="flDAO"></property>
+	</bean>
+	<bean id="tradeHistoryService" class="com.cc.cw.service.impl.TradeHistoryServiceImpl">
+		<property name="tradeHistoryDAO" ref="tradeHistoryDAO"></property>
+	</bean>
+	<!-- 方法调用时间拦截器 -->
+	<!--<bean id="invokeTimeInterceptor" class="com.cc.backend.util.InvokeTimeInterceptor"></bean>
+
+		
+	<bean id="PointcutAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+		<property name="advice">
+			<ref local="invokeTimeInterceptor"/>
+		</property>
+		<property name="patterns">-->
+			<!-- 配置所有需要拦截匹配正则的方法 -->
+			<!--<list>
+				<value>.*</value>-->
+				<!--<value>.*update.*</value>
+				<value>.*remove.*</value>
+				<value>.*add.*</value>-->
+			<!--</list> 
+		</property>
+	</bean>
+	
+	<bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+		<property name="beanNames">-->
+			<!-- 配置所有需要拦截的bean -->
+	<!--		<value>*Service</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>PointcutAdvisor</value>
+			</list>
+		</property>
+	</bean>-->
+	
+    <!-- For mail settings and future properties files -->
+    
+    <bean id="mailSender"
+        class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host">
+              <value>smtp.gmail.com</value><!--like smtp.126.com-->
+        </property>
+        <property name="username">
+              <value>mail.rumour</value>
+        </property>
+        <property name="password">
+              <value>rumour1609</value>
+        </property>
+        <property name="javaMailProperties">
+              <props>
+                  <prop key="mail.smtp.auth">true</prop>
+                  <prop key="mail.smtp.timeout">
+                      25000
+                  </prop>
+				  <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+				  <prop key="mail.smtp.port">465</prop>
+				  <prop key="mail.smtp.socketFactory.fallback">false</prop>
+				  <prop key="mail.smtp.socketFactory.port">465</prop>
+              </props>
+        </property>
+    </bean>
+	
+	<bean id="velocityEngine"
+        class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+        <property name="velocityProperties">
+              <props>
+                  <prop key="resource.loader">class</prop>
+                  <prop key="class.resource.loader.class">
+                      org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+                  </prop>
+				  <prop key="input.encoding">UTF-8</prop>
+				  <prop key="output.encoding">UTF-8</prop>
+				  <prop key="contentType">text/html;charset=UTF-8</prop>
+                  <prop key="velocimacro.library"></prop>
+              </props>
+        </property>
+    </bean>
+  
+    <bean id="mailService" class="com.cc.cw.service.MailService">
+        <property name="mailSender" ref="mailSender" />
+		<property name="velocityEngine" ref="velocityEngine" />
+    </bean>
+    
+    <bean id="friendService" class="com.cc.cw.service.impl.FriendServiceImpl">
+		<property name="dao" ref="friendDAO"></property>
+	</bean> 
+	
+	<bean id="globalData" class="com.cc.cw.web.data.GlobalData" singleton="true" lazy-init="false">
+		<constructor-arg index="0">
+			<ref bean="channelService"></ref>
+		</constructor-arg>
+		<constructor-arg index="1">
+			<ref bean="simpleArticleService"></ref>
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref bean="memberService"></ref>
+		</constructor-arg>
+		<!--<property name="memberService" ref="memberService"></property>
+		<property name="simpleArticleService" ref="simpleArticleService"></property>
+		<property name="channelService" ref="channelService"></property>-->
+	</bean>
+	
+	<bean id="newArticlesData" class="com.cc.cw.web.data.StaticNewArticles" singleton="true">
+		<constructor-arg index="0">
+			<ref bean="simpleArticleService"></ref>
+		</constructor-arg>
+		<property name="simpleArticleService" ref="simpleArticleService"></property>
+	</bean>
+</beans>

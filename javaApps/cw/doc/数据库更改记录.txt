@@ -1,0 +1,39 @@
+.LOG
+
+16:45 2007-4-26
+对atomlabel 添加 ArticleId字段，从而可以标识出一个标签在一篇文章中，打过多少次。
+alter table cw.atomlabel add column ArticleId int(10) not null default 0
+
+16:45 2007-4-26
+对 remark 表添加 Type 字段，用来标识回复类型是普通评论还是提供的线索
+1：为普通评论;
+2：为提供线索；
+alter table cw.remark add column TYPE tinyint(3) NOT NULL DEFAULT '0'
+
+11:58 2007-5-9
+对article表添加PublishType，发布类型，0为允许其他人发起投票，1为只能自己发起投票
+alter table article add column PublishType tinyint(2) DEFAULT 0
+
+对article表添加Rate,收藏此文章要花费的票数，对应投票的周期天数
+alter table article add column Rate int(10) DEFAULT 0
+
+对article表添加KeyWord,关键字
+alter table article add column KeyWord varchar(20)
+
+对member表添加Uuid字段
+alter table member add column Uuid varchar(32) NOT NULL DEFAULT 0
+
+对member表添加CoverPath字段
+alter table member add column CoverPath varchar(200) default ''
+
+13:00 2007-05-16
+对friend表添加CreateDate，请求日期
+alter table friend add column CreateDate DATETIME NOT NULL
+对friend表修改字段ContactTime，改为PassedTime 请求通过日期，默认为Null
+
+2007-06-12
+对member表添加FirstVoteCycle，第一次投票周期
+alter table article add column FirstVoteCycle int(10) not null default 0
+
+对member表添加SecVoteMemId，二次投票用户id
+alter table article add column SecVoteMemId int(10) not null default 0

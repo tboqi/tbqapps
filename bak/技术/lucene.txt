@@ -1,0 +1,17 @@
+
+lucene 2.9.4有问题，使用3.0.3
+
+1. 配置CLASSPATH
+D:\Java\lucene-3.0.3\lucene-core-3.0.3.jar;D:\Java\lucene-3.0.3\lucene-demos-3.0.3.jar
+
+2. 生产索引文件
+java org.apache.lucene.demo.IndexFiles D:\bak
+
+3. search index
+java org.apache.lucene.demo.SearchFiles
+
+http://lucene.apache.org/java/3_0_3/demo.html
+------------------------------
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+http://lucene.apache.org/java/3_0_3/gettingstarted.html

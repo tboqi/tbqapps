@@ -1,0 +1,848 @@
+tboqi@tboqi-ThinkPad-R400:~$ ab -n 3000 -c 50 http://www.xkvm1.com/cookbookapi/fetch_new/999999/0?pa=377766
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking www.xkvm1.com (be patient)
+Completed 300 requests
+Completed 600 requests
+Completed 900 requests
+Completed 1200 requests
+Completed 1500 requests
+Completed 1800 requests
+Completed 2100 requests
+Completed 2400 requests
+Completed 2700 requests
+Completed 3000 requests
+Finished 3000 requests
+
+
+Server Software:        nginx/1.2.6
+Server Hostname:        www.xkvm1.com
+Server Port:            80
+
+Document Path:          /cookbookapi/fetch_new/999999/0?pa=377766
+Document Length:        15013 bytes
+
+Concurrency Level:      50
+Time taken for tests:   735.639 seconds
+Complete requests:      3000
+Failed requests:        0
+Write errors:           0
+Total transferred:      46062000 bytes
+HTML transferred:       45039000 bytes
+Requests per second:    4.08 [#/sec] (mean)
+Time per request:       12260.651 [ms] (mean)
+Time per request:       245.213 [ms] (mean, across all concurrent requests)
+Transfer rate:          61.15 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.4      0       9
+Processing: 10853 12157 1156.8  12022   26686
+Waiting:    10841 12141 1156.8  12006   26670
+Total:      10853 12157 1157.0  12023   26687
+
+Percentage of the requests served within a certain time (ms)
+  50%  12023
+  66%  12034
+  75%  12038
+  80%  12040
+  90%  12048
+  95%  12079
+  98%  12126
+  99%  19491
+ 100%  26687 (longest request)
+ -----------------------------------
+调整参数
+fpm参数
+pid = run/php-fpm.pid 去掉注释
+;error_log = log/php-fpm.log
+m.max_children = 5 -》 50
+pm.start_servers = 2 -》 4
+pm.min_spare_servers = 1 -》 2
+pm.max_spare_servers = 3 -》 6
+重启fpm，重新ab测试
+kill -USR2 `cat /usr/local/php4nginx/var/run/php-fpm.pid`
+tboqi@tboqi-ThinkPad-R400:~$ ab -n 3000 -c 50 http://www.xkvm1.com/cookbookapi/fetch_new/999999/0?pa=377767
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking www.xkvm1.com (be patient)
+Completed 300 requests
+Completed 600 requests
+Completed 900 requests
+Completed 1200 requests
+Completed 1500 requests
+Completed 1800 requests
+Completed 2100 requests
+Completed 2400 requests
+Completed 2700 requests
+Completed 3000 requests
+Finished 3000 requests
+
+
+Server Software:        nginx/1.2.6
+Server Hostname:        www.xkvm1.com
+Server Port:            80
+
+Document Path:          /cookbookapi/fetch_new/999999/0?pa=377767
+Document Length:        15013 bytes
+
+Concurrency Level:      50
+Time taken for tests:   161.825 seconds
+Complete requests:      3000
+Failed requests:        0
+Write errors:           0
+Total transferred:      46062000 bytes
+HTML transferred:       45039000 bytes
+Requests per second:    18.54 [#/sec] (mean)
+Time per request:       2697.084 [ms] (mean)
+Time per request:       53.942 [ms] (mean, across all concurrent requests)
+Transfer rate:          277.97 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    2   2.3      1      14
+Processing:  1057 2678 653.4   2752    6959
+Waiting:     1037 2559 648.8   2600    6877
+Total:       1057 2680 653.6   2754    6959
+
+Percentage of the requests served within a certain time (ms)
+  50%   2754
+  66%   2808
+  75%   2836
+  80%   2855
+  90%   2910
+  95%   3668
+  98%   4756
+  99%   5199
+ 100%   6959 (longest request)
+——————————————————————————————————————————————
+tboqi@tboqi-ThinkPad-R400:~$ ab -n 10000 -c 100 http://www.xkvm1.com/cookbookapi/fetch_new/999999/0?pa=377767
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking www.xkvm1.com (be patient)
+Completed 1000 requests
+Completed 2000 requests
+Completed 3000 requests
+Completed 4000 requests
+Completed 5000 requests
+Completed 6000 requests
+Completed 7000 requests
+Completed 8000 requests
+Completed 9000 requests
+Completed 10000 requests
+Finished 10000 requests
+
+
+Server Software:        nginx/1.2.6
+Server Hostname:        www.xkvm1.com
+Server Port:            80
+
+Document Path:          /cookbookapi/fetch_new/999999/0?pa=377767
+Document Length:        15013 bytes
+
+Concurrency Level:      100
+Time taken for tests:   595.759 seconds
+Complete requests:      10000
+Failed requests:        0
+Write errors:           0
+Total transferred:      153540000 bytes
+HTML transferred:       150130000 bytes
+Requests per second:    16.79 [#/sec] (mean)
+Time per request:       5957.591 [ms] (mean)
+Time per request:       59.576 [ms] (mean, across all concurrent requests)
+Transfer rate:          251.68 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    2   2.7      1      21
+Processing:  1250 5937 432.5   5939   10272
+Waiting:     1228 5764 426.1   5770   10221
+Total:       1252 5939 432.7   5942   10274
+
+Percentage of the requests served within a certain time (ms)
+  50%   5942
+  66%   5993
+  75%   6032
+  80%   6056
+  90%   6120
+  95%   6178
+  98%   6630
+  99%   7757
+ 100%  10274 (longest request)
+-----------------------------
+m.max_children = 5 -》 40
+tboqi@tboqi-ThinkPad-R400:~$ ab -n 10000 -c 100 http://www.xkvm1.com/cookbookapi/fetch_new/999999/0?pa=377767
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking www.xkvm1.com (be patient)
+Completed 1000 requests
+Completed 2000 requests
+Completed 3000 requests
+Completed 4000 requests
+Completed 5000 requests
+Completed 6000 requests
+Completed 7000 requests
+Completed 8000 requests
+Completed 9000 requests
+Completed 10000 requests
+Finished 10000 requests
+
+
+Server Software:        nginx/1.2.6
+Server Hostname:        www.xkvm1.com
+Server Port:            80
+
+Document Path:          /cookbookapi/fetch_new/999999/0?pa=377767
+Document Length:        15013 bytes
+
+Concurrency Level:      100
+Time taken for tests:   650.048 seconds
+Complete requests:      10000
+Failed requests:        0
+Write errors:           0
+Total transferred:      153540000 bytes
+HTML transferred:       150130000 bytes
+Requests per second:    15.38 [#/sec] (mean)
+Time per request:       6500.476 [ms] (mean)
+Time per request:       65.005 [ms] (mean, across all concurrent requests)
+Transfer rate:          230.66 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    2   2.4      1      16
+Processing:  1181 6473 1279.6   6123   11649
+Waiting:     1165 6342 1278.9   6009   11543
+Total:       1190 6475 1278.5   6123   11651
+
+Percentage of the requests served within a certain time (ms)
+  50%   6123
+  66%   7690
+  75%   7729
+  80%   7751
+  90%   7804
+  95%   7845
+  98%   7894
+  99%   7950
+ 100%  11651 (longest request)
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
+!!!!!!!!!!注：： m.max_children = 50的时候最优
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+m.max_children = 50
+pm.start_servers = 2
+pm.min_spare_servers = 1
+pm.max_spare_servers = 3
+tboqi@tboqi-ThinkPad-R400:~$ http://www.xkvm1.com/cookbookapi/fetch_new/999999/0?pa=377768
+bash: http://www.xkvm1.com/cookbookapi/fetch_new/999999/0?pa=377768: 没有那个文件或目录
+tboqi@tboqi-ThinkPad-R400:~$ ab -n 3000 -c 50 http://www.xkvm1.com/cookbookapi/fetch_new/999999/0?pa=377768
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking www.xkvm1.com (be patient)
+Completed 300 requests
+Completed 600 requests
+Completed 900 requests
+Completed 1200 requests
+Completed 1500 requests
+Completed 1800 requests
+Completed 2100 requests
+Completed 2400 requests
+Completed 2700 requests
+Completed 3000 requests
+Finished 3000 requests
+
+
+Server Software:        nginx/1.2.6
+Server Hostname:        www.xkvm1.com
+Server Port:            80
+
+Document Path:          /cookbookapi/fetch_new/999999/0?pa=377768
+Document Length:        15013 bytes
+
+Concurrency Level:      50
+Time taken for tests:   173.293 seconds
+Complete requests:      3000
+Failed requests:        0
+Write errors:           0
+Total transferred:      46062000 bytes
+HTML transferred:       45039000 bytes
+Requests per second:    17.31 [#/sec] (mean)
+Time per request:       2888.213 [ms] (mean)
+Time per request:       57.764 [ms] (mean, across all concurrent requests)
+Transfer rate:          259.57 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    2   2.2      1      13
+Processing:  1052 2879 928.2   2772    9024
+Waiting:     1036 2756 940.9   2608    9009
+Total:       1053 2881 928.2   2774    9027
+
+Percentage of the requests served within a certain time (ms)
+  50%   2774
+  66%   2826
+  75%   2860
+  80%   2885
+  90%   3947
+  95%   4727
+  98%   5605
+  99%   6739
+ 100%   9027 (longest request)
+！！！！！！！！！！！！！！！！！！！！
+m.max_children = 50
+pm.start_servers = 20
+pm.min_spare_servers = 10
+pm.max_spare_servers = 30
+tboqi@tboqi-ThinkPad-R400:~$ ab -n 3000 -c 50 http://www.xkvm1.com/cookbookapi/fetch_new/999999/0?pa=377768
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking www.xkvm1.com (be patient)
+Completed 300 requests
+Completed 600 requests
+Completed 900 requests
+Completed 1200 requests
+Completed 1500 requests
+Completed 1800 requests
+Completed 2100 requests
+Completed 2400 requests
+Completed 2700 requests
+Completed 3000 requests
+Finished 3000 requests
+
+
+Server Software:        nginx/1.2.6
+Server Hostname:        www.xkvm1.com
+Server Port:            80
+
+Document Path:          /cookbookapi/fetch_new/999999/0?pa=377768
+Document Length:        15013 bytes
+
+Concurrency Level:      50
+Time taken for tests:   158.093 seconds
+Complete requests:      3000
+Failed requests:        0
+Write errors:           0
+Total transferred:      46062000 bytes
+HTML transferred:       45039000 bytes
+Requests per second:    18.98 [#/sec] (mean)
+Time per request:       2634.883 [ms] (mean)
+Time per request:       52.698 [ms] (mean, across all concurrent requests)
+Transfer rate:          284.53 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    2   2.2      1      13
+Processing:  1056 2619 477.5   2773    4345
+Waiting:     1037 2488 458.3   2602    4224
+Total:       1056 2621 477.9   2774    4347
+
+Percentage of the requests served within a certain time (ms)
+  50%   2774
+  66%   2819
+  75%   2841
+  80%   2854
+  90%   2894
+  95%   2938
+  98%   3061
+  99%   3816
+ 100%   4347 (longest request)
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!! 调整pm.start_servers = 20
+!!!!!pm.min_spare_servers = 10
+!!!!!pm.max_spare_servers = 30
+!!!!!对性能影响不大
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+-----------------------------------------------
+配置nginx
+worker_processes  1;
+events {
+    use epoll;
+    worker_connections  1024;
+}
+fastcgi_pass   127.0.0.1:9000; ===》》》unix:/dev/shm/php.socket;
+fpm配置
+listen = 127.0.0.1:9000 ==》》listen = /dev/shm/php.socket
+tboqi@tboqi-ThinkPad-R400:~$ ab -n 3000 -c 50 http://www.xkvm1.com/cookbookapi/fetch_new/999999/0?pa=377769
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking www.xkvm1.com (be patient)
+Completed 300 requests
+Completed 600 requests
+Completed 900 requests
+Completed 1200 requests
+Completed 1500 requests
+Completed 1800 requests
+Completed 2100 requests
+Completed 2400 requests
+Completed 2700 requests
+Completed 3000 requests
+Finished 3000 requests
+
+
+Server Software:        nginx/1.2.6
+Server Hostname:        www.xkvm1.com
+Server Port:            80
+
+Document Path:          /cookbookapi/fetch_new/999999/0?pa=377769
+Document Length:        15013 bytes
+
+Concurrency Level:      50
+Time taken for tests:   159.403 seconds
+Complete requests:      3000
+Failed requests:        0
+Write errors:           0
+Total transferred:      46062000 bytes
+HTML transferred:       45039000 bytes
+Requests per second:    18.82 [#/sec] (mean)
+Time per request:       2656.718 [ms] (mean)
+Time per request:       53.134 [ms] (mean, across all concurrent requests)
+Transfer rate:          282.19 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    2   2.8      1      16
+Processing:  1061 2637 432.6   2784    4075
+Waiting:     1037 2510 419.4   2629    4000
+Total:       1062 2639 433.1   2786    4078
+
+Percentage of the requests served within a certain time (ms)
+  50%   2786
+  66%   2836
+  75%   2858
+  80%   2872
+  90%   2913
+  95%   2947
+  98%   3012
+  99%   3789
+ 100%   4078 (longest request)
+-------------------------------------
+vim /etc/sysctl.conf
+net.ipv4.tcp_syncookies = 1
+net.ipv4.tcp_tw_reuse = 1
+net.ipv4.tcp_tw_recycle = 1
+net.ipv4.tcp_fin_timeout = 3
+然后执行 /sbin/sysctl -p 让参数生效。
+tboqi@tboqi-ThinkPad-R400:~$ ab -n 3000 -c 50 http://www.xkvm1.com/cookbookapi/fetch_new/999999/0?pa=377769
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking www.xkvm1.com (be patient)
+Completed 300 requests
+Completed 600 requests
+Completed 900 requests
+Completed 1200 requests
+Completed 1500 requests
+Completed 1800 requests
+Completed 2100 requests
+Completed 2400 requests
+Completed 2700 requests
+Completed 3000 requests
+Finished 3000 requests
+
+
+Server Software:        nginx/1.2.6
+Server Hostname:        www.xkvm1.com
+Server Port:            80
+
+Document Path:          /cookbookapi/fetch_new/999999/0?pa=377769
+Document Length:        15013 bytes
+
+Concurrency Level:      50
+Time taken for tests:   163.313 seconds
+Complete requests:      3000
+Failed requests:        0
+Write errors:           0
+Total transferred:      46062000 bytes
+HTML transferred:       45039000 bytes
+Requests per second:    18.37 [#/sec] (mean)
+Time per request:       2721.890 [ms] (mean)
+Time per request:       54.438 [ms] (mean, across all concurrent requests)
+Transfer rate:          275.44 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    2   3.0      1      31
+Processing:  1049 2704 429.9   2821    4955
+Waiting:     1037 2568 415.7   2664    4859
+Total:       1050 2706 430.4   2824    4955
+
+Percentage of the requests served within a certain time (ms)
+  50%   2824
+  66%   2860
+  75%   2882
+  80%   2896
+  90%   2931
+  95%   2957
+  98%   3000
+  99%   3190
+ 100%   4955 (longest request)
+ ---------------------------------------------------
+tboqi@tboqi-ThinkPad-R400:~$ ab -n 10000 -c 100 http://www.xkvm1.com/cookbookapi/fetch_new/999999/0?pa=377786
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking www.xkvm1.com (be patient)
+Completed 1000 requests
+Completed 2000 requests
+Completed 3000 requests
+Completed 4000 requests
+Completed 5000 requests
+Completed 6000 requests
+Completed 7000 requests
+Completed 8000 requests
+Completed 9000 requests
+Completed 10000 requests
+Finished 10000 requests
+
+
+Server Software:        nginx/1.2.6
+Server Hostname:        www.xkvm1.com
+Server Port:            80
+
+Document Path:          /cookbookapi/fetch_new/999999/0?pa=377786
+Document Length:        39009 bytes
+
+Concurrency Level:      100
+Time taken for tests:   561.802 seconds
+Complete requests:      10000
+Failed requests:        0
+Write errors:           0
+Total transferred:      393500000 bytes
+HTML transferred:       390090000 bytes
+Requests per second:    17.80 [#/sec] (mean)
+Time per request:       5618.018 [ms] (mean)
+Time per request:       56.180 [ms] (mean, across all concurrent requests)
+Transfer rate:          684.01 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    3   4.5      1     101
+Processing:  1634 5599 836.2   6008    7195
+Waiting:     1619 5285 812.4   5666    6926
+Total:       1637 5602 836.7   6010    7196
+
+Percentage of the requests served within a certain time (ms)
+  50%   6010
+  66%   6094
+  75%   6134
+  80%   6164
+  90%   6226
+  95%   6276
+  98%   6327
+  99%   6360
+ 100%   7196 (longest request)
+---------------------------------------
+tboqi@tboqi-ThinkPad-R400:~$ ab -n 10000 -c 200 http://www.xkvm1.com/cookbookapi/fetch_new/999999/1?pa=377786
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking www.xkvm1.com (be patient)
+Completed 1000 requests
+Completed 2000 requests
+Completed 3000 requests
+Completed 4000 requests
+Completed 5000 requests
+Completed 6000 requests
+Completed 7000 requests
+Completed 8000 requests
+Completed 9000 requests
+Completed 10000 requests
+Finished 10000 requests
+
+
+Server Software:        nginx/1.2.6
+Server Hostname:        www.xkvm1.com
+Server Port:            80
+
+Document Path:          /cookbookapi/fetch_new/999999/1?pa=377786
+Document Length:        172 bytes
+
+Concurrency Level:      200
+Time taken for tests:   20.031 seconds
+Complete requests:      10000
+Failed requests:        307
+   (Connect: 0, Receive: 0, Length: 307, Exceptions: 0)
+Write errors:           0
+Non-2xx responses:      9697
+Total transferred:      15768223 bytes
+HTML transferred:       14199857 bytes
+Requests per second:    499.22 [#/sec] (mean)
+Time per request:       400.625 [ms] (mean)
+Time per request:       2.003 [ms] (mean, across all concurrent requests)
+Transfer rate:          768.73 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    3  49.9      0    1000
+Processing:     1  296 1638.3      7   13062
+Waiting:        1  285 1581.3      7   12716
+Total:          2  299 1639.1      7   13062
+
+Percentage of the requests served within a certain time (ms)
+  50%      7
+  66%     11
+  75%     11
+  80%     12
+  90%     30
+  95%    323
+  98%   8557
+  99%  11436
+ 100%  13062 (longest request)
+！！！！！！！！！！！！！！！！！！！
+！！！！errorlog里面有错误
+2013/02/05 10:42:05 [error] 1152#0: *198083 connect() to unix:/dev/shm/php.socket failed (11: Resource temporarily unavailable) while connecting to upstream, client: 10.10.252.164, server: localhost, request: "GET /cookbookapi/fetch_new/999999/1?pa=377786 HTTP/1.0", upstream: "fastcgi://unix:/dev/shm/php.socket:", host: "www.xkvm1.com"
+！！！！！！！！！！！！！！！！！！！！！！！！！
+-----------------------------------------
+ulimit -n 10240
+到200后服务器崩溃
+-----------------------------
+unix:/dev/shm/php.socket 改为 tcp 127.0.0.1：9000
+tboqi@tboqi-ThinkPad-R400:~$ ab -n 10000 -c 150 http://www.xkvm1.com/cookbookapi/fetch_new/999999/1?pa=377787
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking www.xkvm1.com (be patient)
+Completed 1000 requests
+Completed 2000 requests
+Completed 3000 requests
+Completed 4000 requests
+Completed 5000 requests
+Completed 6000 requests
+Completed 7000 requests
+Completed 8000 requests
+Completed 9000 requests
+Completed 10000 requests
+Finished 10000 requests
+
+
+Server Software:        nginx/1.2.6
+Server Hostname:        www.xkvm1.com
+Server Port:            80
+
+Document Path:          /cookbookapi/fetch_new/999999/1?pa=377787
+Document Length:        40823 bytes
+
+Concurrency Level:      150
+Time taken for tests:   627.920 seconds
+Complete requests:      10000
+Failed requests:        0
+Write errors:           0
+Total transferred:      411640000 bytes
+HTML transferred:       408230000 bytes
+Requests per second:    15.93 [#/sec] (mean)
+Time per request:       9418.806 [ms] (mean)
+Time per request:       62.792 [ms] (mean, across all concurrent requests)
+Transfer rate:          640.20 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    3   4.0      1      27
+Processing:  2314 9368 645.2   9475   12113
+Waiting:     2099 8964 624.2   9059   11678
+Total:       2318 9371 645.3   9478   12113
+
+Percentage of the requests served within a certain time (ms)
+  50%   9478
+  66%   9533
+  75%   9572
+  80%   9594
+  90%   9659
+  95%   9711
+  98%   9765
+  99%   9797
+ 100%  12113 (longest request)
+------------------------------------
+使用socket
+将ulimit -a所有的1024改为10240
+tboqi@tboqi-ThinkPad-R400:~$ ab -n 10000 -c 150 http://www.xkvm1.com/cookbookapi/fetch_new/999999/1?pa=377790
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking www.xkvm1.com (be patient)
+Completed 1000 requests
+Completed 2000 requests
+Completed 3000 requests
+Completed 4000 requests
+Completed 5000 requests
+Completed 6000 requests
+Completed 7000 requests
+Completed 8000 requests
+Completed 9000 requests
+Completed 10000 requests
+Finished 10000 requests
+
+
+Server Software:        nginx/1.2.6
+Server Hostname:        www.xkvm1.com
+Server Port:            80
+
+Document Path:          /cookbookapi/fetch_new/999999/1?pa=377790
+Document Length:        40823 bytes
+
+Concurrency Level:      150
+Time taken for tests:   576.512 seconds
+Complete requests:      10000
+Failed requests:        0
+Write errors:           0
+Total transferred:      411640000 bytes
+HTML transferred:       408230000 bytes
+Requests per second:    17.35 [#/sec] (mean)
+Time per request:       8647.686 [ms] (mean)
+Time per request:       57.651 [ms] (mean, across all concurrent requests)
+Transfer rate:          697.28 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    3   4.2      1      25
+Processing:  1913 8590 1044.6   9113   11248
+Waiting:     1898 8269 1032.9   8766   10769
+Total:       1918 8593 1043.7   9114   11250
+
+Percentage of the requests served within a certain time (ms)
+  50%   9114
+  66%   9208
+  75%   9257
+  80%   9284
+  90%   9347
+  95%   9397
+  98%   9440
+  99%   9469
+ 100%  11250 (longest request)
+
+！！！使用socket，性能提升还是很明显的，这里设置ulimit很重要
+！！！！，大概20%左右吧
+-------------------------------------------
+安装apc后
+tboqi@tboqi-ThinkPad-R400:~$ ab -n 10000 -c 150 http://www.xkvm1.com/cookbookapi/fetch_new/999999/1?pa=378098
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking www.xkvm1.com (be patient)
+Completed 1000 requests
+Completed 2000 requests
+Completed 3000 requests
+Completed 4000 requests
+Completed 5000 requests
+Completed 6000 requests
+Completed 7000 requests
+Completed 8000 requests
+Completed 9000 requests
+Completed 10000 requests
+Finished 10000 requests
+
+
+Server Software:        nginx/1.2.6
+Server Hostname:        www.xkvm1.com
+Server Port:            80
+
+Document Path:          /cookbookapi/fetch_new/999999/1?pa=378098
+Document Length:        172 bytes
+
+Concurrency Level:      150
+Time taken for tests:   299.093 seconds
+Complete requests:      10000
+Failed requests:        9788
+   (Connect: 0, Receive: 0, Length: 9788, Exceptions: 0)
+Write errors:           0
+Non-2xx responses:      212
+Total transferred:      402962132 bytes
+HTML transferred:       399592412 bytes
+Requests per second:    33.43 [#/sec] (mean)
+Time per request:       4486.399 [ms] (mean)
+Time per request:       29.909 [ms] (mean, across all concurrent requests)
+Transfer rate:          1315.70 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    5   4.4      3      32
+Processing:     1 4447 769.3   4646    6726
+Waiting:        1 4187 709.9   4338    6592
+Total:          1 4452 769.8   4651    6728
+
+Percentage of the requests served within a certain time (ms)
+  50%   4651
+  66%   4720
+  75%   4769
+  80%   4785
+  90%   4854
+  95%   4939
+  98%   5035
+  99%   5305
+ 100%   6728 (longest request)
+！！！！！！！！！！！！！！！！
+！！！！ 使用apc后性能提升1倍
+------------------------------------------------------
+改为innodb，性能稍有下降
+tboqi@tboqi-ThinkPad-R400:~$ ab -n 10000 -c 150 http://www.xkvm1.com/cookbookapi/fetch_new/999999/1?pa=378126
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking www.xkvm1.com (be patient)
+Completed 1000 requests
+Completed 2000 requests
+Completed 3000 requests
+Completed 4000 requests
+Completed 5000 requests
+Completed 6000 requests
+Completed 7000 requests
+Completed 8000 requests
+Completed 9000 requests
+Completed 10000 requests
+Finished 10000 requests
+
+
+Server Software:        nginx/1.2.6
+Server Hostname:        www.xkvm1.com
+Server Port:            80
+
+Document Path:          /cookbookapi/fetch_new/999999/1?pa=378126
+Document Length:        40828 bytes
+
+Concurrency Level:      150
+Time taken for tests:   310.218 seconds
+Complete requests:      10000
+Failed requests:        0
+Write errors:           0
+Total transferred:      411690000 bytes
+HTML transferred:       408280000 bytes
+Requests per second:    32.24 [#/sec] (mean)
+Time per request:       4653.267 [ms] (mean)
+Time per request:       31.022 [ms] (mean, across all concurrent requests)
+Transfer rate:          1296.00 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    5  11.1      4     998
+Processing:  1126 4619 382.7   4695    6257
+Waiting:     1117 4324 331.4   4366    5939
+Total:       1131 4624 382.5   4701    6259
+
+Percentage of the requests served within a certain time (ms)
+  50%   4701
+  66%   4764
+  75%   4805
+  80%   4834
+  90%   4901
+  95%   4980
+  98%   5060
+  99%   5114
+ 100%   6259 (longest request)

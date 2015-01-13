@@ -1,0 +1,23 @@
+tboqi@tboqi-ThinkPad-R400:/media/B8E29317E292D8C8$ du -ahL --max-depth=2|grep G
+3.9G	./Program Files (x86)/Adobe
+0	./Program Files (x86)/Google
+5.9G	./Program Files (x86)
+1.1G	./Users/All Users
+2.1G	./Users
+12K	./360SANDBOX/360SandBox.sav.LOG1
+0	./360SANDBOX/360SandBox.sav.LOG2
+4.5G	./hiberfil.sys
+4.0K	./Intel/ExtremeGraphics
+13M	./Program Files/Google
+143M	./Program Files/Microsoft Games
+1.5G	./Program Files
+256K	./System Volume Information/Syscache.hve.LOG1
+0	./System Volume Information/Syscache.hve.LOG2
+1.3G	./Windows/assembly
+29M	./Windows/Globalization
+3.0G	./Windows/System32
+1.3G	./Windows/SysWOW64
+4.5G	./Windows/winsxs
+300K	./Windows/WLXPGSS.SCR
+13G	./Windows
+27G	.

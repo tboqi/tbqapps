@@ -1,0 +1,60 @@
+FN+F3：关闭屏幕显示，触动鼠标或任意键可以重新打开屏幕。
+  FN+F4：将系统设置待机状态。
+  FN+F5：打开/关闭无线通讯功能 (只可以在WINDOWS下使用)
+  FN+F7：屏幕切换(只有在有外接的显示器时有用)
+  FN+F8：拉申或者停止拉申屏幕(在分辨率小于最大分辨率时使用)
+  FN+F12：将系统设置休眠状态
+  FN+HOME/END ：增加/减低屏幕亮度
+  FN+PAGEUP ：打开屏幕顶部的ThinkLight照明灯
+  FN+空格：降低屏幕分辨率 (只有在WINDOWS下有效) 
+
+
+  http://thinkbbs.zol.com.cn/36/32108_358696.html
+
+  很多小黑一族都是XP系统的忠实拥磊，当你满心欢喜换了XP后是否发现很多热键无法使用呢？是否我们为了速度而必须要放弃一些功能呢，答案是否定的，笔者经过长期摸索，外加N次重装的血泪教训 终于摸索出一套解决R400系列热键问题的完整方案，现在从F1-F12都可以用（除了没有定义的之外），和大家分享分享，同时，你的回帖是我发帖的最大动力所在，好的话顶下，不好别扔鸡蛋…… 首先，常规快捷键，指F2、F3、F4、F5、F12、等，只要你按照我下面的驱动安装顺序列表一步步做，完全可以实现正常使用，有问题本文也提供了解决方案。其次，是需要安装特别软件才能实现特定功能的按键，像F7 F8 F9三个，F7是投影仪切换， F8是切换小红点和开光触摸板的热键，F9是管理外接USB设备的热键驱动名和下载地址一并列出：F7我整理了个详细的解决方案 附件超过1MB，需要的朋友留下邮箱。
+FN+F9:EasyEject Utility  
+http://think.lenovo.com.cn/support/driver/detail.aspx?docID=DR1217228982329&docTypeID=DOC_TYPE_DRIVER
+FN+F8:UltraNav http://think.lenovo.com.cn/support/driver/detail.aspx?docID=DR1197605606375&docTypeID=DOC_TYPE_DRIVER http://think.lenovo.com.cn/support/driver/detail.aspx?docID=DR1198654313437&docTypeID=DOC_TYPE_DRIVER
+另外：如果你发现安装后某些其热键都不能正确使用，建议重装一下驱动，顺序为：主板、显卡、热键管理器（附下载地址： 1.Intel主板驱动程序（设备管理器中显示为：SM总线控制器）: http://think.lenovo.com.cn/support/driver/detail.aspx?docID=DR1221303651950&docTypeID=DOC_TYPE_DRIVER 默认解压路径：C:DRIVERSWININTELINFINFINST_AUTOL.EXE 。 2.ATI显卡驱动程序（设备管理器中显示为：视频控制器）： http://think.lenovo.com.cn/support/driver/detail.aspx?docID=DR1221465455921&docTypeID=DOC_TYPE_DRIVER 默认解压路径：C:DRIVERSWINDISPLAYSETUP.EXE。 3.热键管理软件（HOTKEY）： http://think.lenovo.com.cn/support/driver/detail.aspx?docID=DR1216893127788&docTypeID=DOC_TYPE_DRIVER 默认释放路径C:DRIVERSWINHOTKEYSETUP.EXE http://think.lenovo.com.cn/support/tvt/detail.aspx?docID=TV1202892167234&docTypeID=DOC_TYPE_TVT   ） 如果以上办法都解决不了你的问题，建议你重装系统，驱动安装顺序请严格按照我给你的来，切忌不要安装联想的升级程序，那个什么一键恢复也不建议安装，鸡肋不说，还影响系统稳定，这些都是我无数次失败和重装再摸索得来的经验，希望对你有所帮助，因为我刚开始遇到问题也很郁闷，却没人告诉我怎么弄
+附：驱动名及安装顺序、下载链接
+
+几点提醒：
+
+    * 请您按照驱动排列的顺序依次安装；下载完的驱动程序是一个可执行文件，但是双击后仅是释放文件的过程并未安装，默认释放到C:DRIVERSWIN***目录下，请到文件目录下继续安装。
+    * 安装WinXP之前，需要在BIOS中将硬盘改为兼容模式，否则安装时会提示找不到硬盘或蓝屏，修改方法为：开机出现ThinkPad标志时，按F1进入 BIOS—> Config—>Serial ATA(SATA)把AHCI改为Compatibility，然后按F10，选择Y，保存退出。
+    * 设备管理中常见的未知设备一般为ACPI电源管理器和TPM安全芯片，如果出现未知设备，请首先尝试安装其驱动。
+    * 建议您不要使用GHOST安装系统，因为GHOST安装的系统驱动可能无法正常安装。
+    * 如果用GHOST安装系统后“小红帽”不可用，请在设备管理器中删除“鼠标和其它指针设备”下面有感叹号的设备，然后重启系统，小红帽即可使用。 
+
+附：详细驱动安装list //ThinkPad_R400_2784A**_驱动程序安装一览表_for_XP_CN（对所有的R400系列都适用）
+1、Intel主板驱动程序（设备管理器中显示为：SM总线控制器）: http://think.lenovo.com.cn/support/driver/detail.aspx?docID=DR1221303651950&docTypeID=DOC_TYPE_DRIVER 默认解压路径：C:DRIVERSWININTELINFINFINST_AUTOL.EXE
+2、ATI显卡驱动程序（设备管理器中显示为：视频控制器）： http://think.lenovo.com.cn/support/driver/detail.aspx?docID=DR1221465455921&docTypeID=DOC_TYPE_DRIVER 默认解压路径：C:DRIVERSWINDISPLAYSETUP.EXE
+3、以太网卡驱动程序（设备管理器中显示为：以太网控制器）： http://think.lenovo.com.cn/support/driver/detail.aspx?docID=DR1221114426897&docTypeID=DOC_TYPE_DRIVER 默认解压路径 C:DRIVERSWINETHERNETAPPSSETUPSETUPBDWin32SetupBD.exe
+4、Intel (11abgn, abg, bg)无线网卡驱动：（设备管理器中显示为：网络控制器） http://think.lenovo.com.cn/support/driver/detail.aspx?docID=DR1221197254747&docTypeID=DOC_TYPE_DRIVER 默认释放路径C:DRIVERSWINWLANINTAutorun.EXE
+5、声卡KB888111补丁（设备管理器中显示为：其他设备：PCI-DEVICE）（必须先安装此补丁，否则无法安装声卡和MODEM驱动程序） http://think.lenovo.com.cn/support/knowledge/detail.aspx?docID=26015&docTypeID=DOC_TYPE_KNOWLEDGE 默认释放路径：点击页面最下方附件文档下载，下载后是一个ZIP文件，先解压再安装即可。注意：只有先安装KB888111补丁，才能安装声卡和调制解调器驱动。
+6、声卡（设备管理器中显示为：High Definition Audio总线上的音频设备）： http://think.lenovo.com.cn/support/driver/detail.aspx?docID=DR1218539166732&docTypeID=DOC_TYPE_DRIVER 默认释放路径C:DRIVERSWINAUDIOSETUP.EXE
+7、调制解调器（设备管理器中显示为：High Definition Audio总线上的调制解调器设备）： http://think.lenovo.com.cn/support/driver/detail.aspx?docID=DR1218539706513&docTypeID=DOC_TYPE_DRIVER 默认释放路径C:DRIVERSModemOMSETUP.EXE
+8、ACPI电源管理器驱动（设备管理器中显示为：未知设备）： http://think.lenovo.com.cn/support/driver/detail.aspx?docID=DR1197863947328&docTypeID=DOC_TYPE_DRIVER 默认释放路径C:DRIVERSWINIBMPMSETUP.EXE
+9、TPM安全芯片（设备管理器中显示为：未知设备）： http://think.lenovo.com.cn/support/driver/detail.aspx?docID=DR1218598176029&docTypeID=DOC_TYPE_DRIVER 默认释放路径C:DriversWinTPMSetup.exe(仅支持Windows XP(SP2)) 或在设备管理器未知设备上点右键、选择更新驱动程序，手动指定到C:DriversWinTPMTPM目录安装。安装过后系统设备中可能会有两个ATMELTPM，其中一个上有感叹号，点右键卸载即可，是系统识别错误，如重启后仍存在，亦不会影响使用。
+10、SATA驱动（设备管理器里IDE ATA控制器下的PCI DEVICE） http://think.lenovo.com.cn/support/driver/detail.aspx?docID=DR1197539101703&docTypeID=DOC_TYPE_DRIVER 默认释放路径C:DRIVERSWINIMSM，先打开C:DRIVERSWINIMSMPREPARE目录双击install.cmd，然后重启计算机并按F1进入BIOS在Config—>Select Serial ATA (SATA)中把选项改为AHCI，按F10保存退出，进入系统后在设备管理器中IDE ATA控制器下面的PCI DEVICE上点右键选择更新驱动程序，选择指定位置安装，并指定到C:DRIVERSWINIMSM目录搜索安装即可。
+11、蓝牙http://think.lenovo.com.cn/support/driver/detail.aspx?docID=DR1216695410663&docTypeID=DOC_TYPE_DRIVER 默认释放路径C:DRIVERSMSBTooth，在设备管理器中蓝牙设备上点右键选择更新驱动程序，手动指定到C:DriversWinMSBTooth目录安装。
+12、电源管理软件（Power Manager） http://think.lenovo.com.cn/support/driver/detail.aspx?docID=DR1197863356578&docTypeID=DOC_TYPE_DRIVER 默认释放路径C:DRIVERSW2KPWRMGRSETUP.EXE
+13、热键管理软件（HOTKEY）： http://think.lenovo.com.cn/support/driver/detail.aspx?docID=DR1216893127788&docTypeID=DOC_TYPE_DRIVER 默认释放路径C:DRIVERSWINHOTKEYSETUP.EXE
+14、读卡器驱动（基本系统设备）： http://think.lenovo.com.cn/support/driver/detail.aspx?docID=DR1197358554312&docTypeID=DOC_TYPE_DRIVER 默认释放路径C:DRIVERSWIN4IN1SETUP.EXE
+15、AMT（Intel主动管理技术） http://think.lenovo.com.cn/support/driver/detail.aspx?docID=DR1221564544812&docTypeID=DOC_TYPE_DRIVER 默认释放路径C:DRIVERSWINAMTSOLLMS_SOLSETUP.EXE http://think.lenovo.com.cn/support/driver/detail.aspx?docID=DR1221797559707&docTypeID=DOC_TYPE_DRIVER 默认释放路径C:DRIVERSWINAMTMEISETUP.EXE 16、摄像头http://think.lenovo.com.cn/support/driver/detail.aspx?docID=DR1202890867827&docTypeID=DOC_TYPE_DRIVER 默认释放路径C:DRIVERSVISTACAMERASETUP.EXE
+补充：System Update由于之前服务器架设在美国，且版本有问题，自动更新不提示用户，加上网络不稳定，很多用户自动更新BIOS不可预知的断网，导致小黑本惨成转头……经过改进，TP在国内架设了全新的服务器，且对System Update做了很大的改动，取消了自动后台升级，6月1日正式开通下载更新服务，经过斑竹测试，原来版本的热键冲突问题已经解决，各位黑米可以放心使用，但是建议在系统完全搭建好之后做好备份再安装。新版下载链接： http://think.lenovo.com.cn/support/driver/detail.aspx?docID=DR1243938446865&docTypeID=DOC_TYPE_DRIVER
+
+——09.6.4
+最新的HOTKEY似乎有些问题，和F7有不知名的冲突。建议不要安装。
+
+——09.6.20
+
+鉴于最近驱动更新很频繁，建议大家用System Update更新比较方便，如果你和斑竹一样喜欢手动DIY，可以自己去网站下载更新，地址如下，该地址的驱动虽然写的是2784A17，但是适用于R400系列的2784旗下所有型号，大家可以放心的安装使用
+
+http://think.lenovo.com.cn/support/driver/driversdownlist.aspx?categoryid=29545
+
+——09.6.23
+
+最近太忙了，没顾得上即时更新，会尽量集中的回答大家的问题，所有大家可以先跟帖提问，稍后关注我的回答，谢谢大家一如既往的支持
+
+--10.5.13

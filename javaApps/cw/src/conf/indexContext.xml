@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+
+<beans>
+
+	<!-- 标签相关 -->
+	<bean id="labelParser" class="com.cc.cw.search.parse.LabelResourceParse">
+		<property name="service" ref="labelService"></property>
+	</bean> 
+	
+	<bean id="labelIndexManager" class="com.cc.cw.search.index.LabelIndexManager">
+		<property name="memberService" ref="memberService"></property>
+		<property name="articleService" ref="simpleArticleService"></property>
+		<property name="parser" ref="labelParser"></property>
+	</bean> 
+	
+	<bean id="labelIndexService" class="com.cc.cw.search.index.LabelIndexService">
+		<property name="manager" ref="labelIndexManager"></property>
+		<property name="parser" ref="labelParser"></property>
+	</bean> 
+	
+	<bean id="labelSearchService" class="com.cc.cw.search.search.LabelSearchService">
+		<property name="manager" ref="labelIndexManager"></property>
+	</bean> 
+
+	
+	<!-- 评论相关 -->
+	<bean id="remarkParser" class="com.cc.cw.search.parse.RemarkResourceParse">
+		<property name="service" ref="remarkArticleService"></property>
+	</bean> 
+	
+	<bean id="remarkIndexManager" class="com.cc.cw.search.index.RemarkIndexManager">
+		<property name="memberService" ref="memberService"></property>
+		<property name="articleService" ref="simpleArticleService"></property>
+		<property name="parser" ref="remarkParser"></property>
+	</bean> 
+	
+	<bean id="remarkIndexService" class="com.cc.cw.search.index.RemarkIndexService">
+		<property name="manager" ref="remarkIndexManager"></property>
+		<property name="parser" ref="remarkParser"></property>
+	</bean> 
+	
+	<bean id="remarkSearchService" class="com.cc.cw.search.search.RemarkSearchService">
+		<property name="manager" ref="remarkIndexManager"></property>
+	</bean> 
+	
+	<!-- 频道相关 -->
+	<bean id="channelParser" class="com.cc.cw.search.parse.ChannelResourceParse">
+		<property name="service" ref="channelService"></property>
+	</bean> 
+	
+	<bean id="channelIndexManager" class="com.cc.cw.search.index.ChannelIndexManager">
+		<property name="memberService" ref="memberService"></property>
+		<property name="parser" ref="channelParser"></property>
+	</bean> 
+	
+	<bean id="channelIndexService" class="com.cc.cw.search.index.ChannelIndexService">
+		<property name="manager" ref="channelIndexManager"></property>
+		<property name="parser" ref="channelParser"></property>
+	</bean> 
+	
+	<bean id="channelSearchService" class="com.cc.cw.search.search.ChannelSearchService">
+		<property name="manager" ref="channelIndexManager"></property>
+	</bean> 
+	
+	<!-- 文章相关 -->
+	<bean id="articleParser" class="com.cc.cw.search.parse.ArticleResourceParse">
+		<property name="service" ref="simpleArticleService"></property>
+	</bean> 
+	
+	<bean id="articleIndexManager" class="com.cc.cw.search.index.ArticleIndexManager">
+		<property name="memberService" ref="memberService"></property>
+		<property name="parser" ref="articleParser"></property>
+	</bean> 
+	
+	<bean id="articleIndexService" class="com.cc.cw.search.index.ArticleIndexService">
+		<property name="manager" ref="articleIndexManager"></property>
+		<property name="parser" ref="articleParser"></property>
+	</bean> 
+	
+	<bean id="articleSearchService" class="com.cc.cw.search.search.SimpleArticleSearchService">
+		<property name="manager" ref="articleIndexManager"></property>
+	</bean> 
+	
+	<bean id="unionSearchService" class="com.cc.cw.search.search.UnionSearchService">
+		<property name="articleManager" ref="articleIndexManager"></property>
+		<property name="channelManager" ref="channelIndexManager"></property>
+		<property name="remarkManager" ref="remarkIndexManager"></property>
+		<property name="labelManager" ref="labelIndexManager"></property>
+	</bean> 
+</beans>

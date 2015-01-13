@@ -1,0 +1,30 @@
+游戏内重新加载配置                               l
+强制显示物品开关,不按ALT显示物品,抢DD方便        f
+SOCKET保护，防止不小心把DD镶到不应该镶的地方.     Insert键
+查看物品所镶物品和基础材料                       6
+显示物品卖出价值(金钱)                            大键盘7
+模式切换按键,                                         大键盘5
+
+
+鼠标右健快速移动物品
+Ctrl+点击移动物品
+
+开整幕地图,小键盘-号
+Quick Exit Game Key:            VK_OEM_MINUS        //快速退出游戏,大键盘"-"
+Quick Next Game Key:            VK_OEM_PLUS         //快速退出游戏，游戏名自动+1,大键盘"+"
+一键回程,退格键"←"
+VK_K                //查看其他玩家装备(鼠标点中其他玩家的情况下启用)
+View Player Stats Key:          VK_OEM_2            //查看其它玩家属性(很多属性不准)"/ ?"键
+Next Player Stat Key:           VK_OEM_PERIOD       //查看玩家下一页属性 "<"
+Previous Player Stat Key:       VK_OEM_COMMA        //查看玩家上一页属性 ">"
+Perm Show Items Toggle:         0, VK_F         //强制显示物品开关,不按ALT显示物品,抢DD方便,'\|'键 VK_OEM_5
+Socket Protect Toggle:          1, VK_INSERT        // SOCKET保护，防止不小心把DD镶到不应该镶的地方.Insert键
+View Socket Base Items Toggle : 0 ,VK_6             //查看物品所镶物品和基础材料
+Item Value Toggle:              0, VK_7             // 显示物品卖出价值(金钱) 大键盘7
+Hidden Items Toggle:            0, VK_CONTROL            // 地面垃圾物品隐藏开关，小键盘+
+Switch Item Show Mode:          VK_0                // 模式切换按键,大键盘0
+
+Item ExtInfo Toggle :          0 ,  VK_N             //物品额外信息显示 //开启命令
+
+Center Map Scroll Key:          VK_PAUSE            //Scroll复位 
+Scroll Map Toggle:              0, VK_SCROLL        //卷动开关 "Scroll Lock"

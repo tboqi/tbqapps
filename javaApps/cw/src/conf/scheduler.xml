@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+    <bean id="collectResult" class="com.cc.cw.dm.dataAnalyze.CollectResult" />
+    <bean id="aprioriBean" class="com.cc.cw.dm.dataAnalyze.CreateFileForApriori" />
+ 	<!--定义定时执行testQuarz 这个bean中的execute()方法-->
+    <bean id="collectTask"   class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+         <property name="targetObject">
+             <ref bean="collectResult" />  
+         </property>  
+         <property name="targetMethod">  
+             <value>execute</value>  
+         </property>  
+    </bean>  
+
+	<bean id="aprioriTask"   class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+         <property name="targetObject">
+             <ref bean="aprioriBean" />  
+         </property>  
+         <property name="targetMethod">  
+             <value>execute</value>  
+         </property>  
+    </bean>  
+    
+	<!--触发器的bean的设置，在这里我们设置了我们要触发的jobDetail是哪个。这里我们定义了要触发的jobDetail是helloworldTask，即触发器去触发哪个bean..并且我们还定义了触发的时间:每天5:17pm-->
+     <bean id="collect"  
+         class="org.springframework.scheduling.quartz.CronTriggerBean">  
+         <property name="jobDetail">  
+             <ref bean="collectTask" />  
+         </property>  
+         <property name="cronExpression">  
+             <!-- 每一分钟执行一次 -->  
+              <!-- <value>0 30 23 1/1 * ?</value> -->
+               <value>0 30 23 * * ?</value> 
+         </property>  
+     </bean>  
+
+	<bean id="aprioriTrigger"  
+         class="org.springframework.scheduling.quartz.CronTriggerBean">  
+         <property name="jobDetail">  
+             <ref bean="aprioriTask" />  
+         </property>  
+         <property name="cronExpression">  
+             <!-- 每一分钟执行一次 -->  
+             <!--  <value>0 30 23 1/10L * ?</value>  -->
+             <value>0 0 0/1 * * ?</value>
+         </property>  
+     </bean> 
+
+	<!--管理触发器的总设置,管理我们的触发器列表,可以在bean的list中放置多个触发器-->
+	<bean id="schedulerFactor" autowire="no" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+	  <property name="triggers">
+	    <list>
+	      <ref local="collect"/>
+	      <!--  <ref local="aprioriTrigger"/> -->
+		  <!-- vote job -->
+		  <ref bean="voteTrigger"></ref>
+		  <!--<ref bean="dataTrigger"></ref>-->
+		  <!--<ref bean="indexTrigger"></ref>-->
+		  <ref bean="newArticlesTrigger"></ref>
+ 	    </list>
+	  </property>
+	<property name="quartzProperties">
+        <props>
+           <prop key="org.quartz.threadPool.class">org.quartz.simpl.SimpleThreadPool</prop>
+           <prop key="org.quartz.threadPool.threadCount">2</prop>
+           <prop key="org.quartz.jobStore.class">
+             org.quartz.simpl.RAMJobStore
+           </prop>
+        </props>
+     </property>
+	</bean>
+
+	<!-- vote process -->
+	<bean id="voteJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass">
+			<value>com.cc.cw.scheduling.SecVoteFinishJob</value>
+		</property>
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="voteService">
+					<ref bean="voteService"></ref>
+				</entry>
+				<entry key="simpleArticleService">
+					<ref bean="simpleArticleService"></ref>
+				</entry>
+				<entry key="memberService">
+					<ref bean="memberService"></ref>
+				</entry>
+				<entry key="sessionValService">
+					<ref bean="sessionValService"></ref>
+				</entry>
+				<entry key="messageService">
+					<ref bean="messageService"></ref>
+				</entry>
+				<entry key="globalData">
+					<ref bean="globalData"></ref>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="voteTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">  
+             <ref bean="voteJob" />  
+        </property>
+		<property name="cronExpression">
+			<!--<value>0 0/1 * * * ?</value>-->
+			<value>0 0 2 * * ?</value>
+		</property>
+	</bean>
+	<!-- update global data -->
+	<bean id="dataJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass">
+			<value>com.cc.cw.scheduling.UpdateGlobalDataJob</value>
+		</property>
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="data">
+					<ref bean="globalData"></ref>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="dataTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">  
+             <ref bean="dataJob" />  
+        </property>
+		<property name="cronExpression">
+			<!--<value>0 0/1 * * * ?</value>-->
+			<value>0 0 0/1 * * ?</value>
+		</property>
+	</bean>
+	<!-- new article list job -->
+	<bean id="newArticlesJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass">
+			<value>com.cc.cw.scheduling.NewArticlesJob</value>
+		</property>
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="sna">
+					<ref bean="newArticlesData"></ref>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="newArticlesTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">  
+             <ref bean="newArticlesJob" />  
+        </property>
+		<property name="cronExpression">
+			<value>0 0/2 * * * ?</value>
+		</property>
+	</bean>
+	
+	<!-- index job -->
+	<bean id="indexJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass">
+			<value>com.cc.cw.scheduling.IndexJob</value>
+		</property>
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="articelService">
+					<ref bean="articleIndexService"></ref>
+				</entry>
+				<entry key="channelService">
+					<ref bean="channelIndexService"></ref>
+				</entry>
+				<entry key="labelService">
+					<ref bean="labelIndexService"></ref>
+				</entry>
+				<entry key="remarkService">
+					<ref bean="remarkIndexService"></ref>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="indexTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">  
+             <ref bean="indexJob" />  
+        </property>
+		<property name="cronExpression">
+			<!-- ss mm hh * * ? -->
+			<value>0 0 0/1 * * ?</value>
+		</property>
+	</bean>
+
+</beans>

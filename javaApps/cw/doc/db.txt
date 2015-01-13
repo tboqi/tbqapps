@@ -1,0 +1,19 @@
+CREATE TABLE `broadcast` (                                                    
+             `Id` int(10) NOT NULL auto_increment,                                       
+             `MemberId` int(10) NOT NULL,                                                
+             `MemberName` varchar(30) NOT NULL,                                          
+             `ArticleId` int(10) NOT NULL,                                               
+             `ArticleTitle` varchar(30) NOT NULL,                                        
+             `CreateDate` datetime NOT NULL,                                             
+             `Sort` int(3) NOT NULL COMMENT '广播种类 0:拉票 1:募捐 2:投票 3:二次投票',  
+             `Flag` int(3) NOT NULL COMMENT '拉票的种类 0:真 1:假 -1非拉票类',           
+             `Content` varchar(300) default NULL,                                        
+             PRIMARY KEY  (`Id`)                                                         
+           ) ENGINE=InnoDB DEFAULT CHARSET=gbk ROW_FORMAT=REDUNDANT                      
+alter table `cw`.`member` add column `gender` int (3) DEFAULT '0' NOT NULL  after `CoverPath`, add column `descript` varchar (300)  NULL  COLLATE gbk_chinese_ci  after `gender`
+
+alter table `cw`.`vote` add column `VoteMember` varchar (32)  NOT NULL  COLLATE gbk_chinese_ci  after `VoteNumber`
+
+alter table `cw`.`article` add column `FirstResult` varchar (20)  NULL  COLLATE gbk_chinese_ci  after `SecVoteMemId`
+
+ALTER TABLE `cw`.`article` ADD COLUMN `formUrl` VARCHAR(200) NULL AFTER `FirstResult`;

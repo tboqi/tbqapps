@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="controlRole">
+	<typeAlias alias="ControlRole" type="com.cc.cw.domain.ControlRole" />
+	<typeAlias alias="HashMap" type="java.util.HashMap" />
+	<typeAlias alias="Integer" type="java.lang.Integer" />
+	<typeAlias alias="String" type="java.lang.String" />
+
+	<resultMap id="controlRole" class="ControlRole">
+		<result property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="value" column="value" />
+		<result property="viewOrder" column="viewOrder" />
+	</resultMap>
+
+	<insert id="insert" parameterClass="HashMap">
+		insert into controlRole (name, value, viewOrder) value (#name#,
+		#value#, #viewOrder#)
+	</insert>
+	<update id="update" parameterClass="HashMap">
+		update controlRole set name=#name#, value=#value#,
+		viewOrder=#viewOrder# where id=#id#
+	</update>
+	<delete id="delete" parameterClass="Integer">
+		delete from controlRole where id=#id#
+	</delete>
+
+	<select id="getRoleList" parameterClass="HashMap"
+		resultClass="ControlRole">
+		select id, name, value, viewOrder from controlRole order by
+		viewOrder desc limit #start#, #count#
+	</select>
+	<select id="getRoleListByUser" parameterClass="String"
+		resultClass="ControlRole">
+		select id, name, value, viewOrder from controlRole where id in
+		($roleIds$) order by viewOrder desc
+	</select>
+	<select id="getRoleListByAll" resultClass="ControlRole">
+		select id, name, value, viewOrder from controlRole order by
+		viewOrder desc
+	</select>
+	<select id="getRoleCount" resultClass="Integer">
+		select count(*) from controlRole
+	</select>
+	<select id="getRoleByValue" resultClass="ControlRole"
+		parameterClass="String">
+		select id, name, value, viewOrder from controlRole where
+		value=#value# order by id desc limit 1
+	</select>
+</sqlMap>

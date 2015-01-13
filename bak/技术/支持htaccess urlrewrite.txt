@@ -1,0 +1,8 @@
+虚拟主机配置中加入
+AllowOverride All
+
+如果在.htaccess文件中的某些指令不起作用，可能有多种原因。
+
+最常见的原因是AllowOverride指令没有被正确设置，必须确保没有对此文件区域设置 AllowOverride None 。有一个很好的测试方法，就是在.htaccess文件随便增加点无意义的垃圾内容，如果服务器没有返回了一个错误消息，那么几乎可以断定设置了 AllowOverride None 。
+
+在访问文档时，如果收到服务器的出错消息，应该检查Apache的错误日志，可以知道.htaccess文件中哪些指令是不允许使用的，也可能会发现需要纠正的语法错误。

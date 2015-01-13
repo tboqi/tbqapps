@@ -1,0 +1,10 @@
+CREATE TABLE `xikang365`.`foodstore_food_effect`(     `food_id` INT UNSIGNED NOT NULL COMMENT '食物id',     `effect_id` INT UNSIGNED NOT NULL COMMENT '功效/禁忌id',     `effect_type_id` TINYINT(2) UNSIGNED NOT NULL COMMENT '功效/禁忌分类 1身体功能 2脏腑 3人群 4疾病',     `effect_taboo` TINYINT(2) UNSIGNED NOT NULL DEFAULT '0' COMMENT '0功效 1禁忌'  )  ENGINE=INNODB COMMENT='食物与功效/禁忌的关联表' ROW_FORMAT=DEFAULT CHARSET=utf8  ;
+ALTER TABLE `xikang365`.`foodstore_food_effect` ADD UNIQUE `weiyi` (`food_id`, `effect_id`, `effect_type_id`, `effect_taboo`);
+DROP TABLE `xikang365`.`foodstore_effect_food_crowd`;
+DROP TABLE `xikang365`.`foodstore_effect_food_disease`;
+DROP TABLE `xikang365`.`foodstore_effect_food_function`;
+DROP TABLE `xikang365`.`foodstore_effect_food_organ`;
+DROP TABLE `xikang365`.`foodstore_taboo_food_crowd`;
+DROP TABLE `xikang365`.`foodstore_taboo_food_disease`;
+DROP TABLE `xikang365`.`foodstore_taboo_food_function`;
+DROP TABLE `xikang365`.`foodstore_taboo_food_organ`;

@@ -1,0 +1,21 @@
+' Gambas module file
+
+PUBLIC SUB Main()
+  DIM str1 AS String = "My first program!"
+  DIM str2 AS String = "Made in Gambas :) !"
+  
+  DIM nickname AS String
+  
+' 字符串连接
+  PRINT "My first program!"
+  PRINT "Made in Gambas :) !"
+  PRINT str1 & str2
+  
+  
+' 与命令行交互
+  PRINT "What is your nickname ?"
+  INPUT nickname
+
+  PRINT "Your nickname is " & nickname
+
+END

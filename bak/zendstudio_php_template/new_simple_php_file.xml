@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?><templates><template autoinsert="true" context="newPhp" deleted="false" description="Simple php file" enabled="true" id="org.eclipse.php.ui.editor.templates.newPhp.author" name="New simple PHP file">&lt;?php
+${cursor}</template></templates>

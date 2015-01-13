@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="friend">
+    
+    <cacheModel id="friendCache" type="LRU">
+        <flushInterval hours="2"/>		
+        <property name="size" value="1000"/>
+    </cacheModel>
+    
+    <typeAlias alias="Friend" type="com.cc.cw.domain.Friend"/>
+    <typeAlias alias="HashMap" type="java.util.HashMap"/>
+    
+    <resultMap id="friend" class="Friend">
+        <result property="id" column="Id"/>
+        <result property="myId" column="MyId"/>
+        <result property="comment" column="Comment"/>
+        <result property="friendId" column="FriendId"/>
+        <result property="createDate" column="CreateDate"/>
+        <result property="passedTime" column="PassedTime"/>
+        <result property="state" column="State"/>
+    </resultMap>
+    
+    <!--    添加一条好友记录    -->
+    <insert id="add" >
+        insert into friend(MyId,FriendId,Comment,CreateDate,PassedTime,State)
+        values(#myId#,#friendId#,#comment#,now(),#passedTime#,#state#);
+        
+        <selectKey keyProperty="id" resultClass="int">
+            SELECT LAST_INSERT_ID() AS value
+        </selectKey>
+    </insert>
+    
+    <!--    通过ID号，修改好友关系    -->
+    <update id="update" parameterClass="java.util.HashMap">
+        update friend SET
+            PassedTime=now(),
+        	State=#state#
+        where Id = #id#
+    </update>
+    
+    <!-- 通过会员ID号，读取会员myId的全部好友从某一特定（Start）记录开始的若干条（count）记录    -->
+    <select id="getAllFriends" resultMap="friend">
+        select Id,MyId,FriendId,Comment,CreateDate,PassedTime,State
+        from friend
+        where 
+        	MyId=#myId#
+            ORDER BY PassedTime DESC
+            limit #start#,#count#
+    </select>  
+    
+    <!-- 通过会员ID号，读取该会员的指定状态（确定的、申请的，被申请的）好友ID号从某一特定（Start）记录开始的若干条（count）记录    -->
+    <select id="getGivenStateFriends" resultMap="friend">
+        select Id,MyId,FriendId,Comment,CreateDate,PassedTime,State
+        from   friend
+        where  MyId=#myId#
+        and    State=#state#
+        ORDER BY PassedTime DESC
+        limit  #start#,#count#
+    </select>
+    
+    <!--    通过会员ID号，统计该会员的好友数目    -->
+    <select id="getAllCount" resultClass="java.lang.Integer">
+        select count(Id)
+        from friend
+        where MyId=#myId#
+    </select>
+    
+    <!--    通过会员ID号，统计该会员的指定状态（确定的、申请的，被申请的）好友数目    -->
+    <select id="getGivenStateCount" resultClass="java.lang.Integer">
+        select count(Id)
+        from friend
+        where MyId=#myId#
+            and State=#state#
+    </select>
+    
+    <!-- 读取会员myId和会员friendId的好友状态  -->
+    <select id="getState" resultMap="friend">
+        select Id,MyId,FriendId,Comment,CreateDate,PassedTime,State
+        from   friend
+        where  MyId=#myId#
+        and    FriendId=#friendId#
+    </select>
+    
+    <update id="delete" parameterClass="java.util.HashMap">
+    	delete from friend
+    	where  MyId=#myId#
+    	and    FriendId=#friendId#
+    </update>
+</sqlMap>

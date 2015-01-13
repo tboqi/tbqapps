@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="friendLink">
+	<typeAlias alias="FriendLink" type="com.cc.cw.domain.FriendLink" />
+	<typeAlias alias="HashMap" type="java.util.HashMap" />
+	<typeAlias alias="Integer" type="java.lang.Integer" />
+	<typeAlias alias="String" type="java.lang.String" />
+
+	<resultMap id="friendLink" class="FriendLink">
+		<result property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="url" column="url" />
+		<result property="logoUrl" column="logoUrl" />
+		<result property="addTime" column="addTime" />
+		<result property="display" column="display" />
+		<result property="checkTime" column="checkTime" />
+		<result property="checkUserId" column="checkUserId" />
+		<result property="viewOrder" column="viewOrder" />
+		<result property="color" column="color" />
+	</resultMap>
+
+	<insert id="insert" parameterClass="FriendLink">
+		insert into friend_link (name, url, logoUrl, addTime, display)
+		values (#name#, #url#, #logoUrl#, #addTime#, #display#)
+	</insert>
+	<update id="update" parameterClass="FriendLink">
+		update friend_link set name=#name#, url=#url#,
+		logoUrl=#logoUrl#, addTime=#addTime#, display=#display#,
+		checkTime=#checkTime#, checkUserId=#checkUserId#,
+		viewOrder=#viewOrder#, color=#color# where id=#id#
+	</update>
+	<delete id="delete" parameterClass="Integer">
+		delete from friend_link where id=#id#
+	</delete>
+
+	<select id="getCount" resultClass="Integer"
+		parameterClass="String">
+		select count(*) from friend_link
+	</select>
+	<select id="getLink" resultClass="FriendLink"
+		parameterClass="HashMap">
+		select id, name, url, logoUrl, addTime, display, checkTime,
+		checkUserId, viewOrder, color from friend_link order by id desc
+		limit #start#, #num#
+	</select>
+	<select id="getCountByCondition" resultClass="Integer"
+		parameterClass="String">
+		select count(*) from friend_link $condition$
+	</select>
+	<select id="getLinkByCondition" resultClass="FriendLink"
+		parameterClass="HashMap">
+		select id, name, url, logoUrl, addTime, display, checkTime,
+		checkUserId, viewOrder, color from friend_link $condition$ order by
+		id desc limit #start#, #num#
+	</select>
+	<select id="getAllLinkByCondition" resultClass="FriendLink"
+		parameterClass="String">
+		select id, name, url, logoUrl, addTime, display, checkTime,
+		checkUserId, viewOrder, color from friend_link $condition$ order by
+		viewOrder
+	</select>
+	<select id="get" resultClass="FriendLink"
+		parameterClass="Integer">
+		select id, name, url, logoUrl, addTime, display, checkTime,
+		checkUserId, viewOrder, color from friend_link where id=#id#
+	</select>
+</sqlMap>

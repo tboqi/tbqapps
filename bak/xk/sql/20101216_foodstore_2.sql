@@ -1,0 +1,2 @@
+CREATE TABLE `xikang365`.`foodstore_food_cook_style_link`(     `food_id` INT UNSIGNED NOT NULL ,     `cook_style_id` INT UNSIGNED NOT NULL   );
+ALTER TABLE `xikang365`.`foodstore_dish_food` DROP COLUMN `cook_style_id`,    CHANGE `cook_style` `cook_style` TEXT NOT NULL;

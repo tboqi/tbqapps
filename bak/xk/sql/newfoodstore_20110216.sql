@@ -1,0 +1,1 @@
+ALTER TABLE `xikang365`.`newfoodstore_raw_food_nutrient_link`     ADD COLUMN `badge` TINYINT DEFAULT '0' NOT NULL COMMENT '表示高的徽章，1高  0一般  -1低' AFTER `weight`;

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="channelcategory">
+	<cacheModel id="channelcategoryCache" type="LRU">
+		<flushInterval hours="2"/>
+		<property name="size" value="1000"/>
+	</cacheModel>
+	
+	<typeAlias alias="ChannelCategory" type="com.cc.cw.domain.ChannelCategory"/>
+	<typeAlias alias="HashMap" type="java.util.HashMap"/>
+	<typeAlias alias="int" type="java.lang.Integer"/>
+	<typeAlias alias="String" type="java.lang.String"/>
+	
+	<insert id="add"  parameterClass="ChannelCategory">
+		insert into channelcategory (content)
+		values (#content#)
+		<selectKey keyProperty="id" resultClass="int">
+          select LAST_INSERT_ID() as value
+        </selectKey>
+	</insert>
+	
+	<update id="updateFieldValueByContent"  >
+		update channelcategory
+		set $field$ =#value#
+		where content = #content#
+	</update>
+	
+	<update id="increaseFieldValueByContent"  >
+		update channelcategory
+		set $field$ = #value# + 1
+		where content = #content#
+	</update>
+	
+	<delete id="delete" parameterClass="int">
+		delete from channelcategory
+		where id = #id#
+	</delete>
+	
+	<select id="getById" parameterClass="int" resultClass="ChannelCategory">
+		select * from channelcategory
+		where id = #id#
+	</select>
+
+	<select id="getByContent" parameterClass="String" resultClass="ChannelCategory">
+		select * from channelcategory
+		where content = #content#
+	</select>
+	
+	<select id="getAllChannelCategorys"  resultClass="ChannelCategory">
+		select * from channelcategory
+		limit #currentPageNum#,#rowsPerPage#
+	</select>
+	
+	<select id="getRowsNum"  resultClass="int">
+		select count(*) from channelcategory
+	</select>
+</sqlMap>

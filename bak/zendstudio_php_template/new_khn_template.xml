@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><templates><template autoinsert="true" context="newPhp" deleted="false" description="" enabled="true" name="new khn template">&lt;?php defined('SYSPATH') OR die('No direct access allowed.'); ?&gt;&#13;
+&lt;table&gt;&#13;
+	&lt;tr&gt;&#13;
+		&lt;td&gt;&lt;/td&gt;&#13;
+		&lt;td&gt;&lt;/td&gt;&#13;
+	&lt;/tr&gt;&#13;
+	&lt;tr&gt;&#13;
+		&lt;td&gt;&lt;/td&gt;&#13;
+		&lt;td&gt;&lt;/td&gt;&#13;
+	&lt;/tr&gt;&#13;
+&lt;/table&gt;</template></templates>

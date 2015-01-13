@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="userChannel">
+	<typeAlias alias="UserChannel" type="com.cc.cw.domain.UserChannel" />
+	<typeAlias alias="HashMap" type="java.util.HashMap" />
+
+	<resultMap id="userChannel" class="UserChannel">
+		<result property="channelId" column="channelId" />
+		<result property="uuid" column="uuid" />
+		<result property="clickTime" column="clicktime" />
+		<result property="updateTime" column="updatetime" />
+	</resultMap>
+
+	<select id="getUserChannels" resultMap="userChannel"
+		parameterClass="java.util.HashMap">
+		select `uuid`, `channelId`, `clicktime`, `updatetime` from
+		$tableName$ where uuid = #uuid# order by clicktime desc limit
+		$start$, $count$
+	</select>
+	<select id="getUserChannelsCount" resultClass="java.lang.Integer">
+		select count(*) from $tableName$ where uuid = #uuid#
+	</select>
+	<select id="getChannelsByUserChannel"
+		resultClass="com.cc.cw.domain.Channel">
+		select `Id`, `MemberId`, `Name`, `Keywords`, `Description`,
+		`CreateDate`, `SupportCount`, `UnSupportCount`, `ArticleNums`,
+		`State`
+		from `channel` c inner join $tableName$ u 
+		where u.uuid=#uuid# and u.channelId=c.Id and c.tuijian = 0 and c.state=1
+		order by u.clicktime desc limit #start#, #count#
+	</select>
+	<select id="getChannelsCountByUserChannel"
+		resultClass="java.lang.Integer">
+		select count(*)
+		from `channel` c inner join $tableName$ u 
+		where u.uuid=#uuid# and u.channelId=c.Id 
+	</select>
+</sqlMap>

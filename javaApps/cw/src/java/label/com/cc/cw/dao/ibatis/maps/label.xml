@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="label">
+	<cacheModel id="labelCache" type="LRU">
+		<flushInterval hours="2"/>
+		<property name="size" value="1000"/>
+	</cacheModel>
+	
+	<typeAlias alias="Label" type="com.cc.cw.domain.Label"/>
+	<typeAlias alias="HashMap" type="java.util.HashMap"/>
+	
+	<resultMap id="label" class="Label">
+		<result property="id" column="Id"/>
+		<result property="articleId" column="ArticleId"/>
+		<result property="content" column="Content"/>
+		<result property="memberId" column="MemberId"/>
+	</resultMap>
+	
+	<select id="get" resultMap="label"> 
+		select * from label where Id = #id#
+	</select>
+	
+	<select id="getByArticleId" resultMap="label">
+		 select * from label where ArticleId =#articleId# 
+	</select>
+	
+	<insert id="insert"> insert into label (ArticleId,Content,MemberId) values
+		(#articleId#,#content#,#memberId#)
+		<selectKey keyProperty="id" resultClass="int">
+			select LAST_INSERT_ID() as value </selectKey> 
+	</insert>
+	
+	<select id="getByArticleIdMemberId" parameterClass="HashMap" resultMap="label">
+		select * from label where ArticleId = #articleId# and MemberId = #memberId#
+	</select>
+	
+	<update id="update">
+		update label
+			set Content = #content#
+		where Id = #id# 		
+	</update>
+	
+	<!-- 获得所有channel -->
+	<select id="getAllLabels" resultMap="label"> 
+		SELECT 
+			Id,ArticleId,Content,MemberId
+		FROM
+			label 
+	</select>
+	
+	<!-- 根据id获得新增channel -->
+	<select id="getNewLabels" resultMap="label"> 
+		SELECT 
+			Id,ArticleId,Content,MemberId
+		FROM
+			label
+		WHERE
+			Id > #id# 
+		LIMIT 10;
+	</select>
+	
+	<!-- 根据id获得新增channel的数量 -->
+	<select id="countNewLabels" resultClass="java.lang.Integer"> 
+		SELECT 
+			COUNT(Id)
+		FROM
+			label
+		WHERE
+			Id > #id# 
+	</select>
+	
+	<select id="searchLabel" resultMap="label"> 
+		SELECT 
+			Id,ArticleId,Content,MemberId
+		FROM
+			label
+		WHERE
+			 Content like '%$key$%'
+			 and ArticleId not in (select Id from article where status =-1)
+		ORDER BY ArticleId desc
+		LIMIT #start#,#count#
+	</select>
+	
+	<select id="searchLabelCount" resultClass="java.lang.Integer">
+		<![CDATA[
+		SELECT
+			COUNT(Id)
+		FROM 
+			label
+		WHERE
+			 Content like '%$key$%'
+	    ]]>
+	</select>
+</sqlMap>

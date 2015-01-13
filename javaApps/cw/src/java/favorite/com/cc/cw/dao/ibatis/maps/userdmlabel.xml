@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="userDMLabel">
+	<typeAlias alias="UserDMLabel" type="com.cc.cw.domain.UserDMLabel" />
+	<typeAlias alias="HashMap" type="java.util.HashMap" />
+
+	<resultMap id="userLabel" class="UserDMLabel">
+		<result property="label" column="label" />
+		<result property="uuid" column="uuid" />
+		<result property="type" column="type" />
+		<result property="updatetime" column="updatetime" />
+	</resultMap>
+
+	<!--获得uuid下点击次数最高的3个label-->
+	<select id="getUserLabels" resultMap="userLabel"
+		parameterClass="java.util.HashMap">
+		select label,uuid,updatetime,type from $tableName$
+		where uuid = #uuid# order by updatetime desc limit $limit$
+	</select>
+
+	<select id="getCount" resultClass="java.lang.Integer"
+		parameterClass="java.lang.String">
+		select count(*) as count
+		from article a
+		where a.id in (SELECT ArticleId FROM label l where $or$)
+	</select>
+</sqlMap>

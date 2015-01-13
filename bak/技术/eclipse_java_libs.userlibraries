@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<eclipse-userlibraries version="2">
+    <library name="commons" systemlibrary="false">
+        <archive path="/media/data/resource/java/spring-framework-2.0.8/lib/jakarta-commons/commons-attributes-api.jar"/>
+        <archive path="/media/data/resource/java/spring-framework-2.0.8/lib/jakarta-commons/commons-attributes-compiler.jar"/>
+        <archive path="/media/data/resource/java/spring-framework-2.0.8/lib/jakarta-commons/commons-beanutils.jar"/>
+        <archive path="/media/data/resource/java/spring-framework-2.0.8/lib/jakarta-commons/commons-codec.jar"/>
+        <archive path="/media/data/resource/java/spring-framework-2.0.8/lib/jakarta-commons/commons-collections.jar"/>
+        <archive path="/media/data/resource/java/spring-framework-2.0.8/lib/jakarta-commons/commons-dbcp.jar"/>
+        <archive path="/media/data/resource/java/spring-framework-2.0.8/lib/jakarta-commons/commons-digester.jar"/>
+        <archive path="/media/data/resource/java/spring-framework-2.0.8/lib/jakarta-commons/commons-discovery.jar"/>
+        <archive path="/media/data/resource/java/spring-framework-2.0.8/lib/jakarta-commons/commons-fileupload.jar"/>
+        <archive path="/media/data/resource/java/spring-framework-2.0.8/lib/jakarta-commons/commons-httpclient.jar"/>
+        <archive path="/media/data/resource/java/spring-framework-2.0.8/lib/jakarta-commons/commons-io.jar"/>
+        <archive path="/media/data/resource/java/spring-framework-2.0.8/lib/jakarta-commons/commons-lang.jar"/>
+        <archive path="/media/data/resource/java/spring-framework-2.0.8/lib/jakarta-commons/commons-logging.jar"/>
+        <archive path="/media/data/resource/java/spring-framework-2.0.8/lib/jakarta-commons/commons-pool.jar"/>
+        <archive path="/media/data/resource/java/spring-framework-2.0.8/lib/jakarta-commons/commons-validator.jar"/>
+    </library>
+    <library name="htmlparser" systemlibrary="false">
+        <archive javadoc="file:/data/resource/java/jericho-html-3.1/docs/javadoc/" path="/media/data/resource/java/jericho-html-3.1/dist/jericho-html-3.1.jar" source="/data/resource/java/jericho-html-3.1/src/java"/>
+    </library>
+    <library name="log" systemlibrary="false">
+        <archive path="/media/data/resource/java/commons-logging-1.0.4.jar"/>
+        <archive path="/media/data/resource/java/apache-log4j-1.2.16/log4j-1.2.16.jar"/>
+    </library>
+    <library name="mysql" systemlibrary="false">
+        <archive path="/media/data/resource/java/mysql-connector-java-5.0.3/mysql-connector-java-5.0.3-bin.jar"/>
+    </library>
+    <library name="spring" systemlibrary="false">
+        <archive path="/media/data/resource/java/spring-framework-2.0.8/dist/spring.jar" source="/data/resource/java/spring-framework-2.0.8/dist/spring-src.zip"/>
+    </library>
+</eclipse-userlibraries>

@@ -1,0 +1,83 @@
+检查半虚拟化的需求
+[tangboqi@bj ~]$ cat /proc/cpuinfo | grep flags
+flags		: fpu vme de pse tsc msr pae mce cx8 apic mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm dca sse4_1 sse4_2 popcnt aes lahf_lm arat epb dts tpr_shadow vnmi flexpriority ept vpid
+flags		: fpu vme de pse tsc msr pae mce cx8 apic mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm dca sse4_1 sse4_2 popcnt aes lahf_lm arat epb dts tpr_shadow vnmi flexpriority ept vpid
+flags		: fpu vme de pse tsc msr pae mce cx8 apic mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm dca sse4_1 sse4_2 popcnt aes lahf_lm arat epb dts tpr_shadow vnmi flexpriority ept vpid
+flags		: fpu vme de pse tsc msr pae mce cx8 apic mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm dca sse4_1 sse4_2 popcnt aes lahf_lm arat epb dts tpr_shadow vnmi flexpriority ept vpid
+在fpu vme de pse tsc msr pae mce中保护pae，，该主机必须要支援的实体位址延伸技术 (PAE) 才能够使用 xen 喔
+
+下面的操作是解决用xen内核启动后无法启动网卡的问题
+wget http://anonscm.debian.org/viewvc/kernel/dists/trunk/firmware-nonfree/bnx2/bnx2/bnx2-mips-09-6.2.1b.fw?revision=18938&view=co
+mv bnx2-mips-09-6.2.1b.fw\?revision\=18938 bnx2-mips-09-6.2.1b.fw
+复制到/lib/firmware/bnx2/
+
+
+
+重启
+[tangboqi@bj ~]$ uname -r
+3.5.4-2.el6xen.x86_64
+[tangboqi@bj ~]$ chkconfig --list | grep xen
+xen-watchdog   	0:关闭	1:关闭	2:启用	3:启用	4:启用	5:启用	6:关闭
+xenconsoled    	0:关闭	1:关闭	2:关闭	3:启用	4:启用	5:启用	6:关闭
+xend           	0:关闭	1:关闭	2:关闭	3:启用	4:启用	5:启用	6:关闭
+xendomains     	0:关闭	1:关闭	2:启用	3:启用	4:启用	5:启用	6:关闭
+xenstored      	0:关闭	1:关闭	2:关闭	3:启用	4:启用	5:启用	6:关闭
+[tangboqi@bj ~]$ pstree -p | grep xen
+        |-xenconsoled(2857)---{xenconsoled}(2859)
+        |-xend(2981)-+-{xend}(2982)
+        |            |-{xend}(2983)
+        |            |-{xend}(3071)
+        |            |-{xend}(3072)
+        |            |-{xend}(3073)
+        |            |-{xend}(3074)
+        |            `-{xend}(3075)
+        |-xenstored(2822)
+        `-xenwatchdogd(3740)
+[tangboqi@bj ~]$ xm list
+xend [ERROR] Config file does not exist: /etc/xen/xend-config.sxp
+Error: Most commands need root access. Please try again as root.
+[tangboqi@bj ~]$ sudo xm list
+[sudo] password for tangboqi: 
+Name                                        ID   Mem VCPUs      State   Time(s)
+Domain-0                                     0  2048     1     r-----    112.3
+
+
+http://www.howtoforge.com/virtualization-with-xen-on-centos-6.2-x86_64-paravirtualization-and-hardware-virtualization
+http://linux.vbird.org/linux_enterprise/xen.php
+
+————————————————————————————————
+http://www.howtoforge.com/virtualization-with-xen-on-centos-6.2-x86_64-paravirtualization-and-hardware-virtualization
+
+下载软件到/home/tangboqi/src
+wget ftp://ftp.pbone.net/mirror/ftp.scientificlinux.org/linux/scientific/6.2/x86_64/updates/fastbugs/libvirt-0.9.4-23.el6_2.4.x86_64.rpm
+yum install virt-manager
+
+关闭selinux
+
+设置网桥
+yum install bridge-utils
+***这里没有设置
+
+——————————————————————————————————————————————————————————————
+在本机配置网络安装源
+把下载的iso挂载，并cp到apache跟目录，网址：http://10.10.252.196/centos/
+dd if=/dev/zero of=/xen/xen1.img bs=1M count=15000
+
+virt-install -n centos6_virt -r 2048 -f /xen/xen1.img --nographics -l http://10.10.252.196/centos/
+报错：
+ERROR    Failed to connect socket to '/var/run/libvirt/libvirt-sock': 没有那个文件或目录
+yum -y install avahi
+/etc/init.d/messagebus restart
+/etc/init.d/avahi-daemon restart
+/etc/init.d/libvirtd restart
+/sbin/chkconfig messagebus on
+/sbin/chkconfig avahi-daemon on
+http://bbs.518z.net/read-htm-tid-2632.html
+
+virt-install -n centos6_virt -r 2048 -f /xen/xen1.img --nographics -l http://10.10.252.196/centos/ 
+ERROR    主机不支持 任意虚拟化选项
+
+______________________________________________________________
+编译安装
+
+

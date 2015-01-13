@@ -1,0 +1,39 @@
+3.7.2
+
+pdt install
+    Open Help -> Install New Software.
+    Select the Indigo update site.
+    When the list of existing features is populated - select 'PHP Development Tools'.
+    Make sure 'Contact all update sites...' is checked. 
+http://wiki.eclipse.org/PDT/Installation#From_Update_Site
+
+svn
+http://subclipse.tigris.org/update_1.6.x
+http://subclipse.tigris.org/servlets/ProjectProcess;jsessionid=9EB1C61327418BAFF3544797D34E57B1?pageID=p4wYuA
+
+aptana
+http://download.aptana.com/studio3/plugin/install
+http://www.aptana.com/downloads/start
+
+egit
+在insert new software里面选择http://download.eclipse.org/releases/indigo，filter里面写入egit，安装吧
+http://www.eclipse.org/egit/documentation/
+
+uml
+http://wiki.eclipse.org/MDT/UML2/Getting_Started_with_UML2#Getting_Started
+    Download and run Eclipse.
+    Select the Help > Install New Software… menu item.
+    Select a software site to work with, e.g., Indigo - http://download.eclipse.org/releases/indigo.
+    Expand the Modeling tree item.
+    Select UML2 Extender SDK and press the Next > button.
+    Review the install details and press the Next > button.
+    Accept the terms of the license agreement and press the Finish button.
+    Restart Eclipse when prompted to do so. 
+    
+MonjaDB - mongodb
+http://www.jumperz.net/update/
+http://blog.codecentric.de/en/2012/06/monjadb-mongodb-gui-client-tool/
+
+adt 安卓开发环境
+https://dl-ssl.google.com/android/eclipse/
+

@@ -1,0 +1,31 @@
+' Gambas class file
+
+PUBLIC SUB _new()
+
+END
+
+PUBLIC SUB Form_Open()
+
+END
+
+PUBLIC SUB Close_Click()
+
+  FMain.Close
+
+END
+
+PUBLIC SUB OK_Click()
+
+  DIM $hConn AS NEW Connection
+  WITH $hConn
+     .Type = "mysql"
+     .Host = "localhost"
+     .Login = account.Text
+     .Password = password.Text
+     .Name = "xikang365"
+  END WITH
+  TRY $hConn.Open
+  IF ERROR THEN PRINT "Database cannot be opened. Error = "; Error.Text
+  PRINT "connect success!"
+  
+END

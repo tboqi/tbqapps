@@ -1,0 +1,5 @@
+# User@Host: acorn[acorn] @  [10.3.32.57]
+# Query_time: 7.804563  Lock_time: 0.000045 Rows_sent: 0  Rows_examined: 0
+use xikang365;
+SET timestamp=1387244407;
+insert into diet_recomment_ido_history (member_id, food_id, record_date) values('M0000002012053000001', '526', '2013-12-17');

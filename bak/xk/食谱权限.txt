@@ -1,0 +1,12 @@
+用户id <200 >=100
+if ($_SESSION['xk_adminid'] >= 100 && $_SESSION['xk_adminid'] < 200) {
+<{if $smarty.session.xk_adminid < 100 && $smarty.session.xk_adminid >= 200}>
+
+状态
+<option value="0">未编辑</option>
+<option value="1">未完成</option>
+<option value="2">已完成</option>
+<option value="3">已发布</option>
+<option value="6">审核已通过</option>
+<option value="7">审核未通过</option>
+<option value="8">PASS</option>

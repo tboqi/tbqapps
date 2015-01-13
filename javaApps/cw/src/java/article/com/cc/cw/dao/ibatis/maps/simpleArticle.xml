@@ -1,0 +1,738 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="article">
+  <cacheModel id="articleCache" type="LRU">
+    <flushInterval hours="2"/>		
+    <property name="size" value="1000"/>
+  </cacheModel>
+  
+  <typeAlias alias="Article" type="com.cc.cw.domain.SimpleArticle"/>
+  <typeAlias alias="HashMap" type="java.util.HashMap"/>
+  
+  <resultMap id="article" class="Article">   
+    <result property="id" column="Id"/>
+    <result property="title" column="Title"/>
+    <result property="content" column="Content"/>
+    <result property="memberId" column="MemberId"/>
+	<result property="channelId" column="ChannelId"/>
+	<result property="supportCount" column="SupportCount"></result>
+	<result property="unSupportCount" column="UnSupportCount"></result>
+	<result property="createDate" column="CreateDate"/>
+	<result property="endDate" column="EndDate"/>
+	<result property="state" column="State"/>
+	<result property="voteResultType" column="VoteResultType"/>
+	<result property="rate" column="Rate"/>
+	<result property="publishType" column="PublishType"/>
+	<result property="secVoteMemId" column="SecVoteMemId"/>
+	<result property="firstVoteCycle" column="FirstVoteCycle"/>
+	<result property="firstResult" column="FirstResult"/>
+	<result property="fromUrl" column="fromUrl"/>
+	<result property="status" column="status"/>
+  </resultMap>
+  
+  <select id="getById" resultMap="article">
+    SELECT *
+	FROM article 
+	WHERE Id = #id#
+  </select>
+  
+  <insert id="add">
+  	insert into article 
+  		(Title,Content,MemberId,ChannelId,CreateDate,EndDate,State,
+  		VoteResultType,Rate,PublishType,SecVoteMemId,FirstVoteCycle, 
+  		fromUrl) 
+  	values 
+  		(#title#, #content#,#memberId#,#channelId#,NOW(),#endDate#,0,
+  		#voteResultType#,#rate#,#publishType#,#secVoteMemId#,
+  		#firstVoteCycle#, #fromUrl#)
+  	<selectKey keyProperty="id" resultClass="int">
+      select LAST_INSERT_ID() as value
+    </selectKey>
+  </insert>
+  
+	<update id="update">
+		update article 
+		set Title = #title#, Content = #content#, SupportCount = #supportCount#, 
+		UnSupportCount = #unSupportCount#, EndDate = #endDate#, ChannelId = #channelId#,
+		VoteResultType = #voteResultType#, Rate = #rate#, PublishType = #publishType#, 
+		SecVoteMemId = #secVoteMemId#,FirstVoteCycle = #firstVoteCycle#, fromUrl=#fromUrl#
+		where Id = #id#  and status>=0
+	</update>
+	<update id="deleteUpdate">
+		update article 
+		set status=-1
+		where Id = #id# 
+	</update>
+	<update id="deleteUpdate2">
+		update article 
+		set status=0
+		where Id = #id# 
+	</update>
+  
+	<select id="getByFieldValue" remapResults="true" resultMap="article">
+		SELECT 
+		*
+		FROM
+		article where $field$ = #value# and status>=0;
+	</select>
+	
+	<update id="updateFieldValueById" >
+		UPDATE article
+			SET $field$ = #value#
+			WHERE Id = #id#
+	</update>
+	
+	<!-- 根据传入的字段名,id,增加给定的value值 -->
+	<update id="increaseFieldValueById">
+		UPDATE article
+		SET
+		    $field$ = $field$ + #value#
+		WHERE
+		    Id = #id#
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM 
+			article
+		WHERE
+			Id = #id#
+	</delete>
+	
+	<select id="getSupportCountArticles" resultMap="article">
+		SELECT 
+		    *
+		FROM 
+		    article where status>=0
+		ORDER BY SupportCount DESC LIMIT #start# , #count#
+		
+	</select>
+	
+	<!-- 获得最热文章 -->
+	<select id="getHottestArticles" resultMap="article">
+		<![CDATA[
+		SELECT 
+		    *
+		FROM 
+		    article where status>=0
+		ORDER BY SupportCount + UnSupportCount DESC LIMIT #start# , #count#
+			]]>
+	</select>
+	
+	<!-- 获得最近一月最热文章 -->
+	<select id="getMonthHottestArticles" resultMap="article">
+		<![CDATA[
+		SELECT 
+		    *
+		FROM 
+		    article
+		WHERE Id IN	
+			($idlist$) and status>=0
+		ORDER BY SupportCount + UnSupportCount DESC LIMIT #start# , #count#
+			]]>
+	</select>
+	
+	<!-- 获得一周最热文章 -->
+	<select id="getWeekHottestArticles" resultMap="article">
+		<![CDATA[
+		SELECT 
+		    *
+		FROM 
+		    article
+		WHERE Id IN	
+			(SELECT Id FROM article 
+			 WHERE 	DATE_SUB(CURDATE(),INTERVAL 7 DAY) <= CreateDate 
+			) and status>=0
+		ORDER BY SupportCount + UnSupportCount DESC LIMIT #start# , #count#
+			]]>
+	</select>
+	
+	<!-- 获得最新文章 -->
+	<select id="getNewArticles" resultMap="article">
+		SELECT 
+		    *
+		FROM 
+		    article where status>=0
+		ORDER BY 
+			Id DESC 
+		LIMIT 
+			#start# , #count#
+	</select>
+	<select id="getNewArticles2" resultMap="article">
+		SELECT 
+		    *
+		FROM 
+		    article
+		where Id not in ($idlist$) and status>=0
+		ORDER BY 
+			Id DESC 
+		LIMIT 
+			#start# , #count#
+	</select>
+	
+	<!--　获得最新文章总数 -->
+	<select id="getNewArticlesCount" resultClass="java.lang.Integer">
+		SELECT 
+		    COUNT(Id)
+		FROM
+		    article
+	</select>
+	<select id="getNewArticlesCount2" resultClass="java.lang.Integer" parameterClass="java.lang.String">
+		SELECT 
+		    COUNT(Id)
+		FROM
+		    article
+		where Id not in ($idlist$) and status>=0
+	</select>
+	
+	<!-- 获得最热文章总数 -->
+	<select id="getHottestArticlesCount" resultClass="java.lang.Integer">
+		SELECT 
+		    COUNT(Id)
+		FROM 
+		    article where status>=0
+	</select>
+	
+	<!-- 获得一月文章总数 -->
+	<select id="getMonthHottestArticlesCount" resultClass="java.lang.Integer">
+		<![CDATA[
+		SELECT 
+		    COUNT(Id)
+		FROM 
+		    article
+		WHERE Id IN	
+			(SELECT ResourceId FROM vote 
+			 WHERE 	DATE_SUB(CURDATE(),INTERVAL 30 DAY) <= votedate 
+			 AND ResourceType='article' GROUP BY ResourceId) and status>=0
+			]]>
+	</select>
+	<select id="getMonthHottestArticlesCountByIplist" resultClass="java.lang.Integer">
+		<![CDATA[
+		SELECT 
+		    COUNT(Id)
+		FROM 
+		    article
+		WHERE Id IN	
+			($iplist$) and status>=0
+			]]>
+	</select>
+	
+	<!-- 票数最多文章数量 -->
+	<select id="getSupportCountArticlesCount" resultClass="java.lang.Integer">
+		SELECT 
+		    COUNT(Id)
+		FROM 
+		    article WHERE status>=0
+	</select>
+	
+	<!-- 一周文章总数 -->
+	<select id="getWeekHottestArticlesCount" resultClass="java.lang.Integer">
+		<![CDATA[
+		SELECT 
+		    COUNT(Id)
+		FROM 
+		    article
+		WHERE Id IN	
+			(SELECT Id FROM article 
+			 WHERE 	DATE_SUB(CURDATE(),INTERVAL 7 DAY) <= CreateDate ) and status>=0
+			]]>
+	</select>
+	
+	<!-- 所有文章,用于建立索引-->
+	<select id="getAllArticles" resultMap="article">
+		<![CDATA[
+		SELECT 
+		    *
+		FROM 
+		    article where status>=0
+		]]>
+	</select>
+	
+	<!-- 某ID后的新增文章,用于建立增量索引-->
+	<select id="getNewArticlesFromId" resultMap="article">
+		<![CDATA[
+		SELECT 
+		    *
+		FROM 
+		    article
+		WHERE
+			Id > #id# and status>=0
+        LIMIT 10;
+		]]>
+	</select>
+	
+	
+	<!-- 某ID后的新增文章总数,用于判断是否建立索引-->
+	<select id="haveNewArticle" resultClass="java.lang.Integer">
+		SELECT
+			COUNT(Id)
+		FROM 
+			article
+		WHERE
+			Id > #id# and status>=0
+	</select>
+	
+	<!-- 找出所有二次投票、并已经到结束日期的文章 -->
+	<select id="getAllVoteFinishSimpleArticle" resultMap="article">
+		SELECT 
+			*
+		FROM
+			article
+		WHERE
+			NOW() - enddate > 0 AND state = 2 and status>=0
+	</select>
+	
+		<!-- 找出所有一次投票、并已经到结束日期的文章 -->
+	<select id="getAllFirstVoteFinishSimpleArticle" resultMap="article">
+		SELECT 
+			*
+		FROM
+			article
+		WHERE
+			NOW() - enddate > 0 AND state = 0 and status>=0
+	</select>
+	
+	<!-- 某用户的文章-->
+	<select id="getArticlesByMemberId" resultMap="article">
+		<![CDATA[
+		SELECT 
+		    *
+		FROM 
+		    article
+		WHERE
+			MemberId = #id# and status>=0
+		ORDER BY Id DESC
+		]]>
+	</select>
+	
+	<!--根据频道id获取文章-->
+	<select id="getArticlesByChannelId" resultMap="article">
+		SELECT 
+		    *
+		FROM 
+		    article
+		WHERE 
+			(Id IN(select ArticleId from art_chn_link where ChannelId = #channelId#) OR channelId = #channelId#)
+			and status>=0
+		ORDER BY 
+			Id DESC 
+		LIMIT
+			#start# , #count#
+	</select>
+	
+	<!--根据频道id获取文章总数-->
+	<select id="getArticlesCountByChannelId" resultClass="java.lang.Integer">
+		SELECT 
+			COUNT(*)
+		FROM
+			article
+		WHERE
+			(Id IN(select ArticleId from art_chn_link where ChannelId = #id#) OR channelId = #id#)
+			and status>=0
+	</select>
+	
+	<!--根据用户id获取文章-->
+	<select id="getArticlesByMemberIdEx" resultMap="article">
+		SELECT 
+			*
+		FROM
+			article
+		WHERE 
+			MemberId = #memberId# and status>=0
+		ORDER BY Id DESC
+		LIMIT
+			#start# , #count#
+	</select>
+	
+	<!--根据用户id获取文章总数-->
+	<select id="getArticlesCountByMemberId" resultClass="java.lang.Integer">
+		SELECT 
+			COUNT(Id)
+		FROM
+			article
+		WHERE
+			MemberId = #id# and status>=0
+	</select>
+	
+	<!--根据文章id获取投票总数-->
+	<select id="getArticlesTotalVoteById" resultClass="java.lang.Integer">
+		SELECT 
+			(SupportCount + UnSupportCount) totalCount
+		FROM
+			article
+		WHERE
+			Id = #id# and status>=0
+	</select>
+	
+	<!-- 获得精彩回顾 -->
+	<select id="getReview" resultMap="article">
+		SELECT * FROM article
+		
+		WHERE 
+			State = 1 and status>=0
+		ORDER BY SupportCount + UnSupportCount DESC
+		
+		LIMIT
+			#start# , #count#
+		
+	</select>
+	<!-- 获得精彩回顾总数 -->
+	<select id="getReviewCount" resultClass="java.lang.Integer">
+		SELECT 
+			COUNT(*)
+		FROM 
+			article
+		WHERE 
+			State = 1 and status>=0
+	</select>
+	<!-- 根据标签获得文章 -->
+	<select id="getLabelArticles" resultMap="article">
+		select *
+		from article
+		where Id in (SELECT ArticleId FROM label where $or$) and MemberId != #memberId# and status>=0
+		order by Id desc 
+		limit #start#, #count#
+	</select>
+	<select id="getLabelArticles2" resultMap="article">
+		select *
+		from article
+		where Id in (SELECT ArticleId FROM label where $or$) and MemberId != #memberId# and status>=0
+		order by Id desc 
+		limit #start#, #count#
+	</select>
+	<!-- 获得相同文章ID -->
+	<select id="sameArticle" resultClass="java.lang.Integer">
+		<![CDATA[
+		SELECT 
+			Id
+		FROM 
+			article
+		WHERE 
+			$column$ = #value#
+		AND
+	        DATE_SUB(CURDATE(),INTERVAL 7 DAY) <= CreateDate
+	    LIMIT 1
+		]]>
+	</select>
+	
+	<!-- 结束文章 -->
+	<update id="endArticle">
+		update article 
+		set VoteResultType = #voteResultType#,State = 1,FirstResult=#firstResult#
+		where Id = #articleId# 
+	</update>
+	
+	<!-- 根据结束日期获得文章 -->
+	<select id="getByEndDate" resultMap="article">
+		select *
+		from article 
+		where EndDate = #endDate#  and status>=0
+		AND ChannelId = #channelId#
+		limit #start#, #count#
+	</select>
+	
+	<select id="getByEndDateCount" resultClass="java.lang.Integer">
+		SELECT 
+			COUNT(Id)
+		FROM 
+			article
+		WHERE 
+			EndDate = #endDate# and status>=0
+		AND 
+			ChannelId = #channelId#
+	</select>
+	
+	<!-- 根据频道id获得可投票文章 -->
+	<select id="getVoteArticleByChannelId" resultMap="article">
+		select *
+		from article 
+		where ChannelId = #channelId# and status>=0
+		ORDER BY EndDate DESC
+		limit #start#, #count#
+	</select>
+	
+	<select id="getVoteArticleCountByChannelId" resultClass="java.lang.Integer">
+		SELECT 
+			COUNT(Id)
+		FROM 
+			article
+		WHERE 
+			ChannelId = #channelId# and status>=0
+	</select>
+	
+	<select id="getHottestArticlesNotIn" resultMap="article">
+		SELECT 
+		    *
+		FROM 
+		    article
+		WHERE Id NOT IN ($notIn$) and status>=0
+		ORDER BY SupportCount+UnSupportCount DESC LIMIT #start# , #count#
+	</select>
+	
+	<select id="getTodaysArticleCountByState" resultClass="java.lang.Integer">
+		<![CDATA[
+		SELECT 
+			COUNT(Id)
+		FROM 
+			article
+		WHERE 
+			EndDate <= #endDate# 
+		AND 
+			ChannelId = #channelId#
+		AND
+			State = #state# and status>=0
+		]]>
+	</select>
+	
+	<select id="getSupportArticles" resultMap="article">
+		SELECT 
+    		*
+		FROM 
+			article
+		WHERE 
+			VoteResultType=1 and status>=0
+		ORDER BY EndDate DESC LIMIT #start#,#count#
+	</select>
+	
+	<select id="getUnsupportArticles" resultMap="article">
+		SELECT 
+    		*
+		FROM 
+			article
+		WHERE 
+			VoteResultType=2 and status>=0
+		ORDER BY EndDate DESC LIMIT #start#,#count#
+	</select>
+
+	<select id="getTodaysArticleByState" resultMap="article">
+		<![CDATA[
+		SELECT 
+			*
+		FROM 
+			article
+		WHERE 
+			EndDate <= #endDate#  and status>=0
+		AND 
+			ChannelId = #channelId#
+		AND
+			State = #state#
+		ORDER BY EndDate DESC
+		LIMIT 
+			#start# , #count#
+		]]>
+	</select>
+	
+	<select id="getArticleByState" resultMap="article">
+		<![CDATA[
+		SELECT 
+			*
+		FROM 
+			article
+		WHERE State = #state# and status>=0
+		ORDER BY EndDate DESC
+		LIMIT 
+			#start# , #count#
+		]]>
+	</select>
+	
+	<select id="getAllMyCollectedArticles" resultMap="article">
+		<![CDATA[
+		SELECT 
+			a.Id,a.Title,a.Content,a.MemberId,a.ChannelId,a.CreateDate,a.EndDate,a.SupportCount,a.UnSupportCount,a.State,a.VoteResultType,a.Rate,a.PublishType,a.SecVoteMemId,a.FirstVoteCycle,a.FirstResult, a.fromUrl, a.status
+		FROM 
+			article a, channel c, art_chn_link acl
+		where c.memberId = #memberId#
+		and a.id = acl.articleId
+		and c.id = acl.channelId and a.status>=0
+		ORDER BY a.Id DESC
+		LIMIT 
+			#start# , #count#
+		]]>
+	</select>
+	
+	<select id="getAllMyVoteArticles" resultMap="article">
+		<![CDATA[
+		SELECT 
+			a.Id,a.Title,a.Content,a.MemberId,a.ChannelId,a.CreateDate,a.EndDate,a.SupportCount,a.UnSupportCount,a.State,a.VoteResultType,a.Rate,a.PublishType,a.SecVoteMemId,a.FirstVoteCycle,a.FirstResult, a.fromUrl, a.status
+		FROM 
+			article a, channel c
+		where c.memberId = #memberId# and a.status>=0
+		and a.ChannelId = c.id
+		ORDER BY a.EndDate DESC
+		LIMIT 
+			#start# , #count#
+		]]>
+	</select>
+	
+	<select id="getYestodayArticle" resultMap="article">
+		<![CDATA[
+		SELECT
+			*
+		FROM
+			article
+		WHERE
+			CreateDate >= DATE_SUB(CURDATE(),INTERVAL 1 DAY) AND CreateDate < DATE(curdate())
+			and status>=0
+		ORDER BY Id DESC
+		LIMIT #start#,#count#
+		]]>
+	</select>
+	
+	<select id="getSupportArticlesCount" resultClass="java.lang.Integer">
+		SELECT 
+		    COUNT(Id)
+		FROM 
+		    article
+		WHERE 
+			VoteResultType=1 and status>=0
+	</select>
+	
+	<select id="getUnsupportArticleCount" resultClass="java.lang.Integer">
+		SELECT 
+		    COUNT(Id)
+		FROM 
+		    article
+		WHERE 
+			VoteResultType=2 and status>=0
+	</select>
+	
+	<select id="getAllMyCollectedArticlesCount" resultClass="java.lang.Integer">
+		<![CDATA[
+		SELECT 
+			COUNT(a.Id)
+		FROM 
+			article a, channel c, art_chn_link acl
+		where c.memberId = #memberId#
+		and a.id = acl.articleId
+		and c.id = acl.channelId and status>=0
+		]]>
+	</select>
+	
+	<select id="getAllMyVoteArticlesCount" resultClass="java.lang.Integer">
+			<![CDATA[
+		SELECT 
+			COUNT(a.Id)
+		FROM 
+			article a, channel c
+		where c.memberId = #memberId#
+		and a.ChannelId = c.id and a.status>=0
+		]]>
+	</select>
+	
+	<!-- 二次投票 -->
+	<update id="beginSecondVote">
+		update article 
+		set State = 2,
+			SupportCount = 0,
+			UnSupportCount = 0,
+			VoteResultType = 0,
+			EndDate = #endDate#,
+			SecVoteMemId = #secVoteMemId#
+		where Id = #id# 
+	</update>
+	
+	<!-- 结束二次投票 -->
+	<update id="endSecondVote">
+		update article 
+		set VoteResultType = #voteResultType#,
+			State = 3
+		where Id = #id# 
+	</update>
+	
+	<delete id="deleteCollectionArticle">
+		DELETE FROM 
+		art_chn_link
+		where ArticleId = #articleId# and ChannelId = #channelId#
+	</delete>
+	
+	<select id="getCollectArticleChannelId" resultClass="java.lang.Integer">
+		SELECT ChannelId FROM
+		art_chn_link
+		WHERE ArticleId = #articleId# AND ChannelId IN(
+			SELECT Id FROM channel WHERE MemberId = #memberId# 
+		)
+	</select>
+	
+	<select id="lookforShouldEndArticles" resultMap="article">
+		<![CDATA[
+		SELECT
+			*
+		FROM
+			article
+		WHERE DATE_SUB(CURDATE(),INTERVAL #interval# DAY) >= enddate 
+		AND State = 0
+		AND ChannelId > 0 and status>=0
+		]]>
+	</select>
+	
+	<update id="reactiveArticle" parameterClass="java.lang.Integer">
+		<![CDATA[
+		UPDATE article
+		SET State=0,
+			ChannelId=0,
+			FirstVoteCycle=0,
+			SupportCount=0,
+			UnSupportCount=0,
+			VoteResultType=0,
+			EndDate=null
+		WHERE Id = #id# 	
+	    ]]>
+	</update>
+  
+	<select id="searchArticleOld" remapResults="true" resultMap="article">
+		<![CDATA[
+		SELECT 
+		*
+		FROM
+		article 
+		WHERE (Title like '%$key$%' OR Content like '%$key$%') and status>=0
+		ORDER BY SupportCount + UnSupportCount desc
+		LIMIT #start#,#count#
+	    ]]>
+	</select>
+	<!-- 根据文章标签和内容和标题进行查询 -->
+	<select id="searchArticle" remapResults="true" resultMap="article">
+		<![CDATA[
+		SELECT 	*
+		FROM article 
+		WHERE (Id in (select ArticleId from label where Content like '%$key$%') or 
+		(Title like '%$key$%' OR Content like '%$key$%')) and status>=0
+		ORDER BY SupportCount + UnSupportCount desc
+		LIMIT #start#,#count#
+	    ]]>
+	</select>
+	
+	<select id="searchArticleCount" resultClass="java.lang.Integer">
+		<![CDATA[
+		SELECT
+			COUNT(Id)
+		FROM 
+			article
+		WHERE
+			(Id in (select ArticleId from label where Content like '%$key$%') or 
+		(Title like '%$key$%' OR Content like '%$key$%')) and status>=0
+	    ]]>
+	</select>
+	
+	<update id="autoInitiateVote">
+	<![CDATA[
+		update article 
+			set ChannelId=-1,
+			    EndDate = DATE_ADD(curdate(),INTERVAL #voteCycle# DAY),
+			    FirstVoteCycle=#voteCycle# 
+			where ChannelId=0
+	]]>
+	</update>
+	<select id="getArticlesByWhere" resultClass="Article">
+		SELECT 	*
+		FROM article $where$ order by $order$ limit #start#, #num#
+	</select>
+	
+	<select id="getAritlcesCountByWhere" resultClass="java.lang.Integer">
+		select count(*) from article $where$
+	</select>
+	
+	<select id="getAritcleByTitle" resultClass="Article">
+		select * from article where Title like '%$key$%'
+	</select>
+</sqlMap>

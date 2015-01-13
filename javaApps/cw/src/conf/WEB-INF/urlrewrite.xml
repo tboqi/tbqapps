@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 3.0//EN"
+        "http://tuckey.org/res/dtds/urlrewrite3.0.dtd">
+
+<urlrewrite>
+<rule>
+    	<note>
+            Rewrite the article pic
+        </note>
+        <from>/picture/([0-9]+)/([0-9]+)/([0-9]+).gif</from>
+        <to>/data/rumour/userfiles/$1/$2/$3.gif</to>
+    </rule>
+	
+    <rule>
+    	<note>
+            Rewrite the home.action
+        </note>
+        <from>/index.html</from>
+        <to>/home.action</to>
+    </rule>
+	
+	<rule>
+    	<note>
+            Rewrite channellist.action
+        </note>
+        <from>/channellist.html</from>
+        <to>/channellist.action</to>
+    </rule>
+	
+    <rule>
+    	<note>
+            Rewrite channellist.action
+        </note>
+        <from>/weeklist.html</from>
+        <to>/weeklist.action</to>
+    </rule>
+    
+	<rule>
+    	<note>
+            Rewrite tags.action
+        </note>
+        <from>/tags.html</from>
+        <to>/tags.action</to>
+    </rule>
+	
+	<rule>
+    	<note>
+            Rewrite tags.action
+        </note>
+        <from>/login.html</from>
+        <to>/login.action</to>
+    </rule>
+	
+	<rule>
+    	<note>
+            Rewrite logout.action
+        </note>
+        <from>/logout.html</from>
+        <to>/login!logout.action</to>
+    </rule>
+	
+	<rule>
+    	<note>
+            Rewrite about.action
+        </note>
+        <from>/about.html</from>
+        <to>/about.action</to>
+    </rule>
+	
+	<rule>
+    	<note>
+            Rewrite help.action
+        </note>
+        <from>/help.html</from>
+        <to>/help.action</to>
+    </rule>
+	
+	<rule>
+    	<note>
+            Rewrite service.action
+        </note>
+        <from>/service.html</from>
+        <to>/service.action</to>
+    </rule>
+	
+	<rule>
+    	<note>
+            Rewrite friendlinks.action
+        </note>
+        <from>/freindlinks.html</from>
+        <to>/friendlinks.action</to>
+    </rule>
+	
+	<rule>
+    	<note>
+            Rewrite declare.action
+        </note>
+        <from>/declare.html</from>
+        <to>/declare.action</to>
+    </rule>
+	
+	<rule>
+    	<note>
+            Rewrite regist.action
+        </note>
+        <from>/regist.html</from>
+        <to>/regist.action</to>
+    </rule>
+	
+    <rule>
+    	<note>
+            Rewrite the home.action
+        </note>
+        <from>/r/([0-9]+)/([0-9]+)</from>
+        <to>/rumour/rumour.action?articleId=$1&amp;currentPage=$2</to>
+    </rule>
+    <rule>
+    	<note>
+            Rewrite the home.action
+        </note>
+        <from>/r/([0-9]+)</from>
+        <to>/rumour/rumour.action?articleId=$1</to>
+    </rule>
+	
+    <rule>
+    	<note>
+            Rewrite the home.action
+        </note>
+        <from>/c/([0-9]+)</from>
+        <to>/channelarticlelist.action?chlId=$1</to>
+    </rule>
+	
+    <rule>
+    	<note>
+            Rewrite the home.action
+        </note>
+        <from>/o/([0-9]+)</from>
+        <to>/ox/oxrumour.action?articleId=$1</to>
+    </rule>
+    <rule>
+    	<note>
+            Rewrite the home.action
+        </note>
+        <from>/u/([0-9]+)</from>
+        <to>/union/unionView.action?articleId=$1</to>
+    </rule>
+	
+    <rule>
+    	<note>
+            Rewrite the home.action
+        </note>
+        <from>/ox/</from>
+        <to>/ox/oxhome.action</to>
+    </rule>
+    <rule>
+    	<note>
+            Rewrite the home.action
+        </note>
+        <from>/u/search</from>
+        <to>/union/unionSearch.action</to>
+    </rule>
+    <rule>
+    	<note>
+            Rewrite the home.action
+        </note>
+        <from>/u/</from>
+        <to>/union/unionIndex.action</to>
+    </rule>
+	
+    <rule>
+    	<note>
+            Rewrite the newslist.action
+        </note>
+        <from>/newslist.html</from>
+        <to>/ox/newslist.action</to>
+    </rule>
+	
+    <rule>
+    	<note>
+            Rewrite the home.action
+        </note>
+        <from>/wip/([_0-9a-zA-Z]*)/([0-9]+)</from>
+        <to>/writeIp.action?site=$1&amp;articleId=$2</to>
+    </rule>
+	
+	<rule>
+    	<note>
+            Rewrite the search.action
+        </note>
+        <from>/search/([a-zA-Z]+)</from>
+        <to>/search/$1.action</to>
+    </rule>
+    
+   <rule>
+    	<note>
+            Rewrite the search.action
+        </note>
+        <from>/againstlist</from>
+        <to>/againstlist.action</to>
+    </rule>
+   <rule>
+    	<note>
+            Rewrite the search.action
+        </note>
+        <from>/supportlist</from>
+        <to>/againstlist!support.action</to>
+    </rule>
+    <rule>
+    	<note>
+            Rewrite the search.action
+        </note>
+        <from>/newslist</from>
+        <to>/newslist.action</to>
+    </rule>
+    
+    <rule>
+    	<note>
+            Rewrite the search.action
+        </note>
+        <from>/user/([a-zA-Z]+)</from>
+        <to>/user/$1.action</to>
+    </rule>
+    <rule>
+    	<note>
+            Rewrite the search.action
+        </note>
+        <from>/forienmsg</from>
+        <to>/forienmsg.action</to>
+    </rule>
+    <rule>
+    	<note>
+            Rewrite the search.action
+        </note>
+        <from>/shortmsgunread</from>
+        <to>/shortmsgunread.action</to>
+    </rule>
+    <rule>
+    	<note>
+            Rewrite the search.action
+        </note>
+        <from>/rumour/newrumour</from>
+        <to>/rumour/newrumour.action</to>
+    </rule>
+    <rule>
+    	<note>
+            Rewrite the search.action
+        </note>
+        <from>/channelapply/channelapply</from>
+        <to>/channelapply/channelapply.action</to>
+    </rule>
+    <rule>
+    	<note>
+            Rewrite the search.action
+        </note>
+        <from>/logout</from>
+        <to>/login!logout.action</to>
+    </rule>
+    <rule>
+        <from>/pic/huaceList/(.*)/([0-9]+)</from>
+        <to>/pic/huaceList.jsp?query=$1&amp;start=$2</to>
+    </rule>
+    <rule>
+        <from>/pic/picList/(.*)/([0-9]+)</from>
+        <to>/pic/picList.jsp?id=$1&amp;start=$2</to>
+    </rule>
+    <rule>
+        <from>/pic/picView/(.*)/([0-9]+)</from>
+        <to>/pic/picView.jsp?hid=$1&amp;p=$2</to>
+    </rule>
+    <rule>
+        <from>/pic/imageServlet/([0-9]+)/(.*).jpg</from>
+        <to>/pic/imageServlet?mark=$1&amp;id=$2</to>
+    </rule>
+</urlrewrite>
+

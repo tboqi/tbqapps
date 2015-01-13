@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><templates><template autoinsert="true" context="php" deleted="false" description="new_khn_helper" enabled="true" name="new_khn_helper">&lt;?php defined('SYSPATH') or die('No direct script access.');&#13;
+ &#13;
+class helper Core {&#13;
+ &#13;
+	public static function alert($$val)&#13;
+	{&#13;
+		return $$return;&#13;
+	}&#13;
+}&#13;
+ &#13;
+</template></templates>

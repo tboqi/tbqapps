@@ -1,0 +1,8 @@
+simpletpl 替换 tpl
+
+把几个核心功能单列到一个文件夹，包括 m c v helper libery
+
+cache 应用
+
+去掉现在的default方式
+

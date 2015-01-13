@@ -1,0 +1,52 @@
+[tangboqi@bj ~]$ cat /etc/redhat-release
+CentOS release 6.2 (Final)
+
+[tangboqi@bj ~]$ uname -a
+Linux bj.xikanglab.com 2.6.32-220.el6.x86_64 #1 SMP Tue Dec 6 19:48:22 GMT 2011 x86_64 x86_64 x86_64 GNU/Linux
+
+[tangboqi@bj ~]$ grep 'physical id' /proc/cpuinfo | sort | uniq | wc -l
+1
+[tangboqi@bj ~]$ cat /proc/cpuinfo |grep 'processor'|wc -l
+4
+[tangboqi@bj ~]$ 
+1个4核cpu
+
+[tangboqi@bj ~]$ cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c
+      4  Intel(R) Xeon(R) CPU           E5606  @ 2.13GHz
+
+[tangboqi@bj ~]$ free -m
+             total       used       free     shared    buffers     cached
+Mem:          7827       2534       5293          0        138       1577
+-/+ buffers/cache:        817       7009
+Swap:        10015          0      10015
+内存8g
+
+[tangboqi@bj ~]$ df -m
+文件系统	         1M-块      已用      可用 已用% 挂载点
+/dev/mapper/vg_bj-lv_root
+                         50397     10627     37210  23% /
+tmpfs                     3914         0      3914   0% /dev/shm
+/dev/sda1                  485        31       429   7% /boot
+/dev/mapper/vg_bj-lv_home
+                         76295      2216     70204   4% /home
+                         
+[tangboqi@bj ~]$ mount
+/dev/mapper/vg_bj-lv_root on / type ext4 (rw)
+proc on /proc type proc (rw)
+sysfs on /sys type sysfs (rw)
+devpts on /dev/pts type devpts (rw,gid=5,mode=620)
+tmpfs on /dev/shm type tmpfs (rw,rootcontext="system_u:object_r:tmpfs_t:s0")
+/dev/sda1 on /boot type ext4 (rw)
+/dev/mapper/vg_bj-lv_home on /home type ext4 (rw)
+none on /proc/sys/fs/binfmt_misc type binfmt_misc (rw)
+
+检查是否支持虚拟化
+[root@bj tangboqi]# egrep '(vmx|svm|pae)' --color=always /proc/cpuinfo
+flags		: fpu vme de pse tsc msr pae mce cx8 apic mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm dca sse4_1 sse4_2 popcnt aes lahf_lm arat epb dts tpr_shadow vnmi flexpriority ept vpid
+flags		: fpu vme de pse tsc msr pae mce cx8 apic mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm dca sse4_1 sse4_2 popcnt aes lahf_lm arat epb dts tpr_shadow vnmi flexpriority ept vpid
+flags		: fpu vme de pse tsc msr pae mce cx8 apic mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm dca sse4_1 sse4_2 popcnt aes lahf_lm arat epb dts tpr_shadow vnmi flexpriority ept vpid
+flags		: fpu vme de pse tsc msr pae mce cx8 apic mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm dca sse4_1 sse4_2 popcnt aes lahf_lm arat epb dts tpr_shadow vnmi flexpriority ept vpid
+！！！包括pae vmx, 可以虚拟化
+
+
+

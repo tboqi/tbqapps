@@ -1,0 +1,50 @@
+FreeMind
+MySQL Administrator --MYSQL管理工具
+MySQL Query -- MYSQL 查询工具
+MySQL Workbench -- MYSQL 建模工具
+NetBeans IDE -- 多功能代码编辑器
+Umbrello -- UML制图
+Chromium -- 开放源码的GOOGLE浏览器
+FileZilla -- FTP工具
+
+图形：
+F-Spot -- 照片管理工具
+GIMP -- 图片编辑器，可替代PS
+Inkscape -- 失量图形编辑器
+
+Oracle VM VirtualBox -- 虚拟机
+ntfs-config
+
+Audacious -- 类似于WIN下的TTPlayer
+Banshee -- GNOME 下的音乐播放器
+GMLive -- 网络电视
+Rhythmbox -- GNOME下另一款音乐播放器
+SMPlayer -- 视频播放器，安装后MPlayer也同时安装，也算是MPlayer前端
+
+RabbitVCS
+
+epdfviewer
+kchmviewer
+xchm
+Planner 项目管理
+libreoffice
+7zip
+mysql服务器
+阿贴便签
+gedit
+星际译王
+empathy
+mldonkey
+openjdk
+thunderbird
+meld diff
+rapidsvn
+umbrello
+gcolor2
+acetoneISO
+gparted
+ntfs管理工具
+
+PAC Perl Auto Connector
+
+

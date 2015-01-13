@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+"http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="broadcast">
+	<cacheModel id="broadcastCache" type="LRU">
+		<flushInterval hours="2" />
+		<property name="size" value="1000" />
+	</cacheModel>
+	<typeAlias alias="Broadcast" type="com.cc.cw.domain.Broadcast" />
+	<typeAlias alias="Map" type="java.util.Map" />
+	<typeAlias alias="Integer" type="java.lang.Integer" />
+	<typeAlias alias="String" type="java.lang.String" />
+	<resultMap id="broadcast" class="Broadcast">
+		<result property="id" column="Id" />
+		<result property="memberId" column="MemberId" />
+		<result property="memberName" column="MemberName" />
+		<result property="articleId" column="ArticleId" />
+		<result property="articleTitle" column="ArticleTitle" />
+		<result property="createDate" column="CreateDate" />
+		<result property="sort" column="Sort" />
+		<result property="flag" column="Flag" />
+		<result property="content" column="Content" />
+	</resultMap>
+
+	<!--通过id获得Message对象-->
+	<select id="getBroadcastOrderByDate" resultMap="broadcast">
+		SELECT
+		Id,MemberId,MemberName,ArticleId,ArticleTitle,CreateDate,Sort,Flag,Content
+		FROM broadcast 
+		where ArticleId not in (select Id from article where status=-1)
+		Order By CreateDate Desc limit #start#,#count#
+	</select>
+	<select id="findByField" resultClass="Broadcast">
+		select * from broadcast where $fieldName$ like '%$key$%' Order
+		By CreateDate Desc limit #start#,#count#
+	</select>
+	<select id="findByDate" resultClass="Broadcast">
+		select * from broadcast where YEAR(CreateDate)=#year# and
+		MONTH(CreateDate)=#month# and DAYOFMONTH(CreateDate)=#day# Order
+		By CreateDate Desc limit #start#,#count#
+	</select>
+	<select id="getCount" resultClass="Integer">
+		select count(*) from broadcast
+	</select>
+	<select id="getCountByField" resultClass="Integer">
+		select count(*) from broadcast where $fieldName$ like '%$key$%'
+	</select>
+	<select id="getCountByDate" resultClass="Integer">
+		select count(*) from broadcast where YEAR(CreateDate)=#year# and
+		MONTH(CreateDate)=#month# and DAYOFMONTH(CreateDate)=#day#
+	</select>
+	<select id="get" resultClass="Broadcast">
+		select * from broadcast where id=#id#
+	</select>
+
+	<insert id="addBroadcast">
+		INSERT INTO broadcast (
+		MemberId,MemberName,ArticleId,ArticleTitle,CreateDate,Sort,Flag,Content
+		) VALUES (
+		#memberId#,#memberName#,#articleId#,#articleTitle#,NOW(),#sort#,#flag#,#content#)
+		<selectKey keyProperty="id" resultClass="int">
+			SELECT LAST_INSERT_ID() as value
+		</selectKey>
+	</insert>
+	<delete id="deleteByIds" parameterClass="String">
+		delete from broadcast where id in ($ids$)
+	</delete>
+	<!--  <delete id="deleteMessage" parameterClass="java.lang.Integer">
+		<![CDATA[
+		DELETE from message 
+		WHERE Id = #id#
+		]]>
+		</delete>
+		
+		<update id="updateState" >
+		<![CDATA[
+		UPDATE message 
+		SET State = #state#
+		WHERE Id = #id#
+		]]>
+		</update>
+	-->
+
+</sqlMap>

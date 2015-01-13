@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="clicklog">
+	<cacheModel id="clicklogCache" type="LRU">
+		<flushInterval hours="2"/>
+		<property name="size" value="1000"/>
+	</cacheModel>
+	
+	<typeAlias alias="Clicklog" type="com.cc.cw.domain.ClickLog"/>
+	<typeAlias alias="HashMap" type="java.util.HashMap"/>
+	
+	<resultMap id="clicklog" class="Clicklog">
+		<result property="uuid" column="uuid"/>
+		<result property="articleId" column="articleId"/>
+		<result property="channelId" column="channelId"/>
+		<result property="tags" column="tags"/>
+		<result property="keyword" column="keyword"/>
+		<result property="category" column="category"/>
+		<result property="clickTime" column="clicktime"/>
+	</resultMap>
+	
+	<select id="getTables" resultClass="java.lang.String">
+		SHOW TABLES like "clicklog%"
+	</select>
+	
+	<update id="createTables" parameterClass="java.lang.String">
+		CREATE TABLE $tableName$ (                                                           
+            `uuid` varchar(32) character set gbk NOT NULL,
+            `articleid` int(10) NOT NULL                 ,                  
+            `channelId` int(10) NOT NULL                  ,                 
+            `tags` varchar(100) character set gbk default NULL,   
+            `keyword` varchar(20) character set gbk NOT NULL   ,     
+            `category` varchar(20) character set gbk default NULL,      
+            `clicktime` datetime NOT NULL                               
+          ) TYPE=InnoDB
+	</update>
+	
+	<update id="add">
+		INSERT INTO 
+			$tableName$
+		VALUES (#log.uuid#,#log.articleId#,#log.channelId#,#log.tags#,#log.keyword#,#log.category#,#log.clickTime#)
+	</update>
+	
+	<update id="updateUUID">
+		UPDATE $tableName$
+		SET uuid = #uuid#
+		WHERE uuid = #oldUuid#
+	</update>
+	
+	<select id="countSameRecord" resultClass="java.lang.Integer">
+		SELECT 
+		    COUNT(uuid)
+		FROM
+		    $tableName$
+		WHERE
+			uuid = #uuid#
+		AND 
+			articleId = #articleId#
+	</select>
+	
+	<update id="updateClickTime">
+		UPDATE 
+			$tableName$
+		SET 
+			clicktime = #clickTime#
+		WHERE
+			uuid = #uuid# 
+		AND
+			articleId = #articleId#
+	</update>
+</sqlMap>

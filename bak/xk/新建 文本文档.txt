@@ -1,0 +1,15 @@
+内网测试地址：(不需要验证)
+
+熙康: www.xk.com
+neusoft企业版: neusoft.xk.com
+ui访问: ui.xk.com
+(注：如果域名失效，请添加以下内容到hosts表中)
+192.168.1.200 www.xk.com
+192.168.1.200 neusoft.xk.com
+192.168.1.200 ui.xk.com
+外网测试地址：(需要验证)
+
+熙康: web.yxky.net
+neusoft企业版: neusoft.yxky.net
+ui访问: ui.yxky.net
+(注：如果域名失效，请联系管理员) 

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="union">
+	<typeAlias alias="UnionUser" type="com.cc.cw.domain.UnionUser" />
+	<typeAlias alias="HashMap" type="java.util.HashMap" />
+
+	<resultMap id="union" class="UnionUser">
+		<result property="id" column="id" />
+		<result property="account" column="account" />
+		<result property="password" column="password" />
+		<result property="domainName" column="domain_name" />
+		<result property="mainWebsiteName" column="main_website_name" />
+		<result property="mainWebsiteUrl" column="main_website_url" />
+		<result property="realName" column="real_name" />
+		<result property="male" column="male" />
+		<result property="shenfenzheng" column="shenfenzheng" />
+		<result property="email" column="email" />
+		<result property="qq" column="qq" />
+		<result property="phone" column="phone" />
+		<result property="handset" column="handset" />
+		<result property="payType" column="pay_type" />
+		<result property="address" column="address" />
+		<result property="postcode" column="postcode" />
+		<result property="bank" column="bank" />
+		<result property="cardNum" column="card_num" />
+		<result property="header" column="header" />
+		<result property="footer" column="footer" />
+		<result property="addTime" column="add_time" />
+		<result property="websiteName" column="website_name" />
+		<result property="keyword" column="keyword" />
+		<result property="description" column="description" />
+	</resultMap>
+
+	<select id="getMap" resultClass="UnionUser">
+		select id, account, password, domain_name as domainName, main_website_name, main_website_url, real_name, male, 
+		shenfenzheng, email, qq, phone, handset, pay_type, address, postcode, bank, card_num, 
+		header, footer, add_time, website_name as websiteName,keyword,description from union_user where domain_name=#domainName#
+	</select>
+	<select id="getCount" resultClass="java.lang.Integer">
+		select count(*) from day_iplog where website=#domainName# and ip=#ip#
+	</select>
+	<insert id="insert" parameterClass="java.util.Map">
+		insert into `day_iplog` (`website`, `ip`, `log_time`, `log_date`) values
+		(#domainName#, #ip#, #time#, #date#)
+	</insert>
+</sqlMap>

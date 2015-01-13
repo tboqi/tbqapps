@@ -1,0 +1,234 @@
+<?xml version="1.0"?>
+<project name="cw" basedir="." default="usage">
+	<!-- Load all the default properties from build.properties -->
+	<property file="${basedir}/build.properties"/>
+
+	<!-- the normal classpath -->
+	<path id="classpath">
+		<fileset dir="${lib.dir}">
+			<include name="**/*.jar"/>
+		</fileset>
+	</path>	
+
+	<target name="usage">
+		<echo message="clean            --> Clean output dirs"/>
+		<echo message="build            --> Compile main Java sources"/>
+		<echo message="test             --> Run unit test"/>		
+		<echo message="jar              --> create jar files"/>	
+		<echo message="tomcat           --> move to tomcat"/>	
+	</target>
+
+    <target name="clean" description="Clean output dirs">
+		<delete dir="${build.dir}"/>
+		<delete dir="${test.dir}"/>
+    	<delete dir="${basedir}/test-output"/>
+	</target>
+
+	<!-- ====================================================== -->
+	<!-- Stuff needed by all targets                            -->
+	<!-- ====================================================== -->
+	<target name="init">
+	  <mkdir dir="${build.dir}"/>
+	  <mkdir dir="${build.classes}"/>
+	  <mkdir dir="${test.dir}"/>
+	  <mkdir dir="${test.classes}"/>
+	  <mkdir dir="${test.output}"/>
+	  <mkdir dir="${test.classes}"/>
+	</target>
+	
+	<!-- ====================================================== -->
+	<!-- Compile the Java files                                 -->
+	<!-- ====================================================== -->	
+	<target name="compile" depends="init">
+		<javac destdir="${build.classes}" encoding="${build.encoding}" includes="com/**/*.java" debug="${debug}" fork="${fork}" optimize="${optimize}" source="${source}" deprecation="${deprecation}">
+					<src path="${src.java}/member"/>			
+					<src path="${src.java}/article"/>
+					<src path="${src.java}/web"/>
+					<src path="${src.java}/label"/>
+					<src path="${src.java}/vote"/>
+					<src path="${src.java}/core"/>
+			        <src path="${src.java}/channel"/>
+					<src path="${src.java}/chart"/>
+					<src path="${src.java}/util"/>
+					<src path="${src.java}/search"/>
+					<src path="${src.java}/message"/>
+					<src path="${src.java}/clicklog"/>
+					<src path="${src.java}/dm"/>
+					<src path="${src.java}/favorite"/>
+					<src path="${src.java}/job"/>
+					<src path="${src.java}/union"/>
+					<src path="${src.java}/pic"/>
+					<src path="${src.java}/control"/>
+					<classpath refid="classpath" />
+		</javac>
+	</target>
+	
+	
+	<path id="testclasspath">
+		<path refid="classpath"/>
+		<pathelement location="${build.classes}"/>
+		<pathelement location="${test.classes}"/>
+	</path>
+	<!-- ====================================================== -->
+	<!-- Compile the Java test files                                 -->
+	<!-- ====================================================== -->	
+	<target name="compiletest" depends="compile">
+		<copy todir="${test.classes}/com/cc/cw/dao/ibatis/maps" preservelastmodified="true" flatten="true">		
+			<fileset dir="${src.java}">
+			    <include name="**/*.xml"/>
+			</fileset>			
+		</copy>
+		
+		<copy todir="${test.classes}/WEB-INF" preservelastmodified="true">		
+			<fileset dir="${src.conf}/WEB-INF">
+				<include name="sql-map-config.xml"/>	
+				<include name="jdbc.properties"/>
+				<include name="web.xml"/>
+				<include name="urlrewrite.xml"/>
+			</fileset>
+		</copy>
+		
+		<copy todir="${test.classes}" preservelastmodified="true">		
+			<fileset dir="${src.conf}">
+				<include name="**/*.xml"/>
+			</fileset>
+			<fileset dir="${src.conf}/WEB-INF">
+				<include name="sql-map-config.xml"/>	
+				<include name="jdbc.properties"/>
+				<include name="web.xml"/>
+			</fileset>
+		</copy>
+		
+		<javac destdir="${test.classes}" encoding="${build.encoding}" includes="com/**/*.java" debug="${debug}" fork="${fork}" optimize="${optimize}" source="${source}" deprecation="${deprecation}">
+			<src path="${src.test}/"/>
+			<classpath refid="testclasspath" />
+		</javac>
+	</target>
+	
+	<taskdef resource="testngtasks"  classpath="${lib.dir}/testng-5.0.1-jdk15.jar"/>
+	
+	<target name="test" depends="compiletest">
+		<testng classpathref="testclasspath" outputDir="${test.output}" sourcedir="${src.test}" haltOnfailure="true">
+			<xmlfileset dir="${basedir}" includes="testng.xml"/>
+	</testng>
+	</target>
+	
+	
+	<!-- ================================================================== -->
+	<!-- Make cc.jar                                                     -->
+	<!-- ================================================================== -->
+	<!--                                                                    -->
+	<!-- ================================================================== -->
+	
+	
+	<target name="make resource">
+		<delete
+			file="${src.conf}/globalMessages_zh_CN.properties">
+		</delete>
+		
+		<exec dir="${src.conf}" executable="native2ascii" >
+			<arg line="
+				globalMessages.properties
+				globalMessages_zh_CN.properties"/>
+		</exec>
+	</target>
+	
+	<target name="jar" depends="compile">
+	  <jar jarfile="${build.dir}/${app.name}.jar" compress="true" basedir="${build.classes}"/>	    
+	</target>	
+	
+	<!-- war -->
+	<target name="war" depends="jar,make resource" description="Create WAR deployment unit">
+		<copy todir="${www.dir}/WEB-INF/lib" file="${build.dir}/${app.name}.jar" overwrite="true"/>
+				
+		<!-- copy all the jar files that needed to WEB-INF/lib -->
+		<copy todir="${www.dir}/WEB-INF/lib" preservelastmodified="true" flatten="true">
+			<fileset dir="${lib.dir}">
+				<include name="**/*.jar"/>
+				<exclude name="servlet*.jar"/>
+			</fileset>
+		</copy>
+		
+		
+		
+		<!-- copy all the config files that needed to WEB-INF/classes -->
+		<copy todir="${www.dir}/WEB-INF/classes" preservelastmodified="true">		
+			<fileset dir="${src.conf}">
+			    <include name="log4j.*"/>
+			</fileset>			
+		</copy>
+		
+		<copy todir="${www.dir}/WEB-INF/classes" preservelastmodified="true">		
+			<fileset dir="${src.conf}">
+			    <include name="globalMessages_zh_CN.properties"/>
+			</fileset>			
+		</copy>
+		
+		<copy todir="${www.dir}/WEB-INF/classes/com/cc/cw/dao/ibatis/maps" preservelastmodified="true" flatten="true">		
+			<fileset dir="${src.java}">
+			    <include name="**/*.xml"/>
+			</fileset>			
+		</copy>
+		
+		<copy todir="${www.dir}/WEB-INF/classes">
+			<fileset dir="${src.conf}">
+				<include name="cw-default.xml"></include>
+				<include name="cw-site.xml"></include>
+				<include name="accountCreated.vm"/>
+				<include name="validators.xml"/>
+				<include name="webwork-default.xml"/>
+				<include name="webwork.properties"/>
+				<include name="xwork-1.0.dtd"/>
+				<include name="xwork.xml"/>
+			</fileset>
+		</copy>
+		
+		
+		<!-- copy all the config files that needed to WEB-INF/lib -->
+		<copy todir="${www.dir}/WEB-INF" preservelastmodified="true">		
+			<fileset dir="${src.conf}">
+				<include name="applicationContext.xml"/>
+				<include name="dataAccessContext-local.xml"/>
+				<include name="indexContext.xml"/>
+				<include name="webActionContext.xml"/>
+				<include name="scheduler.xml"/>
+			</fileset>
+			<fileset dir="${src.conf}/WEB-INF">
+				<include name="sql-map-config.xml"/>	
+				<include name="jdbc.properties"/>
+				<include name="web.xml"/>
+				<include name="FCKeditor.tld"/>
+				<include name="urlrewrite.xml"/>
+				<include name="webwork.tld"/>
+				<include name="sitemesh.xml"/>
+				<include name="decorators.xml"/>
+			</fileset>
+		</copy>
+		
+		<copy todir="${www.dir}/" preservelastmodified="true">		
+			<fileset dir="${basedir}/webdir/">
+			</fileset>
+		</copy>
+		
+		
+		
+		<war warfile="${build.dir}/${app.name}.war" webxml="${src.conf}/WEB-INF/web.xml">
+			<!-- Include the css, images and other documents -->
+			<fileset dir="${www.dir}" excludes="WEB-INF/**"/>
+			
+			<webinf dir="${www.dir}/WEB-INF">
+				<exclude name="web.xml"/>
+			</webinf>
+			
+			<!-- Include the compiled classes 
+			<classes dir="${target.dir}"/>	-->
+		</war>
+	</target>
+	
+	<target name="tomcat" depends="war" description="copy jar file to resin lib dir">
+		<delete dir="${tomcat.home}/webapps/${app.name}"/>
+		<delete dir="${tomcat.home}/webapps/${app.name}.war"/>
+		<copy todir="${tomcat.home}/webapps" file="${build.dir}/${app.name}.war" overwrite="true"/>
+	</target>
+	
+</project>

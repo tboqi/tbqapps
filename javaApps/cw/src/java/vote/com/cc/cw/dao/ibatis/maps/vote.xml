@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+	"http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="vote">
+	<cacheModel id="voteCache" type="LRU">
+		<flushInterval hours="2" />
+		<property name="size" value="1000" />
+	</cacheModel>
+
+	<typeAlias alias="Vote" type="com.cc.cw.domain.Vote" />
+	<typeAlias alias="HashMap" type="java.util.HashMap" />
+
+	<resultMap id="vote" class="Vote">
+		<result property="id" column="Id" />
+		<result property="resourceId" column="ResourceId" />
+		<result property="resourceType" column="ResourceType" />
+		<result property="memberId" column="MemberId" />
+		<result property="voteCategory" column="VoteCategory"></result>
+		<result property="voteDate" column="VoteDate"></result>
+		<result property="voteNumber" column="VoteNumber"></result>
+		<result property="voteMember" column="VoteMember"></result>
+	</resultMap>
+
+	<select id="get" resultMap="vote">
+		SELECT Id , ResourceId ,ResourceType, MemberId , VoteCategory
+		,VoteDate,VoteNumber,VoteMember FROM vote WHERE Id = #id#
+	</select>
+
+	<update id="update">
+		UPDATE vote SET ResourceId = #resourceId#, ResourceType =
+		#resourceType#, MemberId = #memberId#, VoteCategory =
+		#voteCategory#, VoteNumber = #voteNumber# WHERE Id = #id#;
+	</update>
+	
+	<update id="updateTheExist">
+		UPDATE vote SET VoteNumber = VoteNumber+1 WHERE MemberId =
+		#memberId# AND ResourceId = #resourceId# AND ResourceType =
+		#resourceType#;
+	</update>
+
+	<insert id="add">
+		INSERT INTO vote
+		(ResourceId,ResourceType,MemberId,VoteCategory,VoteDate
+		,VoteNumber,VoteMember) values
+		(#resourceId#,#resourceType#,#memberId#,#voteCategory#,#voteDate#,#voteNumber#,#voteMember#)
+		<selectKey keyProperty="id" resultClass="int">
+			select LAST_INSERT_ID() as value
+		</selectKey>
+	</insert>
+
+	<delete id="remove">DELETE FROM vote WHERE Id = #id#</delete>
+
+	<!-- 根据memberId , resourceId ,ResourceType 查找资源 -->
+	<select id="isExist" resultMap="vote">
+		SELECT Id , ResourceId ,ResourceType, MemberId , VoteCategory
+		,VoteDate,VoteNumber,VoteMember FROM vote WHERE MemberId =
+		#memberId# AND ResourceId = #resourceId# AND ResourceType =
+		#resourceType#
+	</select>
+
+	<!-- 根据memberId , resourceId ,ResourceType 查找资源 -->
+	<select id="isExistForArticle" resultMap="vote">
+		SELECT Id , ResourceId ,ResourceType, MemberId , VoteCategory
+		,VoteDate,VoteNumber,VoteMember FROM vote WHERE VoteMember =
+		#voteMember# AND ResourceId = #resourceId# AND ResourceType =
+		#resourceType#
+	</select>
+
+	<!-- 根据传入参数返回查询结果，用来为freechart提供数据 -->
+	<select id="getVoteListByDate" resultMap="vote">
+		SELECT Id, ResourceId , ResourceType, MemberId ,VoteCategory
+		,VoteDate , VoteNumber,VoteMember FROM vote WHERE VoteDate
+		BETWEEN #beginDate# AND #endDate# AND ResourceId = #resourceId#
+		AND ResourceType = #resourceType#
+	</select>
+
+	<!-- 根据resourceId category 查询所有vote纪录 -->
+	<select id="getVotesListByVoteCategory" resultMap="vote">
+		SELECT Id, ResourceId , ResourceType, MemberId ,VoteCategory
+		,VoteDate , VoteNumber,VoteMember FROM vote WHERE ResourceId =
+		#resourceId# and VoteCategory = #type#
+	</select>
+
+	<!--根据memberId获得所有投过票的文章Id-->
+	<select id="getArticlesIdByMemberId"
+		resultClass="java.lang.Integer">
+		SELECT ResourceId FROM vote WHERE ResourceType = 'Article' and
+		MemberId = #memberId# LIMIT #start# , #count# ORDER BY Id DESC
+	</select>
+	<!--一个月最热文章Id-->
+	<select id="getArticleIdListMonth"
+		resultClass="java.lang.Integer">
+		<![CDATA[
+		SELECT ResourceId FROM vote 
+			 WHERE 	DATE_SUB(CURDATE(),INTERVAL 30 DAY) <= votedate 
+			 AND ResourceType='article' GROUP BY ResourceId
+			 ]]>
+	</select>
+	<!--根据memberId获得所有投过票的文章总数-->
+	<select id="getArticlesCountByMemberId"
+		resultClass="java.lang.Integer">
+		SELECT COUNT(Id) FROM vote WHERE ResourceType = 'Article' and
+		MemberId = #memberId#
+	</select>
+
+	<!--调用存储过程-->
+	<procedure id="vote_proc">
+		<![CDATA[CALL cw.vote()]]>
+	</procedure>
+
+	<select id="getAllCountByArticle" resultClass="java.lang.Integer">
+		SELECT COUNT(Id) FROM vote WHERE ResourceId = #articleId#
+	</select>
+
+	<select id="getCountByVoteCategory"
+		resultClass="java.lang.Integer">
+		SELECT SUM(VoteNumber) FROM vote WHERE ResourceId = #articleId#
+		AND VoteCategory = #category# AND ResourceType='Article'
+	</select>
+
+	<!-- 根据resourceId 查询所有vote纪录 -->
+	<select id="getByArticleId" resultMap="vote">
+		SELECT Id, ResourceId , ResourceType, MemberId ,VoteCategory
+		,VoteDate , VoteNumber,VoteMember FROM vote WHERE ResourceId =
+		#articleId#
+	</select>
+
+	<select id="getSupportVoteCountByArticleId"
+		resultClass="java.lang.Integer">
+		SELECT SUM(VoteNumber) FROM vote WHERE ResourceId=#id# AND
+		VoteCategory='Support' AND ResourceType='Article'
+	</select>
+	<select id="getVoteCount4Channel"
+		resultClass="java.lang.Integer">
+		SELECT SUM(VoteNumber) FROM vote WHERE ResourceId=#id#  AND ResourceType='Channel'
+	</select>
+
+	<select id="getUnSupportVoteCountByArticleId"
+		resultClass="java.lang.Integer">
+		SELECT SUM(VoteNumber) FROM vote WHERE ResourceId=#id# AND
+		VoteCategory='UnSupport' AND ResourceType='Article'
+	</select>
+
+	<select id="getNewVote" resultMap="vote">
+		SELECT Id, ResourceId , ResourceType, MemberId ,VoteCategory
+		,VoteDate , VoteNumber,VoteMember FROM vote WHERE MemberId >
+		1000000 and ResourceType='Article' and ResourceId not in (select Id from article where status=-1) 
+		ORDER BY Id DESC LIMIT #start# , #count#
+	</select>
+</sqlMap>

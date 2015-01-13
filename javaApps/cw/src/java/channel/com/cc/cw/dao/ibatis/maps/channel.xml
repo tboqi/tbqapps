@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="channel">
+	<cacheModel id="channelCache" type="LRU">
+		<flushInterval hours="2" />
+		<property name="size" value="1000" />
+	</cacheModel>
+
+	<typeAlias alias="Channel" type="com.cc.cw.domain.Channel" />
+	<typeAlias alias="HashMap" type="java.util.HashMap" />
+
+	<resultMap id="channel" class="Channel">
+		<result property="id" column="Id" />
+		<result property="memberId" column="MemberId" />
+		<result property="name" column="Name" />
+		<result property="keywords" column="Keywords" />
+		<result property="description" column="Description" />
+		<result property="createDate" column="CreateDate" />
+		<result property="supportCount" column="SupportCount"></result>
+		<result property="unSupportCount" column="UnSupportCount"></result>
+		<result property="state" column="State"></result>
+		<result property="articleNums" column="ArticleNums"></result>
+		<result property="tuijian" column="tuijian"></result>
+	</resultMap>
+
+	<!-- 根据id获得channel -->
+	<select id="getById" resultMap="channel">
+		SELECT *
+		FROM channel WHERE Id = #id#
+	</select>
+
+	<select id="getHotChannels" resultMap="channel">
+		select * from channel where State = 1 order by ArticleNums desc
+		limit #start#,#count#
+	</select>
+	<select id="getHotChannelsTuijian" resultMap="channel">
+		select * from channel where State = 1 and tuijian=0 order by ArticleNums desc
+		limit #start#,#count#
+	</select>
+
+	<select id="getHotChannelsCount" resultClass="java.lang.Integer">
+		SELECT COUNT(Id) FROM channel WHERE State = 1
+
+	</select>
+
+	<select id="getChannels" resultMap="channel">
+		select * from channel where State = #state# order by Id desc
+		limit #count#
+	</select>
+
+	<select id="getChannelCount" resultClass="java.lang.Integer">
+		select count(Id) from channel where state = #state#
+	</select>
+
+	<!-- 添加channel -->
+	<insert id="add">
+		INSERT INTO channel
+		(MemberId,Name,Keywords,Description,CreateDate,SupportCount,UnSupportCount,State,ArticleNums)
+		VALUES
+		(#memberId#,#name#,#keywords#,#description#,NOW(),#supportCount#,#unSupportCount#,1,#articleNums#)
+		<selectKey keyProperty="id" resultClass="int">
+			select LAST_INSERT_ID() as value
+		</selectKey>
+	</insert>
+
+	<!-- 删除channel -->
+	<delete id="remove">DELETE FROM channel WHERE Id = #id#</delete>
+
+	<!-- 修改channel -->
+	<update id="update">
+		UPDATE channel SET MemberId = #memberId#, Name = #name#,
+		Keywords = #keywords#, Description = #description#, SupportCount
+		= #supportCount#, UnSupportCount = #unSupportCount#, State =
+		#state#, ArticleNums = #articleNums# WHERE Id = #id#
+	</update>
+
+	<!-- 根据传入的字段名,id,增加给定的value值 -->
+	<update id="increaseFieldValueById">
+		UPDATE channel SET $field$ = $field$ + #value# WHERE Id = #id#
+	</update>
+
+	<!-- 获得所有channel -->
+	<select id="getAllChannels" resultMap="channel">
+		SELECT
+		*
+		FROM channel
+	</select>
+
+	<!-- 根据id获得新增channel -->
+	<select id="getNewChannels" resultMap="channel">
+		SELECT
+		*
+		FROM channel WHERE Id > #id# LIMIT 10;
+	</select>
+
+	<!-- 根据id获得新增channel的数量 -->
+	<select id="getNewChannelsCount" resultClass="java.lang.Integer">
+		SELECT COUNT(Id) FROM channel WHERE Id > #id#
+	</select>
+
+
+	<select id="getNewChannelsOrderByDate" resultMap="channel">
+		SELECT
+		*
+		FROM channel where ArticleNums >0 ORDER BY CreateDate DESC LIMIT #count#
+	</select>
+
+	<select id="getChannelsByStateOrderByDate" resultMap="channel">
+		SELECT
+		*
+		FROM channel WHERE State=#state# ORDER BY CreateDate DESC LIMIT
+		#start#, #count#
+	</select>
+
+	<select id="getChannelCountByState"
+		resultClass="java.lang.Integer">
+		SELECT COUNT(Id) FROM channel WHERE State = #state#
+	</select>
+
+	<select id="getChannelsByMemberId" resultMap="channel">
+		SELECT
+		*
+		FROM channel WHERE MemberId = #memberId# AND State=#state# ORDER
+		BY CreateDate DESC LIMIT #start#, #count#
+	</select>
+
+	<select id="getChannelCountByMemberId"
+		resultClass="java.lang.Integer">
+		SELECT COUNT(Id) FROM channel WHERE MemberId = #memberId# AND
+		State=#state#
+	</select>
+
+	<select id="getByMemberId" resultMap="channel">
+		SELECT * FROM channel WHERE MemberId = #memberId# LIMIT #start#,
+		#count#
+	</select>
+
+	<select id="getCountByMemberId" resultClass="java.lang.Integer">
+		SELECT COUNT(*) FROM channel WHERE MemberId = #memberId#
+	</select>
+
+	<insert id="addReferenceToChannel">
+		insert into art_chn_link (ArticleId,ChannelId) values
+		(#articleId#,#channelId#)
+	</insert>
+
+	<insert id="addToChannel">
+		update article set ChannelId = #channelId# where Id =
+		#articleId#
+	</insert>
+
+	<select id="getHotChannelsNotIn" resultMap="channel">
+		select * from channel where State = 1 AND Id NOT IN ($notIn$)
+		order by ArticleNums desc limit #start#,#count#
+	</select>
+	
+	<select id="getHotChannelsNotInTuijian" resultMap="channel">
+		select * from channel where State = 1 AND Id NOT IN ($notIn$) and tuijian=0
+		order by ArticleNums desc limit #start#,#count#
+	</select>
+
+	<select id="haveThisReference" resultClass="java.lang.Integer">
+		SELECT COUNT(Id) FROM art_chn_link WHERE ArticleId = #articleId#
+		AND ChannelId IN ( SELECT Id FROM channel WHERE MemberId =
+		#memberId# )
+	</select>
+
+	<select id="searchChannel" resultMap="channel">
+		SELECT
+		*
+		FROM channel WHERE Name like '%$key$%' OR Description like
+		'%$key$%' OR Keywords like '%$key$%' order by ArticleNums desc
+		limit #start#,#count#
+	</select>
+
+	<select id="searchChannelCount" resultClass="java.lang.Integer">
+		<![CDATA[
+		SELECT
+			COUNT(Id)
+		FROM 
+			channel
+		WHERE
+			Name like '%$key$%' OR Description like '%$key$%' OR Keywords like '%$key$%'
+	    ]]>
+	</select>
+	<select id="find" resultMap="channel">
+		select * from channel order by ArticleNums desc limit
+		#start#,#count#
+	</select>
+	<select id="count" resultClass="java.lang.Integer">
+		select count(*) from channel
+	</select>
+	<select id="findLikeKey" resultMap="channel">
+		select * from channel where Name like '%$key$%' or Keywords like
+		'%$key$%' or Description like '%$key$%' order by ArticleNums
+		desc limit #start#,#count#
+	</select>
+	<select id="countLikeKey" resultClass="java.lang.Integer">
+		select count(*) from channel where Name like '%$key$%' or
+		Keywords like '%$key$%' or Description like '%$key$%'
+	</select>
+	<update id="screen">
+		update channel set state=#state# where Id=#id#
+	</update>
+	<update id="tuijian">
+		update channel set tuijian=#tuijian# where Id=#id#
+	</update>
+</sqlMap>

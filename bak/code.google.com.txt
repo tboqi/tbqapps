@@ -1,0 +1,30 @@
+http://code.google.com/hosting/createProject
+
+tboqi301709@gmail.com's googlecode.com password: yJ8qV9fP3Xf7
+
+https://code.google.com/u/tboqi301709/
+
+yuqiblog
+yuqiblog
+
+yuqiblog-gae
+A blog for gae-java
+
+yuqijavaapp
+yuqijavaapp
+
+zfappbase
+zfYour
+
+yuqiapp  
+my all apps, 包括test，php，java js 等
+	soapserver, 
+	interface, 
+	zendtest)
+	https://yuqiapp.googlecode.com/svn/trunk/testdrive
+	https://yuqiapp.googlecode.com/svn/trunk/phptest 平时的测试代码
+
+	bak
+	平时我写的文档
+
+	https://yuqiapp.googlecode.com/svn/trunk/khnblog

@@ -1,0 +1,122 @@
+阿里云189／190上建立负载均衡
+
+1. 先在189上测试负载
+tboqi@tboqi-ThinkPad-R400:~$ ab -n 10000 -c 100 http://42.121.120.189/messageapi/getNewMessage/318/1354507874?pa=377432
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking 42.121.120.189 (be patient)
+
+Completed 1000 requests
+Completed 2000 requests
+Completed 3000 requests
+Completed 4000 requests
+Completed 5000 requests
+Completed 6000 requests
+Completed 7000 requests
+Completed 8000 requests
+Completed 9000 requests
+Completed 10000 requests
+Finished 10000 requests
+
+
+Server Software:        nginx/1.0.15
+Server Hostname:        42.121.120.189
+Server Port:            80
+
+Document Path:          /messageapi/getNewMessage/318/1354507874?pa=377432
+Document Length:        1319 bytes
+
+Concurrency Level:      100
+Time taken for tests:   254.389 seconds
+Complete requests:      10000
+Failed requests:        0
+Write errors:           0
+Total transferred:      16620000 bytes
+HTML transferred:       13190000 bytes
+Requests per second:    39.31 [#/sec] (mean)
+Time per request:       2543.888 [ms] (mean)
+Time per request:       25.439 [ms] (mean, across all concurrent requests)
+Transfer rate:          63.80 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:       31  162 215.5    106    3043
+Processing:  1039 2339 907.1   2333   15472
+Waiting:     1039 2249 613.6   2318   15439
+Total:       1071 2501 925.7   2493   16571
+
+Percentage of the requests served within a certain time (ms)
+  50%   2493
+  66%   2584
+  75%   2647
+  80%   2689
+  90%   2819
+  95%   3255
+  98%   3938
+  99%   6420
+ 100%  16571 (longest request)
+注：100并发的时候cpu压力就很明显，top的结果如下：
+load average: 11.02, 6.52, 2.80
+
+在190上配置php环境
+
+在189上做负载均衡
+tboqi@tboqi-ThinkPad-R400:~$ ab -n 10000 -c 100 http://42.121.120.189:82/messageapi/getNewMessage/318/1354507874?pa=377449
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking 42.121.120.189 (be patient)
+Completed 1000 requests
+Completed 2000 requests
+Completed 3000 requests
+Completed 4000 requests
+Completed 5000 requests
+Completed 6000 requests
+Completed 7000 requests
+Completed 8000 requests
+Completed 9000 requests
+Completed 10000 requests
+Finished 10000 requests
+
+
+Server Software:        nginx/1.0.15
+Server Hostname:        42.121.120.189
+Server Port:            82
+
+Document Path:          /messageapi/getNewMessage/318/1354507874?pa=377449
+Document Length:        1319 bytes
+
+Concurrency Level:      100
+Time taken for tests:   758.611 seconds
+Complete requests:      10000
+Failed requests:        0
+Write errors:           0
+Total transferred:      16616667 bytes
+HTML transferred:       13190000 bytes
+Requests per second:    13.18 [#/sec] (mean)
+Time per request:       7586.109 [ms] (mean)
+Time per request:       75.861 [ms] (mean, across all concurrent requests)
+Transfer rate:          21.39 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:       31  120 226.6     79    4322
+Processing:  1039 7355 8800.3   1142   33080
+Waiting:     1039 7289 8788.8   1140   24534
+Total:       1070 7476 8800.7   1266   33211
+
+Percentage of the requests served within a certain time (ms)
+  50%   1266
+  66%   4808
+  75%  19646
+  80%  20115
+  90%  20603
+  95%  20825
+  98%  20963
+  99%  21147
+ 100%  33211 (longest request)
+---------------------------------------------------
+

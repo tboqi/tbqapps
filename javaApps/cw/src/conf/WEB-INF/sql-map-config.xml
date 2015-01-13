@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>              
+    <settings useStatementNamespaces="true"/>
+	<!--
+	<typeHandler javaType="com.cc.cw.domain.Vote$ResourceType" callback="com.cc.cw.ibatis.handle.VoteResourceTypeHandle"/>
+	<typeHandler javaType="com.cc.cw.domain.Vote$VoteCategory" callback="com.cc.cw.ibatis.handle.VoteCategoryTypeHandle"/>
+    -->
+    
+	<sqlMap resource="com/cc/cw/dao/ibatis/maps/member.xml"/>
+	<sqlMap resource="com/cc/cw/dao/ibatis/maps/sessionval.xml"/>
+    <sqlMap resource="com/cc/cw/dao/ibatis/maps/simpleArticle.xml"/>
+    <sqlMap resource="com/cc/cw/dao/ibatis/maps/remarkArticle.xml"/>
+    <sqlMap resource="com/cc/cw/dao/ibatis/maps/label.xml"/>
+    <sqlMap resource="com/cc/cw/dao/ibatis/maps/vote.xml"/>
+	<sqlMap resource="com/cc/cw/dao/ibatis/maps/channel.xml"/>
+	<sqlMap resource="com/cc/cw/dao/ibatis/maps/clew.xml"/>
+	<sqlMap resource="com/cc/cw/dao/ibatis/maps/atomLabel.xml"/>
+
+	<sqlMap resource="com/cc/cw/dao/ibatis/maps/message.xml"/>
+	<sqlMap resource="com/cc/cw/dao/ibatis/maps/channelcategory.xml"/>
+	<sqlMap resource="com/cc/cw/dao/ibatis/maps/Friend.xml"/>
+	<sqlMap resource="com/cc/cw/dao/ibatis/maps/user_label.xml"/>
+	<sqlMap resource="com/cc/cw/dao/ibatis/maps/userdmlabel.xml"/>
+	<sqlMap resource="com/cc/cw/dao/ibatis/maps/labelRules.xml"/>
+	<sqlMap resource="com/cc/cw/dao/ibatis/maps/userChannel.xml"/> 
+	<sqlMap resource="com/cc/cw/dao/ibatis/maps/clicklog.xml"/>
+	<sqlMap resource="com/cc/cw/dao/ibatis/maps/broadcast.xml"/>
+	<sqlMap resource="com/cc/cw/dao/ibatis/maps/union.xml"/>
+	<sqlMap resource="com/cc/cw/dao/ibatis/maps/controlUser.xml"/>
+	<sqlMap resource="com/cc/cw/dao/ibatis/maps/controlRole.xml"/>
+	<sqlMap resource="com/cc/cw/dao/ibatis/maps/indexPic.xml"/>
+	<sqlMap resource="com/cc/cw/dao/ibatis/maps/friendLink.xml"/>
+	<sqlMap resource="com/cc/cw/dao/ibatis/maps/tradeHistory.xml"/>
+</sqlMapConfig>

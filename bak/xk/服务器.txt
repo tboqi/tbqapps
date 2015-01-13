@@ -1,0 +1,107 @@
+59.46.220.163
+root密码neusoft
+到10.3.32.57一直和原来的一样，root abc123    
+
+
+http://xk.xikang.com/sport 
+
+测试服务器
+    10.3.31.65
+31.65密码
+ xk@neusoft.COM
+ define('XIKANG_MONGODB_HOST','10.3.32.70:30000');
+
+
+
+define('DB_HOSTNAME', '10.3.32.69');
+define('DB_USERNAME', 'acorn');
+define('DB_PASSWORD', 'acorn');
+define('DB_DEBUG', OPEN_DEBUG);
+define('ACORNDB_NEW', 'acorndb_new');
+define('ACORNHC_DB', 'acornhc_db');
+define('XIKANG_DB', 'xikang365');
+
+
+正式
+ ssh 10.3.32.57
+define('DB_HOSTNAME', '10.3.32.102');
+define('DB_USERNAME', 'acorn');
+define('DB_PASSWORD', 'acorn');
+define('DB_DEBUG', OPEN_DEBUG);
+define('ACORNDB_NEW', 'acorndb_new');
+define('ACORNHC_DB', 'acornhc_db');
+define('XIKANG_DB', 'xikang365');
+define('XIKANG_DB_USER', 'xikang365_users');
+define('XIKANG_ONLINE_DB', 'xikang365_online');
+
+
+你直连59.46.220.163的密码为XiKang@neusoft31.50
+php应用10.3.32.57密码为XiKang@neusoft32.57
+食材库10.3.32.58密码为XiKang@neusoft32.58
+XiKang@neusoft32.70
+XiKang@neusoft32.71
+
+10.3.32.57：
+root/neusoft-XK-32.57
+
+ 
+10.3.32.85
+root/neusoft-XK-32.85
+
+10.3.31.50 这个机器对应的密码是：neusoft-XK-31.50
+
+solr服务器
+10.3.32.58
+
+
+1、php环境连接方式  通过SecureCRT工具连接59.46.63.130 端口30000。用户名root，密码test.xikang.com
+      目录地址/data/xikang_web即为php程序，这个程序是刚搭建org环境时的 php，
+2、org环境数据库连接方式 连接地址59.46.63.130 端口31000，用户名bj_php，密码bj_php。目前只为这个账号分配了xikang365库。
+/opt/mysql/bin/mysql -h10.10.18.37 -ubj_php -pbj_php -P3306
+nohup /opt/mongodb/bin/mongod --dbpath=/data/mongodb/  &
+/opt/apache2/bin/httpd -k restart
+nohup redis-server &
+
+另外两台服务器是同网段的189和19,其中189用于东勇的“时间到了”服务端，19暂未使用。
+都给你建了sudo权限账号，用户名密码都一样。
+42.121.120.190 tangboqi   tangboqixikang123
+此服务器也可以用作测试、练习等。
+现在可以先用来做图片、数据库的异地部分，就先做图片的吧uploadedImages可以每周备份一次。
+
+已经映射完毕。
+访问需要加目录，如下：
+http://dldeveloper.xikang.com /shicai
+具体信息如下：
+IP:10.3.32.85
+usr/pwd：root/abc123
+apache安装目录:/usr/local/apache2
+php安装目录：/usr/local/php
+apache的根目录：/opt/htdocs
+虚拟机为30G，我又为php扩展了100G，目录为/php_ext
+建议/opt/htdocs存放php源程序，/php_ext存放图片。
+
+189上mysql root密码：xikangdb
+190 XiKangAli@)!@
+mysql:xikangbj@"59.108.104.54" IDENTIFIED BY 'XiKangBJ1234%^&*'
+
+189 10.200.29.208
+190 10.200.29.21
+
+阿里云新密码：
+BJ.xikang.2013
+
+xk.xikang.com环境的MongoDB连哪个？
+10.3.32.82:27017 
+
+
+112.124.53.222
+root/SSaliroot222
+mysql: root/root
+bjroot/XiKangBJ1234%^&*
+
+210
+root/SSali210
+ mysqladmin -u root -p password 'XiKangAli@)!@'
+
+外网连接原200服务器
+106.37.202.246   trunk.xikanglab.com

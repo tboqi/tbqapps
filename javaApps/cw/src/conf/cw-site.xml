@@ -1,0 +1,222 @@
+<?xml version="1.0" ?> 
+
+<!-- Overidden defaults for intranet use. -->
+
+<!-- Do not modify this file directly.  Instead, copy entries that you -->
+<!-- wish to modify from this file into nutch-site.xml and change them -->
+<!-- there.  If nutch-site.xml does not already exist, create it.      -->
+
+<configuration>      
+    <property>
+        <name>index.againstlist.path</name>
+        <value>/data/rumour/votearticles/againstarticles.txt</value>
+        <description></description>
+    </property>  
+    
+    <property>
+        <name>index.supportlist.path</name>
+        <value>/data/rumour/votearticles/supportarticles.txt</value>
+        <description></description>
+    </property>
+    
+    <property>
+        <name>index.vote.path</name>
+        <value>/data/rumour/votearticles/votearticles.txt</value>
+        <description></description>
+    </property>
+    
+    <property>
+        <name>admin.file.dir</name>
+        <value>/data/rumour/admin/userInfo.txt</value>
+        <description></description>
+    </property>
+    
+    <property>
+        <name>refer.dir</name>
+        <value>/data/rumour/refer/</value>
+        <description></description>
+    </property>
+      
+    <property>
+        <name>output.dir</name>
+        <value>/data/rumour/output.txt</value>
+        <description></description>
+    </property>
+     
+    <property>
+        <name>upload.dir</name>
+        <value>/data/rumour/userfiles/</value>
+        <description></description>
+    </property>
+    
+    <property>
+        <name>index.indexedRecord.path</name>
+        <value>/data/rumour/indexedrecord/</value>
+        <description></description>
+    </property>
+    
+    <property>
+        <name>index.dir</name>
+        <value>/data/rumour/index/</value>
+        <description></description>
+    </property>
+
+	<property>
+        <name>clew_upload.dir</name>
+        <value>/data/rumour/clew/</value>
+        <description></description>
+    </property>
+    
+    <property>
+        <name>images.dir</name>
+        <value>/data/rumour/images/</value>
+        <description></description>
+    </property>
+    
+    <property>
+        <name>images.cache</name>
+        <value>/data/rumour/images/cache/</value>
+        <description></description>
+    </property>
+	
+    <property>
+        <name>index.hot.path</name>
+        <value>/data/rumour/hotarticles/</value>
+        <description></description>
+    </property>
+	
+	<property>
+        <name>dm.path</name>
+        <value>/data/rumour/dm/</value>
+        <description></description>
+    </property>
+    
+    <property>
+        <name>dm.jdbcproperties</name>
+        <value>/home/instart/www/cw/ROOT/WEB-INF/</value>
+        <description></description>
+    </property>
+    
+    <property>
+        <name>article.url</name>
+        <value>/rumour/#1.html</value>
+        <description></description>
+    </property>
+    
+    <property>
+        <name>channel.url</name>
+        <value>/channel/#1.html</value>
+        <description></description>
+    </property>
+    
+    <property>
+        <name>channel.list.url</name>
+        <value>/channel/list.html</value>
+        <description></description>
+    </property>
+    
+    <property>
+        <name>tags.list.url</name>
+        <value>/tags/list.html</value>
+        <description></description>
+    </property>
+    
+    <property>
+        <name>vote.article.url</name>
+        <value>/vote/article/#1.html</value>
+        <description></description>
+    </property>
+    
+    <property>
+        <name>vote.channel.url</name>
+        <value>/vote/channel/#1.html</value>
+        <description></description>
+    </property>
+    
+    <property>
+        <name>channel.apply.url</name>
+        <value>/channel/apply.html</value>
+        <description></description>
+    </property>
+    
+    <property>
+        <name>login.url</name>
+        <value>/login.html</value>
+        <description></description>
+    </property>
+    
+    <property>
+        <name>usermanage.url</name>
+        <value>/usermanage.html</value>
+        <description></description>
+    </property>
+    
+    <property>
+        <name>articlemanage.url</name>
+        <value>/articlemanage.html</value>
+        <description></description>
+    </property>
+    
+    <property>
+        <name>message.url</name>
+        <value>/message/#1.html</value>
+        <description></description>
+    </property>
+    
+    <property>
+        <name>logout.url</name>
+        <value>/logout.html</value>
+        <description></description>
+    </property>
+    
+    <property>
+        <name>newmessage.url</name>
+        <value>/newmessage/#1.html</value>
+        <description></description>
+    </property>
+    
+    <property>
+        <name>message.delete.url</name>
+        <value>/message/#1/#2.html</value>
+        <description></description>
+    </property>
+    
+    <property>
+        <name>message.view.url</name>
+        <value>/messageview/#1.html</value>
+        <description></description>
+    </property>
+	
+	<property>
+        <name>new.url</name>
+        <value>/new.html</value>
+        <description></description>
+    </property>
+    
+    <property>
+        <name>pic.label.txt.path</name>
+        <value>/data/rumour/pic/pic.txt</value>
+        <description></description>
+    </property>
+    <property>
+        <name>index.pic.path</name>
+        <value>/home/instart/www/cw/ROOT/indexpic/</value>
+        <description></description>
+    </property>
+    <property>
+        <name>not.tuijian.log</name>
+        <value>/data/rumour/nottuijian.txt</value>
+        <description></description>
+    </property>
+    <property>
+        <name>adpics.dir</name>
+        <value>/data/rumour/adpics/</value>
+        <description></description>
+    </property>
+    <property>
+        <name>broadcast.path</name>
+        <value>/data/rumour/homecast.txt/</value>
+        <description></description>
+    </property>
+    
+</configuration>

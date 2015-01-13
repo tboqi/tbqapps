@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+    <bean id="collectResult" class="com.cc.cw.dm.dataAnalyze.CollectResult" />
+ 	<!--定义定时执行testQuarz 这个bean中的execute()方法-->
+    <bean id="collectTask"   class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+         <property name="targetObject">
+             <ref bean="collectResult" />  
+         </property>  
+         <property name="targetMethod">  
+             <value>execute</value>  
+         </property>  
+    </bean>  
+
+
+	<!--触发器的bean的设置，在这里我们设置了我们要触发的jobDetail是哪个。这里我们定义了要触发的jobDetail是helloworldTask，即触发器去触发哪个bean..并且我们还定义了触发的时间:每天5:17pm-->
+     <bean id="collect"  
+         class="org.springframework.scheduling.quartz.CronTriggerBean">  
+         <property name="jobDetail">  
+             <ref bean="collectTask" />  
+         </property>  
+         <property name="cronExpression">  
+             <!-- 每一分钟执行一次 -->  
+             <value>0 30 23 1/10L * ?</value>  
+         </property>  
+     </bean>  
+
+
+	<!--管理触发器的总设置,管理我们的触发器列表,可以在bean的list中放置多个触发器-->
+	<bean autowire="no" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+	  <property name="triggers">
+	    <list>
+	      <ref local="collect"/>
+ 	    </list>
+	  </property>
+	<property name="quartzProperties">
+        <props>
+           <prop key="org.quartz.threadPool.class">org.quartz.simpl.SimpleThreadPool</prop>
+           <prop key="org.quartz.threadPool.threadCount">2</prop>
+           <prop key="org.quartz.jobStore.class">
+             org.quartz.simpl.RAMJobStore
+           </prop>
+        </props>
+     </property>
+
+	</bean>
+
+
+</beans>

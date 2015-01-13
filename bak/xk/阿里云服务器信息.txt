@@ -1,0 +1,28 @@
+网页登陆
+http://www.aliyun.com/
+帐号：xikang@aliyun.com
+密码：BJ.163.com
+
+mysql主服务器
+外网ip：42.121.120.190
+内网：10.200.29.21
+mysql root密码：XiKangAli@)!@
+linux帐号：fanzhanao/123$%qweRT
+
+mysql从服务器：（当前只是用做备份，没有其他用途）
+外网ip：112.124.53.222
+内网：10.160.34.161
+mysql root密码：XiKangAli@)!@
+linux帐号：fanzhanao/123$%qweRT
+
+web主服务器：
+ 	42.121.120.19/10.200.29.209
+linux帐号：fanzhanao/123$%qweRT
+php代码在/www/slim_db
+nginx: /usr/local/nginx
+
+web从服务器：
+ 	42.121.120.190/10.200.29.21
+linux帐号：用你以前的帐号
+php代码在/www/slim_db
+通过19上nginx直接过来的，189上的nginx跑的是后台

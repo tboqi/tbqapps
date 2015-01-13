@@ -1,0 +1,10 @@
+# Gambas Form File 2.0
+
+{ Form Form
+  MoveScaled(0,0,50,50)
+  Text = ("")
+  { Button1 Button
+    MoveScaled(25,34,16,3)
+    Text = ("Button1")
+  }
+}

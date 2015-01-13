@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="controlUser">
+	<typeAlias alias="ControlUser" type="com.cc.cw.domain.ControlUser" />
+	<typeAlias alias="HashMap" type="java.util.HashMap" />
+	<typeAlias alias="Integer" type="java.lang.Integer" />
+	<typeAlias alias="String" type="java.lang.String" />
+
+	<resultMap id="controlUser" class="ControlUser">
+		<result property="id" column="id" />
+		<result property="account" column="account" />
+		<result property="password" column="password" />
+		<result property="level" column="level" />
+		<result property="createTime" column="createTime" />
+		<result property="role" column="role" />
+	</resultMap>
+
+	<insert id="insert" parameterClass="HashMap">
+		insert into controlUser (account, password, level, createTime,
+		role) values (#account#, #password#, #level#, #createTime#,
+		#role#)
+	</insert>
+	<update id="update" parameterClass="HashMap">
+		update controlUser set account=#account#, password=#password#,
+		level=#level#, createTime=#createTime#, role=#role# where
+		id=#id#
+	</update>
+	<delete id="delete" parameterClass="Integer">
+		delete from controlUser where id=#id#
+	</delete>
+
+	<select id="getUserByAccount" resultClass="ControlUser"
+		parameterClass="String">
+		select id, account, password, level, createTime, role from
+		controlUser where account=#account#
+	</select>
+	<select id="getUserById" resultClass="ControlUser"
+		parameterClass="Integer">
+		select id, account, password, level, createTime, role from
+		controlUser where id=#id#
+	</select>
+	<select id="getUserCount" resultClass="Integer">
+		select count(*) from controlUser
+	</select>
+	<select id="getUserList" parameterClass="HashMap" resultClass="ControlUser">
+		select id, account, password, level, createTime, role from
+		controlUser limit #start#, #num#
+	</select>
+</sqlMap>

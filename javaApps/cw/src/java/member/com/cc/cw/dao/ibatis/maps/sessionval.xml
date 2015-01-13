@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="sessionVal">
+  <cacheModel id="sessionValCache" type="LRU">
+    <flushInterval hours="2"/>		
+    <property name="size" value="1000"/>
+  </cacheModel>
+  
+  <typeAlias alias="SessionVal" type="com.cc.cw.domain.SessionVal"/>
+  <typeAlias alias="HashMap" type="java.util.HashMap"/>
+  
+  <resultMap id="sessionVal" class="SessionVal">   
+    <result property="id" column="Id"/>
+    <result property="memberId" column="MemberId"/>
+    <result property="hostId" column="HostId"/>
+    <result property="firstVisitTime" column="FirstVisitTime"/>
+	<result property="lastVisitTime" column="LastVisitTime"/>
+    <result property="fromIP" column="FromIP"/>
+    <result property="privilege" column="Privilege"/>
+  	<result property="state" column="State"/>
+  	
+  </resultMap>
+  
+  <!--获得member对象通过id-->
+  <select id="get" resultMap="sessionVal">
+    select * from sessionval where Id = #id#
+  </select>
+  
+  <select id="getByMemberId" resultMap="sessionVal">
+    select * from sessionval 
+    where MemberId = #memberId#
+  </select>
+  
+  <select id="getByHostId" resultMap="sessionVal">
+    select * from sessionval 
+    where HostId = #hostId#
+  </select>
+  
+  <select id="getIPs" resultClass="java.lang.Integer">
+  	select count(Id) from sessionval
+  	where HostId = #hostId#
+  </select>
+  
+  <select id="getMaxId" resultClass="java.lang.Integer">
+  	select max(Id) from sessionval
+  </select>
+  
+  <insert id="add">
+  	insert into sessionval (MemberId,HostId,FirstVisitTime,LastVisitTime,FromIP,Privilege,State) 
+  	values (#memberId#,#hostId#,#firstVisitTime#,#lastVisitTime#,#fromIP#,#privilege#,#state#)
+  	<selectKey keyProperty="id" resultClass="int">
+      select LAST_INSERT_ID() as value
+    </selectKey>
+  </insert>
+  
+  <update id="update">
+  	update sessionval
+  	set MemberId = #memberId#,
+  		LastVisitTime = #lastVisitTime#,
+  		Privilege = #privilege#,
+  		FromIP = #fromIP#,
+  		State = #state#
+  	where Id = #id#
+  </update>
+  
+  <update id="setMemberId">
+  	update sessionval
+  	set MemberId = #memberId#
+  	where HostId = #hostId#
+  </update>
+  
+  <update id="setState">
+  	update sessionval
+  	set State = #state#
+  	where HostId = #hostId#
+  </update>
+  
+  <update id="setVisitime">
+  	update sessionval
+  	set LastVisitTime = #time#
+  	where HostId = #hostId#
+  </update>
+  
+  <update id="incVotes">
+  	update sessionval
+  	set Privilege = Privilege + #votes#
+  	where HostId = #hostId#
+  </update>
+  
+  <update id="del">
+  	delete from sessionval
+  	where Id = #id#
+  </update>
+  
+  <select id="isTodayLogin" resultClass="java.lang.Integer">
+    <![CDATA[
+    select count(Id) from sessionval 
+    where FromIP = #ip# 
+    and 
+    FirstVisitTime between #begintime# and #endtime#
+  	]]>
+  </select>
+</sqlMap>

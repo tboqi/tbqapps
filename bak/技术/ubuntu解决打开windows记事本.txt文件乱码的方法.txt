@@ -1,0 +1,10 @@
+PS：输入gconf-editor即可，前面不需要加Sudo
+依次点开
+
+apps->gedit-2->preferences－＞encodings 中的auto-detected
+
+在双击弹出对话框中加入GB18030，GBK，GB2312,然后将GB18030,GB2312移到最上
+
+再次打开.txt文件，问题是不是解决了? 
+
+http://www.ubuntuhome.com/ubuntu-txt.html

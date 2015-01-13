@@ -1,0 +1,49 @@
+下载
+http://redis.io/download
+
+tar -zxvf redis-2.4.4.tar.gz
+$ cp -r redis-2.4.4 /usr/local/redis
+$ cd /usr/local/redis
+$ make
+$ make install
+# 编译好的文件将被复制到/usr/local/bin 下
+
+mkdir -p /usr/local/bin
+cp -p redis-server /usr/local/bin
+cp -p redis-benchmark /usr/local/bin
+cp -p redis-cli /usr/local/bin
+cp -p redis-check-dump /usr/local/bin
+cp -p redis-check-aof /usr/local/bin
+
+#redis-server
+#redis-server:Redis 服务器的 daemon 启动程序
+#redis-cli
+#redis-cli:Redis 命令行操作工具。当然,你也可以用 telnet 根据其纯文本协议来操作
+#redis-benchmark
+#redis-benchmark:Redis 性能测试工具,测试 Redis 在你的系统及你的配置下的读写性能
+$redis-benchmark -n 100000 –c 50
+#模拟同时由 50 个客户端发送 100000 个 SETs/GETs 查询
+#redis-check-aof
+redis-check-aof:更新日志检查
+#redis-check-dump
+#redis-check-dump:本地数据库检查
+
+配置
+sudo cp redis.conf /etc/redis.conf
+
+启动
+sudo redis-server /etc/redis.conf
+
+命令行访问
+redis-cli
+redis> set foo bar
+OK
+redis> get foo
+"bar"
+
+
+关闭
+$ redis-cli shutdown
+#关闭指定端口的 redis-server
+$redis-cli -p 6379 shutdown
+

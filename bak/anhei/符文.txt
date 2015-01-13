@@ -1,0 +1,186 @@
+1 6
+	Amn⑾+El⑴+Ith⑹+Tir⑶+Sol⑿ 荣耀Honor 5孔近战武器
+	El⑴+Sol⑿+Dol⒁+Lo(28) 刚毅Fortitude# 4孔武器/盔甲
+	Vex(26)+Hel⒂+El⑴+Eld⑵+Zod(33)+Eth⑸ 死亡呼吸Breath of the Dying 6孔武器
+	1 El (#1) + 1 碎裂宝石 + 低质量防具 = 普通质量同类型防具
+2 3
+	Vex(26)+Hel⒂+El⑴+Eld⑵+Zod(33)+Eth⑸ 死亡呼吸Breath of the Dying 6孔武器
+	1 Eld (#2) + 1 碎裂宝石 + 低质量武器 = 普通质量同类型武器
+3 10
+	8 + 3 + 7 + 12  合眼光
+	Amn⑾+El⑴+Ith⑹+Tir⑶+Sol⑿ 荣耀Honor 5孔近战武器
+	Ber(30)+Tir⑶+Um(22)+Mal(23)+Lum⒄ 野兽Beast 5孔斧头/权杖/铁锤
+	Mal(23)+Tir⑶  谨重Prudence* 2孔盔甲
+	Shael⒀+Um(22)+Tir⑶  新月Crescent Moon 3孔剑/斧头/长柄
+	Tir⑶+Ith⑹+Sol⑿+Ko⒅  和谐Harmony# 4孔远距离攻击武器
+4 n
+	Nef⑷+Lum⒄ 烟雾Smoke 2孔盔甲
+	Thul⑽+Io⒃+Nef⑷ 黑色Black 3孔棍棒/铁锤/钉头槌
+	4# 红宝石+重手套那种外观的+珠宝=橙色手套，有价值的属性2技能/20提速/xx
+5 6
+	Eth⑸+Lum⒄ 灿烂Splendor* 2孔盾牌
+	Eth⑸+Tir⑶+Lo(28)+Mal(23)+Ral⑻ 悔恨Grief# 5孔剑/斧头
+	Hel⒂+Ko⒅+Thul⑽+Eth⑸+Fal⒆	遵从Obedience# 5孔长柄
+	Ral⑻+Ohm(27)+Sur(29)+Eth⑸ 野蔷薇Bramble 4孔盔甲
+	Shael⒀+Eth⑸ 押韵Rhyme 2孔盾牌
+	Vex(26)+Hel⒂+El⑴+Eld⑵+Zod(33)+Eth⑸ 死亡呼吸Breath of the Dying 6孔武器
+6 3
+	Amn⑾+El⑴+Ith⑹+Tir⑶+Sol⑿ 荣耀Honor 5孔近战武器
+	Jah(31)+Ith⑹+Ber(30)	 谜团Enigma 3孔盔甲
+	Tir⑶+Ith⑹+Sol⑿+Ko⒅  和谐Harmony# 4孔远距离攻击武器
+7 10
+	7 + 10 + 9 + 11合精神
+	8 + 3 + 7 + 12  合眼光
+	Tal (#7) + 1 Thul (#10) + 1 完美黄宝石 + 基础盔甲 = 同类型的打孔盔甲
+	Tal (#7) + 1 Amn (#11) + 1 完美红宝石 + 基础盾牌 = 同类型的打孔盾牌
+	1 Tal (#7) + 1 Shael (#13) + 1 完美钻石 + 普通暗金防具 = 此暗金防具的优越版本
+8 10
+	8 + 3 + 7 + 12  合眼光
+	Amn⑾+Ral⑻+Mal(23)+Ist(24)+Ohm(27) 战争召唤Call To Arms 5孔武器
+	Ral⑻+Ohm(27)+Sur(29)+Eth⑸ 野蔷薇Bramble 4孔盔甲
+	8# 紫宝石+魔法项链+珠宝=橙色项链，有价值的属性2技能/10以上fcr/xx，  用90级以上人物找90级以上项链合成
+	1 Ral (#8) + 防具 = 完全修复此防具
+	1 Ral (#8) + 1 裂开宝石 (任意类型) + 防具 = 完全修复并为装备重新充入魔法
+	防具 防火
+	 Ral (#8) + 1 Thul (#10) + 1 完美蓝宝石 + 基础头盔 = 同类型的打孔头盔
+	 Ral(8) + 1 Amn(11) + 1 完美紫宝石 + 基础武器 = 同类型的打孔武器
+	 1 Ral (#8) + 1 Sol (#12) + 1 完美绿宝石 + 普通暗金武器 = 此暗金武器的优越版本
+	 1 Ral (#8) + 1 Thul (#10) + 1 完美紫宝石 + 普通亮金防具 = 优越亮金防具升级装备类型
+9 10
+	7 + 10 + 9 + 11合精神
+	9#紫宝石+磨皮手套那种外观的+珠宝=ek手套，有价值的属性2标枪/20提速，或者15力量，15敏捷，50+魔法，扛火抗电等等
+	Hit Power类 合成方法：蓝色魔法锁链手套/重型手镯/吸血鬼手套 + Ort(9#) + 完美蓝宝石 + 魔法珠宝
+	1 Ort (#9) + 武器 = 完全修复此武器
+	1 Ort (#9) + 1 碎裂宝石 (任意类型) + 武器 = 完全修复并为装备重新充入魔法
+	1 Ort (#9) + 1 Amn (#11) + 1 完美蓝宝石 + 普通亮金武器 = 优越亮金武器升级装备类型
+10 10
+	7 + 10 + 9 + 11合精神
+	Hel⒂+Ko⒅+Thul⑽+Eth⑸+Fal⒆	遵从Obedience# 5孔长柄
+	Ko⒅+Vex(26)+Pul(21)+Thul⑽  橡树之心Heart of the Oak 4孔连枷类/双手法杖
+	Shael⒀+Thul⑽+Lem⒇ 背信Treaceery& 3孔盔甲
+	Shael⒀+Um(22)+Thul⑽  强制Duress* 3孔盔甲
+	Thul⑽+Io⒃+Nef⑷ 黑色Black 3孔棍棒/铁锤/钉头槌
+	10+绿宝石+项链+珠宝，有价值属性，2skill/10格挡/抗性等等
+	10#紫宝石+飞龙皮靴那种外观的+珠宝=魔法鞋子，有价值的属性frw/fhr/海量魔法/扛火抗电等等
+	合成方式10+绿宝石+项链+珠宝，有价值属性，2skill/10格挡/抗性等等
+	Tal (#7) + 1 Thul (#10) + 1 完美黄宝石 + 基础盔甲 = 同类型的打孔盔甲
+	 Ral (#8) + 1 Thul (#10) + 1 完美蓝宝石 + 基础头盔 = 同类型的打孔头盔
+	 1 Ral (#8) + 1 Thul (#10) + 1 完美紫宝石 + 普通亮金防具 = 优越亮金防具升级装备类型
+11 n
+	7 + 10 + 9 + 11合精神
+	Amn⑾+El⑴+Ith⑹+Tir⑶+Sol⑿ 荣耀Honor 5孔近战武器
+	Amn⑾+Ral⑻+Mal(23)+Ist(24)+Ohm(27) 战争召唤Call To Arms 5孔武器
+	Amn⑾+Lem⒇+Ko⒅ 执法者Lawbringer# 3孔剑/铁锤/权杖
+	Blood类 合成方法：蓝色魔法项链 + Amn(11#) + 完美红宝石 + 魔法珠宝 
+	镶武器每次命中偷取 7% 生命
+	Tal (#7) + 1 Amn (#11) + 1 完美红宝石 + 基础盾牌 = 同类型的打孔盾牌
+	Ral(8) + 1 Amn(11) + 1 完美紫宝石 + 基础武器 = 同类型的打孔武器
+	1 Ort (#9) + 1 Amn (#11) + 1 完美蓝宝石 + 普通亮金武器 = 优越亮金武器升级装备类型
+12 n
+	8 + 3 + 7 + 12  合眼光
+	Amn⑾+El⑴+Ith⑹+Tir⑶+Sol⑿ 荣耀Honor 5孔近战武器
+	El⑴+Sol⑿+Dol⒁+Lo(28) 刚毅Fortitude# 4孔武器/盔甲
+	Tir⑶+Ith⑹+Sol⑿+Ko⒅  和谐Harmony# 4孔远距离攻击武器
+	蓝色魔法戒指 + Sol(12#) + 完美红宝石 + 魔法珠宝
+	1 Ral (#8) + 1 Sol (#12) + 1 完美绿宝石 + 普通暗金武器 = 此暗金武器的优越版本
+13 10
+	Shael⒀+Um(22)+Pul(21)+Lum⒄ 石块Stone 4孔盔甲
+	Shael⒀+Eth⑸ 押韵Rhyme 2孔盾牌
+	Shael⒀+Thul⑽+Lem⒇ 背信Treaceery& 3孔盔甲
+	Shael⒀+Um(22)+Thul⑽  强制Duress* 3孔盔甲
+	Shael⒀+Um(22)+Tir⑶  新月Crescent Moon 3孔剑/斧头/长柄
+	镶武器提速
+	1 Tal (#7) + 1 Shael (#13) + 1 完美钻石 + 普通暗金防具 = 此暗金防具的优越版本
+14 3
+	Dol⒁+Io⒃ 白色White 2孔手杖(死灵法师专用)
+	El⑴+Sol⑿+Dol⒁+Lo(28) 刚毅Fortitude# 4孔武器/盔甲
+15 7
+	Hel⒂+Ko⒅+Thul⑽+Eth⑸+Fal⒆	遵从Obedience# 5孔长柄
+	Vex(26)+Hel⒂+El⑴+Eld⑵+Zod(33)+Eth⑸ 死亡呼吸Breath of the Dying 6孔武器
+	降需求 武器-20% 防具-15
+	1 Hel (#15) + 回城卷 + 任意有孔装备 = 去掉已镶嵌的宝石
+16 5
+	Dol⒁+Io⒃ 白色White 2孔手杖(死灵法师专用)
+	Io⒃+Jah(31)+Pul(21)	 梦境Dream# 3孔头盔/盾牌
+	Lem⒇+Ist(24)+Io⒃  迪勒瑞姆Delirium 3孔头盔
+	Thul⑽+Io⒃+Nef⑷ 黑色Black 3孔棍棒/铁锤/钉头槌
+17 6
+	Shael⒀+Um(22)+Pul(21)+Lum⒄ 石块Stone 4孔盔甲
+	Ber(30)+Tir⑶+Um(22)+Mal(23)+Lum⒄ 野兽Beast 5孔斧头/权杖/铁锤
+	Nef⑷+Lum⒄ 烟雾Smoke 2孔盔甲
+	Eth⑸+Lum⒄ 灿烂Splendor* 2孔盾牌
+	1 Lum (#17) + 1 Pul (#21) + 1 完美绿宝石 + 优越暗金武器 = 此暗金武器的精华版本 (仅限天梯玩家)
+18 9
+	Amn⑾+Lem⒇+Ko⒅ 执法者Lawbringer# 3孔剑/铁锤/权杖
+	Hel⒂+Ko⒅+Thul⑽+Eth⑸+Fal⒆	遵从Obedience# 5孔长柄
+	Ko⒅+Ko⒅+Mal(23) 圣堂Sanctuary 3孔盾牌
+	Ko⒅+Vex(26)+Pul(21)+Thul⑽  橡树之心Heart of the Oak 4孔连枷类/双手法杖
+	Tir⑶+Ith⑹+Sol⑿+Ko⒅  和谐Harmony# 4孔远距离攻击武器
+	1 Ko (#18) + 1 Lem (#20) + 1 完美钻石 + 优越暗金防具 = 此暗金防具的精华版本 (仅限天梯玩家)
+	1 Ko (#18) + 1 Pul (#21) + 1 完美紫宝石 + 优越亮金防具 = 精华亮金防具
+19 6
+	Fal⒆+Ohm(27)+Um(22) 混沌Chaos 3孔爪
+	Hel⒂+Ko⒅+Thul⑽+Eth⑸+Fal⒆	遵从Obedience# 5孔长柄
+	Mal(23)+Um(22)+Gul(25)+Fal⒆ 弑王者Kingslayer 4孔剑/斧头
+	1 Fal (#19) + 1 Um (#22) + 1 完美蓝宝石 + 优越亮金武器 = 精华亮金武器
+20 9
+	Shael⒀+Thul⑽+Lem⒇ 背信Treaceery& 3孔盔甲
+	Amn⑾+Lem⒇+Ko⒅ 执法者Lawbringer# 3孔剑/铁锤/权杖
+	Lem⒇+Ist(24)+Io⒃  迪勒瑞姆Delirium 3孔头盔
+	20#打钱必备，基本上每个打钱bar都需要10来个这东西
+	1 Ko (#18) + 1 Lem (#20) + 1 完美钻石 + 优越暗金防具 = 此暗金防具的精华版本 (仅限天梯玩家)
+21
+	Shael⒀+Um(22)+Pul(21)+Lum⒄ 石块Stone 4孔盔甲
+	Io⒃+Jah(31)+Pul(21)	 梦境Dream# 3孔头盔/盾牌
+	Ko⒅+Vex(26)+Pul(21)+Thul⑽  橡树之心Heart of the Oak 4孔连枷类/双手法杖
+	1 Lum (#17) + 1 Pul (#21) + 1 完美绿宝石 + 优越暗金武器 = 此暗金武器的精华版本 (仅限天梯玩家)
+	1 Ko (#18) + 1 Pul (#21) + 1 完美紫宝石 + 优越亮金防具 = 精华亮金防具
+22
+	Shael⒀+Um(22)+Pul(21)+Lum⒄ 石块Stone 4孔盔甲
+	Ber(30)+Tir⑶+Um(22)+Mal(23)+Lum⒄ 野兽Beast 5孔斧头/权杖/铁锤
+	Fal⒆+Ohm(27)+Um(22) 混沌Chaos 3孔爪
+	Mal(23)+Um(22)+Gul(25)+Fal⒆ 弑王者Kingslayer 4孔剑/斧头
+	Shael⒀+Um(22)+Thul⑽  强制Duress* 3孔盔甲
+	Shael⒀+Um(22)+Tir⑶  新月Crescent Moon 3孔剑/斧头/长柄
+	1 Fal (#19) + 1 Um (#22) + 1 完美蓝宝石 + 优越亮金武器 = 精华亮金武器
+23
+	Amn⑾+Ral⑻+Mal(23)+Ist(24)+Ohm(27) 战争召唤Call To Arms 5孔武器
+	Ber(30)+Mal(23)+Ber(30)+Ist(24) 无限Infinity# 4孔长柄
+	Ber(30)+Tir⑶+Um(22)+Mal(23)+Lum⒄ 野兽Beast 5孔斧头/权杖/铁锤
+	Jah(31)+Mal(23)+Jah(31)+Sur(29)+Jah(31)+Ber(30) 最后希望Last Wish# 6孔剑/锤子/斧头
+	Ko⒅+Ko⒅+Mal(23) 圣堂Sanctuary 3孔盾牌
+	Mal(23)+Tir⑶  谨重Prudence* 2孔盔甲
+	Mal(23)+Um(22)+Gul(25)+Fal⒆ 弑王者Kingslayer 4孔剑/斧头
+24
+	Amn⑾+Ral⑻+Mal(23)+Ist(24)+Ohm(27) 战争召唤Call To Arms 5孔武器
+	Ber(30)+Mal(23)+Ber(30)+Ist(24) 无限Infinity# 4孔长柄
+	Lem⒇+Ist(24)+Io⒃  迪勒瑞姆Delirium 3孔头盔
+25
+	Mal(23)+Um(22)+Gul(25)+Fal⒆ 弑王者Kingslayer 4孔剑/斧头
+26
+	Ko⒅+Vex(26)+Pul(21)+Thul⑽  橡树之心Heart of the Oak 4孔连枷类/双手法杖
+	Vex(26)+Hel⒂+El⑴+Eld⑵+Zod(33)+Eth⑸ 死亡呼吸Breath of the Dying 6孔武器
+	Vex(26)+Vex(26)+Lo(28)+Jah(31) 凤凰Phoenix# 4孔武器/盾牌
+27
+	Amn⑾+Ral⑻+Mal(23)+Ist(24)+Ohm(27) 战争召唤Call To Arms 5孔武器
+	Fal⒆+Ohm(27)+Um(22) 混沌Chaos 3孔爪
+	Ral⑻+Ohm(27)+Sur(29)+Eth⑸ 野蔷薇Bramble 4孔盔甲
+28
+	El⑴+Sol⑿+Dol⒁+Lo(28) 刚毅Fortitude# 4孔武器/盔甲
+	Vex(26)+Vex(26)+Lo(28)+Jah(31) 凤凰Phoenix# 4孔武器/盾牌
+29
+	Jah(31)+Mal(23)+Jah(31)+Sur(29)+Jah(31)+Ber(30) 最后希望Last Wish# 6孔剑/锤子/斧头
+	Ral⑻+Ohm(27)+Sur(29)+Eth⑸ 野蔷薇Bramble 4孔盔甲
+30
+	Ber(30)+Mal(23)+Ber(30)+Ist(24) 无限Infinity# 4孔长柄
+	Ber(30)+Tir⑶+Um(22)+Mal(23)+Lum⒄ 野兽Beast 5孔斧头/权杖/铁锤
+	Jah(31)+Ith⑹+Ber(30)	 谜团Enigma 3孔盔甲
+	Jah(31)+Mal(23)+Jah(31)+Sur(29)+Jah(31)+Ber(30) 最后希望Last Wish# 6孔剑/锤子/斧头
+31
+	Io⒃+Jah(31)+Pul(21)	 梦境Dream# 3孔头盔/盾牌
+	Jah(31)+Ith⑹+Ber(30)	 谜团Enigma 3孔盔甲
+	Jah(31)+Mal(23)+Jah(31)+Sur(29)+Jah(31)+Ber(30) 最后希望Last Wish# 6孔剑/锤子/斧头
+	Ohm(27)+Jah(31)+Lem⒇+Eld⑵  信心Faith# 4孔远距离攻击武器
+	Vex(26)+Vex(26)+Lo(28)+Jah(31) 凤凰Phoenix# 4孔武器/盾牌
+33
+	Vex(26)+Hel⒂+El⑴+Eld⑵+Zod(33)+Eth⑸ 死亡呼吸Breath of the Dying 6孔武器

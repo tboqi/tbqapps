@@ -1,0 +1,13 @@
+企业版：
+ssh链接 192.168.7.21
+tangboqi/tangboqi
+
+su
+024*acorn+252
+024*acorn+253
+
+
+企业版测试服务器
+192.168.197.249
+liu-di/neusoft
+su/soc.1234 

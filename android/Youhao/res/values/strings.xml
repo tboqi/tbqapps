@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">油耗记录</string>
+    <string name="action_settings">设置</string>
+    
+    <string name="jiayouliang">加油量/L</string>
+    <string name="zonglicheng">当前总里程/km</string>
+    
+
+</resources>

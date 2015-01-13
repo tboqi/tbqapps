@@ -1,0 +1,31 @@
+# Gambas Form File 2.0
+
+{ Form Form
+  MoveScaled(0,0,44,27)
+  Text = ("\xE6\x95\xB0\xE6\x8D\xAE\xE5\xBA\x93\xE7\x99\xBB\xE5\xBD\x95")
+  { Label1 Label
+    MoveScaled(7,5,4,3)
+    Text = ("\xE5\xB8\x90\xE5\x8F\xB7")
+  }
+  { account TextBox
+    MoveScaled(13,5,24,3)
+    Text = ("")
+  }
+  { Label2 Label
+    MoveScaled(7,10,4,3)
+    Text = ("\xE5\xAF\x86\xE7\xA0\x81")
+  }
+  { password TextBox
+    MoveScaled(13,10,24,3)
+    Text = ("")
+    Password = True
+  }
+  { OK Button
+    MoveScaled(5,19,16,3)
+    Text = ("\xE7\xA1\xAE\xE5\xAE\x9A")
+  }
+  { Close Button
+    MoveScaled(23,19,16,3)
+    Text = ("\xE5\x85\xB3\xE9\x97\xAD")
+  }
+}

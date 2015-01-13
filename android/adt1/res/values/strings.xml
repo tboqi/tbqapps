@@ -1,0 +1,11 @@
+<resources>
+
+    <string name="app_name">Adt1</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">MainActivity</string>
+    <color name="mycolor">#f5f5f5</color>
+    <string name="celsius">to Celsius</string>
+	<string name="fahrenheit">to Fahrenheit</string>
+	<string name="calc">Calculate</string>
+</resources>

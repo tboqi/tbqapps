@@ -1,0 +1,1464 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.dtd">
+
+<xwork>
+	<include file="webwork-default.xml" />
+	<package name="default" extends="webwork-default">
+		<!-- self defined interceptors. -->
+		<interceptors>
+			<interceptor name="authentication"
+				class="com.cc.cw.web.interceptor.AuthenticationInterceptor" />
+			<interceptor name="createUUID"
+				class="com.cc.cw.web.interceptor.CreateUUIDInterceptor" />
+			<interceptor name="clickLog"
+				class="com.cc.cw.web.interceptor.ClickLogInterceptor" />
+			<interceptor name="addCookie"
+				class="com.cc.cw.web.interceptor.NewCookieInterceptor" />
+			<interceptor name="cooperate"
+				class="com.cc.cw.web.interceptor.CooperateInterceptor" />
+		</interceptors>
+
+		<!-- default intecerptors -->
+		<default-interceptor-ref name="basicStack" />
+
+		<!-- global results -->
+		<global-results>
+			<!--<result name="login" type="freemarker">/ftl/myindex.ftl</result>
+				<result name="error" type="freemarker">/home.action</result>-->
+			<result name="login" type="redirect">/index.html</result>
+			<result name="error" type="redirect">/index.html</result>
+			<result name="cwException" type="freemarker">
+				/ftl/error.ftl
+			</result>
+		</global-results>
+
+		<!-- 全局异常处理 
+			<global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception" result="cwException"/>
+			</global-exception-mappings>	-->
+
+	</package>
+
+	<package name="common" extends="default" namespace="/">
+		<action name="getHttpResult" class="com.cc.cw.web.action.common.GetHttpReslutAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="createSession" />
+			<interceptor-ref name="addCookie" />
+			<result name="success" type="freemarker">
+				/ftl/getHttpResult.ftl
+			</result>
+		</action>
+		<action name="addHttpArticle" class="com.cc.cw.web.action.common.AddHttpArticleAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="createSession" />
+			<interceptor-ref name="addCookie" />
+
+			<result name="success" type="freemarker">
+				/ftl/newarticle.ftl
+			</result>
+			<result name="login">
+				/index.html
+			</result>
+		</action>
+		<!-- 首页 -->
+		<action name="home"
+			class="com.cc.cw.web.action.common.HomeAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="createSession" />
+			<interceptor-ref name="addCookie" />
+
+			<result name="success" type="freemarker">
+				/ftl/myindex.ftl
+			</result>
+		</action>
+
+		<!-- 登录 -->
+		<action name="login"
+			class="com.cc.cw.web.action.common.LoginAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="validationWorkflowStack" />
+			<interceptor-ref name="addCookie" />
+			<result name="input" type="redirect">${inputUrl}</result>
+			<result name="success" type="redirect">${inputUrl}</result>
+			<result name="returnRequestPage" type="redirect">
+				${inputUrl}
+			</result>
+			<result name="error" type="freemarker">/ftl/errorLogin.ftl</result>
+		</action>
+
+		<!-- 发送邮件 -->
+		<action name="email"
+			class="com.cc.cw.web.action.common.EmailAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<result name="success" type="freemarker">
+				/ftl/info.ftl
+			</result>
+		</action>
+
+		<!--忘记密码-->
+		<action name="findpassword"
+			class="com.cc.cw.web.action.common.FindPasswordAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<result name="input" type="freemarker">
+				/ftl/findpassword.ftl
+			</result>
+			<result name="success" type="freemarker">
+				/ftl/info.ftl
+			</result>
+		</action>
+
+		<!-- 标签 -->
+		<action name="tags"
+			class="com.cc.cw.web.action.common.TagsAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="addCookie" />
+			<result name="success" type="freemarker">
+				/ftl/tags.ftl
+			</result>
+		</action>
+
+		<!-- 注册 -->
+		<action name="regist"
+			class="com.cc.cw.web.action.common.RegistAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="validationWorkflowStack" />
+			<result name="success" type="freemarker">
+				/ftl/info.ftl
+			</result>
+			<result name="input" type="freemarker">
+				/ftl/regist.ftl
+			</result>
+		</action>
+
+		<!-- 用户激活 -->
+		<action name="affirm"
+			class="com.cc.cw.web.action.common.MemberAffirmAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<result name="info" type="freemarker">/ftl/info.ftl</result>
+		</action>
+
+		<!-- 频道文章列表 -->
+		<action name="channelarticlelist"
+			class="com.cc.cw.web.action.common.ChannelListAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="addCookie" />
+			<result name="success" type="freemarker">
+				/ftl/channel_article_list.ftl
+			</result>
+		</action>
+
+		<!-- 最新文章列表 -->
+		<action name="newslist"
+			class="com.cc.cw.web.action.common.ListAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="addCookie" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+
+			<result name="page" type="freemarker">${path}</result>
+		</action>
+
+		<!-- 最热文章列表 -->
+		<action name="hotslist"
+			class="com.cc.cw.web.action.common.ListAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="addCookie" />
+			<result name="page" type="freemarker">${path}</result>
+		</action>
+
+		<!-- 本月最热文章列表 -->
+		<action name="monthlist"
+			class="com.cc.cw.web.action.common.ListAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="addCookie" />
+			<result name="page" type="freemarker">${path}</result>
+		</action>
+
+		<!-- 本周最热文章列表 -->
+		<action name="weeklist"
+			class="com.cc.cw.web.action.common.WeekListAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="addCookie" />
+			<result name="success" type="freemarker">
+				/ftl/week_article_list.ftl
+			</result>
+		</action>
+
+		<!-- 精彩回顾文章列表 -->
+		<action name="reviewlist"
+			class="com.cc.cw.web.action.common.ListAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="addCookie" />
+			<result name="page" type="freemarker">${path}</result>
+		</action>
+
+		<!-- 频道列表 -->
+		<action name="channellist"
+			class="com.cc.cw.web.action.common.ListAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="addCookie" />
+			<result name="page" type="freemarker">${path}</result>
+		</action>
+		<action name="vote4channel" method="vote4Channel"
+			class="com.cc.cw.web.action.common.VoteAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="addCookie" />
+			<result name="success" type="freemarker">/ftl/vote4channelresult.ftl</result>
+		</action>
+
+		<!-- 推荐文章列表 -->
+		<action name="favoritearticles"
+			class="com.cc.cw.web.action.common.ListAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="addCookie" />
+			<result name="page" type="freemarker">${path}</result>
+		</action>
+
+		<!-- 反对有理,支持到底文章列表 -->
+		<action name="againstlist"
+			class="com.cc.cw.web.action.common.AgainstListAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="addCookie" />
+			<result name="success" type="freemarker">
+				/ftl/againstlist.ftl
+			</result>
+			<result name="support" type="freemarker">
+				/ftl/supportlist.ftl
+			</result>
+		</action>
+
+		<!-- 添加文章到用户频道 -->
+		<action name="addtochannel"
+			class="com.cc.cw.web.action.common.AddArticleChannelAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="authentication" />
+			<interceptor-ref name="addCookie" />
+
+			<result name="show" type="freemarker">
+				/ftl/mychannellist.ftl
+			</result>
+			<result name="info" type="freemarker">/ftl/info.ftl</result>
+			<result name="rumour" type="redirect">
+				/r/${articleId}
+			</result>
+			<result name="supportlist" type="redirect">
+				/supportlist
+			</result>
+			<result name="againstlist" type="redirect">
+				/againstlist
+			</result>
+			<result name="newlist" type="redirect">
+				/newslist.action
+			</result>
+			<result name="favoritelist" type="redirect">
+				/favoritearticles.action
+			</result>
+			<result name="mychannels" type="redirect">
+				/user/mychannels
+			</result>
+			<result name="usermanage" type="redirect">
+				/user/usermanage
+			</result>
+			<result name="colllist" type="redirect">
+				/user/mycollectionarticles
+			</result>
+			<result name="publist" type="redirect">
+				/user/mypublisharticles
+			</result>
+			<result name="channelarticles" type="redirect">
+				/user/mychannelarticles?channelId=${chlId}
+			</result>
+		</action>
+
+		<action name="about" method="about"
+			class="com.cc.cw.web.action.common.CommonAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="addCookie" />
+			<result name="success" type="freemarker">
+				/ftl/about.ftl
+			</result>
+		</action>
+
+		<action name="declare" method="declare"
+			class="com.cc.cw.web.action.common.CommonAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="addCookie" />
+			<result name="success" type="freemarker">
+				/ftl/declare.ftl
+			</result>
+		</action>
+
+		<action name="service" method="service"
+			class="com.cc.cw.web.action.common.CommonAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="addCookie" />
+			<result name="success" type="freemarker">
+				/ftl/service.ftl
+			</result>
+		</action>
+
+		<action name="friendlinks" method="friendlinks"
+			class="com.cc.cw.web.FriendLinkAction">
+			<result name="input" type="freemarker">
+				/ftl/link/addLink.ftl
+			</result>
+			<result name="inputsucc" type="freemarker">
+				/ftl/link/addLinkSuccess.ftl
+			</result>
+			<result name="success" type="freemarker">
+				/ftl/friendlinks.ftl
+			</result>
+		</action>
+		<action name="help" method="help"
+			class="com.cc.cw.web.action.common.CommonAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="addCookie" />
+			<result name="success" type="freemarker">
+				/ftl/help.ftl
+			</result>
+		</action>
+
+		<action name="output"
+			class="com.cc.cw.web.action.common.OutputArticleAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+
+			<result name="success" type="freemarker">
+				/ftl/output.ftl
+			</result>
+		</action>
+
+		<action name="writeIp" method="writeIp"
+			class="com.cc.cw.web.action.common.OutputArticleAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="cooperate" />
+
+			<result name="success" type="redirect">
+				${base}/r/${articleId}
+			</result>
+		</action>
+
+	</package>
+
+	<!-- 文章管理 -->
+	<package name="rumour" extends="default" namespace="/rumour">
+		<action name="rumour"
+			class="com.cc.cw.web.action.common.SimpleArticleAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="clickLog" />
+			<interceptor-ref name="addCookie" />
+
+			<!-- 文章信息页面 -->
+			<result name="success" type="freemarker">
+				/ftl/rumour.ftl
+			</result>
+		</action>
+
+		<action name="newrumour" method="toAdd"
+			class="com.cc.cw.web.action.common.SimpleArticleAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="authentication" />
+			<interceptor-ref name="validationWorkflowStack" />
+			<interceptor-ref name="addCookie" />
+
+			<!-- 发表文章页面 -->
+			<result name="input" type="freemarker">
+				/ftl/newarticle.ftl
+			</result>
+			<!-- 执行rumour.action的execute()方法 -->
+			<result name="rumour" type="redirect">
+				${base}/r/${articleId}
+			</result>
+			<!-- 频道文章页面 -->
+			<result name="list" type="freemarker">
+				/ftl/list_article.ftl
+			</result>
+			<!-- 错误页面 -->
+			<result name="error" type="freemarker">
+				/ftl/error.ftl
+			</result>
+		</action>
+
+		<action name="addrumour"
+			class="com.cc.cw.web.action.common.SimpleArticleAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="authentication" />
+			<interceptor-ref name="token-session" />
+			<interceptor-ref name="validationWorkflowStack" />
+			<interceptor-ref name="addCookie" />
+
+			<!-- 发表文章页面 -->
+			<result name="input" type="freemarker">
+				/ftl/newarticle.ftl
+			</result>
+			<!-- 执行rumour.action的execute()方法 -->
+			<result name="rumour" type="redirect">
+				${base}/r/${articleId}
+			</result>
+			<!-- 频道文章页面 -->
+			<result name="list" type="freemarker">
+				/ftl/list_article.ftl
+			</result>
+			<!-- 错误页面 -->
+			<result name="error" type="freemarker">
+				/ftl/error.ftl
+			</result>
+		</action>
+	</package>
+
+	<!-- 用户管理 -->
+	<package name="usermanage" extends="default" namespace="/user">
+
+		<action name="viewuser"
+			class="com.cc.cw.web.action.common.UserManageAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="addCookie" />
+
+			<result name="view" type="freemarker">
+				/ftl/viewuser.ftl
+			</result>
+			<result name="success" type="freemarker">
+				/ftl/usermanage.ftl
+			</result>
+		</action>
+		<action name="usermanage"
+			class="com.cc.cw.web.action.common.UserManageAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="authentication" />
+			<interceptor-ref name="addCookie" />
+
+			<!-- 用户信息页面 -->
+
+			<!-- 用户发表文章统计页面 -->
+			<!-- 短消息页面 -->
+			<!-- 回复短消息页面 -->
+			<!-- 转到显示所有短消息页面 -->
+			<result name="success" type="freemarker">
+				/ftl/usermanage.ftl
+			</result>
+			<result name="view" type="freemarker">
+				/ftl/viewuser.ftl
+			</result>
+			<result name="ariticleManage" type="freemarker">
+				/ftl/article_manage.ftl
+			</result>
+			<result name="messageManage" type="freemarker">
+				/ftl/message_manage.ftl
+			</result>
+			<result name="newmessage" type="freemarker">
+				/ftl/newmessage.ftl
+			</result>
+			<result name="showAllMessage" type="redirect">
+				${base}/user/usermanage!message?show=all
+			</result>
+			<result name="channelManage" type="freemarker">
+				/ftl/channel_manage.ftl
+			</result>
+			<result name="end" type="freemarker">
+				/ftl/endarticle.ftl
+			</result>
+			<!-- 频道文章页面 -->
+			<result name="list" type="freemarker">
+				/ftl/list_article.ftl
+			</result>
+			<result name="input" type="freemarker">
+				/ftl/manage_userinfo.ftl
+			</result>
+
+		</action>
+
+		<action name="mychannels"
+			class="com.cc.cw.web.action.common.MyChannelAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="authentication" />
+			<interceptor-ref name="addCookie" />
+
+			<result name="success" type="freemarker">
+				/ftl/mychannels.ftl
+			</result>
+		</action>
+
+		<!--我收藏的文章-->
+		<action name="mycollectionarticles"
+			method="myCollectionArticles"
+			class="com.cc.cw.web.action.common.MyArticlesAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="addCookie" />
+
+			<result name="success" type="freemarker">
+				/ftl/mycollectarticles.ftl
+			</result>
+		</action>
+
+		<!--我发表的文章-->
+		<action name="mypublisharticles" method="myPublishArticles"
+			class="com.cc.cw.web.action.common.MyArticlesAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="addCookie" />
+
+			<result name="success" type="freemarker">
+				/ftl/mypublisharticles.ftl
+			</result>
+		</action>
+
+		<!--我发起的投票-->
+		<action name="myvotearticles" method="myVoteArticles"
+			class="com.cc.cw.web.action.common.MyArticlesAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="addCookie" />
+
+			<result name="success" type="freemarker">
+				/ftl/myvotearticles.ftl
+			</result>
+		</action>
+
+		<!-- 删除我收藏过的文章 -->
+		<action name="removeCollection" method="removeCollection"
+			class="com.cc.cw.web.action.common.UserManageAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="authentication" />
+
+			<result name="success" type="redirect">
+				/user/usermanage
+			</result>
+		</action>
+
+		<!-- 在“我的频道”中删除我收藏过的文章 -->
+		<action name="removeInMyChannel" method="removeCollection"
+			class="com.cc.cw.web.action.common.UserManageAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="authentication" />
+			<interceptor-ref name="addCookie" />
+
+			<result name="success" type="redirect">
+				/user/mychannelarticles?channelId=${channelId}
+			</result>
+		</action>
+
+		<!-- 在“我的频道”中删除我收藏过的文章 -->
+		<action name="removeInMyChannelManage" method="removeCollection"
+			class="com.cc.cw.web.action.common.UserManageAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="authentication" />
+			<interceptor-ref name="addCookie" />
+
+			<result name="success" type="redirect">
+				/user/mychannels
+			</result>
+		</action>
+
+		<!-- 我的频道里面的more文章列表 -->
+		<action name="mychannelarticles"
+			class="com.cc.cw.web.action.common.MyChannelArticlesAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="authentication" />
+			<interceptor-ref name="addCookie" />
+
+			<result name="success" type="freemarker">
+				/ftl/mychannelarticles.ftl
+			</result>
+		</action>
+	</package>
+
+	<!-- 投票 -->
+	<package name="vote" extends="default" namespace="/vote">
+		<action name="vote"
+			class="com.cc.cw.web.action.common.VoteAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="addCookie" />
+
+			<!-- 转向rumour.action -->
+			<result name="input" type="chain">
+				<param name="actionName">rumour</param>
+				<param name="namespace">/rumour</param>
+			</result>
+			<result name="msg" type="freemarker">
+				/ftl/privilegeMSG.ftl
+			</result>
+			<!-- 错误页面 -->
+			<result name="error" type="freemarker">
+				/ftl/error.ftl
+			</result>
+			<result name="end" type="chain">
+				<param name="actionName">usermanage</param>
+				<param name="namespace">/user</param>
+			</result>
+		</action>
+
+		<action name="endvote" method="endVote"
+			class="com.cc.cw.web.action.common.VoteAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="addCookie" />
+
+			<!-- 错误页面 -->
+			<result name="error" type="freemarker">
+				/ftl/error.ftl
+			</result>
+			<result name="end" type="chain">
+				<param name="actionName">myvotearticles</param>
+				<param name="namespace">/user</param>
+			</result>
+		</action>
+	</package>
+
+	<!-- 搜索 -->
+	<package name="search" extends="default" namespace="/search">
+		<action name="search" method="search"
+			class="com.cc.cw.web.action.common.SearchAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="addCookie" />
+
+			<result name="success" type="freemarker">
+				/ftl/search.ftl
+			</result>
+			<result name="article" type="redirect">
+				/search/searchArticle?pn=${pn}&amp;qs=${qs}
+			</result>
+			<result name="channel" type="redirect">
+				/search/searchChannel?pn=${pn}&amp;qs=${qs}
+			</result>
+			<result name="label" type="redirect">
+				/search/searchLabel?pn=${pn}&amp;qs=${qs}
+			</result>
+			<result name="remark" type="redirect">
+				/search/searchRemark?pn=${pn}&amp;qs=${qs}
+			</result>
+			<result name="error" type="redirect">/index.html</result>
+		</action>
+
+		<action name="searchArticle"
+			class="com.cc.cw.web.action.common.SearchArticleAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="addCookie" />
+
+			<result name="success" type="freemarker">
+				/ftl/searcharticle.ftl
+			</result>
+		</action>
+
+		<action name="searchChannel"
+			class="com.cc.cw.web.action.common.SearchChannelAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="addCookie" />
+
+			<result name="success" type="freemarker">
+				/ftl/searchchannel.ftl
+			</result>
+		</action>
+
+		<action name="searchLabel"
+			class="com.cc.cw.web.action.common.SearchLabelAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="addCookie" />
+
+			<result name="success" type="freemarker">
+				/ftl/searcharticle.ftl
+			</result>
+		</action>
+
+		<action name="searchRemark"
+			class="com.cc.cw.web.action.common.SearchRemarkAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="addCookie" />
+
+			<result name="success" type="freemarker">
+				/ftl/searchremark.ftl
+			</result>
+		</action>
+	</package>
+
+	<!-- 频道申请 -->
+	<package name="channelapply" extends="default"
+		namespace="/channelapply">
+		<action name="channelapply"
+			class="com.cc.cw.web.action.common.ChannelapplyAction">
+			<interceptor-ref name="authentication" />
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="addCookie" />
+
+			<result name="input" type="freemarker">
+				/ftl/channelapply.ftl
+			</result>
+			<result name="success" type="redirect">
+				${base}/channellist.action
+			</result>
+		</action>
+	</package>
+
+	<!-- 评论和线索 -->
+	<package name="remark" extends="default" namespace="/">
+		<action name="showRemark"
+			class="com.cc.cw.web.action.common.RemarkAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="addCookie" />
+
+			<result name="error" type="freemarker">
+				/ftl/error.ftl
+			</result>
+			<!-- 文章线索页面 -->
+			<result name="clew" type="freemarker">
+				/ftl/showclew.ftl
+			</result>
+		</action>
+
+		<action name="remark"
+			class="com.cc.cw.web.action.common.RemarkAction">
+			<interceptor-ref name="authentication" />
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="addCookie" />
+
+			<!-- 转向rumour.action -->
+			<result name="input" type="redirect">
+				/r/${articleId}
+			</result>
+			<result name="error" type="freemarker">
+				/ftl/error.ftl
+			</result>
+			<result name="forward_pinglun" type="freemarker">
+				/ftl/newremark.ftl
+			</result>
+			<!-- 文章线索页面 -->
+			<result name="clew" type="freemarker">
+				/ftl/showclew.ftl
+			</result>
+		</action>
+	</package>
+
+	<!-- 好友 -->
+	<package name="friend" extends="default" namespace="/user">
+		<action name="myfriends"
+			class="com.cc.cw.web.action.common.MyFriendAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="authentication" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="addCookie" />
+
+			<result name="success" type="freemarker">
+				/ftl/friends.ftl
+			</result>
+		</action>
+
+		<action name="myvalidatefriends" method="getValidateFriends"
+			class="com.cc.cw.web.action.common.MyFriendAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="authentication" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="addCookie" />
+
+			<result name="success" type="freemarker">
+				/ftl/friends.ftl
+			</result>
+		</action>
+
+		<action name="myblacklist" method="getBlackList"
+			class="com.cc.cw.web.action.common.MyFriendAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="authentication" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="addCookie" />
+
+			<result name="success" type="freemarker">
+				/ftl/friends.ftl
+			</result>
+		</action>
+
+
+
+		<action name="friend"
+			class="com.cc.cw.web.action.common.FriendAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="token-session" />
+			<interceptor-ref name="addCookie" />
+
+			<result name="success" type="freemarker">
+				/ftl/memberInfo.ftl
+			</result>
+			<result name="managehome" type="chain">
+				<param name="actionName">usermanage</param>
+				<param name="namespace">/user</param>
+			</result>
+			<result name="input" type="redirect">
+				/user/viewuser?memberId=${friendId}
+			</result>
+
+		</action>
+
+		<action name="removefriend" method="remove"
+			class="com.cc.cw.web.action.common.FriendAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="addCookie" />
+
+			<result name="managehome" type="chain">
+				<param name="actionName">myfriends</param>
+				<param name="namespace">/user</param>
+			</result>
+
+		</action>
+
+		<action name="confirmfriend" method="confirm"
+			class="com.cc.cw.web.action.common.FriendAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="addCookie" />
+
+			<result name="managehome" type="chain">
+				<param name="actionName">myfriends</param>
+				<param name="namespace">/user</param>
+			</result>
+
+		</action>
+
+		<action name="addfriend"
+			class="com.cc.cw.web.action.common.FriendAction">
+			<interceptor-ref name="authentication" />
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="addCookie" />
+
+			<result name="input" type="chain">
+				<param name="actionName">friend</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="error" type="freemarker">
+				/ftl/error.ftl
+			</result>
+			<result name="success" type="freemarker">
+				/ftl/memberInfo.ftl
+			</result>
+			<result name="manage" type="freemarker">
+				/ftl/friend_manage.ftl
+			</result>
+		</action>
+	</package>
+
+	<package name="labelRules" extends="default" namespace="/">
+		<action name="labelRules"
+			class="com.cc.cw.web.action.common.LabelRuleAction">
+			<result name="list" type="freemarker">
+				/ftl/labelRules.ftl
+			</result>
+			<result name="success" type="redirect">
+				/labelRules.action
+			</result>
+		</action>
+		<action name="dm_rule"
+			class="com.cc.cw.web.action.common.RuleAction">
+			<result name="forward_addrule" type="freemarker">
+				/ftl/addRule.ftl
+			</result>
+			<result name="forward_rulelist" type="freemarker">
+				/ftl/ruleList.ftl
+			</result>
+		</action>
+	</package>
+
+	<package name="forienmsg" extends="default" namespace="/">
+		<action name="forienmsg"
+			class="com.cc.cw.web.action.common.MyMessageAction">
+			<interceptor-ref name="authentication" />
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="addCookie" />
+
+			<result name="success" type="freemarker">
+				/ftl/manage_message.ftl
+			</result>
+		</action>
+
+	</package>
+
+	<package name="shortmsg" extends="default" namespace="/">
+		<action name="shortmsg"
+			class="com.cc.cw.web.action.common.MyShortMsgAction">
+			<interceptor-ref name="authentication" />
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="addCookie" />
+
+			<result name="success" type="freemarker">
+				/ftl/manage_shortmessage.ftl
+			</result>
+			<result name="input" type="freemarker">
+				/ftl/sendmsg.ftl
+			</result>
+			<result name="view" type="freemarker">
+				/ftl/viewmsg.ftl
+			</result>
+		</action>
+
+		<action name="shortmsgunread"
+			class="com.cc.cw.web.action.common.MyShortMsgAction">
+			<interceptor-ref name="authentication" />
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="addCookie" />
+
+			<result name="success" type="freemarker">
+				/ftl/manage_shortmessage.ftl
+			</result>
+		</action>
+
+		<action name="shortmsgread" method="getReadMsg"
+			class="com.cc.cw.web.action.common.MyShortMsgAction">
+			<interceptor-ref name="authentication" />
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="addCookie" />
+
+			<result name="success" type="freemarker">
+				/ftl/manage_shortmessage.ftl
+			</result>
+		</action>
+
+	</package>
+
+	<package name="index" extends="default" namespace="/">
+		<action name="index"
+			class="com.cc.cw.web.action.common.IndexAction">
+
+		</action>
+	</package>
+
+	<package name="output" extends="default" namespace="/ox">
+		<action name="oxhome" class="com.cc.cw.web.output.HomeAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="createSession" />
+			<interceptor-ref name="addCookie" />
+			<result name="success" type="freemarker">
+				/ftl/oxhome.ftl
+			</result>
+		</action>
+
+		<action name="oxrumour"
+			class="com.cc.cw.web.output.SimpleArticleAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="clickLog" />
+			<interceptor-ref name="addCookie" />
+
+			<!-- 文章信息页面 -->
+			<result name="success" type="freemarker">
+				/ftl/oxrumour.ftl
+			</result>
+		</action>
+
+		<action name="oxsearch"
+			class="com.cc.cw.web.output.SearchAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+
+			<result name="success" type="freemarker">
+				/ftl/oxsearch.ftl
+			</result>
+			<result name="error" type="redirect">
+				/ox/oxhome.action
+			</result>
+		</action>
+
+		<action name="newslist"
+			class="com.cc.cw.web.output.NewArticleListAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="addCookie" />
+			<result name="success" type="freemarker">
+				/ftl/ox_new_article_list.ftl
+			</result>
+		</action>
+
+	</package>
+
+	<package name="cooperate" extends="default" namespace="/">
+		<action name="cooplogin" method="toLogin"
+			class="com.cc.cw.web.action.common.CooperateLoginAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+
+			<result name="input" type="freemarker">
+				/ftl/cooplogin.ftl
+			</result>
+		</action>
+
+		<action name="coop"
+			class="com.cc.cw.web.action.common.CooperateLoginAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+
+			<result name="success" type="freemarker">
+				/ftl/showIP.ftl
+			</result>
+			<result name="input" type="freemarker">
+				/ftl/cooplogin.ftl
+			</result>
+		</action>
+
+		<action name="sitemap"
+			class="com.cc.cw.web.action.common.SiteMapAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+
+			<result name="success" type="freemarker">
+				/ftl/sitemap.ftl
+			</result>
+		</action>
+
+	</package>
+	<!-- 发送广播 -->
+	<package name="broadcast" extends="default" namespace="/user">
+		<action name="broadcast"
+			class="com.cc.cw.web.action.common.BroadcastAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<result name="input" type="freemarker">
+				/ftl/sendBroadcast.ftl
+			</result>
+			<result name="broadcast_tmp" type="freemarker">
+				/ftl/broadcast_tmp.ftl
+			</result>
+		</action>
+	</package>
+
+	<package name="privilege" extends="default" namespace="/">
+		<action name="privilege"
+			class="com.cc.cw.web.action.common.PrivilegeAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="addCookie" />
+			<result name="input" type="freemarker">
+				/ftl/privilegeMSG.ftl
+			</result>
+			<result name="header" type="freemarker">
+				/ftl/head_include.ftl
+			</result>
+			<result name="header_top" type="freemarker">
+				/ftl/head_top.ftl
+			</result>
+		</action>
+	</package>
+
+	<package name="app" extends="webwork-default">
+		<action name="usermanagerleft"
+			class="com.cc.cw.web.action.common.UserManagerLeftAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="authentication" />
+
+			<result name="input" type="freemarker">
+				/ftl/usermanage_left.ftl
+			</result>
+		</action>
+	</package>
+	<!-- 联盟 -->
+	<package name="union" extends="default" namespace="/union">
+		<action name="unionIndex"
+			class="com.cc.cw.web.union.UnionIndexAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="createSession" />
+			<interceptor-ref name="addCookie" />
+			<result name="success" type="freemarker">
+				/union/index.ftl
+			</result>
+		</action>
+		<action name="unionView"
+			class="com.cc.cw.web.union.SimpleArticleAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="createSession" />
+			<interceptor-ref name="addCookie" />
+			<result name="success" type="freemarker">
+				/union/read.ftl
+			</result>
+		</action>
+		<action name="unionSearch" method="search"
+			class="com.cc.cw.web.union.SearchAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="addCookie" />
+			<result name="article" type="redirect">
+				/union/searchArticle.action?pn=${pn}&amp;qs=${qs}
+			</result>
+			<result name="label" type="redirect">
+				/union/searchLabel.action?pn=${pn}&amp;qs=${qs}
+			</result>
+			<result name="error" type="redirect">/u/</result>
+		</action>
+		<action name="searchArticle"
+			class="com.cc.cw.web.union.SearchArticleAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="addCookie" />
+			<result name="success" type="freemarker">
+				/union/search.ftl
+			</result>
+		</action>
+		<action name="searchLabel"
+			class="com.cc.cw.web.union.SearchLabelAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<interceptor-ref name="addCookie" />
+			<result name="success" type="freemarker">
+				/union/search.ftl
+			</result>
+		</action>
+		<action name="newArticles"
+			class="com.cc.cw.web.union.NewArticleListAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<result name="success" type="freemarker">
+				/union/newlist.ftl
+			</result>
+		</action>
+		<action name="tuijianArticles"
+			class="com.cc.cw.web.union.TuijianArticleListAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<result name="success" type="freemarker">
+				/union/tuijianlist.ftl
+			</result>
+		</action>
+		<action name="login"
+			class="com.cc.cw.web.action.common.LoginAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="validationWorkflowStack" />
+			<interceptor-ref name="addCookie" />
+			<result name="input" type="redirect">/u/</result>
+			<result name="success" type="redirect">/u/</result>
+			<result name="returnRequestPage" type="redirect">
+				/u/
+			</result>
+		</action>
+		<action name="regist"
+			class="com.cc.cw.web.action.common.RegistAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="validationWorkflowStack" />
+			<result name="success" type="freemarker">
+				/union/regsuccess.ftl
+			</result>
+			<result name="input" type="freemarker">
+				/union/regist.ftl
+			</result>
+		</action>
+	</package>
+	<package name="cc" extends="webwork-default" namespace="/cc">
+		<interceptors>
+			<interceptor name="checkRoles"
+				class="com.cc.cw.web.CheckRoleInterceptor" />
+		</interceptors>
+
+		<!-- default intecerptors -->
+		<default-interceptor-ref name="basicStack" />
+
+		<global-results>
+			<result name="clogin" type="redirect">
+				/cc/login.action
+			</result>
+		</global-results>
+
+		<action name="login" class="com.cc.cw.web.CUserLoginAction">
+			<result name="input" type="freemarker">
+				/ftl/cc/login.ftl
+			</result>
+			<result name="success" type="redirect">
+				/cc/home.action
+			</result>
+		</action>
+		<action name="home" class="com.cc.cw.web.CHomeAction">
+			<result name="success" type="freemarker">
+				/ftl/cc/home.ftl
+			</result>
+		</action>
+		<action name="menu" class="com.cc.cw.web.CMenuAction">
+			<result name="success" type="freemarker">
+				/ftl/cc/menu.ftl
+			</result>
+		</action>
+		<action name="main" class="com.cc.cw.web.CMainAction">
+			<result name="success" type="freemarker">
+				/ftl/cc/main.ftl
+			</result>
+		</action>
+		<action name="role" class="com.cc.cw.web.RoleAction">
+			<interceptor-ref name="checkRoles" />
+			<result name="list" type="freemarker">
+				/ftl/cc/roleList.ftl
+			</result>
+			<result name="form" type="freemarker">
+				/ftl/cc/roleForm.ftl
+			</result>
+		</action>
+		<action name="changeIndexPic"
+			class="com.cc.cw.web.ChangeIndexPicAction">
+			<interceptor-ref name="checkRoles" />
+			<interceptor-ref name="fileUploadStack"></interceptor-ref>
+			<result name="input" type="freemarker">
+				/ftl/cc/changeIndexPic.ftl
+			</result>
+			<result name="success" type="freemarker">
+				/ftl/cc/changeIndexPicSuccess.ftl
+			</result>
+		</action>
+		<action name="user" class="com.cc.cw.web.CUserAction">
+			<interceptor-ref name="checkRoles" />
+			<interceptor-ref name="fileUploadStack"></interceptor-ref>
+			<result name="input" type="freemarker">
+				/ftl/cc/userForm.ftl
+			</result>
+			<result name="edit" type="freemarker">
+				/ftl/cc/userForm.ftl
+			</result>
+			<result name="list" type="freemarker">
+				/ftl/cc/userList.ftl
+			</result>
+			<result name="success" type="redirect">
+				/cc/user.action
+			</result>
+			<result name="role" type="freemarker">
+				/ftl/cc/userRole.ftl
+			</result>
+		</action>
+		<action name="friendLink"
+			class="com.cc.cw.web.FriendLinkAction">
+			<interceptor-ref name="checkRoles" />
+			<interceptor-ref name="fileUploadStack"></interceptor-ref>
+			<result name="list" type="freemarker">
+				/ftl/link/friendLinkList.ftl
+			</result>
+			<result name="success" type="redirect">
+				/cc/friendLink.action
+			</result>
+			<result name="check" type="freemarker">
+				/ftl/link/friendLinkCheck.ftl
+			</result>
+			<result name="search" type="freemarker">
+				/ftl/link/search.ftl
+			</result>
+		</action>
+		<action name="article"
+			class="com.cc.cw.web.CArticleAction">
+			<interceptor-ref name="checkRoles" />
+			<interceptor-ref name="fileUploadStack"></interceptor-ref>
+			<result name="search" type="freemarker">
+				/ftl/cc/articleSearch.ftl
+			</result>
+			<result name="success" type="freemarker">
+				/ftl/cc/articleSearch.ftl
+			</result>
+			<result name="notuijian" type="freemarker">
+				/ftl/cc/articlenotuijiansuccess.ftl
+			</result>
+		</action>
+		<action name="member"
+			class="com.cc.cw.web.CMemberAction">
+			<interceptor-ref name="checkRoles" />
+			<interceptor-ref name="fileUploadStack"></interceptor-ref>
+			<result name="search" type="freemarker">
+				/ftl/cc/user/search.ftl
+			</result>
+			<result name="success" type="freemarker">
+				/ftl/cc/user/success.ftl
+			</result>
+			<result name="privilege" type="freemarker">
+				/ftl/cc/user/privilege.ftl
+			</result>
+			<result name="articles" type="freemarker">
+				/ftl/cc/user/articles.ftl
+			</result>
+			<result name="successAjax" type="freemarker">
+				/ftl/cc/user/successAjax.ftl
+			</result>
+			<result name="coverList" type="freemarker">
+				/ftl/cc/user/coverList.ftl
+			</result>
+			<result name="commendSuccess" type="freemarker">
+				/ftl/cc/user/commendSuccess.ftl
+			</result>
+			<result name="online" type="freemarker">
+				/ftl/cc/user/onlineMembers.ftl
+			</result>
+		</action>
+		<action name="articleManager" method="manager"
+			class="com.cc.cw.web.CArticleAction">
+			<interceptor-ref name="checkRoles" />
+			<interceptor-ref name="fileUploadStack"></interceptor-ref>
+			<result name="search" type="freemarker">
+				/ftl/cc/article/search.ftl
+			</result>
+			<result name="success" type="freemarker">
+				/ftl/cc/article/search.ftl
+			</result>
+			<result name="pingbi" type="freemarker">
+				/ftl/cc/article/message.ftl
+			</result>
+			<result name="screenPic" type="freemarker">
+				/ftl/cc/article/message2.ftl
+			</result>
+		</action>
+		<action name="broadcast"
+			class="com.cc.cw.web.CBroadcastAction">
+			<interceptor-ref name="checkRoles" />
+			<interceptor-ref name="fileUploadStack"></interceptor-ref>
+			<result name="success" type="redirect">
+				/cc/broadcast.action?flag=list
+			</result>
+			<result name="publish" type="freemarker">
+				/ftl/cc/broadcast/publish.ftl
+			</result>
+			<result name="list" type="freemarker">
+				/ftl/cc/broadcast/search.ftl
+			</result>
+			<result name="message" type="freemarker">
+				/ftl/cc/broadcast/message.ftl
+			</result>
+			<result name="view" type="freemarker">
+				/ftl/cc/broadcast/viewmsg.ftl
+			</result>
+		</action>
+		<action name="viewbc" method="view" class="com.cc.cw.web.CBroadcastAction">
+			<result name="view" type="freemarker">
+				/ftl/cc/broadcast/viewmsg.ftl
+			</result>
+		</action>
+		<action name="clew"
+			class="com.cc.cw.web.CClewAction">
+			<interceptor-ref name="checkRoles" />
+			<interceptor-ref name="fileUploadStack"></interceptor-ref>
+			<result name="search" type="freemarker">
+				/ftl/cc/clew/search.ftl
+			</result>
+			<result name="success" type="freemarker">
+				/ftl/cc/clew/search.ftl
+			</result>
+			<result name="pingbi" type="freemarker">
+				/ftl/cc/clew/message.ftl
+			</result>
+		</action>
+		<action name="adupload" class="com.cc.cw.web.CAdUploadAction">
+			<interceptor-ref name="checkRoles" />
+			<interceptor-ref name="fileUploadStack"></interceptor-ref>
+			<result name="input" type="freemarker">
+				/ftl/cc/ad/adupload.ftl
+			</result>
+			<result name="success" type="freemarker">
+				/ftl/cc/ad/adupload.ftl
+			</result>
+		</action>
+		<action name="pinglun"
+			class="com.cc.cw.web.CPinglunAction">
+			<interceptor-ref name="checkRoles" />
+			<interceptor-ref name="basicStack" />
+			<result name="success" type="redirect">
+				/cc/pinglun.action?flag=list
+			</result>
+			<result name="list" type="freemarker">
+				/ftl/cc/pinglun/search.ftl
+			</result>
+			<result name="pingbi" type="freemarker">
+				/ftl/cc/pinglun/message.ftl
+			</result>
+		</action>
+		<action name="adremove" class="com.cc.cw.web.CAdDelAction">
+			<interceptor-ref name="checkRoles" />
+			<result name="input" type="freemarker">
+				/ftl/cc/ad/adupload.ftl
+			</result>
+			<result name="success" type="freemarker">
+				/ftl/cc/ad/adupload.ftl
+			</result>
+		</action>
+		<action name="homecast" class="com.cc.cw.web.CHomeCastAction">
+			<interceptor-ref name="checkRoles" />
+			<interceptor-ref name="paramsPrepareParamsStack" />
+			<result name="input" type="freemarker">
+				/ftl/cc/homecast.ftl
+			</result>
+			<result name="success" type="freemarker">
+				/ftl/cc/homecast.ftl
+			</result>
+		</action>
+		<action name="message"
+			class="com.cc.cw.web.CMessageAction">
+			<interceptor-ref name="checkRoles" />
+			<interceptor-ref name="basicStack" />
+			<result name="success" type="redirect">
+				/cc/message.action?flag=list
+			</result>
+			<result name="publish" type="freemarker">
+				/ftl/cc/message/publish.ftl
+			</result>
+			<result name="list" type="freemarker">
+				/ftl/cc/message/search.ftl
+			</result>
+			<result name="message" type="freemarker">
+				/ftl/cc/message/message.ftl
+			</result>
+		</action>
+		<action name="liuyan"
+			class="com.cc.cw.web.CLiuyanAction">
+			<interceptor-ref name="checkRoles" />
+			<interceptor-ref name="basicStack" />
+			<result name="success" type="redirect">
+				/cc/liuyan.action?flag=list
+			</result>
+			<result name="list" type="freemarker">
+				/ftl/cc/liuyan/search.ftl
+			</result>
+			<result name="message" type="freemarker">
+				/ftl/cc/liuyan/message.ftl
+			</result>
+		</action>
+		<action name="channel"
+			class="com.cc.cw.web.CChannelAction">
+			<interceptor-ref name="checkRoles" />
+			<interceptor-ref name="basicStack" />
+			<result name="success" type="freemarker">
+				/ftl/cc/channel/search.ftl
+			</result>
+			<result name="message" type="freemarker">
+				/ftl/cc/channel/message.ftl
+			</result>
+		</action>
+	</package>
+</xwork>

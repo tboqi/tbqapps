@@ -1,0 +1,32 @@
+--anhei3
+tboqi/tbq301709
+tboqi1/tbq301709
+tboqi2/tbq301709
+tbqitem/123
+tbqitem1/123123
+tbqbaoshi/123123
+tbqfuwen/123123
+tbqrr1-6/tbq301709
+tbqtmp/12
+帐号:100010 密码:1111
+id：kel9iddd
+pass：22
+
+1.13
+tboqi/tang301709
+tboqi1/tang301709
+tbqtmp/123
+tbqbaoshi/111
+tbqfuwen/111
+tbqitem/111
+tbqitem1/111
+tbqrr1/123123 -防具	tbqrraa tbqrrab 盔甲 腰带
+tbqrr2/123123 -武器
+tbqrr3/123123 -首饰	tbqrr tbqrrcz 护身符 ring 项链 珠宝 精华tbqrrce
+tbqrr4/123123 -宝石
+tbqrr5/123123 -符文	 tbqrred a1 31 ,tbqrrec a2满 ,key  差3a1, tbqrrde a2 12
+songdongxi2/111
+tbqhuishou/123123
+
+--impk 网通
+tboqi/tbq301709

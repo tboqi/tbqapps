@@ -1,0 +1,36 @@
+<?xml version="1.0" ?> 
+
+<!-- Overidden defaults for intranet use. -->
+
+<!-- Do not modify this file directly.  Instead, copy entries that you -->
+<!-- wish to modify from this file into nutch-site.xml and change them -->
+<!-- there.  If nutch-site.xml does not already exist, create it.      -->
+
+<configuration>
+   <property>
+        <name>upload.dir</name>
+        <value>/UserFiles/</value>
+        <description></description>
+    </property>
+
+    <property>
+
+        <name>dm.path</name>
+
+        <value>/data/rumour/dm/</value>
+
+        <description></description>
+
+    </property>
+
+    <property>
+
+        <name>dm.jdbcproperties</name>
+
+        <value>/home/instart/www/cw/ROOT/WEB-INF/</value>
+
+        <description></description>
+
+    </property>
+
+</configuration>

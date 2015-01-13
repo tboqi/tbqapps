@@ -1,0 +1,5 @@
+操作系统：ubuntu10.04
+开发工具：zend studio
+环境：apt-get
+
+

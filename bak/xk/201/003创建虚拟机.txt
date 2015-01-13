@@ -1,0 +1,40 @@
+virt-install --prompt --virt-type=xen --vcpus 1 --nographics --noreboot
+
+http://linux.vbird.org/linux_enterprise/xen.php#other_inst_inst
+
+http://www.howtoforge.com/virtualization-with-xen-on-centos-6.2-x86_64-paravirtualization-and-hardware-virtualization-p2
+
+
+dd if=/dev/zero of=/home/xen/vm1.img bs=1M count=15000
+
+
+virt-install -n vm1 -r 2048 -f /home/xen/vm1.img --nographics -l http://mirrors.ustc.edu.cn/centos/6.3/os/x86_64/ --vcpus=1
+
+
+dd if=/dev/zero of=/home/xen/vm1.img bs=1M count=10000 && dd if=/dev/zero of=/home/xen/vm2.img bs=1M count=10000 && dd if=/dev/zero of=/home/xen/vm3.img bs=1M count=10000
+virt-install -n vm1 -r 2048 -f /home/xen/vm1.img --nographics -l http://mirrors.ustc.edu.cn/centos/6.3/os/x86_64/ --vcpus=1  --network bridge=br0 --virt-type=xen
+virt-install -n vm2 -r 2048 -f /home/xen/vm2.img --nographics -l http://mirrors.ustc.edu.cn/centos/6.3/os/x86_64/ --vcpus=1  --network bridge=br0 --virt-type=xe
+virt-install -n vm3 -r 2048 -f /home/xen/vm3.img --nographics -l http://mirrors.ustc.edu.cn/centos/6.3/os/x86_64/ --vcpus=1  --network bridge=br0 --virt-type=xe
+
+重启后使用ctrl + ]退出虚拟机
+xm shutdown vm1 关闭虚拟机
+启动已安装好的虚拟机  virsh start vm1
+在宿主机链接上虚拟机  virsh console vm1
+！修改主机名
+vi /etc/sysconfig/network
+NETWORKING=yes
+HOSTNAME=bj-vm1
+！修改ip为静态
+vi /etc/sysconfig/network-scripts/ifcfg-eth0
+DEVICE="eth0"
+BOOTPROTO="static"
+HWADDR="00:16:3E:4E:86:E1"
+NM_CONTROLLED="yes"
+ONBOOT="yes"
+TYPE="Ethernet"
+UUID="71e8a6a7-f3d4-4a1c-a7ad-802084895d4a"
+BROADCAST=10.10.252.255
+IPADDR=10.10.252.202
+NETMASK=255.255.255.0
+NETWORK=10.10.252.0
+

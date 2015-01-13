@@ -1,0 +1,5 @@
+# Gambas Project File 2.0
+Title=Gambas图形界面例子
+Startup=FMain
+Library=gb.gui
+Library=gb.form
