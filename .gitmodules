@@ -2,9 +2,7 @@
 	path = php/khn/khn3/khn3blog/system
 	url = https://github.com/kohana/core
 	branch = 3.2/master
-<<<<<<< HEAD
+
 [submodule "php/khn/khn3/khn3blog/modules/pagination"]
 	path = php/khn/khn3/khn3blog/modules/pagination
 	url = https://github.com/tboqi/kohana-pagination
-=======
->>>>>>> cdce0073ab07e10182baed617ba9021bd956cef7
