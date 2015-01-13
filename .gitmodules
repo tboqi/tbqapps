@@ -1,0 +1,4 @@
+[submodule "php/khn/khn3/khn3blog/system"]
+	path = php/khn/khn3/khn3blog/system
+	url = https://github.com/kohana/core
+	branch = 3.2/master
