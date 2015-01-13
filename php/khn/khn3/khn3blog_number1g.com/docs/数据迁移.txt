@@ -1,0 +1,37 @@
+create table articles
+	select art.ID as id, art.post_title as title, meta.meta_value as summary, art.post_content as content, 
+	UNIX_TIMESTAMP(art.post_date) as create_time, meta_for_views.meta_value as read_times, 
+	UNIX_TIMESTAMP(art.post_date) as update_time, 0 as ref,
+	art.source_url as refurl, cate.cate_id as category_id, cate.cate_name as category_name, 
+	meta_for_tab.meta_value as tabs_detail 
+	from number1g_wp.wp_posts art, number1g_wp.wp_postmeta as meta, number1g_wp.wp_postmeta as meta_for_tab, 
+		number1g_wp.wp_postmeta as meta_for_views, 
+		(select tax.term_id as cate_id, term.name as cate_name, l.object_id as art_id
+		from number1g_wp.wp_terms term, number1g_wp.wp_term_taxonomy tax, number1g_wp.wp_term_relationships l
+		where term.term_id=tax.term_id and tax.taxonomy='category' and l.term_taxonomy_id=tax.term_taxonomy_id) as cate
+	where art.ID>25000 and meta_for_tab.post_id=art.ID and meta_for_tab.meta_key='_aioseop_keywords'
+	 and meta_for_views.post_id=art.ID and meta_for_views.meta_key='views'
+	and meta.post_id=art.ID and meta.meta_key='_aioseop_description' and art.post_status='publish'
+	and cate.art_id=art.ID;
+
+create table article_categories 
+	select tax.term_id as id, term.name as name, term.name as description, 0 as show_order, tax.count as num 
+	from number1g_wp.wp_terms term, number1g_wp.wp_term_taxonomy tax
+	where term.term_id=tax.term_id and tax.taxonomy='category'
+	
+create table article_tabs
+	select term.term_id as id, term.name as name, tax.count as num
+	from number1g_wp.wp_terms term, number1g_wp.wp_term_taxonomy tax
+	where term.term_id=tax.term_id and tax.taxonomy='post_tag'
+	
+CREATE TABLE `article_comments` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `article_id` int(10) unsigned NOT NULL,
+  `create_time` bigint(20) unsigned NOT NULL,
+  `content` text NOT NULL,
+  `user_name` varchar(255) DEFAULT NULL COMMENT '评论者用户名',
+  `user_email` varchar(255) DEFAULT NULL COMMENT '评论者email',
+  PRIMARY KEY (`id`),
+  KEY `FK_yuqi_comments_1` (`article_id`),
+  CONSTRAINT `FK_yuqi_comments_1` FOREIGN KEY (`article_id`) REFERENCES `articles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8
