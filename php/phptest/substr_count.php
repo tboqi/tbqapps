@@ -1,0 +1,1 @@
+<?php echo substr_count ("sdsdfsddfgdfg", "sds" ); ?>

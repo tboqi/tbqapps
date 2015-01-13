@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+/*( function() {
+	alert("cftea");
+}());*/
+/* 
+ void function()    
+    {    
+        alert("cftea");    
+    }()*/
+/*
+    function Foo() {    
+            var a = 123;    
+            this.a = 456;    
+            (function(a) {    
+                alert(a); // 456    
+            })(this.a);    
+        }    
+        var f = new Foo();
+        */
+function Foo() {    
+        (function() {    
+            this.b = 789;    
+        })();    
+        (function() {    
+            alert(this.b); // 789    
+            alert(b); // undefined    
+            var b = 0;    
+            alert(b); // 0    
+        })();    
+    }    
+    var f = new Foo();    
+    (function() {    
+        alert(this.b); // 789    
+        alert(b); // 789    
+    })();   
+</script>
+</head>
+<body>
+
+</body>
+</html>

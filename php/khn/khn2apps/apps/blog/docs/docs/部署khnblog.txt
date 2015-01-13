@@ -1,0 +1,21 @@
+.htaccess
+	RewriteBase /
+	
+目录可写
+	logs 
+	cache
+	
+config/profiler.php
+	$config['show'] = false;
+
+config/config.php
+$config ['site_domain'] = 'tbqkhnblog/';
+
+数据库
+config/database.php
+'user' => 'chentu_khnblog', 
+		'pass' => 'khnblog', 
+		'host' => 'localhost', 
+		'port' => FALSE, 
+		'socket' => FALSE, 
+		'database' => 'chentu_khnblog' 

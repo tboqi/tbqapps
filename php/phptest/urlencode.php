@@ -1,0 +1,2 @@
+<?php 
+echo urlencode('<?xml version="1.0" encoding="UTF-8"?><page><common><function id="GetMySelectedRoute_iPhone" deviceType="iphone" person_id="M0000002011090900008" iphone_id="1234" id="23" version="1" /></common></page>');?>

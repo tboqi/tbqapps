@@ -1,0 +1,17 @@
+RewriteBase /khnblog/
+
+log 目录 可写
+
+$config ['site_domain'] = '/khnblog/';
+
+数据库链接
+'user' => 'chentu_khnblog', 
+		'pass' => 'khnblog', 
+		'host' => 'localhost', 
+		'port' => FALSE, 
+		'socket' => FALSE, 
+		'database' => 'chentu_khnblog' 
+
+cache目录可写
+
+版本 131 173

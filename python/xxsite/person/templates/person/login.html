@@ -1,0 +1,14 @@
+<form action="{% url 'person.views.login' %}" method="post">
+<table>
+    <tr>
+        <th><label for="id_name">name:</label></th>
+        <td><input id="id_name" maxlength="100" name="name" type="text" /></td>
+    </tr>
+    <tr>
+        <th><label for="id_pwd">pwd:</label></th>
+        <td><input id="id_pwd" maxlength="100" name="pwd" type="password" /></td>
+    </tr>
+</table>
+<input type="submit" value="Submit" />{% csrf_token %}
+</form>
+<a href="{% url 'person.views.regist' %}">注册</a>

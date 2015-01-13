@@ -1,0 +1,28 @@
+cookies登录 ok
+
+block 检查theme中是否有当前block，需扩展View_Core ok
+
+多用户多blog ok
+
+注册是发email c
+
+修改密码 ok
+
+编辑信息 ok
+
+后台管理
+    删除用户 文章
+
+注册验证码， c
+
+评论 ok
+
+多样式 ok
+
+访问他人blog ok
+
+首页模板
+
+文章静态文件 c
+
+忘记密码 c

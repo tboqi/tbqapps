@@ -1,0 +1,1 @@
+2009-01-12 17:57:10 +08:00 --- error: 未捕获 PHP Error 异常：mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'dbuser'@'localhost' (using password: YES) 于文件 D:/workspaces/myapp/diggdown_khn/system/libraries/drivers/Database/Mysql.php 的行 61

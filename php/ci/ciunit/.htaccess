@@ -1,0 +1,7 @@
+php_value  xdebug.auto_trace On
+php_value  xdebug.trace_output_dir "/var/log/xdebug/ciunit"
+php_value  xdebug.colloct_includes On
+php_value  xdebug.collect_return On
+php_value  xdebug.collect_params On
+php_value  xdebug.profiler_enable On
+php_value  xdebug.profiler_output_dir "/var/log/xdebug/ciunit"

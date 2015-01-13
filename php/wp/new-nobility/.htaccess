@@ -1,0 +1,12 @@
+# Turn on URL rewriting
+RewriteEngine On
+
+# Installation directory
+RewriteBase /new-nobility/
+
+# Allow any files or directories that exist to be displayed directly
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteCond $1 !^((.*)\.html|index\.php|admin\.php|static|robots\.txt|upload|appindex|modules|system)
+RewriteRule ^(.*)$ index.php/$1 [L]

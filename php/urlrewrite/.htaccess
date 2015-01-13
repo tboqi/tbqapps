@@ -1,0 +1,9 @@
+Options +FollowSymLinks
+RewriteEngine On
+RewriteBase /urlrewrite/
+#php_value include_path '.;D:\work\phpapp\jnj\trunk\classes;D:\work\phpapp\jnj\trunk\configs;D:\work\phpapp\jnj\trunk\smarty;'
+#php_value upload_max_filesize 1m
+#php_value short_open_tag On
+
+#RewriteRule ^(.*)admin/(.*)/(.*)$ admin.php?module=$2&action=$3
+RewriteRule ^index.html$ 1.html

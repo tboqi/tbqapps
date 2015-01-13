@@ -1,0 +1,9 @@
+<div class="left_menu_title">我的菜单</div>
+<a href="<?php echo url::site('space/setting'); ?>">空间设置</a>
+<a href="<?php echo url::site('category/manage'); ?>">分类管理</a>
+<a href="<?php echo url::site('article/write'); ?>">撰写文章</a>
+<a href="<?php echo url::site('user/avatar'); ?>">上传头像</a>
+<a href="<?php echo url::site('link/manage'); ?>">链接管理</a>
+<a href="<?php echo url::site('link/update'); ?>">添加链接</a>
+<a href="<?php echo url::site('user/editpassword'); ?>">修改密码</a>
+<a href="<?php echo url::site('user/profile'); ?>">我的信息</a>

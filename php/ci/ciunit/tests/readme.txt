@@ -1,0 +1,1 @@
+output.php中加入controller对应的模版及输出的变量，在tester中进行匹配

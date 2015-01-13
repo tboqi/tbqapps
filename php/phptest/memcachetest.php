@@ -1,0 +1,2 @@
+<?php
+$memcache = new Memcache; 

@@ -1,0 +1,47 @@
+<?xml version ='1.0' encoding ='UTF-8' ?>
+<definitions name='math'
+  targetNamespace='http://example.org/math'
+  xmlns:tns=' http://example.org/math'
+  xmlns:soap='http://schemas.xmlsoap.org/wsdl/soap/'
+  xmlns:xsd='http://www.w3.org/2001/XMLSchema'
+  xmlns:soapenc='http://schemas.xmlsoap.org/soap/encoding/'
+  xmlns:wsdl='http://schemas.xmlsoap.org/wsdl/'
+  xmlns='http://schemas.xmlsoap.org/wsdl/'>
+
+<message name='divRequest'>
+  <part name='symbol1' type='xsd:int'/>
+  <part name='symbol2' type='xsd:int'/>
+</message>
+<message name='divResponse'>
+  <part name='Result' type='xsd:float'/>
+</message>
+
+<portType name='mathPortType'>
+  <operation name='div'>
+    <input message='tns:divRequest'/>
+    <output message='tns:divResponse'/>
+  </operation>
+</portType>
+
+<binding name='mathBinding' type='tns:mathPortType'>
+  <soap:binding style='rpc'
+    transport='http://schemas.xmlsoap.org/soap/http'/>
+  <operation name='div'>
+    <soap:operation soapAction='urn:xmethods-delayed-quotes#div'/>
+    <input>
+      <soap:body use='encoded' namespace='urn:xmethods-delayed-quotes'
+        encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+    </input>
+    <output>
+      <soap:body use='encoded' namespace='urn:xmethods-delayed-quotes'
+        encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+    </output>
+  </operation>
+</binding>
+
+<service name='mathService'>
+  <port name='mathPort' binding='mathBinding'>
+    <soap:address location='http://localhost/soapserver/soap.php'/>
+  </port>
+</service>
+</definitions>

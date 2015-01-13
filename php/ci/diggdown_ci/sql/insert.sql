@@ -1,0 +1,1 @@
+insert into `users`(`id`,`username`,`nickname`,`password`,`email`,`create_time`) values ( NULL,'tboqi','tangboqi','96e79218965eb72c92a549dd5a330112','tboqi301709@gmail.com',now());

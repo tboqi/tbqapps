@@ -1,0 +1,100 @@
+/* (c) Dynarch.com 2003-2005. All Rights Reserved. */
+@import url("../../navbar.css");
+
+.menuholder {
+	width: 210px;
+	background-color: #84a6ef;
+}
+
+.menubar {
+	padding-top: 12px;
+	padding-bottom: 12px;
+}
+
+.menubar a,.menubar a:visited {
+	color: #00f;
+}
+
+.menubar a:hover {
+	color: #c80;
+}
+
+.menubar .control {
+	display: none;
+}
+
+.menubar .title {
+	font: bold 11px tahoma, verdana, sans-serif;
+	letter-spacing: 0;
+	background: url("sec-title.gif") no-repeat 0 0;
+	border: none;
+	width: 185px;
+	height: 25px;
+	color: #215dc6;
+	-moz-border-radius: 0;
+}
+
+.menubar .title-hilite {
+	color: #428eff;
+}
+
+.menubar .active-section-title {
+	background-image: url("sec-title-hilite.gif");
+	color: #fff;
+}
+
+.menubar .title .img {
+	opacity: 1;
+	-moz-opacity: 1;
+	width: 21px;
+	height: 21px;
+}
+
+.menubar .section {
+	width: 185px;
+}
+
+.menubar .section .body {
+	background-color: #d6dff7;
+	color: #000;
+	border: 1px solid #fff;
+	border-width: 0 1px 1px 1px;
+	-moz-border-radius: 0;
+	padding: 10px;
+}
+
+.menubar .section .body .item,.menubar .section .body .item td {
+	color: #637dde;
+}
+
+.menubar .section .body .item .link {
+	
+}
+
+.menubar .section .body .item .image {
+	color: #000;
+}
+
+.menubar .section .body .item-hilite .link {
+	padding: 1px 1px 1px 4px;
+	background: none;
+	border: none;
+	text-decoration: underline;
+	color: #428eff;
+}
+
+.menubar .space {
+	margin-bottom: 12px;
+}
+
+.menubar .section .body .item-disabled .link {
+	background: transparent;
+	color: #f00;
+}
+
+.menubar .section .body table tr.separator td div,.menubar .section .body div.separator
+	{
+	height: 2px;
+	background: url("sep.png") no-repeat 50% 50%;
+	border: none;
+}

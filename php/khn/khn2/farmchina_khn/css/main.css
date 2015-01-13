@@ -1,0 +1,41 @@
+@CHARSET "UTF-8";
+
+body,td,th {
+	font-family: 宋体;
+	font-size: 12px;	
+}
+body {
+	margin-top: 0px;
+}
+.STYLE1 {
+	color: #FF0000;
+	font-weight: bold;
+}
+a:link {
+	text-decoration: none;
+	color: #000000;
+}
+a:visited {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+	color: #FF0000;
+}
+a:active {
+	text-decoration: none;
+}
+a.mylink:link {
+	text-decoration: none;
+	color: #FF00FF;
+}
+a.mylink:visited {
+	text-decoration: none;
+}
+a.mylink:hover {
+	text-decoration: underline;
+	color: #FF0000;
+}
+a.mylink:active {
+	text-decoration: none;
+}

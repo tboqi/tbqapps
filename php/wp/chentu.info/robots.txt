@@ -1,0 +1,33 @@
+# robots.txt generated at http://www.mcanerin.com
+User-agent: Googlebot
+Disallow: /wp-*
+#Allow: /wp-content/uploads/
+Disallow: /*.php$
+Disallow: /*.inc$
+Disallow: /*.js$
+Disallow: /*.css$
+Disallow: /?s=
+Disallow: /page/1
+User-agent: MSNBot
+Disallow: /wp-*
+#Allow: /wp-content/uploads/
+Disallow: /*.php$
+Disallow: /*.inc$
+Disallow: /*.js$
+Disallow: /*.css$
+Disallow: /?s=
+Disallow: /page/1
+User-agent: baiduspider
+Disallow: /wp-*
+#Allow: /wp-content/uploads/
+Disallow: /*.php$
+Disallow: /*.inc$
+Disallow: /*.js$
+Disallow: /*.css$
+Disallow: /?s=
+Disallow: /page/1
+User-agent: *
+Disallow: /
+
+Sitemap: http://www.chentu.info/sitemap.xml
+Sitemap: http://www.chentu.info/sitemap.xml.gz

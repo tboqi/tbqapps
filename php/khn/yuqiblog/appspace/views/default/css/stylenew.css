@@ -1,0 +1,184 @@
+/*******************************************************
+TITLE: Fluid Two-Column Layout (Basic) V1.0 (Beta)
+DATE: 20060418
+AUTHOR: The CSS Tinderbox - http://www.csstinderbox.com
+*******************************************************/
+body {
+	margin: 0;
+	padding: 0;
+	background-color: #CFDCE6;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 1em;
+}
+
+a {
+	color: #ffffff;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #000;
+	text-decoration: none;
+}
+
+blockquote {
+	margin: 1em;
+	padding: .5em;
+	font-size: .9em;
+	background-color: #648BD8;
+	border-left: 5px solid #000000;
+}
+
+.box {
+	margin: 1em;
+	padding: .5em;
+	font-size: .9em;
+	background-color: #3082BF;
+	/*border-left:5px solid #000000;
+border-right:5px solid #000000;*/
+	border-left: 5px solid #000;
+}
+
+blockquote p {
+	margin: .2em;
+}
+
+#header {
+	margin: 2em 2em 0 2em;
+	padding: 1em 1.5em;
+	height: 5em;
+	color: #CC9933;
+	background-color: #648BD8;
+	background-image: url(../images/header_bg.jpg);
+	background-repeat: repeat-x;
+}
+
+#header h1 {
+	margin: 0;
+	padding: 0;
+	font: 400 1.6em "trebuchet ms", serif;
+	color: #ffffff;
+}
+
+#header span {
+	color: #3082BF;
+}
+
+#header h3 {
+	margin: 0;
+	padding: 0;
+	font-size: .9em;
+}
+
+#header a {
+	text-decoration: none;
+}
+
+#header li {
+	display: inline;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+#header li a {
+	float: left;
+	margin: 0 2px;
+	padding: 5px 0.5em;
+	font: 400 1.6em "trebuchet ms", serif;
+	text-decoration: none;
+	text-transform: lowercase;
+	color: #FFF;
+}
+
+#header li a:hover,#header li a.here {
+	color: #3082BF;
+}
+
+#leftColumn {
+	position: absolute;
+	left: 2.25em;
+	top: 10.3em;
+	width: 14em;
+	margin: 0;
+	padding: 1em .5em 2em .5em;
+	background: #3082BF;
+	font-size: .9em;
+}
+
+#leftColumn h2 {
+	margin: 0 0 -1em 0;
+	padding: 0;
+	font-size: 1em;
+	letter-spacing: .1em;
+}
+
+#leftColumn ul {
+	margin: 1.5em 0 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+#leftColumn li {
+	margin: 0 0 .4em 0;
+	padding: 0;
+}
+
+#leftColumn li a {
+	margin: 0 0 0 .2em;
+	color: #cc0000;
+	text-decoration: none;
+}
+
+#leftColumn li a:hover {
+	color: #648BD8;
+	text-decoration: none;
+}
+
+#centerColumn {
+	right: 2.25em;
+	margin-top: .2em;
+	margin-left: 17.50em;
+	margin-right: 2.25em;
+	voice-family: "\"}\"";
+	voice-family: inherit;
+	margin-left: 17.50em;
+	margin-right: 2.25em;
+	padding: 1em .5em 2em .5em;
+	background: #507EA1;
+	font-size: .9em;
+}
+
+html>body #centerColumn {
+	margin-left: 17.50em;
+	margin-right: 2.25em;
+}
+
+#centerColumn h2 {
+	margin: 0 0 -1em 0;
+	margin-bottom: 3px;
+	padding: 3px;
+	font: 400 1.6em "trebuchet ms", serif;
+	color: #CFDCE6;
+}
+
+#tags {
+	margin: 0 0 .5em 0;
+	width: 10em;
+	float: left;
+	border: none;
+	text-align: left;
+}
+
+#tags img {
+	border: none;
+}
+
+#tags p {
+	margin: 0 0 .25em 0;
+}
+
+#tags a {
+	font-size: .7em;
+	color: #ffffff;
+}

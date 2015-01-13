@@ -1,0 +1,192 @@
+/* (c) Dynarch.com 2003-2005. All Rights Reserved. */
+	/* NavBar styles */
+.menuholder {
+	background-color: #669;
+	color: #eef;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	overflow: hidden;
+	width: 160px;
+	z-index: 100;
+}
+
+.menubar {
+	position: relative;
+	font: 12px Tahoma, Verdana, sans-serif;
+	cursor: default;
+}
+
+.menubar a,.menubar a:visited {
+	color: #fe4;
+}
+
+.menubar a:hover {
+	color: #f80;
+}
+
+.menubar .control {
+	font-weight: bold;
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+	border-collapse: collapse;
+	background-color: #190;
+}
+
+.menubar .control td {
+	padding: 1px;
+	margin: 0px;
+	border: 0px;
+}
+
+.menubar .control td.hilite {
+	background-color: #6d5;
+}
+
+.menubar .control .button {
+	float: left;
+}
+
+.menubar .control .button-right {
+	float: right;
+}
+
+.menubar .space {
+	margin-bottom: 3px;
+}
+
+.menubar .title {
+	margin: 0px auto;
+	font: bold 120% Georgia, serif;
+	-moz-border-radius: 0px 0px 4px 4px;
+	border: 1px solid #000;
+	width: 96%;
+	letter-spacing: 1px;
+	background-color: #88b;
+	color: #000;
+}
+
+.menubar .title td {
+	margin: 0px;
+	padding: 0px 5px;
+	border: none;
+}
+
+.menubar .title .img {
+	float: right;
+	width: 12px;
+	height: 12px;
+	-moz-opacity: 0.6;
+	opacity: 0.6;
+}
+
+.menubar .title-hilite .img {
+	-moz-opacity: 1;
+	opacity: 1;
+}
+
+.menubar .title-hilite {
+	background-color: #447;
+	color: #fff;
+}
+
+.menubar .section {
+	position: relative;
+	width: 92%;
+	margin: 0px auto;
+	overflow: hidden;
+}
+
+.menubar .section .body {
+	background-color: #aad;
+	-moz-border-radius: 0px 0px 4px 4px;
+	padding: 5px;
+	border: 1px solid #000;
+	border-top: none;
+}
+
+.menubar .section .body-hilite {
+	background-color: #fff;
+}
+
+.menubar .section .body table {
+	font-size: 100%;
+	width: 100%;
+	border-collapse: collapse;
+	border: none;
+}
+
+.menubar .section .body table tr.separator td div,.menubar .section .body div.separator
+	{
+	font-size: 1px;
+	height: 1px;
+	overflow: hidden;
+	margin: 4px 2px;
+	border-bottom: 1px dashed #77a;
+}
+
+.menubar .section .body .item,.menubar .section .body .item td {
+	color: #000;
+	cursor: pointer;
+	padding: 0px;
+	margin: 0px;
+}
+
+.menubar .section .body .item .image {
+	width: 20px;
+	text-align: center;
+	vertical-align: top;
+	font-weight: bold;
+	/* Uncomment the following if you want icons to be dimmed */
+	/* filter: alpha(opacity=50); */ /* -moz-opacity: 0.5; */
+	/* opacity: 0.5; */
+}
+
+.menubar .section .body .item .image .img {
+	border: none;
+	padding: 0px;
+	margin: 0px;
+}
+
+.menubar .section .body .item {
+	text-decoration: none;
+}
+
+.menubar .section .body .item .link {
+	padding: 1px 1px 1px 4px;
+	-moz-border-radius: 3px;
+}
+
+.menubar .section .body .item-hilite .link {
+	padding: 0px 0px 0px 3px;
+	border: 1px solid #00f;
+	background-color: #88b;
+	color: #fff;
+}
+
+.menubar .section .body .item-hilite .image {
+	-moz-opacity: 1;
+	opacity: 1;
+	filter: none;
+	color: #f00;
+}
+
+.menubar .section .body .item-disabled .link {
+	background-color: #ddd;
+}
+
+.menubar .section .body .item-disabled .image {
+	filter: none;
+	-moz-opacity: 1;
+	opacity: 1;
+}
+
+.menubar .section .body .toggle-tab {
+	width: 14px;
+	vertical-align: top;
+}
+
+.menubar .section .body .toggle-tab-body {
+	vertical-align: top;
+}

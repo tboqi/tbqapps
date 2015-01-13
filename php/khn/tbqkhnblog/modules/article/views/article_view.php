@@ -1,0 +1,1 @@
+<?php echo article_block::display_article($article);?>

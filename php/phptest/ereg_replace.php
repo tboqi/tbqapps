@@ -1,0 +1,1 @@
+<?php echo eregi_replace("<[^>]*>", "111", "left_ph\"><img src=\"http://www.chinanews.com.cn/tp/shfq/news/2009/01-05/U86P4T8D1514582F116DT20090105141446.jpg\" alt=\"\" /></div"); ?>
