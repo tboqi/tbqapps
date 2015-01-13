@@ -7,9 +7,9 @@ return array
 		'type'       => 'mysql',
 		'connection' => array(
 			'hostname'   => 'localhost',
-			'database'   => 'khn3blog',
+			'database'   => 'khn3blog1',
 			'username'   => 'root',
-			'password'   => 'root',
+			'password'   => '111111',
 			'persistent' => FALSE,
 		),
 		'table_prefix' => '',

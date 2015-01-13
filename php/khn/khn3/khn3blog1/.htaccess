@@ -2,7 +2,7 @@
 RewriteEngine On
 
 # Installation directory
-RewriteBase /khn3blog/
+RewriteBase /khn3blog1/
 
 # Allow any files or directories that exist to be displayed directly
 #RewriteCond %{REQUEST_FILENAME} !-f
