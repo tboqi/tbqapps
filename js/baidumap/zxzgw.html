@@ -1,0 +1,21 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>添加折线覆盖物</title>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.1&services=true"></script>
+</head>
+<body>
+<div style="width:520px;height:340px;border:1px solid gray" id="container"></div>
+</body>
+</html>
+<script type="text/javascript">
+var map = new BMap.Map("container");
+var point = new BMap.Point(116.404, 39.915);
+map.centerAndZoom(point, 15);
+var polyline = new BMap.Polyline([
+  new BMap.Point(116.399, 39.910),
+  new BMap.Point(116.405, 39.920)
+], {strokeColor:"blue", strokeWeight:6, strokeOpacity:0.5});
+map.addOverlay(polyline);
+
+</script>

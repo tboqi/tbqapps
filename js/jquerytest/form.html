@@ -1,0 +1,25 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<head>
+<script type="text/javascript" src="jquery-1.2.3.js"></script>
+<script type="text/javascript" src="jquery.form.js"></script>
+
+<script type="text/javascript">
+// wait for the DOM to be loaded
+$().ready(function() {
+// bind 'myForm' and provide a simple callback function
+$('#myForm').ajaxForm(function() {
+alert("Thank you for your comment!");
+});
+});
+</script>
+</head>
+
+<BODY>
+<form id="myForm" action="common.php" enctype="multipart/form-data" method="post"> 
+Name: <input type="text" name="name" /> 
+Comment: <textarea name="comment"></textarea> 
+<input type="submit" value="Submit Comment" /> 
+</form>
+</BODY>
+</HTML>

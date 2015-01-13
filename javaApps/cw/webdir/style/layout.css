@@ -1,0 +1,77 @@
+@charset "utf-8";
+/* CW CSS Document design by <johnsong> 2007-05-30 */
+
+/* CW layout css */
+*{
+	margin:0;
+	padding:0;
+	}
+
+
+#wrapper{
+	width:980px;
+	margin:0 auto;
+	}
+#header{
+	width:980px;
+	height:auto;
+	}
+#primaryContent{
+	width:980px;
+	float:left;
+	display:inline;
+	}
+#towColLayout #primaryContent{
+	width:540px;
+	margin-left:440px;
+	}
+#towColLayout2 #primaryContent{
+	width:320px;
+	margin-left:660px;
+	}
+#towColLayout3 #primaryContent{
+	width:260px;
+	margin-left:720px;
+	}
+#towColLayout4 #primaryContent{
+	width:760px;
+	margin-left:220px;
+	}
+#threeColLayout #primaryContent{
+	width:260px;
+	margin-left:440px;
+	}
+#towColLayout #secondarycontent{
+	display:none;
+	}
+#secondaryContent{
+	width:260px;
+	float:left;
+	margin-left:20px;
+	}
+#oneColLayout #sideContent{
+	display:none;
+	}
+#towColLayout #sideContent{
+	width:426px;
+	margin-left:-980px;
+	float:left;
+	}
+#towColLayout2 #sideContent{
+	width:640px;
+	margin-left:-980px;
+	float:left;
+	}
+#towColLayout3 #sideContent{
+	width:700px;
+	margin-left:-980px;
+	float:left;
+	}
+#towColLayout4 #sideContent{
+	width:200px;
+	margin-left:-980px;
+	float:left;
+	}
+#footer{
+	clear:both;
+	}

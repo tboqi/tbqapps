@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="gupiao" basedir="." default="init">
+	<!-- Load all the default properties from build.properties -->
+	<property file="${basedir}/build.properties"/>	
+
+	<!-- the normal classpath -->
+	<path id="classpath">
+		<fileset dir="${lib.dir}">
+			<include name="**/*.jar"/>
+		</fileset>
+	</path>	
+	
+    <property name="gupiao.location" value="D:/home/gupiao"/>
+    <path id="project.classpath">
+        <pathelement location="bin"/>
+        <pathelement location="D:/home/novel/lib/proxool-0.9.0RC2.jar"/>
+        <pathelement location="${gupiao.location}/lib/commons-lang.jar"/>
+        <pathelement location="${gupiao.location}/lib/filterbuilder.jar"/>
+        <pathelement location="${gupiao.location}/lib/htmllexer.jar"/>
+        <pathelement location="${gupiao.location}/lib/htmlparser.jar"/>
+        <pathelement location="${gupiao.location}/lib/junit.jar"/>
+        <pathelement location="${gupiao.location}/lib/sax2.jar"/>
+        <pathelement location="${gupiao.location}/lib/thumbelina.jar"/>
+        <pathelement location="${gupiao.location}/lib/log4j-1.2.14.jar"/>
+        <pathelement location="${gupiao.location}/lib/commons-logging-1.0.4.jar"/>
+        <pathelement location="${gupiao.location}/lib/shuxiang.jar"/>
+        <pathelement location="${gupiao.location}/lib/mysql-connector-java-3.0.16-ga-bin.jar"/>
+        <pathelement location="${gupiao.location}/lib/servletapi-2.4.jar"/>
+        <pathelement location="${gupiao.location}/lib/dom4j-1.6.1.jar"/>
+        <pathelement location="${gupiao.location}/lib/jericho-html-2.5.jar"/>
+    </path>
+    <target name="init">
+  	  <mkdir dir="${build.dir}"/>
+  	  <mkdir dir="${dist.dir}"/>
+  	  <mkdir dir="${build.classes}"/>
+    </target>
+    <target name="clean">
+		<delete dir="${build.dir}"/>
+		<delete dir="${dist.dir}"/>
+    </target>
+	
+    <target depends="init" name="build">
+  	  <javac 
+  	     encoding="${build.encoding}" 
+  	     srcdir="${src.dir}"
+  	     includes="com/**/*.java"
+  	     destdir="${build.classes}"
+  	     debug="${debug}"
+  	     optimize="${optimize}"
+  	     deprecation="${deprecation}">
+  	     <classpath refid="classpath"/>
+  	  </javac>    
+    </target>
+
+	<target name="jar" depends="build">	  
+	  <jar jarfile="${dist.dir}/${app.name}.jar" 
+	  		 compress="true"
+	  	   basedir="${build.classes}">
+	    <fileset dir="${src.dir}">
+          <include name="*.*"/>
+        </fileset>
+	  </jar>
+	</target>
+	
+</project>

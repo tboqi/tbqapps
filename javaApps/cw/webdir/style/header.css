@@ -1,0 +1,101 @@
+/* CSS Document */
+
+.clr{
+	clear:both;
+	}
+.red{
+	color:#FF0000;
+	}
+.number{
+	font-size:16px;
+	font-weight:bold;
+	color:#FF0000;
+	margin:0 5px;
+	}
+#head{
+	
+	width:980px;
+	}
+
+#head #top{
+	height:30px;
+	line-height:30px;
+	font-size:12px;
+	font-weight:bold;
+	color:#0546C6;
+	}
+#head #top a{
+	color:#FF0000;
+	}
+#head #top .textbox{
+	height:14px;
+	width:80px;
+	}
+#head #top .but{
+	background-color:#efefef;
+	border:1px #CCCCCC solid;
+	width:40px;
+	}
+#head #top .zhuce{
+	font-weight:400;
+	}
+#head #top .right{
+	display:block;
+	float:right;
+	margin-top:-25px;
+	font-weight:400;
+	}
+#head #top .right a{
+	color:#000000;
+	text-decoration:none;
+	}
+#head #top .right .red a{
+	color:#FF0000;
+	}
+#head #line{
+	/*background:url(head_bg01.jpg); float:right; width:980px; height:127px;*/
+	}
+#head #line .img{
+	float:left;
+	}
+.head_right{
+	float:right;
+	list-style:none;
+	font-size:12px;
+	width:450px;
+	margin-top:5px;
+	}
+#head #line ul{
+	float:right;
+	list-style:none;
+	font-size:12px;
+	width:450px;
+	}
+#head #line li{
+	height:28px;
+	line-height:28px;
+	}
+#head #line .li2{
+	color:#32A202;
+	}
+#head #line #boxbar{
+	height:10px;
+	border:2px solid #3DA60C;
+	width:400px;
+	margin-bottom:5px;
+	}
+	
+
+#h_nav{ float:left;width:970px;  border-bottom:3px solid #8BD0D7; padding-left:10px;}
+.h_nav li{float:left;list-style:none; }
+.h_nav li a{text-decoration:none;width:62px; margin-left:2px; text-align:center;display:block;background:url(/images/nav01.gif); line-height:25px; font-size:14px;color:#15577A;font-weight:bold; height:25px;}
+.h_nav li a:hover{ background:url(/images/nav01.gif); background-position:0px -25px;color:#fff;}
+.h_nav li a#current{background:url(/images/nav01.gif); background-position:0px -25px;color:#fff;}
+#h_nav_r{ width:640px; float:left;}
+#h_nav_r_l{ width:140px; float:left; padding-left:10px;}
+#h_nav_r_r{ width:490px; float:left; text-align:right;}
+.h_nav_r a{ color:#FF6600; font-weight:bold; font-size:13px; text-decoration:underline; line-height:25px; padding-left:5px;}
+.h_nav_r a:hover{text-decoration:none;}
+.zihei{font-size:12px; color:#000;font-weight:bold;}
+.textbox2{width:240px;}
+

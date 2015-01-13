@@ -1,0 +1,17 @@
+﻿
+#nav{
+	background-color:#C3A5E3;
+	font-size:14px;
+	font-weight:bold;
+	color:#FFFFFF;
+	height:30px;
+	line-height:30px;
+	text-indent:15px;
+	}
+#nav a:link {COLOR:#FFFFFF; TEXT-DECORATION: none}
+
+#nav a:active {COLOR: blue; TEXT-DECORATION: underline}
+
+#nav a:visited {COLOR: blue;TEXT-DECORATION: none}
+
+#nav a:hover {COLOR:#ffffff; TEXT-DECORATION: underline; position:relative; left:1px; top:1px}

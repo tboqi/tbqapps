@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/htmlparser"/>
+	<classpathentry kind="lib" path="libs/ezmorph-1.0.6.jar"/>
+	<classpathentry kind="lib" path="libs/json-lib-2.3-jdk15.jar"/>
+	<classpathentry kind="lib" path="libs/log4j-1.2.16.jar"/>
+	<classpathentry kind="lib" path="libs/mysql-connector-java-5.1.6.jar"/>
+	<classpathentry kind="lib" path="libs/spring.jar" sourcepath="/media/data/resource/java/spring-framework-2.0.8/src"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/yuqiutils"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/log"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/commons"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

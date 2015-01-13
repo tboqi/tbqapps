@@ -1,0 +1,33 @@
+
+.showtags0  {color: #72CA22;margin-left:15px;font-size:100%;}
+.showtags1  {color: #20A0CF;margin-left:15px;font-size:100%;}
+.showtags2  {color: #D5B920;margin-left:15px;font-size:100%;}
+.showtags3  {color: #3300CC;margin-left:15px;font-size:100%;}
+.showtags4  {color: #000;margin-left:15px;font-size:100%;}
+.showtags5  {color: #DD0085;margin-left:15px;font-size:100%;}
+.showtags6  {color: #808080;margin-left:15px;font-size:100%;}
+.showtags0:hover {background: #72CA22;color: #fff;}
+.showtags1:hover {background: #20A0CF;color: #fff;}
+.showtags2:hover {background: #D5B920;color: #fff;}
+.showtags3:hover {background: #3300CC;color: #fff;}
+.showtags4:hover {background: #000;color: #fff;}
+.showtags5:hover {background: #DD0085;color: #fff;}
+.showtags6:hover {background: #808080;color: #fff;}
+
+
+.showtags0:link {text-decoration: none}
+.showtags1:link  {text-decoration: none}
+.showtags2:link  {text-decoration: none}
+.showtags3:link  {text-decoration: none}
+.showtags4:link  {text-decoration: none}
+.showtags5:link  {text-decoration: none}
+.showtags6:link  {text-decoration: none}
+
+.showtags0:visited {text-decoration: none}
+.showtags1:visited  {text-decoration: none}
+.showtags2:visited  {text-decoration: none}
+.showtags3:visited  {text-decoration: none}
+.showtags4:visited  {text-decoration: none}
+.showtags5:visited  {text-decoration: none}
+.showtags6:visited  {text-decoration: none}
+

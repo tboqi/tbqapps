@@ -1,0 +1,181 @@
+form{
+	margin:0;
+	}
+#sideContent {
+	FONT-SIZE: 12px; WIDTH: 700px
+}
+#sideContent .h2 {
+	MARGIN-TOP: 12px; FONT-SIZE: 13px; BACKGROUND: url(../images/bg_cap_chapter_detail.gif) no-repeat; COLOR: #fff; TEXT-INDENT: 6px; LINE-HEIGHT: 20px; HEIGHT: 20px
+}
+#sideContent #info {
+	COLOR: #009; TEXT-INDENT: 6px; LINE-HEIGHT: 28px; HEIGHT: 28px
+}
+#sideContent #info A {
+	TEXT-DECORATION: underline
+}
+#sideContent #info A:hover {
+	TEXT-DECORATION: none
+}
+.link_color1 {
+	COLOR: #008080
+}
+.link_color2 {
+	COLOR: #f00
+}
+.link_color3 {
+	COLOR: #00f
+}
+#vote {
+	BACKGROUND: url(../images/vote.gif) no-repeat center center; WIDTH: 700px; HEIGHT: 114px
+}
+#true A {
+	DISPLAY: block; FLOAT: left; WIDTH: 60px; HEIGHT: 76px
+}
+#false A {
+	DISPLAY: block; FLOAT: right; WIDTH: 60px; HEIGHT: 76px
+}
+#true A {
+	BACKGROUND: url(../images/true.gif) no-repeat; MARGIN-LEFT: 40px
+}
+#false A {
+	BACKGROUND: url(../images/false.gif) no-repeat; MARGIN-RIGHT: 36px
+}
+#true A:hover {
+	BACKGROUND: url(../images/true_over.gif) no-repeat
+}
+#false A:hover {
+	BACKGROUND: url(../images/false_over.gif) no-repeat
+}
+#votes_true {
+	FONT-SIZE: 14px; FLOAT: left; COLOR: #0c0; FONT-FAMILY: "Arial Black"
+}
+#votes_false {
+	FONT-SIZE: 14px; FLOAT: right; COLOR: #f00; FONT-FAMILY: "Arial Black"
+}
+#did2 DT {
+	FONT-WEIGHT: bold; COLOR: #fff; TEXT-INDENT: 6px; LINE-HEIGHT: 16px; HEIGHT: 16px;
+}
+#did DT {
+	FONT-WEIGHT: bold; COLOR: #fff; TEXT-INDENT: 6px; LINE-HEIGHT: 16px; HEIGHT: 16px;
+}
+#did2 DT {
+	BACKGROUND-COLOR: red
+}
+#did DT {
+	BACKGROUND-COLOR: #0c0
+}
+#did2 DD {
+	padding:6px; margin:0;
+}
+#did DD {
+	padding:6px; margin:0;
+}
+#did2 .input_text {
+	FONT-SIZE: 12px; WIDTH: 78px; HEIGHT: 16px
+}
+#did .input_text {
+	FONT-SIZE: 12px; WIDTH: 78px; HEIGHT: 16px
+}
+#did2 .input_text {
+	BORDER-RIGHT: red 1px solid; BORDER-TOP: red 1px solid; BORDER-LEFT: red 1px solid; BORDER-BOTTOM: red 1px solid
+}
+#did .input_text {
+	BORDER-RIGHT: #0c0 1px solid; BORDER-TOP: #0c0 1px solid; BORDER-LEFT: #0c0 1px solid; BORDER-BOTTOM: #0c0 1px solid
+}
+#did2 .input_submit {
+	FONT-SIZE: 12px; WIDTH: 34px; PADDING-TOP: 1px; HEIGHT: 18px
+}
+#did .input_submit {
+	FONT-SIZE: 12px; WIDTH: 34px; PADDING-TOP: 1px; HEIGHT: 18px
+}
+#did2 .input_submit {
+	BORDER-RIGHT: red 1px solid; BORDER-TOP: red 1px solid; BORDER-LEFT: red 1px solid; BORDER-BOTTOM: red 1px solid; BACKGROUND-COLOR: #ffd9d9
+}
+#did .input_submit {
+	BORDER-RIGHT: #0c0 1px solid; BORDER-TOP: #0c0 1px solid; BORDER-LEFT: #0c0 1px solid; BORDER-BOTTOM: #0c0 1px solid; BACKGROUND-COLOR: #b5ffb5
+}
+#chapter_detail_content P {
+	LINE-HEIGHT: 150%
+}
+.false {
+	BACKGROUND: url(../images/icon_false.gif) no-repeat 90% 95%
+}
+.true {
+	BACKGROUND: url(../images/icon_true.gif) no-repeat 90% 95%
+}
+#control_chapter {
+	MARGIN: 12px 0px; TEXT-ALIGN: center
+}
+.link_red {
+	COLOR: red; TEXT-DECORATION: underline
+}
+.link_red:hover {
+	TEXT-DECORATION: none
+}
+#xgpl H4 {
+	MARGIN: 12px 0px; WIDTH: 700px; COLOR: #fff; TEXT-INDENT: 6px; LINE-HEIGHT: 20px; HEIGHT: 20px; BACKGROUND-COLOR: #69b4f8
+}
+#fbpl H4 {
+	MARGIN: 12px 0px; WIDTH: 700px; COLOR: #fff; TEXT-INDENT: 6px; LINE-HEIGHT: 20px; HEIGHT: 20px; BACKGROUND-COLOR: #69b4f8
+}
+#fbpl ul{
+	margin:0;
+	padding:0;
+	}
+#fbpl li{
+	margin:0;
+	padding:3px 10px;}
+#xgpl LI SPAN {
+	PADDING-RIGHT: 12px
+}
+.link_bold {
+	FONT-WEIGHT: bold; TEXT-DECORATION: underline
+}
+.link_bold:hover {
+	TEXT-DECORATION: none
+}
+.data {
+	COLOR: #ccc; FONT-STYLE: italic
+}
+#pagenum {
+	MARGIN: 12px 0px; TEXT-ALIGN: right
+}
+#long_in {
+	POSITION: relative
+}
+#long_in FORM {
+	MARGIN-TOP: -1px; MARGIN-LEFT: -460px; POSITION: absolute
+}
+#chapter_detail_right DT {
+	MARGIN-TOP: 12px; FONT-WEIGHT: bold; FONT-SIZE: 13px; WIDTH: 260px; COLOR: #fff; TEXT-INDENT: 6px; LINE-HEIGHT: 20px; POSITION: relative; HEIGHT: 20px; BACKGROUND-COLOR: #0a77d5
+}
+#chapter_detail_right DT SPAN {
+	MARGIN-LEFT: 100px; POSITION: absolute; TOP: 0px
+}
+#chapter_detail_right DT SPAN A {
+	COLOR: #fff
+}
+#chapter_detail_right DD {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 4px; TEXT-INDENT: 6px; PADDING-TOP: 4px; BACKGROUND-COLOR: #f8f8f8
+}
+#chapter_detail_right DD A {
+	COLOR: #00f; TEXT-DECORATION: underline
+}
+#chapter_detail_right DD A:hover {
+	TEXT-DECORATION: none
+}
+.more_right {
+	TEXT-ALIGN: right
+}
+.link_black {
+	COLOR: #000
+}
+.input001 {
+	BORDER-RIGHT: #0a77a5 1px solid; BORDER-TOP: #0a77a5 1px solid; BORDER-LEFT: #0a77a5 1px solid; WIDTH: 110px; BORDER-BOTTOM: #0a77a5 1px solid; HEIGHT: 14px
+}
+.input002 {
+	BORDER-RIGHT: #0a77a5 1px solid; BORDER-TOP: #0a77a5 1px solid; BORDER-LEFT: #0a77a5 1px solid; WIDTH: 420px; BORDER-BOTTOM: #0a77a5 1px solid; HEIGHT: 14px
+}
+#pl .border_db {
+	BORDER-BOTTOM: #9bcdfb 1px dashed
+}

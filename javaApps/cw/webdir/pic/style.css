@@ -1,0 +1,24 @@
+body{ line-height:20px; color:#000; font-size:12px; margin:0px auto; padding:0px;}
+a{ color:#000; text-decoration:underline;}
+a:hover{ text-decoration:none;color:#000;}
+.top{ width:776px; background:url(images/album_banner1.gif) center center no-repeat; height:61px; margin:0px auto; padding-bottom:2px; margin-bottom:10px;}
+.bottom{ border-top:1px solid #ccc; margin-top:10px;}
+.h_nav ul {margin:0px; padding:0px;list-style:none; margin-left:5px;}
+.h_nav ul li{float:left; }
+.h_nav ul li a{text-decoration:none;width:62px; margin-left:2px; text-align:center;display:block;background:url(images/nav01.gif); line-height:24px;color:#15577A;font-weight:bold; height:24px;}
+.h_nav ul li a:hover{ background:url(images/nav01.gif); background-position:0px -24px;color:#fff;}
+.h_nav ul li a#current{background:url(images/nav01.gif); background-position:0px -24px;color:#fff;}
+.h_nav_r a{ color:#FF6600; font-weight:bold;text-decoration:underline; line-height:24px; padding-left:5px;}
+.h_nav_r a:hover{text-decoration:none; color:#FF6600;}
+.zihei{font-size:12px; color:#000;font-weight:bold;}
+.textbox2{width:180px;height:14px;}
+.hongzi a{ color:#F10415; text-decoration:underline;}
+.hongzi a:hover{ color:#F10415; text-decoration:none; }
+.hongzi01{ color:#F10415;}
+.lanzi a{ color:#0220FF; text-decoration:underline;}
+.lanzi a:hover{ color:#0220FF; text-decoration:none; }
+.lanzi01 a{ color:#0220FF; text-decoration:none; font-weight:bold;}
+.lanzi01 a:hover{ color:#0220FF; text-decoration:underline; }
+.images{ padding:10px; width:100px; height:72px;}
+.jianju{ margin-top:10px;}
+.images01{ padding:5px; }

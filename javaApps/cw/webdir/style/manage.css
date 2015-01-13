@@ -1,0 +1,264 @@
+@charset "utf-8";
+/* CSS Document */
+
+#pic_ad_manage{
+	padding-top:12px;
+	}
+#userinfo{
+	text-align:center;
+	}
+#userinfo img{
+	padding-bottom:6px;
+	}
+#guestbook h2{
+	background:url(../images/bg_cap_ly.gif) no-repeat;
+	height:20px;
+	line-height:20px;
+	color:#fff;
+	text-indent:12px;
+	padding-bottom:6px;
+	}
+#guestbook .textarea01{
+	width:196px;
+	font-size:12px;
+	}
+.input_image01{
+	padding:6px 0;
+	padding-left:70px;
+	}
+#freind_link{
+	text-align:center;
+	line-height:24px;
+	font-size:13px;
+	font-weight:bold;
+}
+#freind_link a{
+	text-decoration:underline;
+	color:#833692;
+	}
+#freind_link a:hover{
+	text-decoration:none;
+	}
+#nav_manage{
+	width:980px;
+	height:40px;
+	text-align:center;
+	}
+#nav_manage ul{
+	margin-left:325px;
+	}
+#nav_manage li{
+	float:left;
+	}
+#nav_manage li a{
+	padding:0 6px;
+	height:40px;
+	line-height:40px;
+	font-size:13px;
+	font-weight:bold;
+	color:#833692;
+	text-decoration:underline;
+	border-right:1px solid #833692;
+	}
+#nav_manage li a:hover{
+	text-decoration:none;
+	}
+#nav_manage li a.clearcolline{
+	border-right:0 solid #833692;
+	}
+#my_cw dl{
+	padding-bottom:6px;
+	}
+#my_cw dt{
+	position:relative;
+	background:url(../images/bg_cap_manage_right.gif) no-repeat;
+	height:20px;
+	line-height:20px;
+	font-size:13px;
+	font-weight:bold;
+	text-indent:12px;
+	color:#fff;
+	padding-bottom:6px;
+	}
+#my_cw dt img{
+	position:absolute;
+	margin-left:639px;
+	top:0;
+	}
+#my_cw dd{
+	height:24px;
+	line-height:24px;
+	background:url(../images/dot02.gif) no-repeat left center;
+	}
+.borderbottom{
+	display:block;
+	margin-left:10px;
+	border-bottom:1px dashed #ff9ddf;
+	}
+.del_vote{
+	display:block;
+	float:right;
+	margin-top:-24px;
+	}
+.del_vote a{
+	color:#008080;
+	}
+	
+/*my_channel_list*/
+#my_channel_list dl{
+	padding-bottom:6px;
+	}
+#my_channel_list dt{
+	position:relative;
+	background:url(../images/bg_cap_manage.gif) repeat-x;
+	border:1px solid #833692;
+	width:978px;
+	height:18px;
+	line-height:18px;
+	font-size:13px;
+	font-weight:bold;
+	text-indent:12px;
+	color:#fff;
+	}
+	
+#my_channel_list dt img{
+	position:absolute;
+	margin-left:882px;
+	top:0;
+	}
+#my_channel_list dd{
+	height:24px;
+	line-height:24px;
+	background:url(../images/dot02.gif) no-repeat left center;
+	}
+#my_channel_list h1{
+	position:relative;
+	background:url(../images/bg_cap_manage.gif) repeat-x;
+	border:1px solid #833692;
+	width:978px;
+	height:18px;
+	line-height:18px;
+	text-indent:12px;
+	color:#fff;
+	}
+.my_freind th{
+	background-color:#e36ee3;
+	height:20px;
+	color:#ff0;
+	}
+.my_freind td{
+	border-bottom:1px dashed #ff9ddf;
+	}
+.my_freind td a{
+	text-decoration:underline;
+	}
+.my_freind td a:hover{
+	text-decoration:none;
+	}
+.link_freind01{
+	color:#00f;
+	}
+.link_freind02{
+	color:#008080;
+	}
+.my_freind .no_border{
+	border-bottom:none;
+	}
+.myfreind{
+	border:1px solid #833692;
+	margin-bottom:12px;
+}
+.thbg{
+	background-color:#e6f2ff;
+	height:20px;
+	}
+
+
+/*help*/
+#help h1{
+	width:980px;
+	height:20px;
+	line-height:20px;
+	background:url(../images/bg_cap_help.gif) no-repeat;
+	text-indent:6px;
+	margin-top:12px;
+	color:#fff;
+	}
+#service h1{
+	width:980px;
+	height:20px;
+	line-height:20px;
+	background:url(../images/bg_cap_service.gif) no-repeat;
+	text-indent:6px;
+	margin-top:12px;
+	color:#fff;
+	}
+#about h1{
+	width:980px;
+	height:20px;
+	line-height:20px;
+	background:url(../images/bg_cap_aboutus.gif) no-repeat;
+	text-indent:6px;
+	margin-top:12px;
+	color:#fff;
+	}	
+#public h1{
+	width:980px;
+	height:20px;
+	line-height:20px;
+	background:url(../images/bg_cap_public.gif) no-repeat;
+	text-indent:6px;
+	margin-top:12px;
+	color:#fff;
+	}
+#freindlinks h1{
+	width:980px;
+	height:20px;
+	line-height:20px;
+	background:url(../images/freindlinks.gif) no-repeat;
+	text-indent:6px;
+	margin-top:12px;
+	color:#fff;
+	}
+#tg h1{
+	width:980px;
+	height:20px;
+	line-height:20px;
+	background:url(../images/bg_cap_tags.gif) no-repeat;
+	text-indent:6px;
+	margin-top:12px;
+	color:#fff;
+	}
+#publish h1{
+	width:980px;
+	height:20px;
+	line-height:20px;
+	background:url(../images/bg_cap_publish.gif) no-repeat;
+	text-indent:6px;
+	margin-top:12px;
+	color:#fff;
+	}
+#content{
+	width:900px;
+	padding:20px 40px;
+	background-color:#EFFBFF;
+}
+#content1{
+	width:900px;
+	padding:20px 40px;
+	background-color:#EEFFF4;
+}
+#content1 p{
+	padding:6px 0;
+	}
+#content1 label{
+	padding:0 4px;
+	}
+	
+#sendinfo{
+	position:relative;
+	}
+#sendinfo img{
+	position:absolute;
+	left:180px;
+	}

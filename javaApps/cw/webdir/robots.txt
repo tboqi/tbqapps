@@ -1,0 +1,20 @@
+# robots.txt file http://www.chuanwen.com.cn/
+# Wed,  29 Aug 2007 22:21:19 -0500
+# Exclude Files From All Robots:
+
+User-agent: *
+Disallow: /decorators
+Disallow: /FCKeditor
+Disallow: /fl_images
+Disallow: /images
+Disallow: /js
+Disallow: /img_new
+Disallow: /Scripts
+Disallow: /SpryAssets
+Disallow: /style
+Disallow: /swf
+Disallow: /union/images
+Disallow: /union/js
+
+
+# End robots.txt file

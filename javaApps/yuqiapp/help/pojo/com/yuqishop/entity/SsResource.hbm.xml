@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2010-3-10 22:55:33 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.yuqishop.entity.SsResource" table="ss_resource" catalog="yuqiapp_java">
+        <id name="id" type="java.lang.Long">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="position" type="double">
+            <column name="position" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="resourceType" type="string">
+            <column name="resource_type" not-null="true" />
+        </property>
+        <property name="value" type="string">
+            <column name="value" not-null="true" unique="true" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="messages" />
+	</bean>
+	<bean id="hasOperatorInterceptor" class="com.yuqi.blog.web.interceptor.HasOperatorInterceptor">
+		<property name="userService" ref="userService" />
+	</bean>
+	<bean id="notHasOperatorInterceptor" class="com.yuqi.blog.web.interceptor.NotHasOperatorInterceptor">
+		<property name="userService" ref="userService" />
+	</bean>
+	
+	<bean id="checkLoginInterceptor" class="com.yuqi.blog.web.interceptor.CheckLogginInterceptor">
+		<property name="userService" ref="userService" />
+	</bean>
+	
+	<bean id="notHasOperatorhandlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="interceptors">
+			<list>
+				<ref bean="notHasOperatorInterceptor" />
+			</list>
+		</property>
+		<property name="mappings">
+			<value>
+				/regist.htm=regist
+            </value>
+		</property>
+	</bean>
+	
+	<bean id="hasOperatorHandlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="interceptors">
+			<list>
+				<ref bean="hasOperatorInterceptor" />
+			</list>
+		</property>
+		<property name="mappings">
+			<value>
+				/login.htm=login
+				/message.htm=message
+            </value>
+		</property>
+	</bean>
+	<bean id="checkLoginHandlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="interceptors">
+			<list>
+				<ref bean="hasOperatorInterceptor" />
+				<ref bean="checkLoginInterceptor" />
+			</list>
+		</property>
+		<property name="mappings">
+			<value>
+				/logout.htm=logout
+				/articleForm.htm=articleForm
+				/articleDelete.htm=articleDelete
+				/categoryForm.htm=categoryForm
+				/categoryDelete.htm=categoryDelete
+				/index.htm=home
+				/articleList.htm=articleList
+				/articleView.htm=articleView
+				/categoryList.htm=categoryList
+            </value>
+		</property>
+	</bean>
+	<bean name="message" class="com.yuqi.blog.web.MessageController"></bean>
+	<bean name="articleView" class="com.yuqi.blog.web.ArticleViewController">
+		<property name="articleService" ref="articleService" />
+	</bean>
+	<bean name="logout" class="com.yuqi.blog.web.LogoutController">
+	</bean>
+	<bean name="articleDelete" class="com.yuqi.blog.web.ArticleDeleteController">
+		<property name="articleService" ref="articleService" />
+	</bean>
+	<bean name="articleList" class="com.yuqi.blog.web.ArticleListController">
+		<property name="articleService" ref="articleService" />
+	</bean>
+	<bean name="categoryDelete" class="com.yuqi.blog.web.CategoryDeleteController">
+		<property name="categoryService" ref="categoryService" />
+	</bean>
+	<bean name="categoryList" class="com.yuqi.blog.web.CategoryListController">
+		<property name="categoryService" ref="categoryService" />
+	</bean>
+	<bean name="home" class="com.yuqi.blog.web.HomeController">
+		<property name="userService" ref="userService" />
+		<property name="articleService" ref="articleService" />
+	</bean>
+	<bean name="regist" class="com.yuqi.blog.web.RegistFormController">
+		<property name="sessionForm" value="true" />
+		<property name="commandName" value="regist" />
+		<property name="commandClass" value="com.yuqi.blog.domain.User" />
+		<property name="validator">
+			<bean class="com.yuqi.blog.web.validator.RegistValidator" />
+		</property>
+		<property name="formView" value="regist" />
+		<property name="successView" value="index.htm" />
+		<property name="userService" ref="userService" />
+	</bean>
+	<bean name="login" class="com.yuqi.blog.web.LoginFormController">
+		<property name="sessionForm" value="true" />
+		<property name="commandName" value="login" />
+		<property name="commandClass" value="com.yuqi.blog.domain.User" />
+		<property name="validator">
+			<bean class="com.yuqi.blog.web.validator.LoginValidator" name="loginValidator" >
+		<property name="userService" ref="userService" />
+	</bean>
+		</property>
+		<property name="formView" value="login" />
+		<property name="successView" value="index.htm" />
+		<property name="userService" ref="userService" />
+	</bean>
+	<bean name="articleForm" class="com.yuqi.blog.web.ArticleFormController">
+		<property name="sessionForm" value="true" />
+		<property name="commandName" value="article" />
+		<property name="commandClass" value="com.yuqi.blog.web.command.ArticleCommand" />
+		<property name="validator">
+			<bean class="com.yuqi.blog.web.validator.ArticleValidator" />
+		</property>
+		<property name="formView" value="articleForm" />
+		<property name="successView" value="articleList.htm" />
+		<property name="articleService" ref="articleService" />
+	</bean>
+	<bean name="categoryForm" class="com.yuqi.blog.web.CategoryFormController">
+		<property name="sessionForm" value="true" />
+		<property name="commandName" value="category" />
+		<property name="commandClass" value="com.yuqi.blog.domain.Category" />
+		<property name="validator">
+			<bean class="com.yuqi.blog.web.validator.CategoryValidator" />
+		</property>
+		<property name="formView" value="categoryForm" />
+		<property name="successView" value="categoryList.htm" />
+		<property name="categoryService" ref="categoryService" />
+	</bean>
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"></property>
+		<property name="prefix" value="/pages/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+</beans>

@@ -1,0 +1,105 @@
+@charset "utf-8";
+/* CSS Document for primaryContent by johnsong */
+
+
+/* vote again */
+#vote_again{
+	width:540px;
+	height:26px;
+	line-height:26px;
+	}
+
+
+/* suggest chapter */
+#primaryContent #suggest_chapter h3{
+	position:relative;
+	width:540px;
+	height:20px;
+	line-height:22px;
+	text-indent:12px;
+	color:#fff;
+	background:url(../images/bg_cap_suggest.gif) no-repeat top left;
+	}
+#primaryContent #suggest_chapter h3 img{
+	position:absolute;
+	left:515px;	
+	top:0;
+	}
+#primaryContent #suggest_chapter ul{
+	width:264px;
+	padding-top:2px;
+}
+#primaryContent #suggest_chapter ul.leftcontent{
+	float:left;
+	}
+#primaryContent #suggest_chapter ul.rightcontent{
+	float:right;
+	}
+#primaryContent #suggest_chapter li{
+	background:url(../images/dot02.gif) no-repeat center left;
+	}
+#primaryContent #suggest_chapter li a{
+	display:block;
+	margin-left:10px;
+	height:24px;
+	line-height:24px;
+	border-bottom:1px dashed #f90;
+}
+
+
+
+/* picshow */
+#primaryContent #picshow{
+	padding:8px 0;
+	}
+#primaryContent #picshow li{
+	float:left;
+	padding-right:7.2px;
+	}
+#primaryContent #picshow .no_rightpadding{
+	padding-right:0;
+	}
+#primaryContent #vote_action{
+	}
+#primaryContent #vote_action dl{
+	width:260px;
+	height:20px;
+	}
+#primaryContent #vote_action dt{
+	height:20px;
+	line-height:20px;
+	text-indent:12px;
+	color:#fff;	
+	}
+#primaryContent #vote_action dd{
+	background:url(../images/icon_list01.gif) no-repeat center left;
+	}
+#primaryContent #vote_action dd a{
+	display:block;
+	margin-left:10px;
+	height:24px;
+	line-height:24px;
+	border-bottom:1px dashed #f00;
+	}
+#primaryContent #vote_action dt{
+	position:relative;
+	height:20px;
+	line-height:20px;
+	text-indent:12px;
+	font-size:13px;
+	font-weight:bold;
+	color:#fff;	
+	}
+#primaryContent #vote_action dt img{
+	position:absolute;
+	right:6px;
+	top:0px;
+	}
+#primaryContent #vote_action .against{
+	background:url(../images/bg_cap_against.gif) no-repeat top left;
+	float:left;
+	}
+#primaryContent #vote_action .suggest{
+	background:url(../images/bg_cap_support.gif) no-repeat top left;
+	float:right;
+	}

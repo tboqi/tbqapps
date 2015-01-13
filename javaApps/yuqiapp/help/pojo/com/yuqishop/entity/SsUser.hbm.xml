@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2010-3-10 22:55:33 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.yuqishop.entity.SsUser" table="ss_user" catalog="yuqiapp_java">
+        <id name="id" type="java.lang.Long">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="email" type="string">
+            <column name="email" />
+        </property>
+        <property name="loginName" type="string">
+            <column name="login_name" not-null="true" unique="true" />
+        </property>
+        <property name="name" type="string">
+            <column name="name" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" />
+        </property>
+        <set name="shopItems" inverse="true" lazy="true" table="shop_item" fetch="select">
+            <key>
+                <column name="creator" not-null="true" />
+            </key>
+            <one-to-many class="com.yuqishop.entity.ShopItem" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,308 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="LinkageSelect.js"></script>
+<link type="text/css" rel="stylesheet" href="../common/syntaxhighlighter/Styles/SyntaxHighlighter.css"></link>
+<script language="javascript" src="../common/syntaxhighlighter/Scripts/shCore.js"></script>
+<script language="javascript" src="../common/syntaxhighlighter/Scripts/shBrushJScript.js"></script>
+
+<link href="common.css" rel="stylesheet"/>
+<title>通用JavaScript联动选择菜单</title>
+</head>
+
+<body>
+<div id="header">
+<h1>通用JavaScript联动选择菜单</h1>
+基于jQuery的联动选择菜单
+</div>
+
+<div class="main">
+<h2>Author</h2>
+RayChou
+[<a href="http://www.raychou.com">Website</a>]
+
+<h2>Update</h2>
+<ul>
+	
+	<li><strong>2009-05-14</strong><br />
+	新增Demo6 AJAX调用数据</li>
+	
+	<li><strong>2009-04-25</strong><br />
+	新增<a target="_blank" href="./data_builder/">DataBuilder</a> JSON数据生成工具</li>
+	
+	<li><strong>2009-04-24</strong><br />
+	发布第一版</li>
+</ul>
+
+<h2>Download</h2>
+<ul>
+  <li><a href="linkage-select.zip">linkage-select.zip</a></li>
+  <li><a href="data_builder/data_builder.zip">data_builder.zip</a></li>
+</ul>
+
+
+<h2>Tools</h2>
+<ul>
+  <li><a target="_blank" href="./data_builder/">DataBuilder</a></li>
+</ul>
+
+<h2>Demo</h2>
+
+<div class="main">
+
+<script type="text/javascript" src="location.js"></script>
+
+<h3>Demo1：省市地三级联动</h3>
+
+<div id="demo1">
+	<select class="level_1" style="width:120px;"></select>
+	<select class="level_2" style="width:120px;"></select>
+	<select class="level_3" style="width:120px;"></select>
+</div>
+
+<script type="text/javascript">
+$(function() {
+	var options	= {
+		data	: data
+	}
+	
+	var loc = new LinkageSelect(options);
+	loc.bind('#demo1 .level_1');
+	loc.bind('#demo1 .level_2');
+	loc.bind('#demo1 .level_3');
+})
+</script>
+	
+<pre name="code" class="js">
+var options	= {
+	data	: data	// data变量数据从location.js得来
+}
+
+var loc = new LinkageSelect(options);
+loc.bind('#demo1 .level_1');
+loc.bind('#demo1 .level_2');
+loc.bind('#demo1 .level_3');
+</pre>
+
+
+<h3>Demo2：默认选中省市</h3>
+
+<div id="demo2">
+	<select class="level_1" style="width:120px;"></select>
+	<select class="level_2" style="width:120px;"></select>
+	<select class="level_3" style="width:120px;"></select>
+</div>
+
+<script type="text/javascript">
+$(function() {
+	var options	= {
+		data	: data
+	}
+	
+	var loc = new LinkageSelect(options);
+	loc.bind('#demo2 .level_1' , '1');
+	loc.bind('#demo2 .level_2' , '2');
+	loc.bind('#demo2 .level_3');
+})
+</script>	
+
+
+<pre name="code" class="js">
+var options	= {
+	data	: data
+}
+
+var loc = new LinkageSelect(options);
+loc.bind('#demo2 .level_1' , '1');
+loc.bind('#demo2 .level_2' , '2');
+loc.bind('#demo2 .level_3');
+</pre>
+
+
+<h3>Demo3：自定义选择范围</h3>
+
+<div id="demo3">
+	北京市
+	<select class="level_1" style="width:120px;"></select>
+</div>
+
+<script type="text/javascript">
+$(function() {
+	var options	= {
+		data	: data,
+		root	: '0,1,2'
+	}
+	
+	var loc = new LinkageSelect(options);
+	loc.bind('#demo3 .level_1');
+})
+</script>
+
+<pre name="code" class="js">
+var options	= {
+	data	: data,
+	root	: '0,1,2'
+}
+
+var loc = new LinkageSelect(options);
+loc.bind('#demo3 .level_1');
+</pre>
+
+
+<h3>Demo4：调用外部JSON （一次取出所有数据，不适合数据量大的情况）<a target="_blank" href="./data_builder/">DataBuilder</a></h3>
+
+<div id="demo4">
+	<select class="level_1" style="width:120px;"></select>
+	<select class="level_2" style="width:120px;"></select>
+	<select class="level_3" style="width:120px;"></select>
+</div>
+
+<script type="text/javascript">
+$(function() {
+	var options	= {
+		file	:	'./data_builder/json.php'
+	}
+	
+	var loc = new LinkageSelect(options);
+	loc.bind('#demo4 .level_1');
+	loc.bind('#demo4 .level_2');
+	loc.bind('#demo4 .level_3');
+})
+</script>	
+
+<pre name="code" class="js">
+var options	= {
+	file	:	'./data_builder/json.php'
+}
+
+var loc = new LinkageSelect(options);
+loc.bind('#demo4 .level_1');
+loc.bind('#demo4 .level_2');
+loc.bind('#demo4 .level_3');
+</pre>
+
+
+<h3>Demo5：动态加载菜单</h3>
+
+<div id="demo5">
+	<a href="javascript:select1();">地区菜单</a>
+	<a href="javascript:select2();">自定义菜单</a><br />
+	<select class="level_1" style="width:120px;"></select>
+	<select class="level_2" style="width:120px;"></select>
+	<select class="level_3" style="width:120px;"></select>
+</div>
+
+<script type="text/javascript">
+function select1() {
+	var options	= {
+		data	:	data
+	}
+	
+	var loc = new LinkageSelect(options);
+	loc.bind('#demo5 .level_1');
+	loc.bind('#demo5 .level_2');
+	loc.bind('#demo5 .level_3');
+}
+
+function select2() {
+	var options	= {
+		file	:	'./data_builder/json.php'
+	}
+	
+	var loc = new LinkageSelect(options);
+	loc.bind('#demo5 .level_1');
+	loc.bind('#demo5 .level_2');
+	loc.bind('#demo5 .level_3');
+}
+</script>	
+
+
+<pre name="code" class="js">
+function select1() {
+	var options	= {
+		data	:	data
+	}
+	
+	var loc = new LinkageSelect(options);
+	loc.bind('#demo5 .level_1');
+	loc.bind('#demo5 .level_2');
+	loc.bind('#demo5 .level_3');
+}
+
+function select2() {
+	var options	= {
+		file	:	'./data_builder/json.php'
+	}
+	
+	var loc = new LinkageSelect(options);
+	loc.bind('#demo5 .level_1');
+	loc.bind('#demo5 .level_2');
+	loc.bind('#demo5 .level_3');
+}
+</pre>
+
+
+
+
+<h3>Demo6：Ajax调用数据（根据所选项，动态取下级菜单，速度快，有缓存）</h3>
+
+<div id="demo6">
+	<select class="level_1" style="width:120px;"></select>
+	<select class="level_2" style="width:120px;"></select>
+	<select class="level_3" style="width:120px;"></select>
+</div>
+
+<script type="text/javascript">
+$(function() {
+	var options	= {
+		ajax	:	'./data_builder/ajax.php'
+	}
+	
+	var loc = new LinkageSelect(options);
+	loc.bind('#demo6 .level_1');
+	loc.bind('#demo6 .level_2');
+	loc.bind('#demo6 .level_3');
+})
+</script>	
+
+
+<pre name="code" class="js">
+var options	= {
+	ajax	:	'./data_builder/ajax.php'
+}
+
+var loc = new LinkageSelect(options);
+loc.bind('#demo6 .level_1');
+loc.bind('#demo6 .level_2');
+loc.bind('#demo6 .level_3');
+</pre>
+
+
+
+
+
+
+<script language="javascript">
+dp.SyntaxHighlighter.HighlightAll('code');
+</script>
+
+</div>
+
+</div>
+
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-8822947-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+
+</body>
+</html>

@@ -1,0 +1,190 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+/* sideContent */
+#towColLayout2 #sideContent h1{
+	position:relative;
+	height:20px;
+	line-height:20px;
+	margin:12px 0 6px 0;
+	color:#fff;
+	text-indent:12px;
+	}
+#towColLayout2 #sideContent .newchapterlist{
+	background:url(../images/bg_cap_morenewchapter.gif) no-repeat top left;
+	}
+#towColLayout2 #sideContent .channellist{
+	background:url(../images/bg_cap_channel_list.gif) no-repeat top left;
+	}
+#towColLayout2 #sideContent .newchapterlist img{
+	position:absolute;
+	top:5px;
+	padding-left:2px;
+	}
+#towColLayout2 #sideContent p img{
+	float:left;
+	padding-right:6px;
+	}
+#towColLayout2 #sideContent .tag_true{
+	background:url(../images/tags_true.gif) no-repeat 80% 50%;
+	}
+#towColLayout2 #sideContent .tag_false{
+	background:url(../images/tags_false.gif) no-repeat 80% 50%;
+	}
+#towColLayout2 #sideContent dt a{
+	font-size:12px;
+	font-weight:bold;
+	color:#00f;
+	text-decoration:underline;
+	}
+#towColLayout2 #sideContent dt a:hover{
+	color:#92c;
+	text-decoration:none;
+	}
+#towColLayout2 #sideContent .pdlb dt a{
+	color:#391fb4;
+}
+#towColLayout2 #sideContent dd p{
+	line-height:180%;
+	}
+.info_color{
+	color:#008080;
+	}
+.scz_color{
+	color:#0000b0;
+	}
+.ps_color{
+	color:#f00;
+	}
+.num_color{
+	color:#0ff;
+	}
+.xt{
+	font-style:italic;
+	}
+#towColLayout2 #sideContent .btn_padding img{
+	padding-right:8px;
+	margin-top:6px;
+}
+#towColLayout2 #sideContent .list_sprite_line{
+	height:18px;
+	background:url(../images/list_sprite_line.gif) repeat-x center left;
+	}
+#towColLayout2 #sideContent .page_num{
+	height:20px;
+	text-align:center;
+	}
+.boldit{
+	font-weight:bold;
+	}
+
+
+
+/* primaryContent */
+
+#towColLayout2 #primaryContent .right_pic_first{
+	margin:12px 0 6px 0;
+	}
+/*#towColLayout2 #primaryContent .madecenter{
+	text-align:center;
+}*/
+#towColLayout2 #primaryContent .linehight_01{
+	line-height:150%;
+}
+
+/* thisweek_focus */
+#towColLayout2 #primaryContent li{
+	background:url(../images/dot02.gif) no-repeat center left;
+}
+#towColLayout2 #primaryContent li a{
+	display:block;
+	height:24px;
+	line-height:24px;
+	margin-left:10px;
+	border-bottom:1px dashed #f60;
+}
+#towColLayout2 #primaryContent li a:hover{
+	background-color:#f7f7f7;
+	text-decoration:none;
+}
+#towColLayout2 #primaryContent h2,#towColLayout2 #primaryContent h3,#towColLayout2 #primaryContent h4{
+	position:relative;
+	height:20px;
+	line-height:20px;
+	text-indent:12px;
+	color:#fff;
+}
+#towColLayout2 #primaryContent .blackh2{
+	color:#060;
+	text-indent:0;
+	text-decoration:underline;
+	}
+#towColLayout2 #primaryContent .blackh2:hover{
+	text-decoration:none;
+	}
+#towColLayout2 #primaryContent .bzjd{
+	background:url(../images/cap_right_newchapter.gif) no-repeat top left;
+	}
+#towColLayout2 #primaryContent .zrcw{
+	background:url(../images/cap_right_channel_list.gif) no-repeat top left;
+	margin-top:12px;
+	}
+#towColLayout2 #primaryContent .zrcw_border li a{
+	border-bottom:1px dashed #bee243;
+	}
+#towColLayout2 #primaryContent #hyck{
+	margin-top:12px;
+	}
+#towColLayout2 #primaryContent #hyck dt{
+	position:relative;
+	background:url(../images/cap_right_channel_list.gif) no-repeat top left;
+	height:20px;
+	line-height:20px;
+	font-size:13px;
+	color:#fff;
+	font-weight:bold;
+	text-indent:12px;
+	margin-bottom:6px;
+	}
+#towColLayout2 #primaryContent #hyck dt img{
+	position:absolute;
+	left:295px;
+	}
+#towColLayout2 #primaryContent #hyck dd{
+	float:left;
+	width:106px;
+	text-align:center;
+	}
+#towColLayout2 #primaryContent .hycklist{
+	margin-top:6px;
+	width:320px;
+	background:none;
+	}
+#towColLayout2 #primaryContent .hycklist li a{
+
+	}
+
+.clearrightpadding{
+	padding-right:0;
+	}
+#towColLayout2 #primaryContent .zxpd{
+	background:url(../images/cap_right_channel_list.gif) no-repeat top left;
+	}
+#towColLayout2 #primaryContent h3 img,#towColLayout2 #primaryContent h4 img,#towColLayout2 #primaryContent h2 img{
+	position:absolute;
+	left:295px;
+	top:0;
+	}
+#towColLayout2 #primaryContent .v_space{
+	height:12px;
+	}
+#towColLayout2 #primaryContent .exiting1{
+	width:142px;
+	float:left;
+	}
+#towColLayout2 #primaryContent .exiting2{
+	width:142px;
+	float:right;
+	}
+

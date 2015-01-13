@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<!-- 数据源 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://mysql1008.ixwebhosting.com:3306/C321871_number1g?characterEncoding=utf-8" />
+		<property name="username" value="C321871_n1gfetch" />
+		<property name="password" value="1qaz!QAZ" />
+		<!-- <property name="url" value="jdbc:mysql://localhost:3306/netbfp?characterEncoding=utf-8" />
+		<property name="username" value="root" />
+		<property name="password" value="root" /> -->
+        <property name="maxActive" value="20"/>
+        <property name="maxIdle" value="20"/>
+        <property name="initialSize" value="1"/>
+        <property name="maxWait" value="100000"/>
+        <property name="defaultAutoCommit" value="true"/>
+        <property name="removeAbandoned" value="true"/>
+        <property name="removeAbandonedTimeout" value="60"/>
+        <property name="logAbandoned" value="true"/>
+    </bean>   
+
+	<bean id="articleDao" class="com.number1g.dao.ArticleDao">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<bean id="hexunArticleFetcher" class="com.number1g.fetcher.articlefetcher.HexunArticleFetcher">
+		<property name="article" ref="article"></property>
+		<property name="articleDao" ref="articleDao"></property>
+	</bean>
+	<bean id="lady8844ArticleFetcher" class="com.number1g.fetcher.articlefetcher.Lady8844ArticleFetcher">
+		<property name="article" ref="article"></property>
+		<property name="articleDao" ref="articleDao"></property>
+	</bean>
+	
+	<bean id="article" class="com.number1g.entity.Article"></bean>
+	<bean id="hexunUrlFetcher" class="com.number1g.fetcher.urlfetcher.HexunUrlFetcher">
+		<property name="articleDao" ref="articleDao"></property>
+		<property name="articleFetcher" ref="hexunArticleFetcher"></property>
+	</bean>
+	<bean id="lady8844UrlFetcher" class="com.number1g.fetcher.urlfetcher.Lady8844UrlFetcher">
+		<property name="articleDao" ref="articleDao"></property>
+		<property name="articleFetcher" ref="lady8844ArticleFetcher"></property>
+	</bean>
+	<bean id="lady8844UrlFetcher2" class="com.number1g.fetcher.urlfetcher.Lady8844UrlFetcher2">
+		<property name="articleDao" ref="articleDao"></property>
+		<property name="articleFetcher" ref="lady8844ArticleFetcher"></property>
+	</bean>
+</beans>  

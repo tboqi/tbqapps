@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Thu May 03 18:09:10 CST 2012
+onejar.license.required=true
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=false
+jarname=number1gFetcher0.jar
+manifest.mergeall=true
+manifest.mainclass=com.number1g.Fetcher
+manifest.file=<createnew>
+jarname.isextern=false
+onejar.expand=
+excludes=<po|number1gFetcher>~.svn/;<po|yuqiutils>~.svn/
+includes=

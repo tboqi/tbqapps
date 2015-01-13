@@ -1,0 +1,39 @@
+BODY {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; background:url(/images/head_bg.jpg) repeat-x left top; PADDING-BOTTOM: 0px; MARGIN: 0px; FONT: 76% Arial,""; PADDING-TOP: 0px
+}
+A {
+	COLOR: #000; TEXT-DECORATION: none
+}
+A:hover {
+	TEXT-DECORATION: underline
+}
+H1 {
+	FONT-SIZE: 13px
+}
+H2 {
+	FONT-SIZE: 13px
+}
+H3 {
+	FONT-SIZE: 13px
+}
+H4 {
+	FONT-SIZE: 13px
+}
+H5 {
+	FONT-SIZE: 13px
+}
+H6 {
+	FONT-SIZE: 13px;
+}
+UL {
+	BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; LIST-STYLE-TYPE: none; BORDER-BOTTOM-STYLE: none
+}
+IMG {
+	BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px
+}
+.clr {
+	CLEAR: both
+}
+INPUT {
+	FONT-SIZE: 12px
+}

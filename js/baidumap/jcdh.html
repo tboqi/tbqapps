@@ -1,0 +1,21 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>驾车导航</title>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.1&services=true"></script>
+</head>
+<body>
+<div style="width:520px;height:340px;border:1px solid gray" id="container"></div>
+<div id="info"></div>
+</body>
+</html>
+<script type="text/javascript">
+var map = new BMap.Map("container");
+map.centerAndZoom(new BMap.Point(116.404, 39.915), 14);
+
+var driving = new BMap.WalkingRoute(map, {renderOptions:{map: map, autoViewport: true}});
+driving.search("颐和园", "圆明园");
+map.addEventListener("click", function(e){
+	document.getElementById("info").innerHTML = e.point.lng + ", " + e.point.lat;
+});
+</script>

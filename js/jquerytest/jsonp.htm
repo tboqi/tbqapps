@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" href="http://xklocal/resource/xkgreen/stylesheets/datainterface.css">
+<title>Insert title here</title>
+</head>
+<body>
+.......
+</body>
+</html>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$.ajax({
+	    url: 'http://www.xikang365.org/datainterface/rili',
+	    type: 'GET',  //这里用GET
+	    async: false,
+	    dataType: 'jsonp',  //类型
+	    jsonp: 'xkrili', //jsonp回调参数，必需  M0000002011092700013
+	    data:{'mid':'M0000002011101000007'},
+	    success: function(result) {
+            $('body').html(result.yinshi + result.water + result.lifestyle); //回调输出
+        }
+	});
+});
+</script>

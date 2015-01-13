@@ -1,0 +1,116 @@
+@charset "UTF-8";
+
+.TabbedPanels {
+	margin: 0px;
+	padding: 0px;
+	float: left;
+	clear: none;
+	width: 100%; /* IE Hack to force proper layout when preceded by a paragraph. (hasLayout Bug)*/
+}
+
+
+.TabbedPanelsTabGroup {
+	margin: 0px;
+	padding: 0px;
+}
+
+
+.TabbedPanelsTab {
+	position: relative;
+	top: 1px;
+	float: left;
+	padding: 4px 10px;
+	margin: 0px 1px 0px 0px;
+	font: bold 12px "宋体";
+	color:#fff;
+	background:url(../images/bg_cap_insert.gif) repeat-x top left;
+/*	background-color: #DDD;*/
+	list-style: none;
+	border-left: solid 1px #0a77d5;
+/*	border-bottom: solid 1px #0a77d5;*/
+	border-top: solid 1px #0a77d5;
+	border-right: solid 1px #0a77d5;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	cursor: pointer;
+}
+
+.TabbedPanelsTabHover {
+/*	background-color: #CCC;*/
+}
+
+
+.TabbedPanelsTabSelected {
+	background:url(../images/bg_cap_pl.gif) repeat-x;
+/*	border-bottom: 1px solid #0a77d5;*/
+	color:#000;
+}
+
+.TabbedPanelsTab a {
+	color: #fff;
+	text-decoration: none;
+}
+
+
+.TabbedPanelsContentGroup {
+	clear: both;
+	border-left: solid 1px #0a77d5;
+	border-bottom: solid 1px #0a77d5;
+	border-top: solid 1px #0a77d5;
+	border-right: solid 1px #0a77d5;
+	background-color: #fff;
+}
+
+.TabbedPanelsContent {
+	padding: 4px;
+}
+
+.TabbedPanelsContentVisible {
+}
+
+.VTabbedPanels .TabbedPanelsTabGroup {
+	float: left;
+	width: 10em;
+	height: 20em;
+	background-color: #fff;
+	position: relative;
+/*	border-top: solid 1px #0a77d5;*/
+	border-right: solid 1px #0a77d5;
+	border-left: solid 1px #0a77d5;
+	border-bottom: solid 1px #0a77d5;
+}
+
+/* This selector disables the float property that is placed on each tab button
+ * by the default TabbedPanelsTab selector rule above. It also draws a bottom
+ * border for the tab. The tab button will get its left and right border from
+ * the TabGroup, and its top border from the TabGroup or tab button above it.
+ */
+.VTabbedPanels .TabbedPanelsTab {
+	float: none;
+	margin: 0px;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+}
+
+/* This selector disables the float property that is placed on each tab button
+ * by the default TabbedPanelsTab selector rule above. It also draws a bottom
+ * border for the tab. The tab button will get its left and right border from
+ * the TabGroup, and its top border from the TabGroup or tab button above it.
+ */
+.VTabbedPanels .TabbedPanelsTabSelected {
+/*	background-color: #EEE;*/
+/*	border-bottom: solid 1px #0a77d5;*/
+}
+
+/* This selector floats the content panels for the widget so that they
+ * render to the right of the tabbed buttons.
+ */
+.VTabbedPanels .TabbedPanelsContentGroup {
+	clear: none;
+	float: left;
+	padding: 0px;
+	width: 30em;
+	height: 20em;
+}
+

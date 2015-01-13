@@ -1,0 +1,154 @@
+/* CSS Document */
+#content2{
+	margin:0px auto;
+	border:1px solid #60bef9;
+	width:800px;
+	}
+#content2 h2{
+	font-size:13px;
+	font-weight:bold;
+	text-indent:5px;
+	background-color:#A1D9FC;
+	border-bottom:1px solid #60bef9;
+	margin:0px;
+	padding:0px;
+	height:25px;
+	line-height:25px;
+	}
+/*#content2 #11{ float:right; display: inline;}*/
+#content2 h3{
+	margin:0px;
+	padding:0px;
+	height:20px;
+	line-height:20px;
+	font-size:12px;
+	font-weight:400;
+	text-indent:5px;
+	}
+#content2 #chapter_content{
+	line-height:150%;
+	margin:0px;
+	padding:0px ;
+	width:798px;
+	}
+#content2 h4{
+	margin:10px 0px;
+	padding:0px;
+	text-align:center;
+	}
+#content2 dl{
+	list-style-type:none;
+	margin:0;
+	padding:0 5px;
+	}
+#content2 dt{
+	font-size:13px;
+	font-weight:bold;
+	}
+#content2 dd{
+	margin:0;
+	padding:0;
+	height:20px;
+	line-height:20px;
+	color:#0000FF;
+	}
+#content form{
+	margin:0;
+	padding:0;
+	}
+#content #search{
+	width:798px;
+	height:25px;
+	line-height:25px;
+	margin:0;
+	padding:0;
+	background-color:#A1D9FC;
+	border:1px solid #60bef9;
+	text-indent:10px;
+	}
+#content .inputradio01{
+	vertical-align:middle!important;
+	vertical-align:top;
+	margin:0;
+	padding:0;
+	}
+#content .inputtext01{
+	border:1px solid #60bef9;
+	height:14px;
+	width:300px!important;
+	width:290px;
+	}
+#content .inputimage01{
+	position:absolute;
+	top:131px!important;
+	left:600px!important;
+	top:137px;
+	left:615px;
+	}
+#content dl{
+	margin:10px 0px 0px 0px;
+	padding:0px;
+	border-bottom:1px dashed #60bef9;
+	}
+#content dt{
+	margin:0px 0px 5px 0px;
+	padding:0px;
+	font-size:14px;
+	}
+#content dd{
+	margin:3px 0px 0px 0px;
+	padding:0px;
+	}
+#content p{
+	margin:0px;
+	padding:0px;
+	color: #666666;
+	line-height:150%;
+	}
+#content .page{
+	text-align:center;
+	margin:5px;
+	padding:0px;
+	}
+h1{
+	text-align:center;
+	margin:10px 0;
+	}
+#more{
+	width:800px;
+	margin:0 auto;
+	padding:0;
+	}
+#more dl{
+	margin:10px 0px 0px 0px;
+	padding:0px;
+	border-bottom:1px dashed #60bef9;
+	}
+#more dt{
+	margin:0px 0px 5px 0px;
+	padding:0px;
+	font-size:14px;
+	}
+#more dd{
+	margin:3px 0px 0px 0px;
+	padding:0px;
+	}
+#more p{
+	margin:0px;
+	padding:0px;
+	color: #666666;
+	line-height:180%;
+	height:110px;
+	}
+#more .page{
+	text-align:center;
+	margin:5px;
+	padding:0px;
+	height:30px;
+	}
+#more img{
+	float:left;
+	border:0;
+	margin:0px 5px 5px 5px;
+	padding:0;
+	}

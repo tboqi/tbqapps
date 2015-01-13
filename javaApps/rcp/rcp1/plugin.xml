@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         id="application"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run
+               class="rcp1.Application">
+         </run>
+      </application>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            name="RCP Perspective"
+            class="rcp1.Perspective"
+            id="rcp1.perspective">
+      </perspective>
+   </extension>
+   <extension
+         id="product"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="rcp1.application"
+            name="Hello RCP">
+         <property
+               name="windowImages"
+               value="icons/alt_window_16.gif,icons/alt_window_32.gif">
+         </property>
+      </product>
+   </extension>
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            id="rcp1.actionSet"
+            label="样本操作集"
+            visible="true">
+         <menu
+               id="sampleMenu"
+               label="样本菜单(&amp;M)">
+            <separator
+                  name="sampleGroup">
+            </separator>
+         </menu>
+         <action
+               class="rcp1.actions.SampleAction"
+               icon="icons/sample.gif"
+               id="rcp1.actions.SampleAction"
+               label="样本操作(&amp;S)"
+               menubarPath="sampleMenu/sampleGroup"
+               toolbarPath="sampleGroup"
+               tooltip="Hello，Eclipse world">
+         </action>
+      </actionSet>
+      <actionSet
+            id="rcp1.actionSet1"
+            label="label11"
+            visible="true">
+         <menu
+               id="rcp1.menu1"
+               label="label222">
+            <separator
+                  name="rcp1.separator1">
+            </separator>
+         </menu>
+         <action
+               class="rcp1.actions.SampleAction"
+               icon="icons/sample.gif"
+               id="rcp1.actions.SampleAction"
+               label="样本操作(&amp;S)"
+               menubarPath="rcp1.menu1/rcp1.separator1"
+               toolbarPath="rcp1.separator1"
+               tooltip="Hello，Eclipse world">
+         </action>
+      </actionSet>
+   </extension>
+
+</plugin>

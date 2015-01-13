@@ -1,0 +1,21 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>公交导航结果面板</title>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.1&services=true"></script>
+</head>
+<body>
+<div style="width:520px;height:340px;border:1px solid gray" id="container"></div>
+<div id="results" style="font-size:13px;margin-top:10px;"></div>
+</body>
+</html>
+<script type="text/javascript">
+var map = new BMap.Map("container");
+map.centerAndZoom(new BMap.Point(116.404, 39.915), 14);
+
+var transit = new BMap.TransitRoute(map, {
+  renderOptions: {map: map, panel: "results"}
+});
+transit.search("王府井", "马甸桥东");
+
+</script>

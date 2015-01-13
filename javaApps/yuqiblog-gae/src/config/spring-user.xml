@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="userService" class="com.yuqi.blog.service.UserService">
+		<property name="userDao" ref="userDao" />
+	</bean>
+	<bean id="userDao" class="com.yuqi.blog.dao.gae.UserDaoImpl" />
+	
+	<bean id="articleService" class="com.yuqi.blog.service.ArticleService">
+		<property name="articleDao" ref="articleDao" />
+	</bean>
+	<bean id="articleDao" class="com.yuqi.blog.dao.gae.ArticleDaoImpl" />
+	<bean id="categoryDao" class="com.yuqi.blog.dao.gae.CategoryDaoImpl" />
+	<bean id="categoryService" class="com.yuqi.blog.service.CategoryService">
+		<property name="categoryDao" ref="categoryDao" />
+		<property name="articleDao" ref="articleDao" />
+	</bean>
+</beans>
