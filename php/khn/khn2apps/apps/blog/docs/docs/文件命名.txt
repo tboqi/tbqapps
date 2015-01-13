@@ -1,3 +1,0 @@
-views
-[admin/space/block]_[modulesname]_标识name
-例子：admin_article_category_list.php
