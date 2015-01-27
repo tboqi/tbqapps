@@ -29,15 +29,15 @@ cursor.execute(query);
 
 cursor2.execute("SET foreign_key_checks = 0;");
 
-for row in cursor:
-    sql_new_art = "replace into articles (id,title,content, summary, create_time, read_times, update_time, ref, category_id, refurl) values (%s, %s, %s, %s, %s, %s, %s, 1, %s, %s)"
-    if row[6]:
-        update_time = row[6]
-    else:
-        update_time = 0
-        
-    data = (row[0], row[1], row[3], row[2], row[4], row[5], update_time, row[7], row[8])
-    cursor2.execute(sql_new_art, data);
+# for row in cursor:
+#     sql_new_art = "replace into articles (id,title,content, summary, create_time, read_times, update_time, ref, category_id, refurl) values (%s, %s, %s, %s, %s, %s, %s, 1, %s, %s)"
+#     if row[6]:
+#         update_time = row[6]
+#     else:
+#         update_time = 0
+#         
+#     data = (row[0], row[1], row[3], row[2], row[4], row[5], update_time, row[7], row[8])
+#     cursor2.execute(sql_new_art, data);
 
 cursor2.execute("SET foreign_key_checks = 1");
 cnx2.commit()
