@@ -29,17 +29,38 @@ cursor.execute(query);
 
 cursor2.execute("SET foreign_key_checks = 0;");
 
-# for row in cursor:
-#     sql_new_art = "replace into articles (id,title,content, summary, create_time, read_times, update_time, ref, category_id, refurl) values (%s, %s, %s, %s, %s, %s, %s, 1, %s, %s)"
-#     if row[6]:
-#         update_time = row[6]
-#     else:
-#         update_time = 0
-#         
-#     data = (row[0], row[1], row[3], row[2], row[4], row[5], update_time, row[7], row[8])
-#     cursor2.execute(sql_new_art, data);
+art_id_list = []
+for row in cursor:
+    sql_new_art = "replace into articles (id,title,content, summary, create_time, read_times, update_time, ref, category_id, refurl) values (%s, %s, %s, %s, %s, %s, %s, 1, %s, %s)"
+    if row[6]:
+        update_time = row[6]
+    else:
+        update_time = 0
+         
+    data = (row[0], row[1], row[3], row[2], row[4], row[5], update_time, row[7], row[8])
+    print "art id=", row[0], "\n"
+    art_id_list.append(row[0])
+    cursor2.execute(sql_new_art, data);
 
+print "tab\n"
+for art_id in art_id_list:
+    print art_id
+    sql = "SELECT art_tab.`article_id`,t.`id`,t.`tab` FROM `yuqi_tabs` t, `yuqi_article_tab` art_tab WHERE art_tab.`article_id`=%s AND art_tab.`tab_id`=t.`id`"
+    cursor.execute(sql, (art_id,))
+    
+    for (art_id, tab_id, tab_name) in cursor:
+        print "tab id:", tab_id, " art id:", art_id, "\n"
+        sql_insert = "replace into article_tabs (id,tab) values (%(tab_id)s, %(tab_name)s)"
+        data = {'tab_id':tab_id, 'tab_name':tab_name}
+        cursor2.execute(sql_insert, data)
+        
+        sql_insert = "replace into article_tab_link values (%(art_id)s, %(tab_id)s)"
+        data = {'tab_id':tab_id, 'art_id':art_id}
+        cursor2.execute(sql_insert, data)
+    
 cursor2.execute("SET foreign_key_checks = 1");
 cnx2.commit()
 cursor.close()
 cnx.close()
+cursor2.close()
+cnx2.close()
