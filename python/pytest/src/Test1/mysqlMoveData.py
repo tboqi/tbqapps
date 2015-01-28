@@ -33,21 +33,21 @@ cursor2.execute("SET foreign_key_checks = 0;");
 
 art_id_list = []
 for row in cursor:
-    sql_new_art = "replace into articles (id,title,content, summary, create_time, read_times, update_time, ref, category_id, refurl) values (%s, %s, %s, %s, %s, %s, %s, 1, %s, %s)"
-    if row[7]:
-        update_time = row[7]
-    else:
-        update_time = 0
-        
-    if row[6] == None:
-        refurl = ''
-    else:
-        refurl = row[6]
-         
-    data = (row[0], row[1], row[3], row[2], row[4], row[5], update_time, row[8], refurl)
-    print "art id=", row[0]
+#     sql_new_art = "replace into articles (id,title,content, summary, create_time, read_times, update_time, ref, category_id, refurl) values (%s, %s, %s, %s, %s, %s, %s, 1, %s, %s)"
+#     if row[7]:
+#         update_time = row[7]
+#     else:
+#         update_time = 0
+#         
+#     if row[6] == None:
+#         refurl = ''
+#     else:
+#         refurl = row[6]
+#          
+#     data = (row[0], row[1], row[3], row[2], row[4], row[5], update_time, row[8], refurl)
+#     print "art id=", row[0]
+#     cursor2.execute(sql_new_art, data);
     art_id_list.append(row[0])
-    cursor2.execute(sql_new_art, data);
 
 print "#####################tab"
 for art_id in art_id_list:
@@ -67,9 +67,10 @@ for art_id in art_id_list:
         cursor2.execute(sql_insert, data)
         
         tabs_detail.append({'id':tab_id,'tab':tab_name})
-        tabs_detail_json = json.dumps(tabs_detail)
-        sql_update_art = "update articles set tabs_detail=%s";
-        cursor2.execute(sql_update_art, (tabs_detail_json,))
+        
+    tabs_detail_json = json.dumps(tabs_detail)
+    sql_update_art = "update articles set tabs_detail=%s where id=%s";
+    cursor2.execute(sql_update_art, (tabs_detail_json,art_id))
     
 cursor2.execute("SET foreign_key_checks = 1");
 cnx2.commit()
