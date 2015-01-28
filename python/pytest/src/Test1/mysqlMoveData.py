@@ -14,6 +14,7 @@ config = {
 }
 cnx = mysql.connector.connect(**config)
 cursor = cnx.cursor()
+# cursor = cnx.cursor(dictionary=True)
 
 config2 = {
   'user': 'root',
