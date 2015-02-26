@@ -1,9 +1,9 @@
 <?php
-define('BASE_URL', '/taoli/');
+define('BASE_URL', '/tbqwebsite/');
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'taoli');
 define('DB_USER', 'root');
-define('DB_PASS', '111111');
+define('DB_PASS', '');
 /*
  Kohana::modules(array(
 	'base'   => MODPATH.'base',
