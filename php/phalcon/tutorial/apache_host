@@ -1,0 +1,11 @@
+<VirtualHost *:80>
+DocumentRoot "/Users/tangboqi/Sites/phalcon/tutorial/public"
+ServerName  phalcon
+<Directory "/Users/tangboqi/Sites/phalcon/tutorial">
+Options FollowSymLinks Indexes
+AllowOverride None
+Order allow,deny
+Allow from all
+Require all granted
+</Directory>
+</VirtualHost>
