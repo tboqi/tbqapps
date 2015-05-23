@@ -2,7 +2,7 @@
 
 return array(
 
-	'driver'       => 'file',
+	'driver'       => 'mysql',
 	'hash_method'  => 'sha256',
 	'hash_key'     => 'blog',//NULL
 	'lifetime'     => 1209600, // 60 * 60 * 24 * 14
@@ -11,7 +11,7 @@ return array(
 
 	// Username/password combinations for the Auth File driver
 	'users' => array(
-		'admin' => '758b4c37cd73dae84525390ba418945c8ade1a936c04edb33dc94e63f08162c8',
+		'admin' => '5f728a520f30af4c3778740e1c58086f413f63f968cefe10a0f359f72c94338d',
 	),
 
 );

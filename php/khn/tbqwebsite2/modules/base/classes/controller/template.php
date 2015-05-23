@@ -104,14 +104,14 @@ abstract class Controller_Template extends Controller {
 		$username = $arr[0];
 		$lifetime = $arr[1];
 		$res = false;
-		if (isset($this->auth_config['users'][$username])) {
-			$password_hash = $this->auth_config['users'][$username];
-			$webkey = $this->auth_config['hash_key'];
-			$md5str = md5("{$username}{$password_hash}{$lifetime}{$webkey}");
-			if ($md5str == $arr[2]) {
-				$res = Auth::instance()->force_login($username);
-			}
-		}
+// 		if (isset($this->auth_config['users'][$username])) {
+// 			$password_hash = $this->auth_config['users'][$username];
+// 			$webkey = $this->auth_config['hash_key'];
+// 			$md5str = md5("{$username}{$password_hash}{$lifetime}{$webkey}");
+// 			if ($md5str == $arr[2]) {
+// 				$res = Auth::instance()->force_login($username);
+// 			}
+// 		}
 		return $res;
 	}
 
