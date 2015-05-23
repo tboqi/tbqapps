@@ -22,8 +22,21 @@ abstract class Controller_Template extends Controller {
 	public function before() {
 		parent::before();
 
-		$header = Helper_View::create_view('common/header');
-		$header->render();
+		if ($this->auto_render === TRUE)
+		{
+			// Load the template
+			$this->template = Helper_View::create_view($this->template);
+			$this->template->controller = $this->request->controller();
+			$this->template->action = $this->request->action();
+		}
+		
+		$this->auth_config = Kohana::$config->load('auth');
+		Cookie::$salt = 'blog';
+		$this->auto_login();
+
+		$model_website = new Model_Website();
+		$this->website_baseinfo = $model_website->get_new();
+		$this->title = $this->get_title();
 	}
 	private $website_baseinfo;
 	private function get_title() {
@@ -112,8 +125,14 @@ abstract class Controller_Template extends Controller {
 	}
 	
 	function after() {
-		$footer = Helper_View::create_view('common/footer');
-		$footer->render();
+		if ($this->auto_render === TRUE)
+		{
+			$this->template->title = $this->sub_title . ' - ' . $this->title;
+			$this->template->keywords = empty($this->keywords) ? $this->website_baseinfo->keywords : $this->keywords;
+			$this->template->description = empty($this->description) ? $this->website_baseinfo->description : $this->description;
+			$this->template->js_array = $this->js_array;
+			$this->response->body($this->template->render());
+		}
 
 		parent::after();
 	}

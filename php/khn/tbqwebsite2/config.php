@@ -1,8 +1,8 @@
 <?php
-define('BASE_URL', '/tbqwebsite/');
+define('BASE_URL', '/');
 // define('BASE_URL', '/taoli/');
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'taoli');
+define('DB_HOST', '127.0.0.1');
+define('DB_NAME', 'tbqwebsite2');
 define('DB_USER', 'root');
 define('DB_PASS', '');
 /*

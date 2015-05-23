@@ -161,7 +161,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 ALTER TABLE `articles` CHANGE COLUMN `tabs_detail` `tabs_detail` TEXT NULL DEFAULT NULL COMMENT '存储标签的详细信息，\njson格式，\n包含id，name'  ;
 
-CREATE  TABLE `taoli`.`website` (
+CREATE  TABLE `website` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
   `title` VARCHAR(255) NOT NULL DEFAULT '' ,
   `description` VARCHAR(255) NOT NULL DEFAULT '' ,
@@ -178,4 +178,21 @@ CREATE TABLE `product_categories` (
   `num` int(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '本分类下的产品数',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='产品分类';
-ALTER TABLE `taoli`.`article_categories` CHANGE COLUMN `num` `num` INT UNSIGNED NOT NULL DEFAULT '0' COMMENT '本分类下的文章数'  ;
+ALTER TABLE `article_categories` CHANGE COLUMN `num` `num` INT UNSIGNED NOT NULL DEFAULT '0' COMMENT '本分类下的文章数'  ;
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) NOT NULL COMMENT '展示用',
+  `account` varchar(255) NOT NULL COMMENT '登录用',
+  `password` varchar(255) NOT NULL,
+  `create_time` int(10) unsigned NOT NULL DEFAULT '0',
+  `update_time` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `acc` (`account`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+INSERT INTO `users` VALUES (1,'超级管理员','admin','21a0a95061f7e92f8637ba94a9c0ed999e9df7f31e8df4e5298763add0c2cbdc',1431780329,1431780329);
