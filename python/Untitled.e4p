@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Project SYSTEM "Project-5.1.dtd">
+<!-- eric project file for project Untitled -->
+<!-- Saved: 2015-07-11, 18:03:10 -->
+<!-- Copyright (C) 2015 ,  -->
+<Project version="5.1">
+  <Language>en_US</Language>
+  <Hash>7d341b870d9f437a1cc210e47b998bb562609db7</Hash>
+  <ProgLanguage mixed="0">Python2</ProgLanguage>
+  <ProjectType>PyQt5</ProjectType>
+  <Description></Description>
+  <Version>0.1</Version>
+  <Author></Author>
+  <Email></Email>
+  <Sources>
+    <Source>common/__init__.py</Source>
+    <Source>common/dbconn.py</Source>
+    <Source>common/math.py</Source>
+    <Source>common/stringutils.py</Source>
+    <Source>mysite/blog/__init__.py</Source>
+    <Source>mysite/blog/admin.py</Source>
+    <Source>mysite/blog/models.py</Source>
+    <Source>mysite/blog/tests.py</Source>
+    <Source>mysite/blog/urls.py</Source>
+    <Source>mysite/blog/views.py</Source>
+    <Source>mysite/gallery/__init__.py</Source>
+    <Source>mysite/gallery/admin.py</Source>
+    <Source>mysite/gallery/items/__init__.py</Source>
+    <Source>mysite/gallery/items/fields/__init__.py</Source>
+    <Source>mysite/gallery/items/fields/ThumbnailImageField.py</Source>
+    <Source>mysite/gallery/models.py</Source>
+    <Source>mysite/gallery/tests.py</Source>
+    <Source>mysite/gallery/views.py</Source>
+    <Source>mysite/manage.py</Source>
+    <Source>mysite/mysite/__init__.py</Source>
+    <Source>mysite/mysite/settings.py</Source>
+    <Source>mysite/mysite/urls.py</Source>
+    <Source>mysite/mysite/wsgi.py</Source>
+    <Source>pytest/src/Test1/__init__.py</Source>
+    <Source>pytest/src/Test1/jsontest.py</Source>
+    <Source>pytest/src/Test1/mysqlMoveData.py</Source>
+    <Source>xxsite/manage.py</Source>
+    <Source>xxsite/person/__init__.py</Source>
+    <Source>xxsite/person/admin.py</Source>
+    <Source>xxsite/person/migrations/0001_initial.py</Source>
+    <Source>xxsite/person/migrations/__init__.py</Source>
+    <Source>xxsite/person/models.py</Source>
+    <Source>xxsite/person/tests.py</Source>
+    <Source>xxsite/person/urls.py</Source>
+    <Source>xxsite/person/views.py</Source>
+    <Source>xxsite/xxsite/__init__.py</Source>
+    <Source>xxsite/xxsite/settings.py</Source>
+    <Source>xxsite/xxsite/urls.py</Source>
+    <Source>xxsite/xxsite/views.py</Source>
+    <Source>xxsite/xxsite/wsgi.py</Source>
+    <Source>__init__.py</Source>
+  </Sources>
+  <Forms/>
+  <Translations/>
+  <Resources/>
+  <Interfaces/>
+  <Others/>
+  <Vcs>
+    <VcsType>None</VcsType>
+  </Vcs>
+  <FiletypeAssociations>
+    <FiletypeAssociation pattern="*.idl" type="INTERFACES"/>
+    <FiletypeAssociation pattern="*.ptl" type="SOURCES"/>
+    <FiletypeAssociation pattern="*.py" type="SOURCES"/>
+    <FiletypeAssociation pattern="*.py2" type="SOURCES"/>
+    <FiletypeAssociation pattern="*.pyw" type="SOURCES"/>
+    <FiletypeAssociation pattern="*.pyw2" type="SOURCES"/>
+    <FiletypeAssociation pattern="*.qm" type="TRANSLATIONS"/>
+    <FiletypeAssociation pattern="*.qrc" type="RESOURCES"/>
+    <FiletypeAssociation pattern="*.ts" type="TRANSLATIONS"/>
+    <FiletypeAssociation pattern="*.ui" type="FORMS"/>
+  </FiletypeAssociations>
+</Project>

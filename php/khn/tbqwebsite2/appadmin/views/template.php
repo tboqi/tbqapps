@@ -44,6 +44,7 @@ $.websiteroot = '<?php echo url::base(); ?>';
 					<ul>
 						<li><a <?php if (Request::current()->controller() == 'website' && Request::current()->action() == 'baseinfo') echo 'class="current"'; ?> href="<?php echo URL::site('website/baseinfo'); ?>">网站基本信息</a></li>
 						<li><a <?php if (Request::current()->controller() == 'website' && Request::current()->action() == 'contact') echo 'class="current"'; ?> href="<?php echo URL::site('website/contact'); ?>">联系方式</a></li>
+						<li><a <?php if (Request::current()->controller() == 'website' && Request::current()->action() == 'contact') echo 'class="current"'; ?> href="<?php echo URL::site('website/contact'); ?>">修改密码</a></li>
 					</ul>
 				</li>
 				<li> <a href="<?php echo URL::site('article/index'); ?>" class="nav-top-item <?php if (Request::current()->controller() == 'article' || Request::current()->controller() == 'article_category' || Request::current()->controller() == 'article_comment') echo 'current'; ?>"> 文章管理 </a>
