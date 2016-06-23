@@ -1,4 +1,5 @@
 <?php
+//支付接口
 $orderNumber=date('YmdHis') . rand(1000,9999) . '';
 $params = [
     "orgNumber"=>"0000000001",
