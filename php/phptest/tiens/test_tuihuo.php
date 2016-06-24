@@ -1,5 +1,28 @@
 <?php
+function parse_sign($params){
+    $params_tmp = ksort($params);
+    $params_str='';
+    foreach ($params as $key => $value) {
+        if (empty($value)) {
+            continue;
+        }
+        $params_str .= $key . '=' . $value . '&';
+    }
+    $params_str .="key=4d2e92068ffb8f6aacfa5ed7fbc939d6";
+    $signature=md5($params_str);
+    return $signature;
+}
 //测试退货
+$body_data = ["transid"=> "20160730000234009",//交易序号
+"systraceno"=> "160622165300000015",//交易流水号
+"transtype"=> "4006",
+"amount"=> "1",
+];
+    $body_data['walletid'] = "P0000000041";
+    $body_data['merchno'] = "000000000000001";
+    $body_data['organno'] = "0000000001";
+$body_data['sign']=parse_sign($body_data);
+
 $data = [
     "header"=>[
         "version"=>"100",
@@ -9,14 +32,7 @@ $data = [
         "channeltype"=>"2"
 
     ],
-    "body"=>["sign"=> "2e9b1cb0be311f8764bd18ec5fd2aa75",
-"transid"=> "20160623132311001",
-"systraceno"=> "20160623132311001001",
-"transtype"=> "4006",
-"walletid"=> "P0000000041",
-"amount"=> "1",
-"merchno"=> "000000000000001",
-"organno"=> "0000000001"]
+    "body"=>$body_data,
 ];
 
 $data_string = json_encode($data);
@@ -40,3 +56,5 @@ curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);   // 只信任CA颁布的证书
 $result = curl_exec($ch);
 
 var_dump($result);
+
+//  用户名： yucaifu 密码： 123456
