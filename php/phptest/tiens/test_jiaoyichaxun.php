@@ -12,18 +12,18 @@ function parse_sign($params){
     $signature=md5($params_str);
     return $signature;
 }
-//余额查询接口
+//交易查询接口
 $body_data = [
 ];
-    $body_data['walletid'] = "038a0fc14d994e6696a652902c26216b";//uuid
-    $body_data['merchno'] = "0000000001";
-    $body_data['organno'] = "000000000000001";
+    $body_data['walletid'] = "P0000000041";//
+    $body_data['merchno'] = "000000000000001";
+    $body_data['organno'] = "0000000001";
 $body_data['sign']=parse_sign($body_data);
 
 $data = [
     "header"=>[
         "version"=>"100",
-        "transtype"=>"4008",
+        "transtype"=>"4010",
         "security"=>"MD5",
         "dtclient"=>"20160623132311",
         "channeltype"=>"2"
@@ -55,23 +55,3 @@ $result = curl_exec($ch);
 var_dump($result);
 
 //  用户名： yucaifu 密码： 123456
-//  
-/*
-fec0c3d270864c0f8b9d6737bba99721    0000    
-f5038e3084be41a7965618ef6ac66110    0000    000000000000019
-f346f446f9994afcafbef7bf4612dc98                0000    000000000000014
-f1f9be6826964ba8a9ab5cffaeeb9b08                0000    
-eda9a6bdec964ca4b5c0854b5b7ddf70        
-ece0412995e5476dae588d166558456a    0000    
-ec2aba5ef7834862bf0eefcf555fdb95                0000    
-eb56e5deef1247fb8a5cfd3dbcda5495    0000    
-e6a3fe8bc09447df8b2381d6b17ab108    0000    
-e41f06c9438948bd8a828d924d98855c    0000    104401734200004
-0000是机构号，后面那个10几位的是商户号
-*/
-
-/*
-机构号:0000000001 商户号:000000000000001 机构秘钥:4d2e92068ffb8f6aacfa5ed7fbc939d6
-测试uuid用这个  038a0fc14d994e6696a652902c26216b
-
- */
