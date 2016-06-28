@@ -11,12 +11,12 @@ $params = [
     "transid"=>$orderNumber,
     "orderAmount"=>"1.00",
     "transTime"=>date('YmdHis'),
-    "frontEndUrl"=>"bbbbbbbb",
-    "backEndUrl"=>"aaaaaaaa",
+    "frontEndUrl"=>"http://123.151.202.66/kohana/welcome/frontendurl",
+    "backEndUrl"=>"http://123.151.202.66/kohana/welcome/backendurl",
     "channel"=>"2",
     "cardNo"=>"928800011",
     "walletid"=>"P0000000041",
-    "origQid"=>"",
+    //"origQid"=>"",
     //"signature"=>"4d2e92068ffb8f6aacfa5ed7fbc939d6"
 ];
 $params_tmp = ksort($params);

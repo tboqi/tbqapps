@@ -14,8 +14,9 @@ function parse_sign($params){
 }
 //交易查询接口
 $body_data = [
+    'transid'=>'2016063500000012',
 ];
-    $body_data['walletid'] = "P0000000041";//
+    $body_data['walletid'] = "038a0fc14d994e6696a652902c26216b";//
     $body_data['merchno'] = "000000000000001";
     $body_data['organno'] = "0000000001";
 $body_data['sign']=parse_sign($body_data);
@@ -55,3 +56,8 @@ $result = curl_exec($ch);
 var_dump($result);
 
 //  用户名： yucaifu 密码： 123456
+/*
+机构号:0000000001 商户号:000000000000001 机构秘钥:4d2e92068ffb8f6aacfa5ed7fbc939d6
+测试uuid用这个  038a0fc14d994e6696a652902c26216b
+
+ */
