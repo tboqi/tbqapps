@@ -13,8 +13,10 @@ function parse_sign($params){
     return $signature;
 }
 //测试退货
-$body_data = ["transid"=> "20160730000234009",//交易序号
-"systraceno"=> "160622165300000015",//交易流水号
+$transid=$_GET['transid'] ?: '201607050436125373';
+$systraceno=$_GET['systraceno'] ?: '160705104100000002';
+$body_data = ["transid"=> $transid,//交易序号
+"systraceno"=> $systraceno,//交易流水号
 "transtype"=> "4006",
 "amount"=> "1",
 ];

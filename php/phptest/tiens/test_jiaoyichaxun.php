@@ -13,8 +13,9 @@ function parse_sign($params){
     return $signature;
 }
 //交易查询接口
+$transid = $_GET['transid'] ?: '201607050436125373';
 $body_data = [
-    'transid'=>'2016063500000012',
+    'transid'=>$transid,
 ];
     $body_data['walletid'] = "038a0fc14d994e6696a652902c26216b";//
     $body_data['merchno'] = "000000000000001";

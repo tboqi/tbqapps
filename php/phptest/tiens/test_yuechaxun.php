@@ -15,9 +15,11 @@ function parse_sign($params){
 //余额查询接口
 $body_data = [
 ];
-    $body_data['walletid'] = "038a0fc14d994e6696a652902c26216b";//uuid
-    $body_data['merchno'] = "0000000001";
-    $body_data['organno'] = "000000000000001";
+    $body_data['walletid'] = $_GET['walletid']?:"038a0fc14d994e6696a652902c26216b";//uuid
+    // $body_data['merchno'] = "0000000001";
+    // $body_data['organno'] = "000000000000001";
+    $body_data['merchno'] = "000000000000001";
+    $body_data['organno'] = "0000000001";
 $body_data['sign']=parse_sign($body_data);
 
 $data = [
