@@ -40,7 +40,7 @@ $data = [
 $data_string = json_encode($data);
 var_dump($data_string);
 $http = "http://183.63.103.90:9999/vipcard" ; //这个是http地址
-$https="https://183.63.103.90:9998/vipcard";
+$https="https://10.1.21.213:8888/vipcard";
 $ch = curl_init($https.'/api/wallet.do');
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
 curl_setopt($ch, CURLOPT_POSTFIELDS,$data_string);
