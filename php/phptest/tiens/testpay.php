@@ -1,5 +1,5 @@
 <?php
-$orderAmount=$_GET['orderAmount']?:1;
+$orderAmount = !empty($_GET['orderAmount']) ? $_GET['orderAmount'] : 1;
 //支付接口
 $orderNumber = date('YmdHis') . rand(1000, 9999) . '';
 $params = [
@@ -32,10 +32,11 @@ $params_str .= "key=4d2e92068ffb8f6aacfa5ed7fbc939d6";
 $signature = md5($params_str);
 var_dump($params_str, $signature);
 $params['signature'] = $signature;
+$https = "https://ewm.tiens.com/vipcard";
 ?>0000000001
 000000000000001
 4d2e92068ffb8f6aacfa5ed7fbc939d6
-<form id="pay_form" name="pay_form" action="https://10.1.21.213:8888/vipcard/trade/toTradePage.do" method="post">
+<form id="pay_form" name="pay_form" action="<?=$https?>/trade/toTradePage.do" method="post">
 <input type="text" name="params" id="params" value="<?=htmlspecialchars(json_encode($params))?>"/>
 <button type="submit">提交</button>
 </form>
