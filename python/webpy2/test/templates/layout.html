@@ -1,0 +1,19 @@
+$def with (content)
+<html>
+<head>
+    <title>$content.title</title>
+</head>
+<body>
+<ul>
+    <li><a href="/">首页</a></li>
+    $if context.has_key('user_id'): 
+        <li><span>You are logged in as <b>$context.user_id</b></span></li>
+        <li><a href="/user/logout">退出</a></li>
+    $else: 
+	    <li><a href="/user/login">登录</a></li>
+	    <li><a href="/user/regist">注册</a></li>
+    
+</ul>
+$:content
+</body>
+</html>
