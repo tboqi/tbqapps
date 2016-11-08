@@ -1,0 +1,29 @@
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+
+RewriteCond %{HTTP_HOST} ^chentu.info$ [NC]
+RewriteRule ^(.*)$ http://www.chentu.info/$1 [R=301,L]
+
+#khnblog to wp
+RewriteRule ^article/view/(.*)$ archives/$1 [R=301,L]
+RewriteRule ^article/user/(.*)$ archives/author/admin [R=301,L]
+RewriteRule ^article/category/(.*)$ category/$1 [R=301,L]
+RewriteRule ^article/tab/(.*)$ tag/1$1 [R=301,L]
+RewriteRule ^rss$ feed [R=301,L]
+RewriteRule ^tab$ / [R=301,L]
+RewriteRule ^sitemap$ sitemap.xml [R=301,L]
+
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress
+RewriteEngine on
+RewriteCond %{QUERY_STRING} ^[^=]*$
+RewriteCond %{QUERY_STRING} %2d|\- [NC]
+RewriteRule .? - [F,L]
