@@ -1,0 +1,13 @@
+<VirtualHost *:80>
+    DocumentRoot "D:/github/chentublog/"
+    ServerName chentublog
+    <Directory "D:/github/chentublog/">
+	    Options Indexes FollowSymLinks
+	    AllowOverride All
+	    Allow from all
+	</Directory>
+</VirtualHost> 
+
+127.0.0.1 chentublog
+
+php版本大于5.3
