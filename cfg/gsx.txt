@@ -1,0 +1,16 @@
+ligangjiang@baijiahulian.com
+bjhl@123
+
+account@baijiahulian.com
+bjhl@123
+
+        $phql = <<<SQL
+UPDATE teacher_class_course SET cover=:cover_id WHERE number=:class_course_number
+SQL;
+        $bind = [
+            'cover_id' => $photoId,
+            'class_course_number' => $class_course_number,
+        ];
+        $conn = \Phalcon\DI::getDefault()->getShared('db');
+        $conn->execute($phql, $bind);
+    }

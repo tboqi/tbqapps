@@ -1,0 +1,998 @@
+{
+    "rmzb": 519,
+    "tjls": 518,
+    "global": [
+        {
+            "key": "zxx",
+            "name": "中小学",
+            "id": "107,140,161,237,266,342,373"
+        },
+        {
+            "key": "cglx",
+            "name": "出国留学",
+            "id": "783,376"
+        },
+        {
+            "key": "ytxq",
+            "name": "艺体兴趣",
+            "id": "975,921,897,878"
+        },
+        {
+            "key": "yypx",
+            "name": "语言培训",
+            "id": "714"
+        },
+        {
+            "key": "jnks",
+            "name": "技能考试",
+            "id": "573,455,472,817,502,852,634,387"
+        }
+    ],
+    "city": {
+        "all": {
+            "zxx": {
+                "tjkc": 520,
+                "zxtj": 525,
+                "rmls": 535,
+                "jgtj": 540,
+                "rmwz": 545
+            },
+            "cglx": {
+                "tjkc": 521,
+                "zxtj": 526,
+                "rmls": 536,
+                "jgtj": 541,
+                "rmwz": 546
+            },
+            "ytxq": {
+                "tjkc": 522,
+                "zxtj": 527,
+                "rmls": 537,
+                "jgtj": 542,
+                "rmwz": 547
+            },
+            "yypx": {
+                "tjkc": 523,
+                "zxtj": 528,
+                "rmls": 538,
+                "jgtj": 543,
+                "rmwz": 548
+            },
+            "jnks": {
+                "tjkc": 524,
+                "zxtj": 529,
+                "rmls": 539,
+                "jgtj": 544,
+                "rmwz": 549
+            }
+        },
+        "bj": {
+            "zxx": {
+                "tjkc": 627,
+                "zxtj": 628,
+                "rmls": 629,
+                "jgtj": 630
+            },
+            "cglx": {
+                "tjkc": 631,
+                "zxtj": 632,
+                "rmls": 633,
+                "jgtj": 634
+            },
+            "ytxq": {
+                "tjkc": 635,
+                "zxtj": 636,
+                "rmls": 637,
+                "jgtj": 638
+            },
+            "yypx": {
+                "tjkc": 639,
+                "zxtj": 640,
+                "rmls": 641,
+                "jgtj": 642
+            },
+            "jnks": {
+                "tjkc": 643,
+                "zxtj": 644,
+                "rmls": 645,
+                "jgtj": 646
+            }
+        },
+        "cd": {
+            "zxx": {
+                "tjkc": 667,
+                "zxtj": 668,
+                "rmls": 669,
+                "jgtj": 670
+            },
+            "cglx": {
+                "tjkc": 671,
+                "zxtj": 672,
+                "rmls": 673,
+                "jgtj": 674
+            },
+            "ytxq": {
+                "tjkc": 675,
+                "zxtj": 676,
+                "rmls": 677,
+                "jgtj": 678
+            },
+            "yypx": {
+                "tjkc": 679,
+                "zxtj": 680,
+                "rmls": 681,
+                "jgtj": 682
+            },
+            "jnks": {
+                "tjkc": 683,
+                "zxtj": 684,
+                "rmls": 685,
+                "jgtj": 686
+            }
+        },
+        "wh": {
+            "zxx": {
+                "tjkc": 687,
+                "zxtj": 688,
+                "rmls": 689,
+                "jgtj": 690
+            },
+            "cglx": {
+                "tjkc": 691,
+                "zxtj": 692,
+                "rmls": 693,
+                "jgtj": 694
+            },
+            "ytxq": {
+                "tjkc": 695,
+                "zxtj": 696,
+                "rmls": 697,
+                "jgtj": 698
+            },
+            "yypx": {
+                "tjkc": 699,
+                "zxtj": 700,
+                "rmls": 701,
+                "jgtj": 702
+            },
+            "jnks": {
+                "tjkc": 703,
+                "zxtj": 704,
+                "rmls": 705,
+                "jgtj": 706
+            }
+        },
+        "hf": {
+            "zxx": {
+                "tjkc": 707,
+                "zxtj": 708,
+                "rmls": 709,
+                "jgtj": 710
+            },
+            "cglx": {
+                "tjkc": 711,
+                "zxtj": 712,
+                "rmls": 713,
+                "jgtj": 714
+            },
+            "ytxq": {
+                "tjkc": 715,
+                "zxtj": 716,
+                "rmls": 717,
+                "jgtj": 718
+            },
+            "yypx": {
+                "tjkc": 719,
+                "zxtj": 720,
+                "rmls": 721,
+                "jgtj": 722
+            },
+            "jnks": {
+                "tjkc": 723,
+                "zxtj": 724,
+                "rmls": 725,
+                "jgtj": 726
+            }
+        },
+        "nj": {
+            "zxx": {
+                "tjkc": 727,
+                "zxtj": 728,
+                "rmls": 729,
+                "jgtj": 730
+            },
+            "cglx": {
+                "tjkc": 731,
+                "zxtj": 732,
+                "rmls": 733,
+                "jgtj": 734
+            },
+            "ytxq": {
+                "tjkc": 735,
+                "zxtj": 736,
+                "rmls": 737,
+                "jgtj": 738
+            },
+            "yypx": {
+                "tjkc": 739,
+                "zxtj": 740,
+                "rmls": 741,
+                "jgtj": 742
+            },
+            "jnks": {
+                "tjkc": 743,
+                "zxtj": 744,
+                "rmls": 745,
+                "jgtj": 746
+            }
+        },
+        "hz": {
+            "zxx": {
+                "tjkc": 747,
+                "zxtj": 748,
+                "rmls": 749,
+                "jgtj": 750
+            },
+            "cglx": {
+                "tjkc": 751,
+                "zxtj": 752,
+                "rmls": 753,
+                "jgtj": 754
+            },
+            "ytxq": {
+                "tjkc": 755,
+                "zxtj": 756,
+                "rmls": 757,
+                "jgtj": 758
+            },
+            "yypx": {
+                "tjkc": 759,
+                "zxtj": 760,
+                "rmls": 761,
+                "jgtj": 762
+            },
+            "jnks": {
+                "tjkc": 763,
+                "zxtj": 764,
+                "rmls": 765,
+                "jgtj": 766
+            }
+        },
+        "shenzhen": {
+            "zxx": {
+                "tjkc": 767,
+                "zxtj": 768,
+                "rmls": 769,
+                "jgtj": 770
+            },
+            "cglx": {
+                "tjkc": 771,
+                "zxtj": 772,
+                "rmls": 773,
+                "jgtj": 774
+            },
+            "ytxq": {
+                "tjkc": 775,
+                "zxtj": 776,
+                "rmls": 777,
+                "jgtj": 778
+            },
+            "yypx": {
+                "tjkc": 779,
+                "zxtj": 780,
+                "rmls": 781,
+                "jgtj": 782
+            },
+            "jnks": {
+                "tjkc": 783,
+                "zxtj": 784,
+                "rmls": 785,
+                "jgtj": 786
+            }
+        },
+        "cq": {
+            "zxx": {
+                "tjkc": 827,
+                "zxtj": 828,
+                "rmls": 829,
+                "jgtj": 830
+            },
+            "cglx": {
+                "tjkc": 831,
+                "zxtj": 832,
+                "rmls": 833,
+                "jgtj": 834
+            },
+            "ytxq": {
+                "tjkc": 835,
+                "zxtj": 836,
+                "rmls": 837,
+                "jgtj": 838
+            },
+            "yypx": {
+                "tjkc": 839,
+                "zxtj": 840,
+                "rmls": 841,
+                "jgtj": 842
+            },
+            "jnks": {
+                "tjkc": 843,
+                "zxtj": 844,
+                "rmls": 845,
+                "jgtj": 846
+            }
+        },
+        "sh": {
+            "zxx": {
+                "tjkc": 807,
+                "zxtj": 808,
+                "rmls": 809,
+                "jgtj": 810
+            },
+            "cglx": {
+                "tjkc": 811,
+                "zxtj": 812,
+                "rmls": 813,
+                "jgtj": 814
+            },
+            "ytxq": {
+                "tjkc": 815,
+                "zxtj": 816,
+                "rmls": 817,
+                "jgtj": 818
+            },
+            "yypx": {
+                "tjkc": 819,
+                "zxtj": 820,
+                "rmls": 821,
+                "jgtj": 822
+            },
+            "jnks": {
+                "tjkc": 823,
+                "zxtj": 824,
+                "rmls": 825,
+                "jgtj": 826
+            }
+        },
+        "gy": {
+            "zxx": {
+                "tjkc": 847,
+                "zxtj": 848,
+                "rmls": 849,
+                "jgtj": 850
+            },
+            "cglx": {
+                "tjkc": 851,
+                "zxtj": 852,
+                "rmls": 853,
+                "jgtj": 854
+            },
+            "ytxq": {
+                "tjkc": 855,
+                "zxtj": 856,
+                "rmls": 857,
+                "jgtj": 858
+            },
+            "yypx": {
+                "tjkc": 859,
+                "zxtj": 860,
+                "rmls": 861,
+                "jgtj": 862
+            },
+            "jnks": {
+                "tjkc": 863,
+                "zxtj": 864,
+                "rmls": 865,
+                "jgtj": 866
+            }
+        },
+        "dl": {
+            "zxx": {
+                "tjkc": 867,
+                "zxtj": 868,
+                "rmls": 869,
+                "jgtj": 870
+            },
+            "cglx": {
+                "tjkc": 871,
+                "zxtj": 872,
+                "rmls": 873,
+                "jgtj": 874
+            },
+            "ytxq": {
+                "tjkc": 875,
+                "zxtj": 876,
+                "rmls": 877,
+                "jgtj": 878
+            },
+            "yypx": {
+                "tjkc": 879,
+                "zxtj": 880,
+                "rmls": 881,
+                "jgtj": 882
+            },
+            "jnks": {
+                "tjkc": 887,
+                "zxtj": 888,
+                "rmls": 889,
+                "jgtj": 890
+            }
+        },
+        "suzhou": {
+            "zxx": {
+                "tjkc": 663,
+                "zxtj": 664,
+                "rmls": 665,
+                "jgtj": 666
+            },
+            "cglx": {
+                "tjkc": 659,
+                "zxtj": 660,
+                "rmls": 661,
+                "jgtj": 662
+            },
+            "ytxq": {
+                "tjkc": 655,
+                "zxtj": 656,
+                "rmls": 657,
+                "jgtj": 658
+            },
+            "yypx": {
+                "tjkc": 651,
+                "zxtj": 652,
+                "rmls": 653,
+                "jgtj": 654
+            },
+            "jnks": {
+                "tjkc": 647,
+                "zxtj": 648,
+                "rmls": 649,
+                "jgtj": 650
+            }
+        },
+        "bd": {
+            "zxx": {
+                "tjkc": 1136,
+                "zxtj": 1137,
+                "rmls": 1138,
+                "jgtj": 1139
+            },
+            "cglx": {
+                "tjkc": 1140,
+                "zxtj": 1141,
+                "rmls": 1142,
+                "jgtj": 1143
+            },
+            "ytxq": {
+                "tjkc": 1144,
+                "zxtj": 1145,
+                "rmls": 1146,
+                "jgtj": 1147
+            },
+            "yypx": {
+                "tjkc": 1148,
+                "zxtj": 1149,
+                "rmls": 1150,
+                "jgtj": 1151
+            },
+            "jnks": {
+                "tjkc": 1152,
+                "zxtj": 1153,
+                "rmls": 1154,
+                "jgtj": 1155
+            }
+        },
+        "gz": {
+            "zxx": {
+                "tjkc": 1162,
+                "zxtj": 1163,
+                "rmls": 1164,
+                "jgtj": 1165
+            },
+            "cglx": {
+                "tjkc": 1166,
+                "zxtj": 1167,
+                "rmls": 1168,
+                "jgtj": 1169
+            },
+            "ytxq": {
+                "tjkc": 1170,
+                "zxtj": 1171,
+                "rmls": 1172,
+                "jgtj": 1173
+            },
+            "yypx": {
+                "tjkc": 1174,
+                "zxtj": 1175,
+                "rmls": 1176,
+                "jgtj": 1177
+            },
+            "jnks": {
+                "tjkc": 1178,
+                "zxtj": 1179,
+                "rmls": 1180,
+                "jgtj": 1181
+            }
+        },
+        "cs": {
+            "zxx": {
+                "tjkc": 1188,
+                "zxtj": 1189,
+                "rmls": 1190,
+                "jgtj": 1191
+            },
+            "cglx": {
+                "tjkc": 1192,
+                "zxtj": 1193,
+                "rmls": 1194,
+                "jgtj": 1195
+            },
+            "ytxq": {
+                "tjkc": 1196,
+                "zxtj": 1197,
+                "rmls": 1198,
+                "jgtj": 1199
+            },
+            "yypx": {
+                "tjkc": 1200,
+                "zxtj": 1201,
+                "rmls": 1202,
+                "jgtj": 1203
+            },
+            "jnks": {
+                "tjkc": 1204,
+                "zxtj": 1205,
+                "rmls": 1206,
+                "jgtj": 1207
+            }
+        },
+        "xa": {
+            "zxx": {
+                "tjkc": 1214,
+                "zxtj": 1215,
+                "rmls": 1216,
+                "jgtj": 1217
+            },
+            "cglx": {
+                "tjkc": 1218,
+                "zxtj": 1219,
+                "rmls": 1220,
+                "jgtj": 1221
+            },
+            "ytxq": {
+                "tjkc": 1222,
+                "zxtj": 1223,
+                "rmls": 1224,
+                "jgtj": 1225
+            },
+            "yypx": {
+                "tjkc": 1226,
+                "zxtj": 1227,
+                "rmls": 1228,
+                "jgtj": 1229
+            },
+            "jnks": {
+                "tjkc": 1230,
+                "zxtj": 1231,
+                "rmls": 1232,
+                "jgtj": 1233
+            }
+        },
+        "wuhu": {
+            "zxx": {
+                "tjkc": 1240,
+                "zxtj": 1241,
+                "rmls": 1242,
+                "jgtj": 1243
+            },
+            "cglx": {
+                "tjkc": 1244,
+                "zxtj": 1245,
+                "rmls": 1246,
+                "jgtj": 1247
+            },
+            "ytxq": {
+                "tjkc": 1248,
+                "zxtj": 1249,
+                "rmls": 1250,
+                "jgtj": 1251
+            },
+            "yypx": {
+                "tjkc": 1252,
+                "zxtj": 1253,
+                "rmls": 1254,
+                "jgtj": 1255
+            },
+            "jnks": {
+                "tjkc": 1256,
+                "zxtj": 1257,
+                "rmls": 1258,
+                "jgtj": 1259
+            }
+        },
+        "ty": {
+            "zxx": {
+                "tjkc": 1266,
+                "zxtj": 1267,
+                "rmls": 1268,
+                "jgtj": 1269
+            },
+            "cglx": {
+                "tjkc": 1270,
+                "zxtj": 1271,
+                "rmls": 1272,
+                "jgtj": 1273
+            },
+            "ytxq": {
+                "tjkc": 1274,
+                "zxtj": 1275,
+                "rmls": 1276,
+                "jgtj": 1277
+            },
+            "yypx": {
+                "tjkc": 1278,
+                "zxtj": 1279,
+                "rmls": 1280,
+                "jgtj": 1281
+            },
+            "jnks": {
+                "tjkc": 1282,
+                "zxtj": 1283,
+                "rmls": 1284,
+                "jgtj": 1285
+            }
+        },
+        "sjz": {
+            "zxx": {
+                "tjkc": 1292,
+                "zxtj": 1293,
+                "rmls": 1294,
+                "jgtj": 1295
+            },
+            "cglx": {
+                "tjkc": 1296,
+                "zxtj": 1297,
+                "rmls": 1298,
+                "jgtj": 1299
+            },
+            "ytxq": {
+                "tjkc": 1300,
+                "zxtj": 1301,
+                "rmls": 1302,
+                "jgtj": 1303
+            },
+            "yypx": {
+                "tjkc": 1304,
+                "zxtj": 1305,
+                "rmls": 1306,
+                "jgtj": 1307
+            },
+            "jnks": {
+                "tjkc": 1308,
+                "zxtj": 1309,
+                "rmls": 1310,
+                "jgtj": 1311
+            }
+        },
+        "sy": {
+            "zxx": {
+                "tjkc": 1318,
+                "zxtj": 1319,
+                "rmls": 1320,
+                "jgtj": 1321
+            },
+            "cglx": {
+                "tjkc": 1326,
+                "zxtj": 1327,
+                "rmls": 1328,
+                "jgtj": 1329
+            },
+            "ytxq": {
+                "tjkc": 1330,
+                "zxtj": 1331,
+                "rmls": 1332,
+                "jgtj": 1333
+            },
+            "yypx": {
+                "tjkc": 1334,
+                "zxtj": 1335,
+                "rmls": 1336,
+                "jgtj": 1337
+            },
+            "jnks": {
+                "tjkc": 1338,
+                "zxtj": 1339,
+                "rmls": 1340,
+                "jgtj": 1341
+            }
+        },
+        "xm": {
+            "zxx": {
+                "tjkc": 1348,
+                "zxtj": 1349,
+                "rmls": 1350,
+                "jgtj": 1351
+            },
+            "cglx": {
+                "tjkc": 1352,
+                "zxtj": 1353,
+                "rmls": 1354,
+                "jgtj": 1355
+            },
+            "ytxq": {
+                "tjkc": 1356,
+                "zxtj": 1357,
+                "rmls": 1358,
+                "jgtj": 1359
+            },
+            "yypx": {
+                "tjkc": 1360,
+                "zxtj": 1361,
+                "rmls": 1362,
+                "jgtj": 1363
+            },
+            "jnks": {
+                "tjkc": 1364,
+                "zxtj": 1365,
+                "rmls": 1366,
+                "jgtj": 1367
+            }
+        },
+        "qd": {
+            "zxx": {
+                "tjkc": 1374,
+                "zxtj": 1375,
+                "rmls": 1376,
+                "jgtj": 1377
+            },
+            "cglx": {
+                "tjkc": 1378,
+                "zxtj": 1379,
+                "rmls": 1380,
+                "jgtj": 1381
+            },
+            "ytxq": {
+                "tjkc": 1382,
+                "zxtj": 1383,
+                "rmls": 1384,
+                "jgtj": 1385
+            },
+            "yypx": {
+                "tjkc": 1386,
+                "zxtj": 1387,
+                "rmls": 1388,
+                "jgtj": 1389
+            },
+            "jnks": {
+                "tjkc": 1390,
+                "zxtj": 1391,
+                "rmls": 1392,
+                "jgtj": 1393
+            }
+        },
+        "nb": {
+            "zxx": {
+                "tjkc": 1400,
+                "zxtj": 1401,
+                "rmls": 1402,
+                "jgtj": 1403
+            },
+            "cglx": {
+                "tjkc": 1404,
+                "zxtj": 1405,
+                "rmls": 1406,
+                "jgtj": 1407
+            },
+            "ytxq": {
+                "tjkc": 1408,
+                "zxtj": 1409,
+                "rmls": 1410,
+                "jgtj": 1411
+            },
+            "yypx": {
+                "tjkc": 1412,
+                "zxtj": 1413,
+                "rmls": 1414,
+                "jgtj": 1415
+            },
+            "jnks": {
+                "tjkc": 1416,
+                "zxtj": 1417,
+                "rmls": 1418,
+                "jgtj": 1419
+            }
+        },
+        "nn": {
+            "zxx": {
+                "tjkc": 1426,
+                "zxtj": 1427,
+                "rmls": 1428,
+                "jgtj": 1429
+            },
+            "cglx": {
+                "tjkc": 1430,
+                "zxtj": 1431,
+                "rmls": 1432,
+                "jgtj": 1433
+            },
+            "ytxq": {
+                "tjkc": 1434,
+                "zxtj": 1435,
+                "rmls": 1436,
+                "jgtj": 1437
+            },
+            "yypx": {
+                "tjkc": 1438,
+                "zxtj": 1439,
+                "rmls": 1440,
+                "jgtj": 1441
+            },
+            "jnks": {
+                "tjkc": 1442,
+                "zxtj": 1443,
+                "rmls": 1444,
+                "jgtj": 1445
+            }
+        },
+        "nc": {
+            "zxx": {
+                "tjkc": 1452,
+                "zxtj": 1453,
+                "rmls": 1454,
+                "jgtj": 1455
+            },
+            "cglx": {
+                "tjkc": 1456,
+                "zxtj": 1457,
+                "rmls": 1458,
+                "jgtj": 1459
+            },
+            "ytxq": {
+                "tjkc": 1460,
+                "zxtj": 1461,
+                "rmls": 1462,
+                "jgtj": 1463
+            },
+            "yypx": {
+                "tjkc": 1464,
+                "zxtj": 1465,
+                "rmls": 1466,
+                "jgtj": 1467
+            },
+            "jnks": {
+                "tjkc": 1468,
+                "zxtj": 1469,
+                "rmls": 1470,
+                "jgtj": 1471
+            }
+        },
+        "my": {
+            "zxx": {
+                "tjkc": 1478,
+                "zxtj": 1479,
+                "rmls": 1480,
+                "jgtj": 1481
+            },
+            "cglx": {
+                "tjkc": 1482,
+                "zxtj": 1483,
+                "rmls": 1484,
+                "jgtj": 1485
+            },
+            "ytxq": {
+                "tjkc": 1486,
+                "zxtj": 1487,
+                "rmls": 1488,
+                "jgtj": 1489
+            },
+            "yypx": {
+                "tjkc": 1490,
+                "zxtj": 1491,
+                "rmls": 1492,
+                "jgtj": 1493
+            },
+            "jnks": {
+                "tjkc": 1494,
+                "zxtj": 1495,
+                "rmls": 1496,
+                "jgtj": 1497
+            }
+        },
+        "mas": {
+            "zxx": {
+                "tjkc": 1504,
+                "zxtj": 1505,
+                "rmls": 1506,
+                "jgtj": 1507
+            },
+            "cglx": {
+                "tjkc": 1508,
+                "zxtj": 1509,
+                "rmls": 1510,
+                "jgtj": 1511
+            },
+            "ytxq": {
+                "tjkc": 1512,
+                "zxtj": 1513,
+                "rmls": 1514,
+                "jgtj": 1515
+            },
+            "yypx": {
+                "tjkc": 1516,
+                "zxtj": 1517,
+                "rmls": 1518,
+                "jgtj": 1519
+            },
+            "jnks": {
+                "tjkc": 1520,
+                "zxtj": 1521,
+                "rmls": 1522,
+                "jgtj": 1523
+            }
+        },
+        "luoyang": {
+            "zxx": {
+                "tjkc": 1530,
+                "zxtj": 1531,
+                "rmls": 1532,
+                "jgtj": 1533
+            },
+            "cglx": {
+                "tjkc": 1534,
+                "zxtj": 1535,
+                "rmls": 1536,
+                "jgtj": 1537
+            },
+            "ytxq": {
+                "tjkc": 1538,
+                "zxtj": 1539,
+                "rmls": 1540,
+                "jgtj": 1541
+            },
+            "yypx": {
+                "tjkc": 1542,
+                "zxtj": 1543,
+                "rmls": 1544,
+                "jgtj": 1545
+            },
+            "jnks": {
+                "tjkc": 1546,
+                "zxtj": 1547,
+                "rmls": 1548,
+                "jgtj": 1549
+            }
+        },
+        "cc": {
+            "zxx": {
+                "tjkc": 787,
+                "zxtj": 788,
+                "rmls": 789,
+                "jgtj": 790
+            },
+            "cglx": {
+                "tjkc": 791,
+                "zxtj": 792,
+                "rmls": 793,
+                "jgtj": 794
+            },
+            "ytxq": {
+                "tjkc": 795,
+                "zxtj": 796,
+                "rmls": 797,
+                "jgtj": 798
+            },
+            "yypx": {
+                "tjkc": 799,
+                "zxtj": 800,
+                "rmls": 801,
+                "jgtj": 802
+            },
+            "jnks": {
+                "tjkc": 803,
+                "zxtj": 804,
+                "rmls": 805,
+                "jgtj": 806
+            }
+        }
+    }
+}

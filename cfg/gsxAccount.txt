@@ -1,0 +1,14 @@
+ligangjiang@baijiahulian.com
+bjhl@123
+
+account@baijiahulian.com
+bjhl@123
+
+mysql密码
+MhxzKhl8888
+
+测试库恢复
+mysql -hsub1447666329323-rdsjrrqafurybyr.mysql.rds.aliyuncs.com -utest_user -p
+
+北京市海淀区西北旺东路10号院东区7号楼 博彦科技西楼
+

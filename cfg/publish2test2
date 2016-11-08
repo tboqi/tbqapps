@@ -1,0 +1,33 @@
+#! /bin/bash -
+cd /home/tangbq/tjs.shop
+git pull --all
+git status
+git branch -r
+
+echo "继续执行前, 请确认:
+1. 当前分支是否为test
+2. 远程分支是否包含本次需要合并的分支
+
+确认请输入1+回车, 否则请退出
+"
+read hasBranch;
+
+set -x
+if [[ $hasBranch = "1" ]]; then
+    echo "请出入您的分支名:";
+    read branchName;
+    git checkout test
+    git pull
+    git merge origin/${branchName}
+    git push origin test
+
+    rsync -zvrt custom/ root@192.168.3.181:/data/www/ecstore/custom/ 
+    rsync -zvrt custom/ root@192.168.3.182:/data/www/ecstore/custom/ 
+    rsync -zvrt app/tiens/ root@192.168.3.181:/data/www/ecstore/app/tiens/
+    rsync -zvrt app/tiens/ root@192.168.3.182:/data/www/ecstore/app/tiens/
+    rsync -zvrt public/ root@192.168.3.181:/data/www/ecstore/public/
+    rsync -zvrt public/ root@192.168.3.182:/data/www/ecstore/public/
+fi
+
+set +x
+cd -

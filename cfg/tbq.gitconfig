@@ -1,0 +1,21 @@
+[core]
+	quotepath = false
+	editor = vim 
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[alias]
+	d = difftool
+[user]
+	name = 唐伯琦
+	email = tboqi@aliyun.com
+[gui]
+    encoding = zh_cn.utf-8
+[i18n]
+    commitencoding = zh_cn.utf-8
+    logoutputencoding = zh_cn.utf-8
+[merge]
+	tool = vimdiff
+[color]
+	ui = true
