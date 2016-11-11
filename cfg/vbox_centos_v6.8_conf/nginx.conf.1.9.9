@@ -41,7 +41,7 @@ http {
         #access_log  logs/host.access.log  main;
 
         location / {
-            root   /home/tboqi/code/bitbucket/tbqapps/php/phptest;
+            root   /home/tboqi/tbqapps/php/phptest;
             index  index.html index.htm index.php;
         }
 
@@ -55,7 +55,7 @@ http {
         }
 
         location ~ \.php$ {
-            root   /home/tboqi/code/bitbucket/tbqapps/php/phptest;
+            root   /home/tboqi/tbqapps/php/phptest;
             fastcgi_pass   127.0.0.1:9000;
             fastcgi_index  index.php;
             fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
@@ -63,13 +63,12 @@ http {
         }
     }
     include vhost/*.conf;
-    include vhost1/*.conf;
     server
     {
         listen    80;
         server_name number1g.com www.number1g.com;
         index index.php;
-        root /home/tboqi/code/bitbucket/number1g.com;
+        root /home/tboqi/tbqapps/number1g.com;
 
         location / {
             index index.php;
